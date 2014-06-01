@@ -1,0 +1,36 @@
+#surefire
+#Wed Jan 15 22:52:06 CET 2014
+testClassesDirectory=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 One-to-One example/XML/HibernateExample/target/test-classes
+classPathUrl.4=/root/.m2/repository/org/hibernate/hibernate/3.2.3.ga/hibernate-3.2.3.ga.jar
+forkMode=once
+classPathUrl.3=/root/.m2/repository/mysql/mysql-connector-java/5.1.9/mysql-connector-java-5.1.9.jar
+classPathUrl.2=/root/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar
+useManifestOnlyJar=true
+classPathUrl.1=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 One-to-One example/XML/HibernateExample/target/classes
+reportsDirectory=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 One-to-One example/XML/HibernateExample/target/surefire-reports
+classPathUrl.0=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 One-to-One example/XML/HibernateExample/target/test-classes
+providerConfiguration=org.apache.maven.surefire.junit.JUnit3Provider
+testSuiteDefinitionTestSourceDirectory=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 One-to-One example/XML/HibernateExample/src/test/java
+surefireClassPathUrl.1=/root/.m2/repository/org/apache/maven/surefire/surefire-api/2.10/surefire-api-2.10.jar
+surefireClassPathUrl.0=/root/.m2/repository/org/apache/maven/surefire/surefire-junit3/2.10/surefire-junit3-2.10.jar
+runOrder=filesystem
+useSystemClassLoader=true
+excludes0=**/*$*
+isTrimStackTrace=true
+classPathUrl.15=/root/.m2/repository/log4j/log4j/1.2.9/log4j-1.2.9.jar
+includes2=**/*TestCase.java
+enableAssertions=true
+classPathUrl.14=/root/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar
+includes1=**/*Test.java
+failIfNoTests=false
+classPathUrl.13=/root/.m2/repository/cglib/cglib/2.2/cglib-2.2.jar
+includes0=**/Test*.java
+classPathUrl.12=/root/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar
+classPathUrl.11=/root/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar
+classPathUrl.10=/root/.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar
+classPathUrl.9=/root/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar
+classPathUrl.8=/root/.m2/repository/asm/asm/1.5.3/asm-1.5.3.jar
+classPathUrl.7=/root/.m2/repository/asm/asm-attrs/1.5.3/asm-attrs-1.5.3.jar
+childDelegation=false
+classPathUrl.6=/root/.m2/repository/javax/transaction/jta/1.0.1B/jta-1.0.1B.jar
+classPathUrl.5=/root/.m2/repository/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3.jar

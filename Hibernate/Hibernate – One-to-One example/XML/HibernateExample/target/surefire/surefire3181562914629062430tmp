@@ -1,0 +1,5 @@
+#surefire
+#Wed Jan 15 22:52:06 CET 2014
+user.dir=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 One-to-One example/XML/HibernateExample
+localRepository=/root/.m2/repository
+basedir=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 One-to-One example/XML/HibernateExample

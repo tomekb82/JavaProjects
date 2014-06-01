@@ -1,0 +1,237 @@
+22:53:20,204  INFO Environment:509 - Hibernate 3.2.3
+22:53:20,211  INFO Environment:542 - hibernate.properties not found
+22:53:20,213  INFO Environment:676 - Bytecode provider name : cglib
+22:53:20,217  INFO Environment:593 - using JDK 1.4 java.sql.Timestamp handling
+22:53:20,267  INFO Configuration:1426 - configuring from resource: /hibernate.cfg.xml
+22:53:20,268  INFO Configuration:1403 - Configuration resource: /hibernate.cfg.xml
+22:53:20,365  INFO Configuration:553 - Reading mappings from resource : com/mkyong/common/Stock.hbm.xml
+22:53:20,452  INFO HbmBinder:300 - Mapping class: com.mkyong.common.Stock -> stock
+22:53:20,470  INFO Configuration:553 - Reading mappings from resource : com/mkyong/common/StockDetail.hbm.xml
+22:53:20,503  INFO HbmBinder:300 - Mapping class: com.mkyong.common.StockDetail -> stock_detail
+22:53:20,578  INFO Configuration:1541 - Configured SessionFactory: null
+22:53:20,586  INFO DriverManagerConnectionProvider:41 - Using Hibernate built-in connection pool (not for production use!)
+22:53:20,589  INFO DriverManagerConnectionProvider:42 - Hibernate connection pool size: 20
+22:53:20,589  INFO DriverManagerConnectionProvider:45 - autocommit mode: false
+22:53:20,589  WARN DriverManagerConnectionProvider:52 - no JDBC Driver class was specified by property hibernate.connection.driver_class
+22:53:20,590  INFO DriverManagerConnectionProvider:80 - using driver: null at URL: jdbc:mysql://localhost:3306/mkyong
+22:53:20,590  INFO DriverManagerConnectionProvider:86 - connection properties: {user=root, password=****}
+22:53:20,825  WARN SettingsFactory:117 - Could not obtain connection metadata
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3558)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3490)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:919)
+	at com.mysql.jdbc.MysqlIO.secureAuth411(MysqlIO.java:3996)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:776)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:187)
+	at org.hibernate.connection.DriverManagerConnectionProvider.getConnection(DriverManagerConnectionProvider.java:110)
+	at org.hibernate.cfg.SettingsFactory.buildSettings(SettingsFactory.java:84)
+	at org.hibernate.cfg.Configuration.buildSettings(Configuration.java:2009)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1292)
+	at com.mkyong.persistence.HibernateUtil.buildSessionFactory(HibernateUtil.java:13)
+	at com.mkyong.persistence.HibernateUtil.<clinit>(HibernateUtil.java:8)
+	at com.mkyong.common.App.main(App.java:12)
+22:53:20,850  INFO Dialect:152 - Using dialect: org.hibernate.dialect.MySQLDialect
+22:53:20,855  INFO TransactionFactoryFactory:31 - Using default transaction strategy (direct JDBC transactions)
+22:53:20,857  INFO TransactionManagerLookupFactory:33 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+22:53:20,857  INFO SettingsFactory:143 - Automatic flush during beforeCompletion(): disabled
+22:53:20,857  INFO SettingsFactory:147 - Automatic session close at end of transaction: disabled
+22:53:20,858  INFO SettingsFactory:162 - Scrollable result sets: disabled
+22:53:20,859  INFO SettingsFactory:170 - JDBC3 getGeneratedKeys(): disabled
+22:53:20,859  INFO SettingsFactory:178 - Connection release mode: auto
+22:53:20,860  INFO SettingsFactory:202 - Maximum outer join fetch depth: 2
+22:53:20,861  INFO SettingsFactory:205 - Default batch fetch size: 1
+22:53:20,861  INFO SettingsFactory:209 - Generate SQL with comments: disabled
+22:53:20,861  INFO SettingsFactory:213 - Order SQL updates by primary key: disabled
+22:53:20,861  INFO SettingsFactory:382 - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+22:53:20,865  INFO ASTQueryTranslatorFactory:24 - Using ASTQueryTranslatorFactory
+22:53:20,865  INFO SettingsFactory:221 - Query language substitutions: {}
+22:53:20,866  INFO SettingsFactory:226 - JPA-QL strict compliance: disabled
+22:53:20,866  INFO SettingsFactory:231 - Second-level cache: enabled
+22:53:20,866  INFO SettingsFactory:235 - Query cache: disabled
+22:53:20,866  INFO SettingsFactory:369 - Cache provider: org.hibernate.cache.NoCacheProvider
+22:53:20,867  INFO SettingsFactory:250 - Optimize cache for minimal puts: disabled
+22:53:20,867  INFO SettingsFactory:259 - Structured second-level cache entries: disabled
+22:53:20,871  INFO SettingsFactory:279 - Echoing all SQL to stdout
+22:53:20,871  INFO SettingsFactory:286 - Statistics: disabled
+22:53:20,872  INFO SettingsFactory:290 - Deleted entity synthetic identifier rollback: disabled
+22:53:20,872  INFO SettingsFactory:305 - Default entity-mode: pojo
+22:53:20,872  INFO SettingsFactory:309 - Named query checking : enabled
+22:53:20,901  INFO SessionFactoryImpl:161 - building session factory
+22:53:21,166  INFO SessionFactoryObjectFactory:82 - Not binding factory to JNDI, no JNDI name configured
+22:53:21,199  WARN JDBCExceptionReporter:77 - SQL Error: 1045, SQLState: 28000
+22:53:21,199 ERROR JDBCExceptionReporter:78 - Access denied for user 'root'@'localhost' (using password: YES)
+22:53:43,248  INFO Environment:509 - Hibernate 3.2.3
+22:53:43,255  INFO Environment:542 - hibernate.properties not found
+22:53:43,260  INFO Environment:676 - Bytecode provider name : cglib
+22:53:43,264  INFO Environment:593 - using JDK 1.4 java.sql.Timestamp handling
+22:53:43,315  INFO Configuration:1426 - configuring from resource: /hibernate.cfg.xml
+22:53:43,316  INFO Configuration:1403 - Configuration resource: /hibernate.cfg.xml
+22:53:43,410  INFO Configuration:553 - Reading mappings from resource : com/mkyong/common/Stock.hbm.xml
+22:53:43,524  INFO HbmBinder:300 - Mapping class: com.mkyong.common.Stock -> stock
+22:53:43,548  INFO Configuration:553 - Reading mappings from resource : com/mkyong/common/StockDetail.hbm.xml
+22:53:43,575  INFO HbmBinder:300 - Mapping class: com.mkyong.common.StockDetail -> stock_detail
+22:53:43,632  INFO Configuration:1541 - Configured SessionFactory: null
+22:53:43,640  INFO DriverManagerConnectionProvider:41 - Using Hibernate built-in connection pool (not for production use!)
+22:53:43,640  INFO DriverManagerConnectionProvider:42 - Hibernate connection pool size: 20
+22:53:43,641  INFO DriverManagerConnectionProvider:45 - autocommit mode: false
+22:53:43,641  WARN DriverManagerConnectionProvider:52 - no JDBC Driver class was specified by property hibernate.connection.driver_class
+22:53:43,642  INFO DriverManagerConnectionProvider:80 - using driver: null at URL: jdbc:mysql://localhost:3306/mkyong
+22:53:43,642  INFO DriverManagerConnectionProvider:86 - connection properties: {user=root, password=****}
+22:53:43,926  INFO SettingsFactory:89 - RDBMS: MySQL, version: 5.5.34-0ubuntu0.12.10.1
+22:53:43,927  INFO SettingsFactory:90 - JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.9 ( Revision: ${svn.Revision} )
+22:53:43,944  INFO Dialect:152 - Using dialect: org.hibernate.dialect.MySQLDialect
+22:53:43,948  INFO TransactionFactoryFactory:31 - Using default transaction strategy (direct JDBC transactions)
+22:53:43,950  INFO TransactionManagerLookupFactory:33 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+22:53:43,951  INFO SettingsFactory:143 - Automatic flush during beforeCompletion(): disabled
+22:53:43,951  INFO SettingsFactory:147 - Automatic session close at end of transaction: disabled
+22:53:43,951  INFO SettingsFactory:154 - JDBC batch size: 15
+22:53:43,951  INFO SettingsFactory:157 - JDBC batch updates for versioned data: disabled
+22:53:43,952  INFO SettingsFactory:162 - Scrollable result sets: enabled
+22:53:43,953  INFO SettingsFactory:170 - JDBC3 getGeneratedKeys(): enabled
+22:53:43,953  INFO SettingsFactory:178 - Connection release mode: auto
+22:53:43,954  INFO SettingsFactory:202 - Maximum outer join fetch depth: 2
+22:53:43,955  INFO SettingsFactory:205 - Default batch fetch size: 1
+22:53:43,955  INFO SettingsFactory:209 - Generate SQL with comments: disabled
+22:53:43,955  INFO SettingsFactory:213 - Order SQL updates by primary key: disabled
+22:53:43,955  INFO SettingsFactory:382 - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+22:53:43,957  INFO ASTQueryTranslatorFactory:24 - Using ASTQueryTranslatorFactory
+22:53:43,957  INFO SettingsFactory:221 - Query language substitutions: {}
+22:53:43,958  INFO SettingsFactory:226 - JPA-QL strict compliance: disabled
+22:53:43,958  INFO SettingsFactory:231 - Second-level cache: enabled
+22:53:43,958  INFO SettingsFactory:235 - Query cache: disabled
+22:53:43,958  INFO SettingsFactory:369 - Cache provider: org.hibernate.cache.NoCacheProvider
+22:53:43,959  INFO SettingsFactory:250 - Optimize cache for minimal puts: disabled
+22:53:43,959  INFO SettingsFactory:259 - Structured second-level cache entries: disabled
+22:53:43,963  INFO SettingsFactory:279 - Echoing all SQL to stdout
+22:53:43,963  INFO SettingsFactory:286 - Statistics: disabled
+22:53:43,964  INFO SettingsFactory:290 - Deleted entity synthetic identifier rollback: disabled
+22:53:43,964  INFO SettingsFactory:305 - Default entity-mode: pojo
+22:53:43,964  INFO SettingsFactory:309 - Named query checking : enabled
+22:53:43,990  INFO SessionFactoryImpl:161 - building session factory
+22:53:44,253  INFO SessionFactoryObjectFactory:82 - Not binding factory to JNDI, no JNDI name configured
+22:53:44,320 DEBUG StringType:133 - binding '4715' to parameter: 1
+22:53:44,320 DEBUG StringType:133 - binding 'GENM' to parameter: 2
+22:53:44,331  WARN JDBCExceptionReporter:77 - SQL Error: 1062, SQLState: 23000
+22:53:44,332 ERROR JDBCExceptionReporter:78 - Duplicate entry 'GENM' for key 'UNI_STOCK_NAME'
+22:55:18,142  INFO Environment:509 - Hibernate 3.2.3
+22:55:18,149  INFO Environment:542 - hibernate.properties not found
+22:55:18,151  INFO Environment:676 - Bytecode provider name : cglib
+22:55:18,156  INFO Environment:593 - using JDK 1.4 java.sql.Timestamp handling
+22:55:18,207  INFO Configuration:1426 - configuring from resource: /hibernate.cfg.xml
+22:55:18,207  INFO Configuration:1403 - Configuration resource: /hibernate.cfg.xml
+22:55:18,302  INFO Configuration:553 - Reading mappings from resource : com/mkyong/common/Stock.hbm.xml
+22:55:18,391  INFO HbmBinder:300 - Mapping class: com.mkyong.common.Stock -> stock
+22:55:18,409  INFO Configuration:553 - Reading mappings from resource : com/mkyong/common/StockDetail.hbm.xml
+22:55:18,440  INFO HbmBinder:300 - Mapping class: com.mkyong.common.StockDetail -> stock_detail
+22:55:18,519  INFO Configuration:1541 - Configured SessionFactory: null
+22:55:18,526  INFO DriverManagerConnectionProvider:41 - Using Hibernate built-in connection pool (not for production use!)
+22:55:18,526  INFO DriverManagerConnectionProvider:42 - Hibernate connection pool size: 20
+22:55:18,527  INFO DriverManagerConnectionProvider:45 - autocommit mode: false
+22:55:18,527  WARN DriverManagerConnectionProvider:52 - no JDBC Driver class was specified by property hibernate.connection.driver_class
+22:55:18,527  INFO DriverManagerConnectionProvider:80 - using driver: null at URL: jdbc:mysql://localhost:3306/mkyong
+22:55:18,528  INFO DriverManagerConnectionProvider:86 - connection properties: {user=root, password=****}
+22:55:18,798  INFO SettingsFactory:89 - RDBMS: MySQL, version: 5.5.34-0ubuntu0.12.10.1
+22:55:18,798  INFO SettingsFactory:90 - JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.9 ( Revision: ${svn.Revision} )
+22:55:18,815  INFO Dialect:152 - Using dialect: org.hibernate.dialect.MySQLDialect
+22:55:18,819  INFO TransactionFactoryFactory:31 - Using default transaction strategy (direct JDBC transactions)
+22:55:18,821  INFO TransactionManagerLookupFactory:33 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+22:55:18,822  INFO SettingsFactory:143 - Automatic flush during beforeCompletion(): disabled
+22:55:18,822  INFO SettingsFactory:147 - Automatic session close at end of transaction: disabled
+22:55:18,822  INFO SettingsFactory:154 - JDBC batch size: 15
+22:55:18,822  INFO SettingsFactory:157 - JDBC batch updates for versioned data: disabled
+22:55:18,823  INFO SettingsFactory:162 - Scrollable result sets: enabled
+22:55:18,823  INFO SettingsFactory:170 - JDBC3 getGeneratedKeys(): enabled
+22:55:18,823  INFO SettingsFactory:178 - Connection release mode: auto
+22:55:18,825  INFO SettingsFactory:202 - Maximum outer join fetch depth: 2
+22:55:18,825  INFO SettingsFactory:205 - Default batch fetch size: 1
+22:55:18,825  INFO SettingsFactory:209 - Generate SQL with comments: disabled
+22:55:18,826  INFO SettingsFactory:213 - Order SQL updates by primary key: disabled
+22:55:18,826  INFO SettingsFactory:382 - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+22:55:18,828  INFO ASTQueryTranslatorFactory:24 - Using ASTQueryTranslatorFactory
+22:55:18,828  INFO SettingsFactory:221 - Query language substitutions: {}
+22:55:18,828  INFO SettingsFactory:226 - JPA-QL strict compliance: disabled
+22:55:18,828  INFO SettingsFactory:231 - Second-level cache: enabled
+22:55:18,829  INFO SettingsFactory:235 - Query cache: disabled
+22:55:18,829  INFO SettingsFactory:369 - Cache provider: org.hibernate.cache.NoCacheProvider
+22:55:18,829  INFO SettingsFactory:250 - Optimize cache for minimal puts: disabled
+22:55:18,829  INFO SettingsFactory:259 - Structured second-level cache entries: disabled
+22:55:18,834  INFO SettingsFactory:279 - Echoing all SQL to stdout
+22:55:18,834  INFO SettingsFactory:286 - Statistics: disabled
+22:55:18,834  INFO SettingsFactory:290 - Deleted entity synthetic identifier rollback: disabled
+22:55:18,834  INFO SettingsFactory:305 - Default entity-mode: pojo
+22:55:18,835  INFO SettingsFactory:309 - Named query checking : enabled
+22:55:18,873  INFO SessionFactoryImpl:161 - building session factory
+22:55:19,118  INFO SessionFactoryObjectFactory:82 - Not binding factory to JNDI, no JNDI name configured
+22:55:19,184 DEBUG StringType:133 - binding '4715' to parameter: 1
+22:55:19,184 DEBUG StringType:133 - binding 'GENM' to parameter: 2
+22:55:19,195  WARN JDBCExceptionReporter:77 - SQL Error: 1062, SQLState: 23000
+22:55:19,195 ERROR JDBCExceptionReporter:78 - Duplicate entry 'GENM' for key 'UNI_STOCK_NAME'
+22:55:54,790  INFO Environment:509 - Hibernate 3.2.3
+22:55:54,797  INFO Environment:542 - hibernate.properties not found
+22:55:54,800  INFO Environment:676 - Bytecode provider name : cglib
+22:55:54,804  INFO Environment:593 - using JDK 1.4 java.sql.Timestamp handling
+22:55:54,854  INFO Configuration:1426 - configuring from resource: /hibernate.cfg.xml
+22:55:54,855  INFO Configuration:1403 - Configuration resource: /hibernate.cfg.xml
+22:55:54,948  INFO Configuration:553 - Reading mappings from resource : com/mkyong/common/Stock.hbm.xml
+22:55:55,036  INFO HbmBinder:300 - Mapping class: com.mkyong.common.Stock -> stock
+22:55:55,060  INFO Configuration:553 - Reading mappings from resource : com/mkyong/common/StockDetail.hbm.xml
+22:55:55,093  INFO HbmBinder:300 - Mapping class: com.mkyong.common.StockDetail -> stock_detail
+22:55:55,168  INFO Configuration:1541 - Configured SessionFactory: null
+22:55:55,175  INFO DriverManagerConnectionProvider:41 - Using Hibernate built-in connection pool (not for production use!)
+22:55:55,176  INFO DriverManagerConnectionProvider:42 - Hibernate connection pool size: 20
+22:55:55,176  INFO DriverManagerConnectionProvider:45 - autocommit mode: false
+22:55:55,177  WARN DriverManagerConnectionProvider:52 - no JDBC Driver class was specified by property hibernate.connection.driver_class
+22:55:55,177  INFO DriverManagerConnectionProvider:80 - using driver: null at URL: jdbc:mysql://localhost:3306/mkyong
+22:55:55,178  INFO DriverManagerConnectionProvider:86 - connection properties: {user=root, password=****}
+22:55:55,456  INFO SettingsFactory:89 - RDBMS: MySQL, version: 5.5.34-0ubuntu0.12.10.1
+22:55:55,457  INFO SettingsFactory:90 - JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.9 ( Revision: ${svn.Revision} )
+22:55:55,475  INFO Dialect:152 - Using dialect: org.hibernate.dialect.MySQLDialect
+22:55:55,479  INFO TransactionFactoryFactory:31 - Using default transaction strategy (direct JDBC transactions)
+22:55:55,481  INFO TransactionManagerLookupFactory:33 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+22:55:55,482  INFO SettingsFactory:143 - Automatic flush during beforeCompletion(): disabled
+22:55:55,482  INFO SettingsFactory:147 - Automatic session close at end of transaction: disabled
+22:55:55,482  INFO SettingsFactory:154 - JDBC batch size: 15
+22:55:55,482  INFO SettingsFactory:157 - JDBC batch updates for versioned data: disabled
+22:55:55,483  INFO SettingsFactory:162 - Scrollable result sets: enabled
+22:55:55,484  INFO SettingsFactory:170 - JDBC3 getGeneratedKeys(): enabled
+22:55:55,484  INFO SettingsFactory:178 - Connection release mode: auto
+22:55:55,485  INFO SettingsFactory:202 - Maximum outer join fetch depth: 2
+22:55:55,486  INFO SettingsFactory:205 - Default batch fetch size: 1
+22:55:55,486  INFO SettingsFactory:209 - Generate SQL with comments: disabled
+22:55:55,486  INFO SettingsFactory:213 - Order SQL updates by primary key: disabled
+22:55:55,486  INFO SettingsFactory:382 - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+22:55:55,488  INFO ASTQueryTranslatorFactory:24 - Using ASTQueryTranslatorFactory
+22:55:55,489  INFO SettingsFactory:221 - Query language substitutions: {}
+22:55:55,489  INFO SettingsFactory:226 - JPA-QL strict compliance: disabled
+22:55:55,489  INFO SettingsFactory:231 - Second-level cache: enabled
+22:55:55,489  INFO SettingsFactory:235 - Query cache: disabled
+22:55:55,489  INFO SettingsFactory:369 - Cache provider: org.hibernate.cache.NoCacheProvider
+22:55:55,490  INFO SettingsFactory:250 - Optimize cache for minimal puts: disabled
+22:55:55,490  INFO SettingsFactory:259 - Structured second-level cache entries: disabled
+22:55:55,494  INFO SettingsFactory:279 - Echoing all SQL to stdout
+22:55:55,495  INFO SettingsFactory:286 - Statistics: disabled
+22:55:55,495  INFO SettingsFactory:290 - Deleted entity synthetic identifier rollback: disabled
+22:55:55,495  INFO SettingsFactory:305 - Default entity-mode: pojo
+22:55:55,495  INFO SettingsFactory:309 - Named query checking : enabled
+22:55:55,525  INFO SessionFactoryImpl:161 - building session factory
+22:55:55,781  INFO SessionFactoryObjectFactory:82 - Not binding factory to JNDI, no JNDI name configured
+22:55:55,849 DEBUG StringType:133 - binding '4715' to parameter: 1
+22:55:55,849 DEBUG StringType:133 - binding 'GENM' to parameter: 2
+22:55:55,860 DEBUG StringType:133 - binding 'GENTING Malaysia' to parameter: 1
+22:55:55,861 DEBUG StringType:133 - binding 'Best resort in the world' to parameter: 2
+22:55:55,861 DEBUG StringType:126 - binding null to parameter: 3
+22:55:55,869 DEBUG DateType:133 - binding '15 January 2014' to parameter: 4
+22:55:55,869 DEBUG IntegerType:133 - binding '4' to parameter: 5

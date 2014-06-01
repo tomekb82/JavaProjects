@@ -1,0 +1,5 @@
+#surefire
+#Wed Jan 15 21:43:31 CET 2014
+user.dir=/home/tomek/Desktop/homework/hibernate/XML_conf_quick_start/HibernateExample
+localRepository=/root/.m2/repository
+basedir=/home/tomek/Desktop/homework/hibernate/XML_conf_quick_start/HibernateExample

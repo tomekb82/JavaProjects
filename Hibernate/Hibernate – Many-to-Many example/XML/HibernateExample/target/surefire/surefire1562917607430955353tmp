@@ -1,0 +1,37 @@
+#surefire
+#Wed Jan 15 23:17:59 CET 2014
+testClassesDirectory=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 Many-to-Many example/XML/HibernateExample/target/test-classes
+classPathUrl.4=/root/.m2/repository/org/hibernate/hibernate/3.2.3.ga/hibernate-3.2.3.ga.jar
+forkMode=once
+classPathUrl.3=/root/.m2/repository/mysql/mysql-connector-java/5.1.15/mysql-connector-java-5.1.15.jar
+classPathUrl.2=/root/.m2/repository/junit/junit/4.8.2/junit-4.8.2.jar
+useManifestOnlyJar=true
+classPathUrl.1=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 Many-to-Many example/XML/HibernateExample/target/classes
+reportsDirectory=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 Many-to-Many example/XML/HibernateExample/target/surefire-reports
+classPathUrl.0=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 Many-to-Many example/XML/HibernateExample/target/test-classes
+providerConfiguration=org.apache.maven.surefire.junit4.JUnit4Provider
+testSuiteDefinitionTestSourceDirectory=/home/tomek/Desktop/homework/hibernate/Hibernate \u2013 Many-to-Many example/XML/HibernateExample/src/test/java
+surefireClassPathUrl.1=/root/.m2/repository/org/apache/maven/surefire/surefire-api/2.10/surefire-api-2.10.jar
+surefireClassPathUrl.0=/root/.m2/repository/org/apache/maven/surefire/surefire-junit4/2.10/surefire-junit4-2.10.jar
+runOrder=filesystem
+useSystemClassLoader=true
+excludes0=**/*$*
+isTrimStackTrace=true
+classPathUrl.16=/root/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar
+classPathUrl.15=/root/.m2/repository/ch/qos/logback/logback-classic/0.9.28/logback-classic-0.9.28.jar
+includes2=**/*TestCase.java
+enableAssertions=true
+classPathUrl.14=/root/.m2/repository/ch/qos/logback/logback-core/0.9.28/logback-core-0.9.28.jar
+includes1=**/*Test.java
+failIfNoTests=false
+classPathUrl.13=/root/.m2/repository/commons-collections/commons-collections/2.1.1/commons-collections-2.1.1.jar
+includes0=**/Test*.java
+classPathUrl.12=/root/.m2/repository/asm/asm/1.5.3/asm-1.5.3.jar
+classPathUrl.11=/root/.m2/repository/cglib/cglib/2.1_3/cglib-2.1_3.jar
+classPathUrl.10=/root/.m2/repository/antlr/antlr/2.7.6/antlr-2.7.6.jar
+classPathUrl.9=/root/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar
+classPathUrl.8=/root/.m2/repository/asm/asm-attrs/1.5.3/asm-attrs-1.5.3.jar
+classPathUrl.7=/root/.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar
+childDelegation=false
+classPathUrl.6=/root/.m2/repository/javax/transaction/jta/1.0.1B/jta-1.0.1B.jar
+classPathUrl.5=/root/.m2/repository/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3.jar

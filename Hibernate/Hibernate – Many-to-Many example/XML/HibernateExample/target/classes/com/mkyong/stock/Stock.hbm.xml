@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27 April 2011 10:01:31 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.mkyong.stock.Stock" table="stock" catalog="mkyong">
+        <id name="stockId" type="java.lang.Integer">
+            <column name="STOCK_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="stockCode" type="string">
+            <column name="STOCK_CODE" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="stockName" type="string">
+            <column name="STOCK_NAME" length="20" not-null="true" unique="true" />
+        </property>
+        <set name="categories" table="stock_category" 
+        	inverse="false" lazy="true" fetch="select" cascade="all" >
+            <key>
+                <column name="STOCK_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.mkyong.stock.Category">
+                <column name="CATEGORY_ID" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
