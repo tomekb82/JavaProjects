@@ -1,0 +1,25 @@
+<h4> Edycja kontaktów.</h4>
+
+<form name="userForm" ng-submit="save()" class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="name">Name:</label>
+    <div class="controls">
+      <input ng-model="user.name" class="input-xlarge" id="name" focus required>
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <label class="control-label" for="city">City:</label>
+    <div class="controls">
+      <input ng-model="user.city" class="input-xlarge" id="city" required>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn-primary" ng-disabled="userForm.$invalid">Save</button>
+    <button type="button" ng-click="remove()" ng-show="delete==true" class="btn">Delete</button>
+  </div>
+</form>
+
+<a href="#/">main page</a>
+

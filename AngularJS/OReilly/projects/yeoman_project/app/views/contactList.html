@@ -1,0 +1,17 @@
+<h2> Lista kontaktów</h2>
+
+<ul>
+	<li ng-repeat="user in users | filter:filter.name | orderBy:'city'"
+
+ng-click='selectRowTable($index)'
+ng-class='{selected: $index==selectedRow, highlight: $index % 2 == 0 && $index!=selectedRow}'
+
+> <a href="#/contactEdit/{{user.name}}">{{ user.name | myUpperCase}} - {{ user.city }}</a></li>
+
+
+</ul>
+
+<a href="#/contactNew">Dodaj nowy kontakt</a>
+
+<a href="#/">main page</a>
+

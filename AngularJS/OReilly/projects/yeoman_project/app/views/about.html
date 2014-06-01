@@ -1,0 +1,23 @@
+<p>This is the about view.</p>
+
+File Upload:
+<!-- We will define uploadFinished in MainCtrl and attach
+it to the scope, so that it is available here -->
+<input id="testUpload"
+	type="file"
+	fileupload
+	name="files[]"
+	data-url="/server/uploadFile"
+	multiple
+	done="uploadFinished(e, data)">
+
+
+<expander class='expander' expander-title='{{title}}'>
+    {{text}}
+</expander>
+<expander class='expander' expander-title='I am clickable'>
+    {{text}}
+</expander>
+
+<a href="#/">main page</a>
+

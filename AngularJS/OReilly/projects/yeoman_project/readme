@@ -1,0 +1,31 @@
+generacja projektu
+
+yo angular
+
+---------------------------------
+
+dodawanie zakladek
+
+yo angular:route home
+yo angular:route about
+yo angular:route contact
+
+---------------------------------
+dodawanie serwisow - fabryka
+
+yo angular:factory Recipe
+
+---------------------------------
+dodawanie dyrektyw
+
+yo angular:directive focus
+
+---------------------------------
+uruchomienie serwera www(resource'y...)
+
+node web-server.js
+
+---------------------------------
+uruchomienie klienta:
+
+firefox:   localhost:8082

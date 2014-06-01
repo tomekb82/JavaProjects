@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app=''>
+	<head>
+		<title>CSS Examples</title>
+	</head>
+	<body>
+		<h1>CSS</h1>
+
+		<div ng-controller='HeaderController'>
+			<div ng-class='{error: isError, warning: isWarning}'>{{messageText}}</div>
+			<button ng-click='showError()'>Simulate Error</button>
+			<button ng-click='showWarning()'>Simulate Warning</button>
+		</div>
+
+		<table ng-controller='RestaurantTableController'>
+			<tr ng-repeat='restaurant in directory' ng-click='selectRestaurant($index)'
+				ng-class='{selected: $index==selectedRow, highlight: $index % 2 == 0 && $index!=selectedRow}'>
+
+				<td>{{restaurant.name}}</td>
+				<td>{{restaurant.cuisine}}</td>
+			</tr>
+		</table>
+
+	<script src="../scripts/angular.js"></script>
+	<link rel="stylesheet" type="text/css" href="simple.css"/>
+	<script>
+
+		function HeaderController($scope) {
+			$scope.isError = false;
+			$scope.isWarning = false;
+	
+			$scope.showError = function() {
+				$scope.messageText = 'This is an error!';
+				$scope.isError = true;
+				$scope.isWarning = false;
+			};
+	
+			$scope.showWarning = function() {
+				$scope.messageText = 'Just a warning. Please carry on.';
+				$scope.isWarning = true;
+				$scope.isError = false;
+			};
+		}
+
+		function RestaurantTableController($scope) {
+			$scope.directory = [{name:'The Handsome Heifer', cuisine:'BBQ'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'Greens Green Greens', cuisine:'Salads'},
+					{name:'House of Fine Fish', cuisine:'Seafood'}];
+			$scope.selectRestaurant = function(row) {
+				$scope.selectedRow = row;
+			};
+		}
+
+	</script>
+	</body>
+</html>

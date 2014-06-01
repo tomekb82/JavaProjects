@@ -1,0 +1,21 @@
+'use strict';
+
+angular.module('yeomanProjectApp')
+.controller('NewCtrl', ['$scope', '$location', 'Recipe',
+    function($scope, $location, Recipe) {
+      console.log("newctrl");
+  $scope.recipe = new Recipe({
+    ingredients: [ {} ]
+  });
+      console.log("newctrl reeipe", $scope.recipe);
+
+  $scope.save = function() {
+      console.log("save(),before resource");
+      console.log("save(),before resource, title= ", $scope.recipe.title);
+      console.log("save(),before resource, id= ", $scope.recipe.id);
+    $scope.recipe.$save(function(recipe) {
+      console.log("save(), after resource");
+      //$location.path('/home');//'/view/' + recipe.id);
+    });
+  };
+}]);
