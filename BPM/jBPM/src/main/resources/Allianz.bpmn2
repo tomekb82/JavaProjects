@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.omg.org/bpmn20"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_mapItem" structureRef="java.util.HashMap" />
+  <itemDefinition id="_policyIdItem" structureRef="String" />
+  <itemDefinition id="_settlementIdItem" structureRef="String" />
+  <itemDefinition id="_firstNameItem" structureRef="String" />
+  <itemDefinition id="_lastNameItem" structureRef="String" />
+  <itemDefinition id="_causeItem" structureRef="String" />
+  <itemDefinition id="_claimDTOItem" structureRef="pl.qualent.allianz.claim.Claim" />
+
+  <itemDefinition id="_E567F044-C0E2-4247-B77D-E66AE16B08FF-mapItem" structureRef="java.util.HashMap" />
+  <itemDefinition id="_E567F044-C0E2-4247-B77D-E66AE16B08FF-policyIdItem" structureRef="String" />
+  <itemDefinition id="_E567F044-C0E2-4247-B77D-E66AE16B08FF-settlementIdItem" structureRef="String" />
+  <itemDefinition id="_E567F044-C0E2-4247-B77D-E66AE16B08FF-firstNameItem" structureRef="String" />
+  <itemDefinition id="_E567F044-C0E2-4247-B77D-E66AE16B08FF-lastNameItem" structureRef="String" />
+  <itemDefinition id="_E567F044-C0E2-4247-B77D-E66AE16B08FF-causeItem" structureRef="String" />
+  <itemDefinition id="_E567F044-C0E2-4247-B77D-E66AE16B08FF-claimDTOItem" structureRef="pl.qualent.allianz.claim.Claim" />
+
+  <itemDefinition id="_10-mapItem" structureRef="java.util.HashMap" />
+  <itemDefinition id="_10-policyIdItem" structureRef="String" />
+  <itemDefinition id="_10-settlementIdItem" structureRef="String" />
+  <itemDefinition id="_10-firstNameItem" structureRef="String" />
+  <itemDefinition id="_10-lastNameItem" structureRef="String" />
+  <itemDefinition id="_10-causeItem" structureRef="String" />
+  <itemDefinition id="_10-claimDTOItem" structureRef="pl.qualent.allianz.claim.Claim" />
+
+  <itemDefinition id="_13-mapItem" structureRef="java.util.HashMap" />
+  <itemDefinition id="_13-policyIdItem" structureRef="String" />
+  <itemDefinition id="_13-settlementIdItem" structureRef="String" />
+  <itemDefinition id="_13-firstNameItem" structureRef="String" />
+  <itemDefinition id="_13-lastNameItem" structureRef="String" />
+  <itemDefinition id="_13-causeItem" structureRef="String" />
+  <itemDefinition id="_13-claimDTOItem" structureRef="pl.qualent.allianz.claim.Claim" />
+
+  <itemDefinition id="_17-mapItem" structureRef="java.util.HashMap" />
+  <itemDefinition id="_17-policyIdItem" structureRef="String" />
+  <itemDefinition id="_17-settlementIdItem" structureRef="String" />
+  <itemDefinition id="_17-firstNameItem" structureRef="String" />
+  <itemDefinition id="_17-lastNameItem" structureRef="String" />
+  <itemDefinition id="_17-causeItem" structureRef="String" />
+  <itemDefinition id="_17-claimDTOItem" structureRef="pl.qualent.allianz.claim.Claim" />
+
+  <itemDefinition id="_20-mapItem" structureRef="java.util.HashMap" />
+  <itemDefinition id="_20-policyIdItem" structureRef="String" />
+  <itemDefinition id="_20-settlementIdItem" structureRef="String" />
+  <itemDefinition id="_20-firstNameItem" structureRef="String" />
+  <itemDefinition id="_20-lastNameItem" structureRef="String" />
+  <itemDefinition id="_20-causeItem" structureRef="String" />
+  <itemDefinition id="_20-claimDTOItem" structureRef="pl.qualent.allianz.claim.Claim" />
+
+  <process processType="Private" isExecutable="true" id="allianz.Allianz" name="Allianz" tns:packageName="allianz" >
+
+    <!-- process variables -->
+    <property id="map" itemSubjectRef="_mapItem"/>
+    <property id="policyId" itemSubjectRef="_policyIdItem"/>
+    <property id="settlementId" itemSubjectRef="_settlementIdItem"/>
+    <property id="firstName" itemSubjectRef="_firstNameItem"/>
+    <property id="lastName" itemSubjectRef="_lastNameItem"/>
+    <property id="cause" itemSubjectRef="_causeItem"/>
+    <property id="claimDTO" itemSubjectRef="_claimDTOItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_250F0BBA-4062-4BAA-99E0-5F0E261BD24C" name="Start" />
+    <scriptTask id="_0D9DA1A0-974A-4670-9A8E-0458A8423987" name="Sprawdz ilosc polis" scriptFormat="http://www.java.com/java" >
+      <script>Integer policies = 1;
+String user = pl.qualent.allianz.ServiceRepository.getUserSessionInstance().getUsername();
+
+if(user.equals("krisv")){
+    policies = 2;
+}else if(user.equals("john")){
+    map = new java.util.HashMap();
+    String policy = "666";
+    map.put("policyId",policy);
+    kcontext.setVariable("map", map);
+    policyId = "666";
+    kcontext.setVariable("policyId", policyId);
+	policies = 1;
+}else{
+	policies = 0;
+}
+
+kcontext.setVariable("policies", (Integer)policies);
+
+
+
+</script>
+    </scriptTask>
+    <exclusiveGateway id="_6C3C24A0-BE74-4239-BB9D-273541C104BE" name="Wiecej niz 1 polisa" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_337A7BBC-47D4-4237-9E8F-0611EF4FACE8" name="startWeryfikacja" gatewayDirection="Converging" />
+    <userTask id="_E567F044-C0E2-4247-B77D-E66AE16B08FF" name="Wybierz polise" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>pl.qualent.allianz.jBPMNavigationHandler.navigate("SELECTPOLICY");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_E567F044-C0E2-4247-B77D-E66AE16B08FF_ContentInput" name="Content" />
+        <dataInput id="_E567F044-C0E2-4247-B77D-E66AE16B08FF_TaskNameInput" name="TaskName" />
+        <dataOutput id="_E567F044-C0E2-4247-B77D-E66AE16B08FF_policyIdOutput" name="policyId" />
+        <inputSet>
+          <dataInputRefs>_E567F044-C0E2-4247-B77D-E66AE16B08FF_ContentInput</dataInputRefs>
+          <dataInputRefs>_E567F044-C0E2-4247-B77D-E66AE16B08FF_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_E567F044-C0E2-4247-B77D-E66AE16B08FF_policyIdOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>map</sourceRef>
+        <targetRef>_E567F044-C0E2-4247-B77D-E66AE16B08FF_ContentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_E567F044-C0E2-4247-B77D-E66AE16B08FF_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Polisy</from>
+          <to xsi:type="tFormalExpression">_E567F044-C0E2-4247-B77D-E66AE16B08FF_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_E567F044-C0E2-4247-B77D-E66AE16B08FF_policyIdOutput</sourceRef>
+        <targetRef>policyId</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>krisv</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>john</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <scriptTask id="_7" name="Sprawdz polise" scriptFormat="http://www.java.com/java" >
+      <script>String policyID = (String)kcontext.getVariable("policyId");
+
+boolean validPolicy = false;
+if(policyID.equals("2") || policyID.equals("666") ){
+    validPolicy = true;
+}
+kcontext.setVariable("validPolicy",validPolicy);</script>
+    </scriptTask>
+    <exclusiveGateway id="_8" name="Czy polisa wazna" gatewayDirection="Diverging" />
+    <userTask id="_10" name="Umiesc dokumenty" >
+      <extensionElements>
+        <tns:onEntry-script>
+          <tns:script>pl.qualent.allianz.jBPMNavigationHandler.navigate("DOCUMENTS");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_10_TaskNameInput" name="TaskName" />
+        <inputSet>
+          <dataInputRefs>_10_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_10_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Dokumenty</from>
+          <to xsi:type="tFormalExpression">_10_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>krisv</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>john</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <scriptTask id="_11" name="Stworzenie zgloszenia" >
+      <script></script>
+    </scriptTask>
+    <scriptTask id="_12" name="Zaproponuj porozumienie" >
+      <script></script>
+    </scriptTask>
+    <userTask id="_13" name="Wybierz porozumienie" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>pl.qualent.allianz.jBPMNavigationHandler.navigate("SELECTSETTLEMENT");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_13_TaskNameInput" name="TaskName" />
+        <dataOutput id="_13_settlementIdOutput" name="settlementId" />
+        <inputSet>
+          <dataInputRefs>_13_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_13_settlementIdOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_13_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Porozumienie</from>
+          <to xsi:type="tFormalExpression">_13_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_13_settlementIdOutput</sourceRef>
+        <targetRef>settlementId</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>krisv</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>john</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <userTask id="_17" name="Uzupelnienie szczegolow szkody" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>pl.qualent.allianz.jBPMNavigationHandler.navigate("CLAIMDETAILS");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_17_lastNameInput" name="lastName" />
+        <dataInput id="_17_firstNameInput" name="firstName" />
+        <dataInput id="_17_claimDTOInput" name="claimDTO" />
+        <dataInput id="_17_TaskNameInput" name="TaskName" />
+        <dataInput id="_17_GroupIdInput" name="GroupId" />
+        <dataOutput id="_17_causeOutput" name="cause" />
+        <inputSet>
+          <dataInputRefs>_17_lastNameInput</dataInputRefs>
+          <dataInputRefs>_17_firstNameInput</dataInputRefs>
+          <dataInputRefs>_17_claimDTOInput</dataInputRefs>
+          <dataInputRefs>_17_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_17_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_17_causeOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>lastName</sourceRef>
+        <targetRef>_17_lastNameInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>firstName</sourceRef>
+        <targetRef>_17_firstNameInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>claimDTO</sourceRef>
+        <targetRef>_17_claimDTOInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_17_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Szkoda</from>
+          <to xsi:type="tFormalExpression">_17_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_17_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_17_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_17_causeOutput</sourceRef>
+        <targetRef>cause</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>krisv</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>john</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <scriptTask id="_16" name="Uzupelnij formularz danymi" scriptFormat="http://www.java.com/java" >
+      <script>String user = pl.qualent.allianz.ServiceRepository.getUserSessionInstance().getUsername();
+claimDTO = new pl.qualent.allianz.claim.Claim();
+
+if(user.equals("krisv")){
+	kcontext.setVariable("firstName", "Krzysiu");
+	kcontext.setVariable("lastName", "PolisyNieChce");
+	claimDTO.setFirstName("Krzysiu");
+	claimDTO.setLastName("Kowalski");
+	claimDTO.setCitizenship(1);
+	claimDTO.setPesel("12345678901");
+	claimDTO.setSex(1);
+	claimDTO.setCountry(1);
+	claimDTO.setPostalCode("02-745");
+	claimDTO.setCity("Warszawa");
+	claimDTO.setStreet("Mickiewicza");
+	claimDTO.setHause(44);
+}else if(user.equals("john")){
+	kcontext.setVariable("firstName", "Jasiu");
+	kcontext.setVariable("lastName", "PoliseJuzChce");
+	claimDTO.setFirstName("Jasiu");
+	claimDTO.setLastName("Nowak");
+	claimDTO.setCitizenship(1);
+	claimDTO.setPesel("12345678901");
+	claimDTO.setSex(1);
+	claimDTO.setCountry(1);
+	claimDTO.setPostalCode("44-145");
+	claimDTO.setCity("Krakow");
+	claimDTO.setStreet("Sienkiewicza");
+	claimDTO.setHause(22);
+}
+
+kcontext.setVariable("claimDTO", claimDTO);
+</script>
+    </scriptTask>
+    <exclusiveGateway id="_19" name="Uszkodzenie?" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_18" name="Wybrany rodzaj szkody" gatewayDirection="Converging" />
+    <scriptTask id="_21" name="Brak polis" scriptFormat="http://www.java.com/java" >
+      <script>String responseTxt = "Nie masz �adnej polisy";
+kcontext.setVariable("responseTxt", responseTxt);
+</script>
+    </scriptTask>
+    <userTask id="_20" name="Uzupelnij szczegoly uszkodzenia" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>pl.qualent.allianz.jBPMNavigationHandler.navigate("DAMAGEDETAILS");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_20_TaskNameInput" name="TaskName" />
+        <inputSet>
+          <dataInputRefs>_20_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_20_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Uszkodzenie</from>
+          <to xsi:type="tFormalExpression">_20_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>krisv</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>john</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <endEvent id="_23" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <scriptTask id="_22" name="Polisa niewazna" scriptFormat="http://www.java.com/java" >
+      <script>String responseTxt = "Polisa jest niewa�na";
+kcontext.setVariable("responseTxt", responseTxt);</script>
+    </scriptTask>
+    <exclusiveGateway id="_25" name="Wybrane porozumienie" gatewayDirection="Converging" />
+    <endEvent id="_24" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <endEvent id="_27" name="Koniec" >
+        <terminateEventDefinition />
+    </endEvent>
+    <exclusiveGateway id="_26" name="Rodzaj porozumienia" gatewayDirection="Diverging" />
+    <scriptTask id="_29" name="Brak naprawy" scriptFormat="http://www.java.com/java" >
+      <script>String responseTxt = "Nie wybrano porozumienia";
+kcontext.setVariable("responseTxt", responseTxt);</script>
+    </scriptTask>
+    <scriptTask id="_28" name="Naprawa" scriptFormat="http://www.java.com/java" >
+      <script>String responseTxt = "Dla zg�oszenia zosta�a rozpocz�ta procedura naprawy";
+kcontext.setVariable("responseTxt", responseTxt);</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_250F0BBA-4062-4BAA-99E0-5F0E261BD24C-_0D9DA1A0-974A-4670-9A8E-0458A8423987" sourceRef="_250F0BBA-4062-4BAA-99E0-5F0E261BD24C" targetRef="_0D9DA1A0-974A-4670-9A8E-0458A8423987" />
+    <sequenceFlow id="_0D9DA1A0-974A-4670-9A8E-0458A8423987-_6C3C24A0-BE74-4239-BB9D-273541C104BE" sourceRef="_0D9DA1A0-974A-4670-9A8E-0458A8423987" targetRef="_6C3C24A0-BE74-4239-BB9D-273541C104BE" />
+    <sequenceFlow id="_6C3C24A0-BE74-4239-BB9D-273541C104BE-_337A7BBC-47D4-4237-9E8F-0611EF4FACE8" sourceRef="_6C3C24A0-BE74-4239-BB9D-273541C104BE" targetRef="_337A7BBC-47D4-4237-9E8F-0611EF4FACE8" name="NIE" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >int policies = (Integer)kcontext.getVariable("policies");return (policies==1);</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_E567F044-C0E2-4247-B77D-E66AE16B08FF-_337A7BBC-47D4-4237-9E8F-0611EF4FACE8" sourceRef="_E567F044-C0E2-4247-B77D-E66AE16B08FF" targetRef="_337A7BBC-47D4-4237-9E8F-0611EF4FACE8" />
+    <sequenceFlow id="_6C3C24A0-BE74-4239-BB9D-273541C104BE-_E567F044-C0E2-4247-B77D-E66AE16B08FF" sourceRef="_6C3C24A0-BE74-4239-BB9D-273541C104BE" targetRef="_E567F044-C0E2-4247-B77D-E66AE16B08FF" name="TAK" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >int policies = (Integer)kcontext.getVariable("policies");return (policies&gt;1);</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_337A7BBC-47D4-4237-9E8F-0611EF4FACE8-_7" sourceRef="_337A7BBC-47D4-4237-9E8F-0611EF4FACE8" targetRef="_7" />
+    <sequenceFlow id="_7-_8" sourceRef="_7" targetRef="_8" />
+    <sequenceFlow id="_18-_10" sourceRef="_18" targetRef="_10" />
+    <sequenceFlow id="_10-_11" sourceRef="_10" targetRef="_11" />
+    <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" />
+    <sequenceFlow id="_12-_13" sourceRef="_12" targetRef="_13" />
+    <sequenceFlow id="_16-_17" sourceRef="_16" targetRef="_17" />
+    <sequenceFlow id="_8-_16" sourceRef="_8" targetRef="_16" name="WAZNA" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >boolean validPolicy = (Boolean)kcontext.getVariable("validPolicy");return (validPolicy);</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_17-_19" sourceRef="_17" targetRef="_19" />
+    <sequenceFlow id="_19-_18" sourceRef="_19" targetRef="_18" name="NIE" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String x = (String)kcontext.getVariable("cause");
+return (!x.equals("damage"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_20-_18" sourceRef="_20" targetRef="_18" />
+    <sequenceFlow id="_6C3C24A0-BE74-4239-BB9D-273541C104BE-_21" sourceRef="_6C3C24A0-BE74-4239-BB9D-273541C104BE" targetRef="_21" name="BRAK" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >int policies = (Integer)kcontext.getVariable("policies");return (policies==0);</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_19-_20" sourceRef="_19" targetRef="_20" name="TAK" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String x = (String) kcontext.getVariable("cause");
+return (x.equals("damage"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_21-_23" sourceRef="_21" targetRef="_23" />
+    <sequenceFlow id="_8-_22" sourceRef="_8" targetRef="_22" name="NIEWAZNA" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >boolean validPolicy = (Boolean)kcontext.getVariable("validPolicy");return (!validPolicy);</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_28-_25" sourceRef="_28" targetRef="_25" />
+    <sequenceFlow id="_29-_25" sourceRef="_29" targetRef="_25" />
+    <sequenceFlow id="_22-_24" sourceRef="_22" targetRef="_24" />
+    <sequenceFlow id="_25-_27" sourceRef="_25" targetRef="_27" />
+    <sequenceFlow id="_13-_26" sourceRef="_13" targetRef="_26" />
+    <sequenceFlow id="_26-_29" sourceRef="_26" targetRef="_29" name="BRAK" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String settId = (String)kcontext.getVariable("settlementId");
+return(!settId.equals("1"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_26-_28" sourceRef="_26" targetRef="_28" name="NAPRAWA" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String settId = (String)kcontext.getVariable("settlementId");
+return(settId.equals("1"));</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="allianz.Allianz" >
+      <bpmndi:BPMNShape bpmnElement="_250F0BBA-4062-4BAA-99E0-5F0E261BD24C" >
+        <dc:Bounds x="119" y="204" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_0D9DA1A0-974A-4670-9A8E-0458A8423987" >
+        <dc:Bounds x="318" y="193" width="142" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6C3C24A0-BE74-4239-BB9D-273541C104BE" >
+        <dc:Bounds x="476" y="204" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_337A7BBC-47D4-4237-9E8F-0611EF4FACE8" >
+        <dc:Bounds x="746" y="204" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_E567F044-C0E2-4247-B77D-E66AE16B08FF" >
+        <dc:Bounds x="600" y="15" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="881" y="202" width="142" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="928" y="321" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="40" y="520" width="168" height="69" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="34" y="655" width="185" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="29" y="762" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="52" y="851" width="152" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="573" y="439" width="201" height="63" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="856" y="439" width="200" height="61" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="478" y="445" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="225" y="446" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="461" y="328" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" >
+        <dc:Bounds x="268" y="555" width="200" height="81" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_23" >
+        <dc:Bounds x="348" y="328" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_22" >
+        <dc:Bounds x="738" y="314" width="135" height="63" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_25" >
+        <dc:Bounds x="624" y="847" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_24" >
+        <dc:Bounds x="642" y="322" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27" >
+        <dc:Bounds x="773" y="847" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_26" >
+        <dc:Bounds x="457" y="687" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="417" y="841" width="129" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" >
+        <dc:Bounds x="605" y="689" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_250F0BBA-4062-4BAA-99E0-5F0E261BD24C-_0D9DA1A0-974A-4670-9A8E-0458A8423987" >
+        <di:waypoint x="143" y="228" />
+        <di:waypoint x="389" y="233" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_0D9DA1A0-974A-4670-9A8E-0458A8423987-_6C3C24A0-BE74-4239-BB9D-273541C104BE" >
+        <di:waypoint x="389" y="233" />
+        <di:waypoint x="500" y="228" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6C3C24A0-BE74-4239-BB9D-273541C104BE-_337A7BBC-47D4-4237-9E8F-0611EF4FACE8" >
+        <di:waypoint x="500" y="228" />
+        <di:waypoint x="770" y="228" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_E567F044-C0E2-4247-B77D-E66AE16B08FF-_337A7BBC-47D4-4237-9E8F-0611EF4FACE8" >
+        <di:waypoint x="650" y="55" />
+        <di:waypoint x="770" y="55" />
+        <di:waypoint x="770" y="228" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6C3C24A0-BE74-4239-BB9D-273541C104BE-_E567F044-C0E2-4247-B77D-E66AE16B08FF" >
+        <di:waypoint x="500" y="228" />
+        <di:waypoint x="500" y="55" />
+        <di:waypoint x="650" y="55" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_337A7BBC-47D4-4237-9E8F-0611EF4FACE8-_7" >
+        <di:waypoint x="770" y="228" />
+        <di:waypoint x="952" y="232" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_8" >
+        <di:waypoint x="952" y="232" />
+        <di:waypoint x="952" y="345" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_10" >
+        <di:waypoint x="249" y="470" />
+        <di:waypoint x="123" y="470" />
+        <di:waypoint x="124" y="554" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_11" >
+        <di:waypoint x="124" y="554" />
+        <di:waypoint x="126" y="688" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_12" >
+        <di:waypoint x="126" y="688" />
+        <di:waypoint x="129" y="786" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_13" >
+        <di:waypoint x="129" y="786" />
+        <di:waypoint x="128" y="875" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_17" >
+        <di:waypoint x="956" y="469" />
+        <di:waypoint x="673" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_16" >
+        <di:waypoint x="952" y="345" />
+        <di:waypoint x="956" y="469" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_19" >
+        <di:waypoint x="673" y="470" />
+        <di:waypoint x="502" y="469" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19-_18" >
+        <di:waypoint x="502" y="469" />
+        <di:waypoint x="249" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-_18" >
+        <di:waypoint x="368" y="595" />
+        <di:waypoint x="249" y="597" />
+        <di:waypoint x="249" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6C3C24A0-BE74-4239-BB9D-273541C104BE-_21" >
+        <di:waypoint x="500" y="228" />
+        <di:waypoint x="501" y="352" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19-_20" >
+        <di:waypoint x="502" y="469" />
+        <di:waypoint x="501" y="599" />
+        <di:waypoint x="368" y="595" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_23" >
+        <di:waypoint x="501" y="352" />
+        <di:waypoint x="372" y="352" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_22" >
+        <di:waypoint x="952" y="345" />
+        <di:waypoint x="805" y="345" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_28-_25" >
+        <di:waypoint x="645" y="713" />
+        <di:waypoint x="648" y="871" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_25" >
+        <di:waypoint x="481" y="871" />
+        <di:waypoint x="648" y="871" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_22-_24" >
+        <di:waypoint x="805" y="345" />
+        <di:waypoint x="666" y="346" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_25-_27" >
+        <di:waypoint x="648" y="871" />
+        <di:waypoint x="797" y="871" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_26" >
+        <di:waypoint x="128" y="875" />
+        <di:waypoint x="309" y="875" />
+        <di:waypoint x="312" y="712" />
+        <di:waypoint x="481" y="711" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_26-_29" >
+        <di:waypoint x="481" y="711" />
+        <di:waypoint x="481" y="871" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_26-_28" >
+        <di:waypoint x="481" y="711" />
+        <di:waypoint x="645" y="713" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

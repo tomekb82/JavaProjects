@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+ 
+
+ 
+ <h:head>
+ 	<link href="resources/css/style.css"     rel="stylesheet" type="text/css"/>
+	<link href="resources/css/sreen.css"     rel="stylesheet" type="text/css"/>
+ </h:head>
+ <h:body>
+ 	<ui:composition template="resources/templates/formLayout.xhtml"> 
+
+        <ui:define name="rightColumn" >
+		 	  <ui:include src="resources/templates/rightColumn.xhtml">
+		 	  		<ui:param name="percentage" value="100" />
+		 	  </ui:include>
+		</ui:define> 	
+ 
+        <ui:define name="form">
+          <div id="section1_content" class="grey">
+            <div class="container" id="field_user_type" style="">
+              <div class="process_end">
+                <h2>
+                  <h:outputText value="#{processEndBean.getResponse()}" /> 
+                </h2>
+              </div>
+            </div>
+            <div class="space14"></div>		
+          </div>
+        </ui:define>
+        
+    	<ui:define name="button">
+ 			
+ 		</ui:define>
+    </ui:composition>
+        
+ </h:body>
+ 
+ 
+</html>
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <body>
+	    
+	    <ui:composition>
+ 
+   		  <!-- right column-->
+			<div class="content_right" id="right_column">
+   			<h2>Twoje zgłoszenie</h2>
+       	<div class="status"><img src="resurces/images/blank.gif" alt="status" width="188" height="9" id="percent_complete_img" class="progress_0"/></div>
+        <div class="info">Wypełniłeś już  <span id="percent_complete">#{percentage}%</span> wniosku</div>
+    		<div class="img_right">
+    			<img src="resources/images/steps_img.jpg" alt="Allianz"/>
+        </div>
+        <!-- element zwin rozwin  begin-->
+        <ui:remove>
+        <div class="zwin_rozwin_right first">        		
+          <div class="content" id="wprowadzono_div" style="display:block;"><p><strong>Rodzaj szkody:</strong></p><p>Uszkodzenie pojazdu - AC</p><p><strong>Numer polisy:</strong></p><p>12345678</p><ul class="right_column_usun"><li><a href="#" style="text-decoration: underline;">Usuń wprowadzone dane</a><!-- <a href="#" ><img src="resurces/images/ico_i.gif" style="position: relative; top: 3px;" /></a> --></li></ul></div>			
+        </div>
+        </ui:remove>
+        <!-- element zwin rozwin  END-->
+        
+        <!-- element zwin rozwin  begin-->
+        <div class="zwin_rozwin_right">
+          <div class="content" id="pomoc_div" style="display:block;">
+            <ul>
+              <li style="cursor: pointer;">Przewidywany czas likwidacji szkody?</li>
+              <li style="cursor: pointer;">Co się dzieje po wysłaniu formularza?</li>
+              <li style="cursor: pointer;">Mam problem techniczny</li>
+            </ul>
+            <div style="width: 206px; margin-top: 20px; float: left;">
+              <div class="message " style="width: 206px;">
+                <div class="stars">*</div>
+                <div class="small_txt" style="width: 186px;">pole obowiązkowe</div>
+              </div>
+              <div class="message " style="width: 206px; margin-top: 5px;">
+                <div class="stars">**</div>
+                <div class="small_txt" style="width: 186px;">pola niezbędne do rozpatrzenia zgłoszenia, ale informację można uzupełnić w późniejszym terminie</div>
+              </div>
+              <div class="clear"></div>
+            </div>				
+          </div>
+        </div>
+        <!-- element zwin rozwin  END-->
+        <div class="space10"></div>
+    </div>
+ 
+	    </ui:composition>
+	    
+    </body>
+</html>

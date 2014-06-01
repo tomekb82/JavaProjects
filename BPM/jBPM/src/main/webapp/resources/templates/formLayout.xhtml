@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+	<link href="resources/css/style.css"     rel="stylesheet" type="text/css"/>
+	<link href="resources/css/sreen.css"     rel="stylesheet" type="text/css"/>
+	
+  <h:body>
+    
+      <ui:insert name="header" >
+        <ui:include src="header.xhtml" />
+	   	</ui:insert>
+		
+		
+		<div class="wrapper" id="main_div">
+ 
+    <ui:insert name="rightColumn" >
+	 	  <ui:include src="rightColumn.xhtml">
+	 	  		<ui:param name="percentage" value="0" />
+	 	  </ui:include>
+	</ui:insert>
+    
+	<!-- left column -->
+    <div class="content_left">
+    	<div class="breadcrumb">
+        <a href="#">Likwidacja szkody</a><a href="#">Moje zgłoszenie</a>
+    	</div>
+    	
+      <h2>Zgłoszenie szkody</h2>
+      <div class="line"></div>
+      <div class="tabs_bottom"></div>
+        <!-- form -->
+      <div id="tab1" class="tab">
+        <h:form id="wniosek_form">
+          <div id="fields_content">
+            <div id="step1" style="display: block; padding-bottom: 0px;">
+              <div class="area bottom_line" id="section1" style="">	
+              
+              
+                    <ui:insert name="form" >
+                      <ui:include src="form.xhtml" />
+                    </ui:insert>
+              </div>
+              
+             <ui:remove>
+            <div class="area bottom_line" id="desc1" style="">
+                            <div id="desc1_content" class="grey">
+                              <div class="message " id="field_head14341">
+                                <div class="stars">*</div>
+                                <div class="small_txt">pole obowiązkowe</div>
+                              </div>
+                              <div class="message " id="field_head14351">
+                                <div class="stars">**</div>
+                                <div class="small_txt">pola niezbędne do rozpatrzenia zgłoszenia, ale informację można uzupełnić w późniejszym terminie</div>
+                              </div>
+                              <div class="clear"></div>
+                            </div>
+                            <div class="space6"></div>
+            </div>
+            </ui:remove>
+            <div class="space4"></div>
+            <div class="area">
+              <div class="grey bottom_buttons" id="nawigacja">
+       		    <ui:insert name="button" >
+			 	  <ui:include src="button.xhtml" />
+				</ui:insert>
+              </div>
+            </div>
+          </div>
+        </div>
+
+			</h:form> 
+    </div>
+  </div>      
+</div>    
+</h:body>
+ 
+</html>

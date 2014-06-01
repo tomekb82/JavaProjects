@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+	<link href="resources/css/style.css"     rel="stylesheet" type="text/css"/>
+	<link href="resources/css/sreen.css"     rel="stylesheet" type="text/css"/>
+	 
+    <h:body>
+ 		<ui:composition template="resources/templates/formLayout.xhtml">
+       
+        <ui:define name="form" id="form">
+        	<h:messages style="color:red;margin:8px;" />
+	       	<div class="container" id="field_role_poszko_fiz_name" style="">
+	          <div class="label" id="lab_role_poszko_fiz_name">
+	          	<h:outputText value="Login: " /> 
+	          </div>	
+	          <div class="content">
+	            <h:inputText value="#{loginUserBean.username}" id="username" />
+	          </div>
+	        </div>
+	       	<div class="container" id="passwordContainer" style="">
+	          <div class="label" id="lab_password">
+	          	<h:outputText value="Haslo: " /> 
+	          </div>	
+	          <div class="content">
+	            <h:inputSecret value="#{loginUserBean.password}" id="password" />
+	          </div>
+	        </div>
+        </ui:define>
+        
+ 		<ui:define name="button">
+ 			<h:commandLink action="#{loginUserBean.submit}"><img alt="dalej" src="resources/images/bt_dalej.gif" /></h:commandLink>
+ 		</ui:define>
+   	 </ui:composition>
+    </h:body>
+ 
+</html>

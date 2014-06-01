@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jbpm="http://drools.org/schema/drools-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans classpath:org/springframework/beans/factory/xml/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context classpath:org/springframework/context/config/spring-context-3.1.xsd
+        http://www.springframework.org/schema/aop classpath:org/springframework/aop/config/spring-aop-3.1.xsd
+        http://www.springframework.org/schema/tx classpath:org/springframework/transaction/config/spring-tx-3.1.xsd
+        http://www.springframework.org/schema/util classpath:org/springframework/beans/factory/xml/spring-util-3.1.xsd
+        http://drools.org/schema/drools-spring classpath:org/drools/container/spring/drools-spring.xsd">
+
+	<context:component-scan base-package="pl.qualent.allianz" scoped-proxy="targetClass"/>
+	
+	 <jbpm:kbase id="kbase">
+	   <jbpm:resources>
+	     <jbpm:resource type="BPMN2" source="classpath:Allianz.bpmn2"/>
+	     
+	   </jbpm:resources>
+	 </jbpm:kbase>
+	
+	 <jbpm:ksession id="ksession" type="stateful" kbase="kbase">
+	    <jbpm:configuration>
+	      <jbpm:jpa-persistence>
+	        <jbpm:transaction-manager ref="transactionManager"/>
+	        <jbpm:entity-manager-factory ref="entityManagerFactory"/>
+	      </jbpm:jpa-persistence>
+	    </jbpm:configuration>	 
+	 </jbpm:ksession>
+
+	
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+        id="entityManagerFactory">
+        <property name="persistenceUnitName" value="AllianzPersistenceUnit" />
+    </bean>
+
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager"
+        id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>  
+    
+	  <bean id="systemEventListener" class="org.drools.SystemEventListenerFactory" factory-method="getSystemEventListener" />
+	
+	<bean id="internalTaskService" class="org.jbpm.task.service.TaskService" >
+	    <constructor-arg ref="entityManagerFactory"></constructor-arg>
+	    <constructor-arg ref="systemEventListener"></constructor-arg>
+	</bean>
+	
+	
+	<bean id="htTxManager" class="org.drools.container.spring.beans.persistence.HumanTaskSpringTransactionManager">
+	  <constructor-arg ref="transactionManager" />
+	</bean>    
+
+
+	<!--  <bean id="springTaskSessionFactory" class="org.jbpm.task.service.persistence.TaskSessionSpringFactoryImpl"
+	      init-method="initialize" depends-on="internalTaskService" >
+	  <property name="entityManagerFactory" ref="entityManagerFactory" />
+	  <property name="transactionManager" ref="htTxManager" />
+	  <property name="useJTA" value="false" />
+	  <property name="taskService" ref="internalTaskService" />
+	</bean>-->
+
+	<bean id="taskService" class="org.jbpm.task.service.local.LocalTaskService" destroy-method="dispose" scope="prototype">
+	  <constructor-arg ref="internalTaskService" />
+	</bean>
+    
+	<bean id="jBPMService" class="pl.qualent.allianz.jBPMServiceImpl">
+		<property name="localTaskService" ref="taskService" />
+		<property name="ksession" ref="ksession" />
+		<property name="emf" ref="entityManagerFactory" />
+		<property name="aptm" ref="transactionManager" />
+	</bean>
+	    
+	  <bean id="userGroupCallbackManager" class="org.jbpm.task.identity.UserGroupCallbackManager"
+	    factory-method="getInstance">
+	        <property name="callback" ref="defaultCallback"></property>
+	  </bean>
+	  
+	  <bean id="defaultCallback" class="org.jbpm.task.identity.DefaultUserGroupCallbackImpl">
+	    <constructor-arg value="classpath:/roles.properties"></constructor-arg>
+	  </bean>
+    
+    <tx:annotation-driven transaction-manager="transactionManager" />
+        
+    <context:spring-configured />
+    <context:annotation-config />
+
+</beans>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+	<f:metadata>
+	    <f:viewParam name="processInstanceId" value="#{drawDiagramBean.processInstaceId}" />
+	</f:metadata>
+	<head>
+	</head>
+    <h:body>
+   		#{drawDiagramBean.getCoordinateArrayList()}
+ 		<div style="position:relative;width:1024px; height:768px;">  
+	        <img src="resources/images/allianz.Allianz.png" style="position:absolute;top:0;left:0" />  
+	        <!--<div style="position:absolute;left:#{drawDiagramBean.coordinates[0]}px;top:#{drawDiagramBean.coordinates[1]}px;height:#{drawDiagramBean.coordinates[2]}px;width:#{drawDiagramBean.coordinates[3]}px;border:3px solid red; z-index:1000;"></div>-->   
+      		<img src="resources/images/play_red_big.png" style="position:absolute;left:#{drawDiagramBean.coordinates[0]}px;top:#{drawDiagramBean.coordinates[1]}px;z-index:1000;" /> 
+      	</div>  
+    </h:body>
+ 
+</html>

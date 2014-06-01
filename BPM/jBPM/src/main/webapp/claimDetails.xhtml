@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+	<link href="resources/css/style.css"     rel="stylesheet" type="text/css"/>
+	<link href="resources/css/sreen.css"     rel="stylesheet" type="text/css"/>
+	
+  <h:body>
+
+    
+      <ui:composition template="resources/templates/formLayout.xhtml">
+	        <ui:define name="rightColumn" >
+			 	  <ui:include src="resources/templates/rightColumn.xhtml">
+			 	  		<ui:param name="percentage" value="40" />
+			 	  </ui:include>
+			</ui:define> 
+    		<ui:define name="form">
+    		
+    		   	#{claimBean.loadClaim()}
+    			<div id="section1_content" class="grey">
+                  <!-- Title -->
+                  <h2 id="section1_title">Poszkodowany</h2>
+                  <div class="space14"></div>
+                  
+                  <div class="container" id="field_user_type" style="">
+                    <div class="label" id="lab_user_type">Wskaż, co stało się z pojazdem</div>	
+                    <div class="content">
+                      <h:selectOneMenu value="#{claimBean.claim.cause}" id="selectCause">
+                        <f:selectItems value="#{claimBean.cause2Value}" />
+                      </h:selectOneMenu>
+                      <h:message for="selectCause" style="color:red"/>
+                    </div>
+                  </div>
+                  
+                  <div class="container" id="field_user_type" style="">
+                    <div class="label" id="lab_user_type_sub">Zgłaszający szkodę*
+                    </div>	
+                    <div class="content">
+                      <h:selectOneRadio value="#{claimBean.claim.applicant}" id="selectApplicant">
+                          <f:selectItems value="#{claimBean.applicant2Value}" />
+                        </h:selectOneRadio>
+                      <h:message for="selectApplicant" style="color:red"/>
+                    </div>
+                    <div class="error_info" id="err_user_type">błędne dane</div>
+                  </div>
+                
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Poszkodowanym jest*
+                    </div>	
+                    <div class="content">
+                      <h:selectOneRadio value="#{claimBean.claim.victim}" id="selectVicitm">
+                          <f:selectItems value="#{claimBean.victim2Value}" />
+                        </h:selectOneRadio>
+                      <h:message for="selectVicitm" style="color:red"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>
+                  
+                <div id="role_poszko_fiz" style="">
+                  <div class="title " id="field_role_poszko_fiz_h1">Dane osobowe</div>
+                  
+                    <div class="container" id="field_role_poszko_fiz_name" style="">
+                      <div class="label" id="lab_role_poszko_fiz_name">Imię*</div>	
+                      <div class="content">
+                        <h:inputText value="#{claimBean.claim.firstName}" style="height: auto; " id="role_poszko_fiz_name" tabindex="13" type="text" maxlength="25" class="text regularny  " />
+                        <h:message for="role_poszko_fiz_name" style="color:red"/>
+                      </div>
+                    </div>
+                    
+                    <div class="container" id="field_role_poszko_fiz_nazwisko" style="">
+                      <div class="label" id="lab_role_poszko_fiz_nazwisko">Nazwisko*</div>
+                      <div class="content">
+                        <h:inputText value="#{claimBean.claim.lastName}" style="height: auto; " id="role_poszko_fiz_nazwisko" tabindex="14" type="text" maxlength="38" class="text regularny  " />
+                      	<h:message for="role_poszko_fiz_nazwisko" style="color:red"/>
+                      </div>
+                    </div>
+                    
+                    <div class="container" id="field_role_poszko_fiz_nation" style="">
+                      <div class="label" id="lab_role_poszko_fiz_nation">Obywatelstwo*</div>	
+                      <div class="content">
+                        <h:selectOneRadio value="#{claimBean.claim.citizenship}" id="role_poszko_fiz_nation_0" name="role_poszko_fiz_nation">
+                          <f:selectItems value="#{claimBean.citizenship2Value}" />
+                        </h:selectOneRadio>
+                      <div class="error_info" id="err_role_poszko_fiz_nation">błędne dane</div>
+                      </div>
+                    </div>
+                    
+                      <div id="role_poszko_fiz_group1" style=";" class="">
+                        <div class="container2" id="field_role_poszko_fiz_pesel" style="">
+                          <div class="label" id="lab_role_poszko_fiz_pesel">PESEL*</div>	
+                          <div class="content">
+                            <div class="inner">
+                              <h:inputText value="#{claimBean.claim.pesel}" type="text" id="role_poszko_fiz_pesel" maxlength="11" tabindex="17" class="text regularny"/>
+                          	  <h:message for="role_poszko_fiz_pesel" style="color:red"/>
+                            </div>
+                            <div class="error_info" id="err_role_poszko_fiz_pesel">błędne dane</div>
+                          </div>
+                        </div>
+                        <div class="space2"></div>
+                      </div>
+                      
+                      <div class="container" id="field_role_poszko_fiz_gender" style="">
+                        <div class="label" id="lab_role_poszko_fiz_gender">Płeć*</div>
+                        <div class="content">
+                          <h:selectOneRadio value="#{claimBean.claim.sex}" class="radio">
+                            <f:selectItems value="#{claimBean.sex2Value}" />
+                          </h:selectOneRadio>
+                        </div> 
+                        <div class="error_info" id="err_role_poszko_fiz_gender">błędne dane</div>
+                      </div>
+                      
+                      <div id="role_poszko_fiz_adress1" style="">
+                      
+                        <div class="title " id="field_role_poszko_fiz_adress1_head2">Adres zamieszkania</div>
+                        <div class="container" id="field_role_poszko_fiz_adress1_country_sel" style="">
+                          <div class="label" id="lab_role_poszko_fiz_adress1_country_sel">Kraj zamieszkania*</div>
+                          <div class="content">
+                            <h:selectOneRadio value="#{claimBean.claim.country}" class="radio">
+                              <f:selectItems value="#{claimBean.country2Value}" />
+                            </h:selectOneRadio>
+                          </div>
+                          <div class="error_info" id="err_role_poszko_fiz_adress1_country_sel">błędne dane</div>
+                        </div>
+                        
+                        <div id="role_poszko_fiz_adress1_group1" style=";" class="">
+                        
+                          <div class="container" id="field_role_poszko_fiz_adress1_postal_code_pl" style="">
+                            <div class="label" id="lab_role_poszko_fiz_adress1_postal_code_pl">Kod pocztowy*</div>
+                            <div class="content">
+                               <h:inputText value="#{claimBean.claim.postalCode}"  style="height: auto; " type="text" id="role_poszko_fiz_adress1_postal_code_pl_1" tabindex="24" maxlength="100"  class="text regularny  city ui-autocomplete-input"/>
+                            </div> 
+                            <div class="error_info" id="err_role_poszko_fiz_adress1_postal_code_pl">błędne dane</div>
+                          </div>
+                          
+                          <div class="container" id="field_role_poszko_fiz_adress1_city_pl" style="">
+                            <div class="label" id="lab_role_poszko_fiz_adress1_city_pl">Miejscowość*</div>
+                            <div class="content">
+                              <h:inputText value="#{claimBean.claim.city}" style="height: auto; " id="role_poszko_fiz_adress1_city_pl" tabindex="26" type="text" maxlength="100" class="text regularny  city ui-autocomplete-input" role="textbox" />
+                              <h:message for="role_poszko_fiz_adress1_city_pl" style="color:red"/>
+                            </div>
+                            <div class="error_info" id="err_role_poszko_fiz_adress1_city_pl">błędne dane</div>
+                          </div>
+                          
+                          <div class="container" id="field_role_poszko_fiz_adress1_street_pl" style="">
+                            <div class="label" id="lab_role_poszko_fiz_adress1_street_pl">Ulica*</div>
+                            <div class="content">
+                              <h:inputText value="#{claimBean.claim.street}" style="height: auto; " id="role_poszko_fiz_adress1_street_pl" tabindex="27" type="text" maxlength="50" class="text regularny  street ui-autocomplete-input" />
+                              <h:message for="role_poszko_fiz_adress1_street_pl" style="color:red"/>
+                            </div>
+                            <div class="error_info" id="err_role_poszko_fiz_adress1_street_pl">błędne dane</div>
+                          </div>
+                          
+                          <div class="container" id="field_role_poszko_fiz_adress1_house_nr_pl" style="">
+                            <div class="label" id="lab_role_poszko_fiz_adress1_house_nr_pl">Nr domu*</div>
+                            <div class="content">
+                              <h:inputText value="#{claimBean.claim.hause}" style="height: auto;  " id="role_poszko_fiz_adress1_house_nr_pl" tabindex="28" type="text" maxlength="50" class="text regularny  street ui-autocomplete-input" />
+                            </div>
+                            <div class="error_info" id="err_role_poszko_fiz_adress1_house_nr_pl">błędne dane</div>
+                          </div>
+                          
+                          <div class="container" id="field_role_poszko_fiz_adress1_flat_nr_pl" style="">
+                            <div class="label" id="lab_role_poszko_fiz_adress1_flat_nr_pl">Nr lokalu</div>
+                            <div class="content">
+                                <h:inputText value="#{claimBean.claim.flat}" style="height: auto;  width: 94px;" id="role_poszko_fiz_adress1_flat_nr_pl" tabindex="29" type="text" maxlength="5" class="text regularny  " />
+                            </div> 
+                            <div class="error_info" id="err_role_poszko_fiz_adress1_flat_nr_pl">błędne dane</div>
+                          </div>
+                          
+                          <div class="container" id="field_role_poszko_fiz_adress1_postoffice_pl" style="">
+                            <div class="label" id="lab_role_poszko_fiz_adress1_postoffice_pl">Poczta*</div>
+                              <div class="content">
+                                <h:inputText value="#{claimBean.claim.postOffice}" style="height: auto; " id="role_poszko_fiz_adress1_postoffice_pl" tabindex="30"  type="text" maxlength="50" class="text regularny  city ui-autocomplete-input"/>
+                              </div>
+                            <div class="error_info" id="err_role_poszko_fiz_adress1_postoffice_pl">błędne dane</div>
+                          </div>
+                          
+                        </div>												
+                      </div>
+                          
+                </div>
+              </div>
+    		</ui:define>
+ 
+ 		<ui:define name="button">
+ 			<h:commandLink action="#{claimBean.submit}"><img alt="dalej" src="resources/images/bt_dalej.gif" /></h:commandLink>
+ 		</ui:define>
+    </ui:composition>
+</h:body>
+ 
+</html>

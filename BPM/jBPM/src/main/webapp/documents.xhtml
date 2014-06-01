@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+ 
+
+ 
+  <h:head>
+   	<link href="resources/css/style.css"     rel="stylesheet" type="text/css"/>
+	<link href="resources/css/sreen.css"     rel="stylesheet" type="text/css"/>
+ </h:head>
+ <h:body>
+ 
+  	<ui:composition template="resources/templates/formLayout.xhtml"> 
+  	
+        <ui:define name="rightColumn" >
+		 	  <ui:include src="resources/templates/rightColumn.xhtml">
+		 	  		<ui:param name="percentage" value="60" />
+		 	  </ui:include>
+		</ui:define>
+        <ui:define name="form">
+	        <div id="section1_content" class="grey">
+          <!-- Title -->
+            <h2 id="section1_title">Dokumenty</h2>
+            <div class="space14"></div>
+            <div class="container" id="field_user_type" style="">
+              <div class="label" id="lab_user_type">
+                <h:outputText value="Dodaj skan dowodu: " /> 
+              </div>
+              <div class="content">
+                <p:fileUpload value="#{documentsBean.file}" mode="simple"/>
+              </div>
+            </div>
+            <br/><br/>
+            <div class="container" id="field_user_type" style="">
+              <div class="label" id="lab_user_type">
+                <h:outputText value="Dodaj zdjecie: " /> 
+              </div>
+              <div class="content">
+                <p:fileUpload value="#{documentsBean.file}" mode="simple"/>
+              </div>
+            </div>
+            <br/><br/>
+            <div class="container" id="field_user_type" style="">
+              <div class="label" id="lab_user_type">
+                <h:outputText value="Dodaj inny dokument: " /> 
+              </div>
+              <div class="content">
+                <p:fileUpload value="#{documentsBean.file}" mode="simple"/>
+              </div>
+            </div>
+            <br/><br/>	        
+	        </div>
+        </ui:define>
+    </ui:composition>
+ 
+	<ui:define name="button">
+		<h:commandLink action="#{documentsBean.submit}"><img alt="dalej" src="resources/images/bt_dalej.gif" /></h:commandLink>
+	</ui:define>
+ 
+ </h:body>
+ 
+ 
+</html>
+

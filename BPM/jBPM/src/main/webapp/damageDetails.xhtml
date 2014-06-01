@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+ 
+    <h:body>
+    	 <ui:composition template="resources/templates/formLayout.xhtml">
+	         <ui:define name="rightColumn" >
+			 	  <ui:include src="resources/templates/rightColumn.xhtml">
+			 	  		<ui:param name="percentage" value="50" />
+			 	  </ui:include>
+			</ui:define>
+    		<ui:define name="form">
+    			<div id="section1_content" class="grey">
+                  <!-- Title -->
+                  <h2 id="section1_title">Szczegóły uszkodzenia</h2>
+                  <div class="space14"></div>
+                  
+                  <div class="container" id="field_user_type" style="">
+                    <div class="label" id="lab_user_type">Pojazd</div>	
+                    <div class="content">
+                      <h:selectOneMenu value="#{damageBean.damage.vehicle}">
+                        <f:selectItems value="#{damageBean.vehicle2Value}" />
+                      </h:selectOneMenu>
+                    </div>
+                  </div>
+                  
+                  <div class="container" id="field_user_type" style="">
+                    <div class="label" id="lab_user_type">Typ pojazdu</div>	
+                    <div class="content">                      
+                      <h:selectOneMenu value="#{damageBean.damage.vehicleType}">
+                        <f:selectItems value="#{damageBean.vehicleType2Value}" />
+                      </h:selectOneMenu>
+                    </div>
+                  </div>
+                  
+                  <div class="container" id="field_user_type" style="">
+                    <div class="label" id="lab_user_type_sub">Rok produkcji</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.prodYear}" id="prodYear" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type">błędne dane</div>
+                  </div>
+                
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Marka</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.brand}" id="brand" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>
+                  
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Model</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.model}" id="model" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>
+                  
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Wersja</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.version}" id="version" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>
+      
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Pojemność silnika(cm3)</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.engineCapacity}" id="engineCapacity" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>
+
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Nr rejestracyjny</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.registrationNo}" id="registrationNo" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>
+                  
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Nr nadwozia (nr VIN)</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.vin}" id="vin" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>
+
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Przebieg (w zaokrągleniu)</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.course}" id="course" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>                  
+
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Cechy charaterystyczne (odbiegające od pojazdów produkowanych seryjnie)</div>	
+                    <div class="content">
+                      <h:inputTextarea value="#{damageBean.damage.description}" cols="30" rows="10" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>
+                  
+                <div id="role_poszko_fiz" style="">               
+                  <div class="title " id="field_role_poszko_fiz_h1">Czas i miejsce zdarzenia</div>
+                             
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Kraj</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.country}" id="country" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>      
+                        
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Województwo</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.province}" id="province" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>   
+                        
+                        <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Powiat</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.district}" id="district" class="text" />
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>   
+                  
+                  <div class="container" id="field_user_type_sub" style="">
+                    <div class="label" id="lab_user_type_sub">Miejscowość</div>	
+                    <div class="content">
+                      <h:inputText value="#{damageBean.damage.city}" id="city" class="text"/>
+                    </div>
+                    <div class="error_info" id="err_user_type_sub">błędne dane</div>
+                  </div>   
+
+                </div>
+              </div>
+                  
+    		</ui:define>
+ 
+ 		<ui:define name="button">
+ 			<h:commandLink action="#{damageBean.submit}"><img alt="dalej" src="resources/images/bt_dalej.gif" /></h:commandLink>
+ 		</ui:define>
+    </ui:composition>
+ 		
+    </h:body>
+ 
+</html>
