@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+<context:annotation-config/>
+<!-- Definition for student bean -->
+<bean id="student" class="com.tutorialspoint.Student"
+init-method="init" destroy-method="destroy">
+<property name="name" value="Zara" />
+<property name="age" value="11"/>
+<property name="nick" value="Z"/>
+<!-- try without passing age and check the result -->
+<!-- property name="age" value="11"-->
+</bean>
+
+<!-- Definition for profile bean -->
+<bean id="profile" class="com.tutorialspoint.Profile"
+init-method="init" destroy-method="destroy">
+</bean>
+<!-- Definition for student1 bean -->
+<bean id="student1" class="com.tutorialspoint.Student"
+init-method="init" destroy-method="destroy">
+<property name="name" value="Zara" />
+<property name="age" value="11"/>
+</bean>
+<!-- Definition for student2 bean -->
+<bean id="student2" class="com.tutorialspoint.Student"
+init-method="init" destroy-method="destroy">
+<property name="name" value="Nuha" />
+<property name="age" value="2"/>
+</bean>
+
+
+</beans>

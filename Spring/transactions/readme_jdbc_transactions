@@ -1,0 +1,35 @@
+
+Zainstalować z pakietów:
+- MySQL Server
+(przy instalacji skonfigurować hasło ("password") dla użytkownika ("root")
+
+- MySQ Workbench - utworzyć bazę danych TEST, dodać tabele Student i Marks
+
+Manage-Connections->New 
+(name:mysql, hostname: 127.0.0.1, port:3306, username:root,password:password)
+
+query_database 
+(connection:mysql, method:local socket, username:root, passwd: password,
+
+CREATE DATABASE TEST;
+
+dodać tabelę Student i Marks:
+
+CREATE TABLE Student(
+ID INT NOT NULL AUTO_INCREMENT,
+NAME VARCHAR(20) NOT NULL,
+AGE INT NOT NULL,
+PRIMARY KEY (ID)
+);
+
+CREATE TABLE Marks(
+SID INT NOT NULL,
+MARKS INT NOT NULL,
+YEAR
+INT NOT NULL
+);
+
+uwaga: baza TEST musi być ustawiona jako domyślna
+
+przekompilować projekt JDBC_database, działa:)))
+
