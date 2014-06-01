@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  <!-- Makes a ColorPreferences bean with default colors. -->
+  <bean id="colorPreferences" class="coreservlets.ColorPreferences"
+        scope="session">
+    <property name="foreground" value="black"/>
+    <property name="background" value="#fdf5e6"/>
+  </bean>
+  
+  <!-- Instantiates MapCustomerLookupService with a few sample customers. -->
+  <bean id="sampleLookupService" class="coreservlets.MapCustomerLookupService">
+    <property name="sampleCustomers">
+      <map>
+        <entry key="a1234">
+          <bean class="coreservlets.Customer">
+            <property name="customerID" value="a1234"/>
+            <property name="firstName" value="Rod"/>
+            <property name="lastName" value="Johnson"/>
+            <property name="balance" value="123.45"/>
+          </bean>
+        </entry>
+        <entry key="a1235">
+          <bean class="coreservlets.Customer">
+            <property name="customerID" value="a1235"/>
+            <property name="firstName" value="Gary"/>
+            <property name="lastName" value="Mak"/>
+            <property name="balance" value="4567.89"/>
+          </bean>
+        </entry>
+        <entry key="a1236">
+          <bean class="coreservlets.Customer">
+            <property name="customerID" value="a1236"/>
+            <property name="firstName" value="Craig"/>
+            <property name="lastName" value="Walls"/>
+            <property name="balance" value="78901.23"/>
+          </bean>
+        </entry>
+        <entry key="a1237">
+          <bean class="coreservlets.Customer">
+            <property name="customerID" value="a1237"/>
+            <property name="firstName" value="Matt"/>
+            <property name="lastName" value="Cherry"/>
+            <property name="balance" value="101112.13"/>
+          </bean>
+        </entry>
+      </map>
+    </property>
+  </bean>
+  
+  <!--  Make the top-level backing bean. This can also be created
+        in faces-config.xml. See the commented-out entry there. If
+        you did it that way, you would comment out the entry below. -->
+  <bean id="formBean" 
+        class="coreservlets.CustomerBackingBean" 
+        scope="request">
+    <property name="lookupService" ref="sampleLookupService"/>
+    <property name="colorPreferences" ref="colorPreferences"/>
+  </bean>   
+  
+</beans>

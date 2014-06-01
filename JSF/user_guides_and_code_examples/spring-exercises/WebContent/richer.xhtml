@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Richer</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<table border="5" align="center">
+  <tr><th class="title">Richer</th></tr>
+</table>
+<h2>
+Your potential deposit of $#{comparisonBean1.testAmount}
+is more than #{comparisonBean1.richestCustomer.firstName}
+#{comparisonBean1.richestCustomer.lastName}'s
+current balance of $#{comparisonBean1.richestCustomer.balanceNoSign}
+(our previously richest customer). Congratulations! 
+Please open an account.
+</h2>
+</h:body></html>

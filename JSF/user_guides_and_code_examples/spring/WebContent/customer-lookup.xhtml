@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Spring Bank: Balance Lookup</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body style="#{formBean.colorPreferences.style}">
+<table border="5" align="center">
+  <tr><th class="title">Spring Bank</th></tr>
+</table>
+<p/>
+<fieldset>
+  <legend>Balance Lookup
+  (<font color="red">*</font> = required)</legend>
+  <h:form prependId="false">
+    <label>
+      <font color="red">*</font> Customer ID: 
+      <h:inputText value="#{formBean.inputID}"
+                   required="true"
+                   requiredMessage="Missing customer ID"
+                   id="customerId"/>
+      <h:message for="customerId" styleClass="error"/>
+    </label><br/>
+    <label>
+      <font color="red">*</font> Password: 
+      <h:inputSecret value="#{formBean.password}"
+                     required="true"
+                     requiredMessage="Missing password"
+                     id="password"/>
+      <h:message for="password" styleClass="error"/>
+    </label><br/>
+    <label>
+      Preferred foreground color: 
+      <h:inputText value="#{formBean.colorPreferences.foreground}"/>
+    </label><br/>
+    <label>
+      Preferred background color: 
+      <h:inputText value="#{formBean.colorPreferences.background}"/>
+    </label><br/>
+    <h:commandButton value="Show Balance"
+                     action="#{formBean.findBalance}"/>
+  </h:form>
+</fieldset>
+<p/>
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><hr/><font size="-3">
+This code is from <a href="http://www.coreservlets.com/JSF-Tutorial/jsf2/">the coreservlets.com JSF 2.0 tutorial</a>.
+There is also a variety of other free <a href="http://courses.coreservlets.com/Course-Materials/">
+J2EE tutorials (servlets, JSP, JSF 2.0, Ajax [with jQuery], GWT, Spring, Hibernate, JPA,
+SOAP-based and RESTful Web Services, Android development, &amp; Java 6 programming)</a>
+as well as live instructor-led <a href="http://courses.coreservlets.com/">training courses on
+the same J2EE topics (servlets, JSP, JSF 2.0, Ajax [with jQuery], GWT, Spring, Hibernate, JPA,
+SOAP-based and RESTful Web Services, Android development, &amp; Java 6 programming)</a>.</font>
+</h:body></html>

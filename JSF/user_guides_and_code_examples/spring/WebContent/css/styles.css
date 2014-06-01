@@ -1,0 +1,29 @@
+.error { font-weight: bold;
+         color: red;
+         background-color: yellow;
+}
+a:hover { color: red }
+th.title   { font-size: 24px;
+             font-family: Arial, Helvetica, sans-serif;
+}
+th { font-size: 18px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+td { font-size: 18px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+legend {
+  font-weight: bold;
+  background-color: #eeeeee;
+  border: 1px solid #999999;
+  padding: 3px 2px;
+}
+li { font-weight: bold;
+     font-size: 16px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+h2 { color: #440000;
+     font-weight: bold;
+     font-size: 18px;
+     font-family: Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<title>JSF 2: Blank Starting-Point Project</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<h1 class="title">JSF 2: Blank Starting-Point Project</h1>
+<p>
+<b>This is Page A.</b> You should access this page as "page-a.jsf",
+not as "page-a.xhtml". If the following looks like an input form, and pressing
+the button navigates to Page B, it shows that you have
+correctly installed JSF 2. Use this project as the starting point
+for your own JSF 2 projects, as described in the tutorial. See the "samples"
+folder for some template files.
+</p>
+<div align="center">
+<fieldset>
+<legend style="height: 43px; ">JSF Test Form</legend>
+<h:form>
+  Some random data: <h:inputText value="#{someBean.someProperty}"/><br/>  <!-- Corresponds to getSomeProperty and setSomeProperty -->
+  <!-- Calls "someActionControllerMethod" and uses return value as base name of page to navigate to. -->
+  <h:commandButton value="Go to Page B" 
+                   action="#{someBean.someActionControllerMethod}" style="height: 34px; width: 110px; "/>     
+</h:form>
+</fieldset>
+</div>
+<p>
+If the tags like h:form and h:commandButton are totally ignored, it probably
+means that you don't have the JSF JAR file in WEB-INF/lib, or that
+you haven't mapped the FacesServlet in web.xml. If you get a JSF-specific error message,
+it probably means that you used the wrong URL (i.e, ending in page-a.<b>xhtml</b> instead of 
+page-a.<b>jsf</b>).
+</p>
+<p>
+Note: when making your own facelets pages (i.e., JSF .xhtml pages) in a project based on
+this jsf-blank project, copy the template files from the "samples" folder to
+the top-level WebContent folder, then rename the files. This is better than
+than using this page directly, since this page has many extraneous entries.
+</p>
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><hr/>
+<font size="-3">All code from the
+<a href="http://courses.coreservlets.com/Course-Materials/">
+coreservlets.com J2EE tutorials (servlets, JSP, JSF 2, PrimeFaces, Ajax with jQuery, GWT, Spring, Hibernate, JPA, Hadoop, 
+SOAP-based and RESTful Web Services, Android development, &amp; Java 7 and Java 8 programming)</a>. There are also live instructor-led
+<a href="http://courses.coreservlets.com/">training courses on
+the same J2EE topics (servlets, JSP, JSF 2, PrimeFaces, Ajax with jQuery, GWT, Spring, Hibernate, JPA, Hadoop, 
+SOAP-based and RESTful Web Services, Android development, &amp; Java 7 and Java 8 programming)</a> These courses
+can be customized and taught onsite at <i>your</i> organization.
+Also see the <a href="http://www.coreservlets.com/JSF-Tutorial/jsf2/">JSF 2 tutorial</a> and the
+<a href="http://www.coreservlets.com/JSF-Tutorial/primefaces/">PrimeFaces tutorial</a>.</font>
+</h:body></html>

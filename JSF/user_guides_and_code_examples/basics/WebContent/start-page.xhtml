@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>JSF 2: Programming Basics</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+
+<div align="center">
+<h1 class="title">JSF 2: Programming Basics</h1>
+<br/>
+<fieldset>
+<legend>Random Results Page</legend>
+<h:form>
+  Press button to get one of three possible results pages.
+  <br/>
+  <h:commandButton value="Go to Random Page" 
+                   action="#{navigator.choosePage}"/>
+</h:form>
+</fieldset>
+</div>
+
+</h:body></html>
