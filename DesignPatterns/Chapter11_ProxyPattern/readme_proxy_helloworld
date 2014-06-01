@@ -1,0 +1,27 @@
+
+
+
+1. Uruchomienie RMI i ustawienie IP hosta:
+==========================================
+
+@:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ cat /etc/hosts
+127.0.0.1	localhost
+10.0.101.239	tomekb-ThinkPad-T400
+
+
+$ rmiregistry &
+[1] 2548
+
+
+2. Serwer:
+===========
+
+#:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ javac com/proxypattern/rmi_helloworld/MyRemoteImpl.java
+#:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ java com.proxypattern.rmi_helloworld.MyRemoteImpl 
+
+3. Klient:
+===========
+
+#:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ javac com/proxypattern/rmi_helloworld/MyRemoteClient.java 
+#:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ java com.proxypattern.rmi_helloworld.MyRemoteClient 
+Server says, 'HEY'

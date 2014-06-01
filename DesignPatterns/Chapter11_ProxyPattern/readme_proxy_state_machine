@@ -1,0 +1,28 @@
+
+tomek@tomek-ThinkPad-T400:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ cat /etc/hosts
+127.0.0.1	localhost
+192.168.1.3	tomek-ThinkPad-T400
+
+
+
+tomek@tomek-ThinkPad-T400:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ rmiregistry &
+
+
+tomek@tomek-ThinkPad-T400:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ javac com/proxypattern/state_machine/TestRemoteMachine.java 
+tomek@tomek-ThinkPad-T400:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ java com.proxypattern.state_machine.TestRemoteMachine 192.168.1.3
+
+
+tomek@tomek-ThinkPad-T400:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ javac com/proxypattern/state_machine/TestMachineMonitor.java 
+tomek@tomek-ThinkPad-T400:~/repos/javaprojects/head_first_design_patterns/Chapter11_ProxyPattern/ProxyPattern/src$ java com.proxypattern.state_machine.TestMachineMonitor 
+com.proxypattern.state_machine.MachineMonitor@1e7e7e8
+com.proxypattern.state_machine.MachineMonitor@1c84885
+com.proxypattern.state_machine.MachineMonitor@18fe8fc
+State Machine:192.168.1.3
+Current State:State1
+State Machine:192.168.1.3
+Current State:State1
+State Machine:192.168.1.3
+Current State:State1
+
+
+
