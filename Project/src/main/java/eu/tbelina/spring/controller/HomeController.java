@@ -1,4 +1,4 @@
-package eu.tbelina.spring;
+package eu.tbelina.spring.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

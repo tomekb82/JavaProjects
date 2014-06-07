@@ -25,6 +25,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
+	<!-- appServlet supports all types of requests -->	
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
