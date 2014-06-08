@@ -1,0 +1,36 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- JPA: entity manager factory Bean -->
+    <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="jpaPU"/>
+	</bean> 
+	
+	<!-- 
+	
+	<bean id="jpaDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">		
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/SpringProject" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+	</bean>
+	
+	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="jpaDataSource"/>
+		 <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/> 
+	</bean> 
+	
+	 <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="showSql" value="true"/>
+		<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect"/>
+    	<property name="generateDdl" value="true" />
+	</bean>  -->
+	
+	
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+	
+	
+</beans>
+

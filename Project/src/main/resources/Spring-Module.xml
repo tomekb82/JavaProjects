@@ -7,5 +7,6 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<import resource="spring/Spring-DAO.xml"/>
 	<import resource="spring/Spring-Services.xml"/>
 	<import resource="spring/Spring-Hibernate.xml"/>
+	<import resource="spring/Spring-JPA.xml"/> 
 	
 </beans>

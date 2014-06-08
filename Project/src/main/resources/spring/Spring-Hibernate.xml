@@ -23,7 +23,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="javax.persistence.validation.mode">none</prop>
 			</props>
 		</property>
 

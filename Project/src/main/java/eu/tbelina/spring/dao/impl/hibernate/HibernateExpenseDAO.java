@@ -27,7 +27,6 @@ public class HibernateExpenseDAO implements IExpenseDAO{
 
 	@Override
 	public void addExpense(Expense expense) {
-		System.out.println("dao: addExpense");
 		getSessionFactory().getCurrentSession().save(expense);	
 	}
 
