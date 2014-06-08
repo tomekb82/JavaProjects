@@ -15,7 +15,8 @@
 
 	<!--  AOP -->
 	<aop:aspectj-autoproxy />
-	
+
 	<context:component-scan base-package="eu.tbelina.spring.*" />
+
 
 </beans:beans>

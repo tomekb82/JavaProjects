@@ -5,20 +5,27 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
-@Entity()
+@Entity
 @Table(name="expenses")
 public class Expense implements Serializable{
 	
+	private long id;
 	private String name;
 	private float value;
 	private int quantity;
 	private Date date;
 	
+	public Expense(){
+		
+	}
 	public Expense(long id, String name, float value, int quantity, Date date) {
 		super();
 		this.id = id;
@@ -29,8 +36,9 @@ public class Expense implements Serializable{
 	}
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID", unique = true, nullable = false)
-	private long id;
+	@NotNull
 	public long getId() {
 		return id;
 	}

@@ -18,7 +18,8 @@ public class Monitor {
 		System.out.println("******");
 	}
 	
-	@Pointcut("execution(*eu.tbelina.spring.service.impl.ExpenseService.getExpenses(..))")
+	//@Pointcut("execution(*eu.tbelina.spring.service.impl.ExpenseService.getExpenses(..))")
+	@Pointcut("execution(**.getExpenses(..))")
 	public void calcultation(){
 		
 	}

@@ -7,11 +7,11 @@ import eu.tbelina.spring.model.Expense;
 import eu.tbelina.spring.service.impl.ExpenseService;
 
 
-public class Application {
+public class Test_AOP {
 
 	public static void main(String[] args) {
 		
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("aop-context.xml");
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("Spring-Module2.xml");
 		
 		ExpenseService expense = (ExpenseService)ctx.getBean("expenseService");
 		expense.getExpenses();

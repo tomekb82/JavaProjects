@@ -43,6 +43,7 @@ public class ExpenseService implements IExpenseService{
 		Expense expense = new Expense(0, "dziecko", 24.5f, 30, new Date());
 		expenses.add(expense);
 		expenses.add(expense);
+		System.out.println("DEBUG XXX: " + expense);
 		return expenses;
 	}
 
