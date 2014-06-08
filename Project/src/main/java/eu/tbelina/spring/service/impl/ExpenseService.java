@@ -1,4 +1,4 @@
-package eu.tbelina.spring.service;
+package eu.tbelina.spring.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,8 +7,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import eu.tbelina.spring.model.Expense;
+import eu.tbelina.spring.service.IExpenseService;
 
-@Service
+@Service("expenseService")
 public class ExpenseService implements IExpenseService{
 
 	@Override
@@ -37,7 +38,7 @@ public class ExpenseService implements IExpenseService{
 
 	@Override
 	public List<Expense> getExpenses() {
-		// TODO Auto-generated method stub
+		System.out.println("DEBUG XXX: getExpenses()");
 		List<Expense> expenses = new ArrayList<Expense>();
 		Expense expense = new Expense(0, "dziecko", 24.5f, 30, new Date());
 		expenses.add(expense);

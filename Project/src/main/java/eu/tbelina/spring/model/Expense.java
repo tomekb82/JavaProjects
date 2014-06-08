@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+import org.springframework.stereotype.Component;
+
+@Entity()
 @Table(name="expenses")
 public class Expense implements Serializable{
 	

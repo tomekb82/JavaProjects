@@ -13,26 +13,9 @@
 		http://www.springframework.org/schema/aop 
 	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-
 	<!--  AOP -->
 	<aop:aspectj-autoproxy />
-		
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
-
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<!--  Handling static requests -->
-	<resources mapping="/resources/**" location="/resources/" />
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
 	
 	<context:component-scan base-package="eu.tbelina.spring.*" />
 
-	
-	
 </beans:beans>
