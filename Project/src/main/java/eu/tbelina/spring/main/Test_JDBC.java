@@ -15,6 +15,7 @@ public class Test_JDBC {
 
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("Spring-Module.xml");
 		
+		/* Tests: JdbcTemplete */
 		JdbcExpenseDAO jdbcExpenseDAO = (JdbcExpenseDAO)ctx.getBean("jdbcExpenseDAO");
 		Expense expense = new Expense(0, "dziecko", 24.5f, 30, new Date());
 		jdbcExpenseDAO.dropExpenses();
@@ -22,9 +23,10 @@ public class Test_JDBC {
 		jdbcExpenseDAO.addExpense(expense);
 		System.out.println("JdbcTemplate: " + jdbcExpenseDAO.getExpenses());
 		
+		/* Tests: SimpleJdbcTemplete */
 		SimpleJdbcExpenseDAO simpleJdbcExpenseDAO = (SimpleJdbcExpenseDAO)ctx.getBean("simpleJdbcExpenseDAO");
-		//simpleJdbcExpenseDAO.dropExpenses();
-		//simpleJdbcExpenseDAO.createExpenses();
+		simpleJdbcExpenseDAO.dropExpenses();
+		simpleJdbcExpenseDAO.createExpenses();
 		simpleJdbcExpenseDAO.addExpense(expense);
 		System.out.println("SimpleJdbcTemplate: " + simpleJdbcExpenseDAO.getExpenses());
 

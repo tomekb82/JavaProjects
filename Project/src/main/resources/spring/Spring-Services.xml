@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- Jdbc Service Declaration -->
+	<!-- <bean id="ExpenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
+		<property name="expenseDAO" ref="jdbcExpenseDAO" />
+	</bean> -->
+	
+	<!-- SimpleJdbc Service Declaration -->
+	<!-- <bean id="ExpenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
+		<property name="expenseDAO" ref="simpleJdbcExpenseDAO" />
+	</bean> -->
+	
+	<!-- Hibernate Service Declaration -->
+	<bean id="expenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
+		<property name="expenseDAO" ref="hibernateExpenseDAO" />
+	</bean>
+	
+</beans>
+

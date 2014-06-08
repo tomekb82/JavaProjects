@@ -26,6 +26,7 @@ public class Expense implements Serializable{
 	public Expense(){
 		
 	}
+	
 	public Expense(long id, String name, float value, int quantity, Date date) {
 		super();
 		this.id = id;
@@ -36,9 +37,9 @@ public class Expense implements Serializable{
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID", unique = true, nullable = false)
-	@NotNull
+	//@NotNull
 	public long getId() {
 		return id;
 	}
