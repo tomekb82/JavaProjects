@@ -1,5 +1,8 @@
 
+Wersja Liferay: 6.2
+
 Portlet do zarzadzania uzytkownikami.
+
 
 Wykorzystuje:
 - klasy:
