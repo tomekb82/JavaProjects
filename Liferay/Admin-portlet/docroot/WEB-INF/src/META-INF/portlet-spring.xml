@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="eu.qualent.telecom.admin.service.CustomerAdmin3ULocalService" class="eu.qualent.telecom.admin.service.impl.CustomerAdmin3ULocalServiceImpl" />
+	<bean id="eu.qualent.telecom.admin.service.CustomerAdmin3UService" class="eu.qualent.telecom.admin.service.impl.CustomerAdmin3UServiceImpl" />
+	<bean id="eu.qualent.telecom.admin.service.PortalAdmin3ULocalService" class="eu.qualent.telecom.admin.service.impl.PortalAdmin3ULocalServiceImpl" />
+	<bean id="eu.qualent.telecom.admin.service.PortalAdmin3UService" class="eu.qualent.telecom.admin.service.impl.PortalAdmin3UServiceImpl" />
+	<bean id="eu.qualent.telecom.admin.service.User3ULocalService" class="eu.qualent.telecom.admin.service.impl.User3ULocalServiceImpl" />
+	<bean id="eu.qualent.telecom.admin.service.User3UService" class="eu.qualent.telecom.admin.service.impl.User3UServiceImpl" />
+</beans>
