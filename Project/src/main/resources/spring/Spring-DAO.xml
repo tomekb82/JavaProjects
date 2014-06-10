@@ -19,9 +19,9 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	</bean>
 	
 	<!-- JPA DAO Declaration -->
-	<bean id="jpaExpenseDAO" class="eu.tbelina.spring.dao.impl.jpa.JpaExpenseDAO">
+	<!-- <bean id="jpaExpenseDAO" class="eu.tbelina.spring.dao.impl.jpa.JpaExpenseDAO">
 		<property name="em" ref="emf" />
-	</bean>
+	</bean> -->
 	
 </beans>
 

@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Welcome to OTV_JSF_Spring_Hibernate_Project</title>
+</h:head>
+<h:body>
+	<h:form id="form" >
+		<p:focus context="form"></p:focus>
+		<table>
+			<tr>
+				<td><h:outputLabel for="id" value="Card ID: " /></td>
+				<td><p:inputText id="id" value="#{userMB.cardId}">
+						<p:ajax event="change" update="idMsg name surname" listener="#{userMB.getUserByCardId}" />
+					</p:inputText> <p:message id="idMsg" for="id" display="icon"/></td>
+					<td>
+						<p:button value="Clear" onclick='document.getElementById("form:id").value = ""; document.getElementById("form:id").focus(); return false;'></p:button>
+					</td>
+			</tr>
+			<tr>
+				<td><h:outputLabel for="name" value="Name : " /></td>
+				<td><h:outputText id="name" value="#{userMB.name}">
+					</h:outputText> 
+				</td>
+			</tr>
+			<tr>
+				<td><h:outputLabel for="surname" value="Surname : " /></td>
+				<td><h:outputText id="surname" value="#{userMB.surname}">
+					</h:outputText>
+				</td>
+			</tr>
+		</table>
+	</h:form>
+</h:body>
+</html>

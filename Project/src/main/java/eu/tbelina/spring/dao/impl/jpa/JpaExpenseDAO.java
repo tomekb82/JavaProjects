@@ -12,7 +12,7 @@ import eu.tbelina.spring.dao.IExpenseDAO;
 import eu.tbelina.spring.model.Expense;
 
 @Repository("jpaExpenseDAO")
-public class JpaExpenseDAO implements IExpenseDAO{
+public class JpaExpenseDAO {/*implements IExpenseDAO{
 
 	private static final String SQL_SELECT_EXPENSES = "SELECT e FROM Expense e";
 	
@@ -55,5 +55,5 @@ public class JpaExpenseDAO implements IExpenseDAO{
 	public Expense getExpenseById(long id) {
 		return em.find(Expense.class, id);
 	}
-
+*/
 }

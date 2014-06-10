@@ -8,8 +8,6 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -18,7 +16,7 @@ import org.springframework.stereotype.Repository;
 import eu.tbelina.spring.dao.IExpenseDAO;
 import eu.tbelina.spring.model.Expense;
 
-@Repository("jdbcExpenseDAO")
+//@Repository("jdbcExpenseDAO")
 public class JdbcExpenseDAO extends JdbcDaoSupport implements IExpenseDAO {
 	
 	private static final String SQL_SELECT_EXPENSE_BY_ID 
@@ -30,6 +28,8 @@ public class JdbcExpenseDAO extends JdbcDaoSupport implements IExpenseDAO {
 	private static final String SQL_INSERT_EXPENSE 
 		= "insert into expenses (name, value, quantity, date) values (?, ?, ?, ?)";
 	
+	private DataSource dataSource;
+
 	public void createExpenses(){
 		getJdbcTemplate().execute("create table expenses (id bigint, name varchar, value float, quantity int, date date)");
 	}

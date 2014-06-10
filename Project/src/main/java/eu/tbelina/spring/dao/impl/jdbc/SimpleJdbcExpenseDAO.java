@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 import eu.tbelina.spring.dao.IExpenseDAO;
 import eu.tbelina.spring.model.Expense;
 
-@Repository("simpleJdbcExpenseDAO")
+//@Repository("simpleJdbcExpenseDAO")
 public class SimpleJdbcExpenseDAO extends SimpleJdbcDaoSupport implements IExpenseDAO {
 	
 	private static final String SQL_SELECT_EXPENSE_BY_ID 
@@ -29,6 +29,8 @@ public class SimpleJdbcExpenseDAO extends SimpleJdbcDaoSupport implements IExpen
 		= "update expenses set name = ?, value = ?, quantity = ?, date = ?" + "where id = ?";
 	private static final String SQL_INSERT_EXPENSE 
 		= "insert into expenses (name, value, quantity, date) values (?, ?, ?, ?)";
+	
+	private DataSource dataSource;
 	
 	public void createExpenses(){
 		//getSimpleJdbcTemplate().query("create table expenses (id bigint, name varchar, value float, quantity int, date date)", null);
