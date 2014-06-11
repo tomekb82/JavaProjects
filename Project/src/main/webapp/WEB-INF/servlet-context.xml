@@ -20,4 +20,16 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+	<!-- Tiles View Resolver -->
+	<!-- TODO -->
+	<beans:bean class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"/>
+	
+	<beans:bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/views/views.xml</value>
+			</list>
+		</property>
+	</beans:bean>
+	
 </beans:beans>
