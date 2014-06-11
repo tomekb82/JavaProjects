@@ -20,6 +20,20 @@
 	
 	<!--  AOP -->
 	<aop:aspectj-autoproxy />
+	<aop:config>
+		<aop:aspect ref="monitor">
+			<aop:pointcut id="calculate" expression="execution(* eu.tbelina.spring.service.impl.ExpenseService.getExpenses(..))" />
+			<aop:before pointcut-ref="calculate" method="beforeCalculation"/>
+			<aop:after-returning pointcut-ref="calculate" method="afterCalculation"/>
+			<aop:after-throwing pointcut-ref="calculate" method="incorrectCalculation"/>
+			
+			<aop:around pointcut-ref="calculate" method="calculatePerformance"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="monitor" class="eu.tbelina.spring.aop.Monitor">
+	</bean>
+	
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven /> 
@@ -82,58 +96,43 @@
 	<!-- ************************************************************************ -->
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<!-- Jdbc Service Declaration -->
+	<!-- Expenses: Jdbc Service Declaration -->
 	<!-- <bean id="ExpenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
 		<property name="expenseDAO" ref="jdbcExpenseDAO" />
 	</bean> -->
 	
-	<!-- SimpleJdbc Service Declaration -->
+	<!-- Expenses: SimpleJdbc Service Declaration -->
 	<!-- <bean id="ExpenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
 		<property name="expenseDAO" ref="simpleJdbcExpenseDAO" />
 	</bean> -->
 	
-	<!-- Hibernate Service Declaration -->
-	<bean id="ExpenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
+	<!-- Expenses: Hibernate Service Declaration -->
+	<bean id="expenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
 		<property name="expenseDAO" ref="hibernateExpenseDAO" />
 	</bean>
 	
-	 
-	<!-- Jdbc Expense DAO Declaration -->
+	<!-- Expenses: Jdbc Expense DAO Declaration -->
 	<!-- 	<bean id="jdbcExpenseDAO" class="eu.tbelina.spring.dao.impl.jdbc.JdbcExpenseDAO">
 		<property name="dataSource" ref="jdbcDataSource" />
 	</bean> -->
 	
-	<!-- SimpleJdbc Expense DAO Declaration -->
+	<!-- Expenses: SimpleJdbc Expense DAO Declaration -->
 	<!-- <bean id="simpleJdbcExpenseDAO" class="eu.tbelina.spring.dao.impl.jdbc.SimpleJdbcExpenseDAO">
 		<property name="dataSource" ref="jdbcDataSource" />
 	</bean> --> 
 	
-	<!-- Hibernate DAO Declaration -->
+	<!-- Expenses: Hibernate DAO Declaration -->
 	<bean id="hibernateExpenseDAO" class="eu.tbelina.spring.dao.impl.hibernate.HibernateExpenseDAO">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
 	
-	<!-- TODO: JPA DAO Declaration -->
+	<!-- TODO: Expenses: JPA DAO Declaration -->
 	<!-- 	<bean id="jpaExpenseDAO" class="eu.tbelina.spring.dao.impl.jpa.JpaExpenseDAO">
 		<property name="em" ref="emf" />
 	</bean> -->
 	
 	
-	<!-- JDBC Data Source Declaration -->
+	<!-- Expenses: JDBC Data Source Declaration -->
 	<!-- <bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">		
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://localhost:5432/SpringProject" />
