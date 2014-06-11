@@ -44,8 +44,7 @@ public class HibernateExpenseDAO implements IExpenseDAO{
 
 	@Override
 	public List<Expense> getExpenses() {
-		List<Expense> list = getSessionFactory().getCurrentSession().createQuery(SQL_SELECT_EXPENSES).list();
-		return list;
+		return getSessionFactory().getCurrentSession().createQuery(SQL_SELECT_EXPENSES).list();
 	}
 
 	@Override
