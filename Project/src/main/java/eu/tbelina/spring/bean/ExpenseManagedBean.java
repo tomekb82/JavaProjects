@@ -28,7 +28,6 @@ import eu.tbelina.spring.service.IExpenseService;
  * 
  */
 @ManagedBean(name = "expenseMB")
-@Controller
 @SessionScoped
 public class ExpenseManagedBean implements Serializable {
 
@@ -37,7 +36,7 @@ public class ExpenseManagedBean implements Serializable {
 	private static final String ERROR = "error";
 	
 	// Spring User Service is injected...
-	@ManagedProperty(value = "#{ExpenseService}")
+	@ManagedProperty(value = "#{expenseService}")
 	IExpenseService expenseService;
 
 	List<Expense> expenseList;
