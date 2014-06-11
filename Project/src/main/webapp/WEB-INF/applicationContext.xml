@@ -22,11 +22,11 @@
 	<aop:aspectj-autoproxy />
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- <mvc:annotation-driven /> -->
+	<mvc:annotation-driven /> 
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!--  Handling static requests -->
-	<!-- <mvc:resources mapping="/resources/**" location="/resources/" /> -->
+	<mvc:resources mapping="/resources/**" location="/resources/" /> 
 	
 	
 	
@@ -181,6 +181,6 @@
 	</bean> -->  
 	
 	
-<!-- 	<context:component-scan base-package="eu.tbelina.spring.*" /> -->
+	<context:component-scan base-package="eu.tbelina.spring.*" />
 		
 </beans>
