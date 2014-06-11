@@ -14,8 +14,7 @@ import eu.tbelina.spring.model.Expense;
 import eu.tbelina.spring.service.IExpenseService;
 
 @Transactional(readOnly = true)
-@Service("expenseService")
-@ManagedBean(name="expenseService")
+//@Service("expenseService")
 public class ExpenseService implements IExpenseService{
 
 	IExpenseDAO expenseDAO;
@@ -31,7 +30,6 @@ public class ExpenseService implements IExpenseService{
 	@Transactional(readOnly = false)
 	@Override
 	public void addExpense(Expense expense) {
-		System.out.println("service: addExpense");
 		getExpenseDAO().addExpense(expense);	
 	}
 
