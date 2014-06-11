@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import eu.tbelina.spring.dao.IExpenseDAO;
 import eu.tbelina.spring.model.Expense;
 
+//TODO: 
 @Repository("jpaExpenseDAO")
 public class JpaExpenseDAO {/*implements IExpenseDAO{
 
@@ -54,6 +55,5 @@ public class JpaExpenseDAO {/*implements IExpenseDAO{
 	@Override
 	public Expense getExpenseById(long id) {
 		return em.find(Expense.class, id);
-	}
-*/
+	}*/
 }

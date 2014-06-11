@@ -3,6 +3,7 @@ package eu.tbelina.spring.dao.impl.hibernate;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import eu.tbelina.spring.dao.IUserDAO;
 import eu.tbelina.spring.model.User;
@@ -17,6 +18,7 @@ import eu.tbelina.spring.model.User;
  *
  */
 
+//@Repository
 public class UserDAO implements IUserDAO {
 	
 	private SessionFactory sessionFactory;
