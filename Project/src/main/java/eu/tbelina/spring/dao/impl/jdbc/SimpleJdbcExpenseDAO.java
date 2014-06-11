@@ -22,22 +22,24 @@ import eu.tbelina.spring.model.Expense;
 public class SimpleJdbcExpenseDAO extends SimpleJdbcDaoSupport implements IExpenseDAO {
 	
 	private static final String SQL_SELECT_EXPENSE_BY_ID 
-		= "select name, value, quantity, date from expenses where id = ?";
+		= "select id, name, value, quantity, date from expenses where id = ?";
 	private static final String SQL_SELECT_EXPENSES 
-	= "select name, value, quantity, date from expenses";
+		= "select id, name, value, quantity, date from expenses";
 	private static final String SQL_UPDATE_EXPENSE 
-		= "update expenses set name = ?, value = ?, quantity = ?, date = ?" + "where id = ?";
+		= "update expenses set id = ?, name = ?, value = ?, quantity = ?, date = ?" + "where id = ?";
+	private static final String SQL_DELETE_EXPENSE 
+		= "delete from expenses where id = ?";
 	private static final String SQL_INSERT_EXPENSE 
-		= "insert into expenses (name, value, quantity, date) values (?, ?, ?, ?)";
+		= "insert into expenses (id, name, value, quantity, date) values (?, ?, ?, ?, ?)";
 	
 	private DataSource dataSource;
 	
 	public void createExpenses(){
-		//getSimpleJdbcTemplate().query("create table expenses (id bigint, name varchar, value float, quantity int, date date)", null);
+		getSimpleJdbcTemplate().query("create table expenses (id bigint, name varchar, value float, quantity int, date date)", null);
 	}
 	
 	public void dropExpenses(){
-		//getSimpleJdbcTemplate().query("drop table expenses", null);
+		getSimpleJdbcTemplate().query("drop table expenses", null);
 	}
 	
 	@Override
@@ -50,11 +52,12 @@ public class SimpleJdbcExpenseDAO extends SimpleJdbcDaoSupport implements IExpen
 		params.put("date", expense.getDate());
 			
 		getSimpleJdbcTemplate().update(SQL_INSERT_EXPENSE, 
+				expense.getId(),
 				expense.getName(),
 				expense.getValue(),
 				expense.getQuantity(),
 				expense.getDate());
-				
+						
 		//jdbcTemplate.update(SQL_INSERT_EXPENSE, params);
 		//expense.setId(queryForIdentity());
 	}
@@ -62,17 +65,21 @@ public class SimpleJdbcExpenseDAO extends SimpleJdbcDaoSupport implements IExpen
 	@Override
 	public void updateExpense(Expense expense) {
 		getSimpleJdbcTemplate().update(SQL_UPDATE_EXPENSE,
+				expense.getId(),
 				expense.getName(),
 				expense.getValue(),
 				expense.getQuantity(),
-				expense.getDate());
+				expense.getDate(),
+				
+				expense.getId());
 		//expense.setId(queryForIdentity());		
 		
 	}
 
 	@Override
 	public void deleteExpense(Expense expense) {
-		// TODO Auto-generated method stub
+		getSimpleJdbcTemplate().update(SQL_DELETE_EXPENSE,
+				expense.getId());
 		
 	}
 
