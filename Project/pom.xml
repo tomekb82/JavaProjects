@@ -13,6 +13,7 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<hibernate.version>4.1.0.Final</hibernate.version>
+		<apache.tiles.version>2.2.1</apache.tiles.version>
 	</properties>
 	
 	<repositories>
@@ -132,6 +133,18 @@
 			<version>3.1.1</version>
 		</dependency>
 		
+		<!-- Tiles -->
+		<dependency>
+	    	<groupId>org.apache.tiles</groupId>
+	    	<artifactId>tiles-core</artifactId>
+	    	<version>${apache.tiles.version}</version>
+		</dependency>
+		<dependency>
+	   		<groupId>org.apache.tiles</groupId>
+	    	<artifactId>tiles-jsp</artifactId>
+	    	<version>${apache.tiles.version}</version>
+		</dependency>
+	
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
