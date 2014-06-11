@@ -1,35 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
-		http://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context 
-		http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/aop 
-	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/jsp_pages/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp_pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean> -->
 
 	<!-- Tiles View Resolver -->
-	<!-- TODO -->
-	<beans:bean class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"/>
+	<bean class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"/>
 	
-	<beans:bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
 			<list>
-				<value>/WEB-INF/views/views.xml</value>
+				<value>/WEB-INF/tiles.xml</value>
 			</list>
 		</property>
-	</beans:bean>
+	</bean>
 	
-</beans:beans>
+</beans>
