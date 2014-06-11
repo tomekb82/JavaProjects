@@ -7,4 +7,6 @@ Spring3 Web Project contains:
 - databases: JDBC(JdbcTemplate,SimpleJdbcTemplate), hibernate, jpa -> one service for different DAOs
 - support for jsp and jsf/primafaces views (2 different dispatcher servlets)
 - unit tests (Junit,Mockito) for: mvc controllers, sevices
-- views: Tiles
+- Views: Tiles (fot jsp pages)
+- Spring Security support
+- spring REST API
