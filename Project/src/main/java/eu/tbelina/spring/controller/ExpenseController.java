@@ -1,5 +1,6 @@
 package eu.tbelina.spring.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,6 @@ public class ExpenseController {
 	
 	@RequestMapping("/expenses")
 	public String showAllExpenses(Map<String, Object> model){
-		//for(Expense e: expenseService.getExpenses()){
-		//    System.out.println("debug ctrl=" + e.toString());
-		//}
 		model.put("expenses", expenseService.getExpenses());
 		return "expenses";
 	}
