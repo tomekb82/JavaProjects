@@ -14,16 +14,20 @@
   	</application>
 	
 	<!-- configuration of navigation rules -->	
-	<navigation-rule>
-	    <from-view-id>/views/index.xhtml</from-view-id> 
+	<!-- <navigation-rule>
+	    <from-view-id>/jsf_pages/index.xhtml</from-view-id> 
 	    <navigation-case>
 	        <from-outcome>success</from-outcome>
-            <to-view-id>/views/success.xhtml</to-view-id>
+            <to-view-id>/jsf_pages/success.xhtml</to-view-id>
         </navigation-case>
          <navigation-case>
 	        <from-outcome>error</from-outcome>
-            <to-view-id>/views/error.xhtml</to-view-id>
+            <to-view-id>/jsf_pages/error.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
+        <navigation-case>
+	        <from-outcome>showExpenses</from-outcome>
+            <to-view-id>/jsf_pages/showExpenses.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> -->
     
 </faces-config>

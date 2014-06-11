@@ -60,6 +60,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>eu.tbelina.spring.model.User</value>
+				<value>eu.tbelina.spring.model.Expense</value> 
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -71,10 +72,10 @@
 		</property>
 	</bean>
 	<!-- Enable the configuration of transactional behavior based on annotations -->
-	<tx:annotation-driven transaction-manager="txManager2" />
+	<tx:annotation-driven transaction-manager="txManager" />
 
 	<!-- Transaction Manager is defined -->
-	<bean id="txManager2"
+	<bean id="txManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
@@ -106,25 +107,25 @@
 	</bean> -->
 	
 	<!-- Hibernate Service Declaration -->
-	<!-- <bean id="expenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
+	<bean id="ExpenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
 		<property name="expenseDAO" ref="hibernateExpenseDAO" />
-	</bean> -->
+	</bean>
 	
 	 
 	<!-- Jdbc Expense DAO Declaration -->
-	<!-- <bean id="jdbcExpenseDAO" class="eu.tbelina.spring.dao.impl.jdbc.JdbcExpenseDAO">
+	<!-- 	<bean id="jdbcExpenseDAO" class="eu.tbelina.spring.dao.impl.jdbc.JdbcExpenseDAO">
 		<property name="dataSource" ref="jdbcDataSource" />
 	</bean> -->
 	
 	<!-- SimpleJdbc Expense DAO Declaration -->
 	<!-- <bean id="simpleJdbcExpenseDAO" class="eu.tbelina.spring.dao.impl.jdbc.SimpleJdbcExpenseDAO">
 		<property name="dataSource" ref="jdbcDataSource" />
-	</bean>  -->
+	</bean> --> 
 	
 	<!-- Hibernate DAO Declaration -->
-	<!-- <bean id="hibernateExpenseDAO" class="eu.tbelina.spring.dao.impl.hibernate.HibernateExpenseDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean> -->
+	<bean id="hibernateExpenseDAO" class="eu.tbelina.spring.dao.impl.hibernate.HibernateExpenseDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
 	
 	<!-- TODO: JPA DAO Declaration -->
 	<!-- 	<bean id="jpaExpenseDAO" class="eu.tbelina.spring.dao.impl.jpa.JpaExpenseDAO">
@@ -140,47 +141,9 @@
 		<property name="password" value="postgres" />
 	</bean> -->
 
-    <!-- Hibernate Data Source Declaration -->
-	<!-- <bean id="hibernateDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
-		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/SpringProject" />
-		<property name="user" value="postgres" />
-		<property name="password" value="postgres" />
-		<property name="maxPoolSize" value="10" />
-		<property name="maxStatements" value="0" />
-		<property name="minPoolSize" value="5" />
-	</bean> -->
+    
 	
-	<!-- Session Factory Declaration -->
-	<!-- <bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="hibernateDataSource" />
-		 <property name="annotatedClasses">
-			<list>
-				<value>eu.tbelina.spring.model.Expense</value> 
-			</list>
-		</property> 
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.show_sql">true</prop>
-			</props>
-		</property>
- 
-	</bean>-->
 
-	<!-- Enable the configuration of transactional behavior based on annotations -->
-	<!-- <tx:annotation-driven transaction-manager="txManager" />   -->
-
-	<!-- Transaction Manager is defined -->
-	<!-- <bean id="txManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean> -->  
-	
-	
 	<context:component-scan base-package="eu.tbelina.spring.*" />
 		
 </beans>
