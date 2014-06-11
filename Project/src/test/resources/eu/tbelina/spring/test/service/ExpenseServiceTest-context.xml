@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/aop 
+	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+	    
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!--  AOP -->
+	<aop:config>
+		<aop:aspect ref="monitor">
+			<aop:pointcut id="calculate" expression="execution(* eu.tbelina.spring.service.impl.ExpenseService.getExpenses(..))" />
+			<aop:before pointcut-ref="calculate" method="beforeCalculation"/>
+			<aop:after-returning pointcut-ref="calculate" method="afterCalculation"/>
+			<aop:after-throwing pointcut-ref="calculate" method="incorrectCalculation"/>
+			
+			<aop:around pointcut-ref="calculate" method="calculatePerformance"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="monitor" class="eu.tbelina.spring.aop.Monitor">
+	</bean>
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven /> 
+	
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!--  Handling static requests -->
+	<mvc:resources mapping="/resources/**" location="/resources/" /> 
+	
+	
+	
+	<!-- ************************************************************************ -->
+	<!-- 						HIBERNATE CONFIGURATION							  -->
+	
+	<!-- User: Service Declaration -->
+	<bean id="UserService" class="eu.tbelina.spring.service.impl.UserService">
+		<property name="userDAO" ref="UserDAO" />
+	</bean>
+	
+	<!-- Expenses: Hibernate Service Declaration -->
+	<bean id="expenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
+		<property name="expenseDAO" ref="hibernateExpenseDAO" />
+	</bean>
+	
+	<!-- User: DAO Declaration -->
+	<bean id="UserDAO" class="eu.tbelina.spring.dao.impl.hibernate.UserDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	
+	<!-- Expenses: DAO Declaration -->
+	<bean id="hibernateExpenseDAO" class="eu.tbelina.spring.dao.impl.hibernate.HibernateExpenseDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	
+	<!-- Data Source Declaration -->
+	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="org.postgresql.Driver" />
+		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/SpringProject_TEST" />
+		<property name="user" value="postgres" />
+		<property name="password" value="postgres" />
+		<property name="maxPoolSize" value="10" />
+		<property name="maxStatements" value="0" />
+		<property name="minPoolSize" value="5" />
+	</bean>
+
+	<!-- Session Factory Declaration -->
+	<bean id="SessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="DataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>eu.tbelina.spring.model.User</value>
+				<value>eu.tbelina.spring.model.Expense</value> 
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- Transaction Manager is defined -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<!-- ************************************************************************ -->
+	
+	
+	<!-- ************************************************************************ -->
+	<!-- 						  JDBC CONFIGURATION 							  -->
+	
+	<!-- Expenses: Jdbc Service Declaration -->
+	<!-- <bean id="expenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
+		<property name="expenseDAO" ref="jdbcExpenseDAO" />
+	</bean> -->
+	
+	<!-- Expenses: SimpleJdbc Service Declaration -->
+	<!-- <bean id="expenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
+		<property name="expenseDAO" ref="simpleJdbcExpenseDAO" />
+	</bean> -->
+	
+	<!-- Expenses: Jdbc Expense DAO Declaration -->
+	<bean id="jdbcExpenseDAO" class="eu.tbelina.spring.dao.impl.jdbc.JdbcExpenseDAO">
+		<property name="dataSource" ref="jdbcDataSource" />
+	</bean>
+	
+	<!-- Expenses: SimpleJdbc Expense DAO Declaration -->
+	<bean id="simpleJdbcExpenseDAO" class="eu.tbelina.spring.dao.impl.jdbc.SimpleJdbcExpenseDAO">
+		<property name="dataSource" ref="simpleJdbcDataSource" />
+	</bean>
+	
+	<!-- Expenses: JDBC Data Source Declaration -->
+	<bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">		
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/SpringProject_TEST2" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+	</bean> 
+	
+	<!-- Expenses: SimpleJDBC Data Source Declaration -->
+	<bean id="simpleJdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">		
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/SpringProject_TEST3" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+	</bean>
+	<!-- ************************************************************************ -->
+	
+	
+	<!-- ************************************************************************ -->
+	<!-- 						  JPA CONFIGURATION 							  -->
+	
+	<!-- Expenses: Jdbc Service Declaration -->
+	<!-- <bean id="expenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
+		<property name="expenseDAO" ref="jdbcExpenseDAO" />
+	</bean> -->
+	
+	<!-- TODO: Expenses: JPA DAO Declaration -->
+	<!-- <bean id="jpaExpenseDAO" class="eu.tbelina.spring.dao.impl.jpa.JpaExpenseDAO">
+		<property name="em" ref="emf" />
+	</bean>
+	
+	 <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="jpaPU"/>
+	</bean> 
+	
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/> -->
+	
+	<!-- ************************************************************************ -->	
+	
+
+	<context:component-scan base-package="eu.tbelina.spring.*" />
+		
+</beans>
