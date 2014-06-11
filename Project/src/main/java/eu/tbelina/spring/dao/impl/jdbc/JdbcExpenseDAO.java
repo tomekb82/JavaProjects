@@ -20,13 +20,15 @@ import eu.tbelina.spring.model.Expense;
 public class JdbcExpenseDAO extends JdbcDaoSupport implements IExpenseDAO {
 	
 	private static final String SQL_SELECT_EXPENSE_BY_ID 
-		= "select name, value, quantity, date from expenses where id = ?";
+		= "select id, name, value, quantity, date from expenses where id = ?";
 	private static final String SQL_SELECT_EXPENSES 
-	= "select name, value, quantity, date from expenses";
+	= "select id, name, value, quantity, date from expenses";
 	private static final String SQL_UPDATE_EXPENSE 
-		= "update expenses set name = ?, value = ?, quantity = ?, date = ?" + "where id = ?";
+		= "update expenses set id = ?, name = ?, value = ?, quantity = ?, date = ?" + "where id = ?";
+	private static final String SQL_DELETE_EXPENSE 
+	= "delete from expenses where id = ?";
 	private static final String SQL_INSERT_EXPENSE 
-		= "insert into expenses (name, value, quantity, date) values (?, ?, ?, ?)";
+		= "insert into expenses (id, name, value, quantity, date) values (?, ?, ?, ?, ?)";
 	
 	private DataSource dataSource;
 
@@ -42,12 +44,14 @@ public class JdbcExpenseDAO extends JdbcDaoSupport implements IExpenseDAO {
 	public void addExpense(Expense expense) {
 		
 		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("id", expense.getId());
 		params.put("name", expense.getName());
 		params.put("value", expense.getValue());
 		params.put("quantity", expense.getQuantity());
 		params.put("date", expense.getDate());
 			
 		getJdbcTemplate().update(SQL_INSERT_EXPENSE, 
+				expense.getId(),
 				expense.getName(),
 				expense.getValue(),
 				expense.getQuantity(),
@@ -60,17 +64,22 @@ public class JdbcExpenseDAO extends JdbcDaoSupport implements IExpenseDAO {
 	@Override
 	public void updateExpense(Expense expense) {
 		getJdbcTemplate().update(SQL_UPDATE_EXPENSE,
+				expense.getId(),
 				expense.getName(),
 				expense.getValue(),
 				expense.getQuantity(),
-				expense.getDate());
+				expense.getDate(),
+				
+				expense.getId());
 		//expense.setId(queryForIdentity());		
 		
 	}
 
 	@Override
 	public void deleteExpense(Expense expense) {
-		// TODO Auto-generated method stub
+		getJdbcTemplate().update(SQL_DELETE_EXPENSE,
+				expense.getId());
+		//expense.setId(queryForIden
 		
 	}
 
@@ -96,7 +105,8 @@ public class JdbcExpenseDAO extends JdbcDaoSupport implements IExpenseDAO {
 						expense.setName(rs.getString(2));
 						expense.setValue(rs.getFloat(3));
 						expense.setQuantity(rs.getInt(4));
-						expense.setDate(rs.getDate(5));	
+						expense.setDate(rs.getDate(5));
+						System.out.println("AAAAAA=" + expense.toString());
 						return expense;
 					}
 				},
