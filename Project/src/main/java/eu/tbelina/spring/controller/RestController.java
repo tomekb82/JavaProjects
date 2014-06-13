@@ -1,14 +1,18 @@
 package eu.tbelina.spring.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,6 +52,16 @@ public class RestController {
 		
 		return expenseService.getExpenseByName(name);
 	}
+	/*
+	 * GET - JSON
+	 */
+	@RequestMapping(value="/json/", method=RequestMethod.GET, 
+			headers={"Accept=application/json"})
+	public @ResponseBody 
+		List<Expense> getJsonRestAllExpenses(){
+		
+		return expenseService.getExpenses();
+	}
 	
 	/*
 	 * PUT
@@ -58,10 +72,21 @@ public class RestController {
 		expenseService.updateExpense(expense);
 	}
 	
+	/*
+	 * PUT - JSON
+	 */
+	@RequestMapping(value="/json/{name}", method=RequestMethod.PUT,
+			headers={"Accept=application/json"})
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void putJsonRestExpense(@PathVariable String name, @RequestBody Expense expense){
+		
+		System.out.println("RestController EEEEEEEEEEEEEEEE: putJsonRestExpense");
+		expenseService.updateExpense(expense);
+	}
 	/* 
 	 * DELETE
 	 */
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/json/{id}", method=RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	public void deleteRestExpense(@PathVariable("id") long id){
 		
@@ -71,7 +96,7 @@ public class RestController {
 	/*
 	 * POST
 	 */
-	@RequestMapping(method=RequestMethod.POST)  // handle POST request
+	@RequestMapping(value="/json/", method=RequestMethod.POST)  // handle POST request
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED) // answer with 201 HTTP code 
 	public @ResponseBody Expense createRestExpense(
 			@Valid Expense expense,
