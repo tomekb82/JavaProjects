@@ -13,6 +13,8 @@ import eu.tbelina.spring.model.Expense;
 public class HibernateExpenseDAO implements IExpenseDAO{
 
 	private static final String SQL_SELECT_EXPENSE_BY_ID = "from Expense where id=?";
+	private static final String SQL_DELETE_EXPENSE_BY_ID = "delete from Expense where id=?";
+	private static final String SQL_SELECT_EXPENSE_BY_NAME = "from Expense where name=?";
 	private static final String SQL_SELECT_EXPENSES = "from Expense";
 	
 	private SessionFactory sessionFactory;
@@ -54,6 +56,22 @@ public class HibernateExpenseDAO implements IExpenseDAO{
 		        .setParameter(0, id).list();
 		
 		return list.get(0);
+	}
+
+	@Override
+	public Expense getExpenseByName(String name) {
+		List<Expense> list = getSessionFactory().getCurrentSession()
+				.createQuery(SQL_SELECT_EXPENSE_BY_NAME)
+		        .setParameter(0, name).list();
+		
+		return list.get(0);
+	}
+
+	@Override
+	public void deleteExpenseById(long id) {
+		List<Expense> list = getSessionFactory().getCurrentSession()
+				.createQuery(SQL_DELETE_EXPENSE_BY_ID)
+		        .setParameter(0, id).list();
 	}
 
 }

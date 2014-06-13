@@ -113,6 +113,18 @@ public class JdbcExpenseDAO extends JdbcDaoSupport implements IExpenseDAO {
 				id  // parameter
 				);
 	}
+
+	@Override
+	public Expense getExpenseByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteExpenseById(long id) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }
