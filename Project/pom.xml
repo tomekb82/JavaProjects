@@ -23,8 +23,13 @@
 			<url>http://repository.primefaces.org</url>
 			<layout>default</layout>
 		</repository>
+		<!-- JSON -->
+		<repository>
+			<id>codehaus</id>
+				<url>http://repository.codehaus.org/org/codehaus</url>
+			</repository>
 	</repositories>
-	
+	  
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -143,6 +148,13 @@
 	   		<groupId>org.apache.tiles</groupId>
 	    	<artifactId>tiles-jsp</artifactId>
 	    	<version>${apache.tiles.version}</version>
+		</dependency>
+	
+		<!-- JSON (for REST API) -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.8.5</version>
 		</dependency>
 	
 		<!-- AspectJ -->
