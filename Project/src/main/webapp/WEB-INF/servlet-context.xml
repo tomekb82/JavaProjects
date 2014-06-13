@@ -23,4 +23,22 @@
 		</property>
 	</bean>
 	
+	<!-- Validation: Message properties -->
+	<bean id="messageSource"
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+ 
+        <property name="basename" value="/WEB-INF/messages" />
+ 
+    </bean>
+    
+    <!-- REST API: Content view resolver (support for json/xml format data) -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    	<property name="mediaTypes">
+    		<map>
+    			<entry key="json" value="application/json"/>
+    			<entry key="htm" value="text/html"/>
+    			<entry key="xml" value="text/xml"/>
+    		</map>
+    	</property>
+    </bean>
 </beans>
