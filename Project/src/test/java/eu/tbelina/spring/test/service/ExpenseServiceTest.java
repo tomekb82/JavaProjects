@@ -48,34 +48,35 @@ public class ExpenseServiceTest {
 	//@Test
 	public void testJPA(){
 	
-		Expense expense = new Expense(0, "dziecko", 24.5f, 30, new Date());
-		jpaExpenseDAO.addExpense(expense);
-		System.out.println("JdbcTemplate: " + jpaExpenseDAO.getExpenses());
+	//	Expense expense = new Expense(0, "dziecko", 24.5f, 30, new Date());
+	//	jpaExpenseDAO.addExpense(expense);
+	//	System.out.println("JdbcTemplate: " + jpaExpenseDAO.getExpenses());
 	
 	}
 	
 	@Test
 	public void testAddExpense(){
-		Expense expense = new Expense(2, "filip", 25.6f, 4, new Date());
+		Expense expense = new Expense("filipek", 25.6f, 4, new Date());
 		expenseService.addExpense(expense);
-		assertTrue("testAddExpense(): error", expenseService.getExpenseById(2).equals(expense));	
+		//assertTrue("testAddExpense(): error", expenseService.getExpenseById(2).equals(expense));	
+		assertTrue("testAddExpense(): error", expenseService.getExpenseByName("filipek").equals(expense));
 	}
 	
 	@Test
 	public void testUpdateExpense(){
-		Expense expense = new Expense(3, "filip", 30.6f, 4, new Date());
+		Expense expense = new Expense("Filip", 30.6f, 4, new Date());
 		expenseService.addExpense(expense);
-		Expense changedExpense  = expenseService.getExpenseById(3);
+		Expense changedExpense  = expenseService.getExpenseByName("Filip");
 		changedExpense.setName("dominik");
 		expenseService.updateExpense(changedExpense);
-		assertTrue("testUpdateExpense(): error", expenseService.getExpenseById(3).equals(changedExpense));
+		assertTrue("testUpdateExpense(): error", expenseService.getExpenseByName("dominik").equals(changedExpense));
 	}
 	
 	@Test
 	public void testDeleteExpense(){
-		Expense expense = new Expense(4, "kamila", 50.6f, 4, new Date());
+		Expense expense = new Expense("kamila", 50.6f, 4, new Date());
 		expenseService.addExpense(expense);
-		assertTrue("testAddExpense(): error", expenseService.getExpenseById(4).equals(expense));
+		assertTrue("testAddExpense(): error", expenseService.getExpenseByName("kamila").equals(expense));
 		expenseService.deleteExpense(expense);
 		boolean test = true;
 		if (expenseService.getExpenses() != null){
