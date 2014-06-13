@@ -15,6 +15,31 @@
     <definition name="home" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/home.jsp"/> 
     </definition> 
+    
+    <!-- Expenses: views -->
+    <definition name="expenses" extends="template">  
+        <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenses.jsp"/> 
+    </definition> 
+    <definition name="expenses/edit" extends="template">  
+        <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenseEdit.jsp"/> 
+    </definition>
+    <definition name="expense/view" extends="template">  
+        <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenseByName.jsp"/> 
+    </definition>
+    <definition name="expenseByName" extends="template">  
+        <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenseByName.jsp"/> 
+    </definition> 
   
-  
+  	<!-- Login Form -->
+  	<definition name="LoginForm" extends="template">  
+        <put-attribute name="body" value="/WEB-INF/tiles_jsp/LoginForm.jsp"/> 
+    </definition> 
+    <definition name="LoginSuccess" extends="template">  
+        <put-attribute name="body" value="/WEB-INF/tiles_jsp/LoginSuccess.jsp"/> 
+    </definition>
+    
+      <definition name="rest_expense/view" extends="template">  
+        <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenseByName.jsp"/> 
+    </definition>
+  		
 </tiles-definitions>
