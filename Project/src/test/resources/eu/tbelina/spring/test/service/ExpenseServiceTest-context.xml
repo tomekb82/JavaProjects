@@ -21,12 +21,12 @@
 	<!--  AOP -->
 	<aop:config>
 		<aop:aspect ref="monitor">
-			<aop:pointcut id="calculate" expression="execution(* eu.tbelina.spring.service.impl.ExpenseService.getExpenses(..))" />
+			<!--<aop:pointcut id="calculate" expression="execution(* eu.tbelina.spring.service.impl.ExpenseService.getExpenses(..))" />
 			<aop:before pointcut-ref="calculate" method="beforeCalculation"/>
 			<aop:after-returning pointcut-ref="calculate" method="afterCalculation"/>
 			<aop:after-throwing pointcut-ref="calculate" method="incorrectCalculation"/>
 			
-			<aop:around pointcut-ref="calculate" method="calculatePerformance"/>
+		 	<aop:around pointcut-ref="calculate" method="calculatePerformance"/> -->
 		</aop:aspect>
 	</aop:config>
 	
