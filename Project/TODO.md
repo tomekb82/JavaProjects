@@ -3,6 +3,11 @@ Lista TODO:
 
 - dodac kontrolery od obslugi formularzy MVC(POST)
 
+Ogarnac temat z date: jest w modelu, jak ustawic aby mozliwy null,
+zglaszany blad "date is null violation constraint".
+
+Jak ustawiac walidatory dla pol o typie Integer (dzialaja tylko dla String)?
+
 - Zaimplementowac REST API w kontrolerach
 
 - dodac security
