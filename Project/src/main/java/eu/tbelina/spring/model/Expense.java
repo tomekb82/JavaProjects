@@ -10,7 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -24,11 +29,10 @@ public class Expense implements Serializable{
 	private Date date;
 	
 	public Expense(){
-		
+		this.date = new Date();
 	}
 	
 	public Expense(long id, String name, float value, int quantity, Date date) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.value = value;
@@ -36,10 +40,17 @@ public class Expense implements Serializable{
 		this.date = date;
 	}
 	
+	public Expense(String name, float value, int quantity, Date date) {
+		this.name = name;
+		this.value = value;
+		this.quantity = quantity;
+		this.date = date;
+	}
+	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GenericGenerator(name="hilo-strategy", strategy = "hilo")
+	@GeneratedValue(generator = "hilo-strategy")
 	@Column(name="ID", unique = true, nullable = false)
-	//@NotNull
 	public long getId() {
 		return id;
 	}
@@ -49,6 +60,8 @@ public class Expense implements Serializable{
 	}
 
 	@Column(name="NAME", unique = false, nullable = false)
+	@Size(min=3, max=20, message="User name must contain between 3-20 letters")
+	@Pattern(regexp="^[a-zA-Z]+$")
 	public String getName() {
 		return name;
 	}
@@ -65,6 +78,8 @@ public class Expense implements Serializable{
 	}
 	
 	@Column(name="QUANTITY", unique = false, nullable = false)
+	//@Size(min=0, max=5, message="Value to big")
+	//@Pattern(regexp="[0-9]")
 	public int getQuantity() {
 		return quantity;
 	}
@@ -72,7 +87,7 @@ public class Expense implements Serializable{
 		this.quantity = quantity;
 	}
 	
-	@Column(name="Date", unique = false, nullable = false)
+	@Column(name="Date", unique = false, nullable = true)
 	public Date getDate() {
 		return date;
 	}
