@@ -11,14 +11,6 @@ import org.aspectj.lang.annotation.Pointcut;
 //@Aspect
 public class Monitor {
 	
-	//@Before("execution(*eu.tbelina.spring.service.impl.ExpenseService.addExpense(..))")
-	public void logBefore(JoinPoint joinPoint) {
- 
-		System.out.println("logBefore() is running!");
-		System.out.println("hijacked : " + joinPoint.getSignature().getName());
-		System.out.println("******");
-	}
-	
 	//@Pointcut("execution(*eu.tbelina.spring.service.impl.ExpenseService.getExpenses(..))")
 	//@Pointcut("execution(**.getExpenses(..))")
 	public void calcultation(){
@@ -27,7 +19,7 @@ public class Monitor {
 	
 	//@Before("calcultation()")
 	public void beforeCalculation(){
-		System.out.println("Preparing to calculation !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.");
+		System.out.println("Preparing to calculation.");
 	}
 	
 	//@AfterReturning("calcultation()")
@@ -37,7 +29,7 @@ public class Monitor {
 	
 	//@AfterThrowing("calcultation()")
 	public void incorrectCalculation(){
-		System.out.println("Incorecct calculation.");
+		System.out.println("Incorrect calculation.");
 	}
 	//@Around("calcultation()")
 	public void calculatePerformance(ProceedingJoinPoint joinPoint){
