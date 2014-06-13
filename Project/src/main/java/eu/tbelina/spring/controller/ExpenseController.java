@@ -1,7 +1,5 @@
 package eu.tbelina.spring.controller;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
