@@ -27,7 +27,8 @@
 			<aop:after-returning pointcut-ref="calculate" method="afterCalculation"/>
 			<aop:after-throwing pointcut-ref="calculate" method="incorrectCalculation"/>
 			
-			<aop:around pointcut-ref="calculate" method="calculatePerformance"/>
+			<!-- IMPORTANT: UNCOMMENT THIS LINE FOR EFFICIENCY TESTS ONLY
+			<aop:around pointcut-ref="calculate" method="calculatePerformance"/>  -->
 		</aop:aspect>
 	</aop:config>
 	
@@ -80,7 +81,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
