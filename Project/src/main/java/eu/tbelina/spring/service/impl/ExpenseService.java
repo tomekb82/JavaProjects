@@ -58,9 +58,14 @@ public class ExpenseService implements IExpenseService{
 	}
 
 	@Override
-	public Expense getUserByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public Expense getExpenseByName(String name) {
+		return getExpenseDAO().getExpenseByName(name);
+	}
+
+	@Override
+	public void deleteExpenseById(long id) {
+		getExpenseDAO().deleteExpenseById(id);
+		
 	}
 
 	
