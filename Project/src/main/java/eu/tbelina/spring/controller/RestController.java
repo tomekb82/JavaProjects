@@ -80,8 +80,8 @@ public class RestController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void putJsonRestExpense(@PathVariable String name, @RequestBody Expense expense){
 		
-		System.out.println("RestController EEEEEEEEEEEEEEEE: putJsonRestExpense");
-		expenseService.updateExpense(expense);
+		System.out.println("RestController: putJsonRestExpense, expense=" + expense.toString());
+		//expenseService.updateExpense(expense);
 	}
 	/* 
 	 * DELETE
@@ -89,8 +89,9 @@ public class RestController {
 	@RequestMapping(value="/json/{id}", method=RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	public void deleteRestExpense(@PathVariable("id") long id){
-		
-		expenseService.deleteExpenseById(id);
+
+		System.out.println("RestController: deleteRestExpense, id=" + id);
+		//expenseService.deleteExpenseById(id);
 	}
 	
 	/*
@@ -98,7 +99,7 @@ public class RestController {
 	 */
 	@RequestMapping(value="/json/", method=RequestMethod.POST)  // handle POST request
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED) // answer with 201 HTTP code 
-	public @ResponseBody Expense createRestExpense(
+	public @ResponseBody Expense postJsonRestExpense(
 			@Valid Expense expense,
 			BindingResult bindingResult, 
 			HttpServletResponse response) throws BindException{
@@ -107,7 +108,8 @@ public class RestController {
 				throw new BindException(bindingResult);
 			}
 			
-			expenseService.addExpense(expense); // add new Expense
+			System.out.println("RestController: postJsonRestExpense, expense=" + expense.toString());
+			//expenseService.addExpense(expense); // add new Expense
 			
 			response.setHeader("Location", "/expenses/" + expense.getId()); // set resource location
 			
