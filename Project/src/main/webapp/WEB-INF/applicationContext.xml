@@ -35,14 +35,12 @@
 	<bean id="monitor" class="eu.tbelina.spring.aop.Monitor">
 	</bean>
 	
-	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven /> 
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!--  Handling static requests -->
 	<mvc:resources mapping="/resources/**" location="/resources/" /> 
-	
 	
 	
 	<!-- ************************************************************************ -->
@@ -141,9 +139,11 @@
 		<property name="password" value="postgres" />
 	</bean> -->
 
-    
-	
+    <!-- AngularJS mapping -->
+	<bean id="personService" class="eu.tbelina.angularjs.service.impl.PersonService">
+	</bean>
 
 	<context:component-scan base-package="eu.tbelina.spring.*" />
+	<context:component-scan base-package="eu.tbelina.angularjs.*"/>
 		
 </beans>
