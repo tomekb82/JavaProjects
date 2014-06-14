@@ -12,34 +12,35 @@
         <put-attribute name="footer" value="/WEB-INF/tiles_jsp/Footer.jsp" />  
     </definition>  
   
-    <definition name="home" extends="template">  
+    <definition name="/jsp/home" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/home.jsp"/> 
     </definition> 
     
     <!-- Expenses: views -->
-    <definition name="expenses" extends="template">  
+     <definition name="/jsp/expenses" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenses.jsp"/> 
     </definition> 
-    <definition name="expenses/edit" extends="template">  
+    
+    <definition name="/jsp/expenses/edit" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenseEdit.jsp"/> 
     </definition>
-    <definition name="expense/view" extends="template">  
+    <definition name="/jsp/expense/view" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenseByName.jsp"/> 
     </definition>
-    <definition name="expenseByName" extends="template">  
+    <definition name="/jsp/expenseByName" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenseByName.jsp"/> 
-    </definition> 
+    </definition>  
   
   	<!-- Login Form -->
-  	<definition name="LoginForm" extends="template">  
+   	<definition name="/jsp/LoginForm" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/LoginForm.jsp"/> 
     </definition> 
-    <definition name="LoginSuccess" extends="template">  
+    <definition name="/jsp/LoginSuccess" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/LoginSuccess.jsp"/> 
     </definition>
     
-      <definition name="rest_expense/view" extends="template">  
+   <definition name="/jsp/rest_expense/view" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenseByName.jsp"/> 
-    </definition>
+    </definition> 
   		
 </tiles-definitions>
