@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html data-ng-app="demoApp">
+<head>
+	<title> Simple MVC </title>
+</head>
+<body>
+	<div data-ng-controller="SimpleController">
+		<div data-ng-controller="Ctrl2"/>
+		Name:
+		<br/>
+		<input type="text" data-ng-model="name"/> {{ name }}
+		<br/>
+		<ul>
+			<li data-ng-repeat="cust in customers | filter:name | orderBy:'city' "> {{ cust.name | uppercase}} - {{ cust.city}}</li>
+		</ul>
+	</div>	
+
+        
+  
+ 	<script src="Scripts/angular.min.js"></script>	
+
+	<script>
+		var demoApp = angular.module('demoApp', []);
+		function SimpleController($scope){
+			$scope.customers = [
+				{name:'Jan Kowalski', city:'Warszawa'}, 
+				{name:'Jan Nowak', city:'Krakow'}, 
+				{name:'Anna Mucha', city:'Warszawa'}
+			]
+		}
+		//demoApp.controller('SimpleController', SimpleController);
+		/*		
+		demoApp.controller('SimpleController', function ($scope){
+			$scope.customers = [
+				{name:'Jan Kowalski', city:'Warszawa'}, 
+				{name:'Jan Nowak', city:'Krakow'}, 
+				{name:'Anna Mucha', city:'Warszawa'}
+			]
+		}); */
+		var controllers	= {};
+		controllers.SimpleController = function($scope){
+			$scope.customers = [
+				{name:'Jan Kowalski', city:'Warszawa'}, 
+				{name:'Jan Nowak', city:'Krakow'}, 
+				{name:'Anna Mucha', city:'Warszawa'}
+			]
+		}
+		controllers.Ctrl2 = function($scope){
+			//$scope.customers = [$scope.customers,  {name:'Adam Malysz', city:'Wisla'}]
+		}
+
+		demoApp.controller(controllers);
+	</script>
+
+	
+</body>
+</html>

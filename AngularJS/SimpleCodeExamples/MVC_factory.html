@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html data-ng-app="demoApp">
+<head>
+	<title> Simple MVC </title>
+</head>
+<body>
+	<div>
+		<!-- Placeholder for views -->
+		<div data-ng-view=""></div>
+	</div>	
+ 	<script src="Scripts/angular.min.js"></script>	
+
+	<script>
+		var demoApp = angular.module('demoApp', []);
+
+		demoApp.config(function ($routeProvider){
+			$routeProvider
+				.when('/view1',
+					{
+						controller: 'SimpleController',
+						templateUrl: 'Partials/View1.html'
+					})
+		
+				.when('/view2',
+					{
+						controller: 'SimpleController',
+						templateUrl: 'Partials/View2.html'
+					})
+				.otherwise({ redirectTo: '/view1'})
+
+		});
+
+		demoApp.factory('simpleFactory', function () {
+			var customers = [
+				{name:'Jan Kowalski', city:'Warszawa'}, 
+			        {name:'Jan Nowak', city:'Krakow'}, 
+			        {name:'Anna Mucha', city:'Warszawa'}
+			];
+
+			var factory = {};
+			factory.getCustomers = function() {
+				return customers;
+			};
+			factory.postCustomer = function(customer){
+			};
+
+			return factory;
+
+		}); 
+
+		demoApp.controller('SimpleController', function ($scope, simpleFactory){
+			$scope.customers = [];
+
+			init();
+
+			function init(){
+				$scope.customers = simpleFactory.getCustomers();
+			}
+
+			$scope.addCustomer = function(){
+				$scope.customers.push(
+					{
+						name : $scope.newCustomer.name, 
+						city : $scope.newCustomer.city
+					});
+				};
+		});
+	</script>
+</body>
+</html>
