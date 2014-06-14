@@ -36,6 +36,7 @@ public class ExpenseService implements IExpenseService{
 	@Transactional(readOnly = false)
 	@Override
 	public void updateExpense(Expense expense) {
+		System.out.println("updateExpense OOOOOOOOOOOOOOOOO");
 		getExpenseDAO().updateExpense(expense);
 		
 	}
