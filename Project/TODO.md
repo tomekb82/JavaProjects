@@ -27,6 +27,8 @@ Wolane sa funkcje, lecz Monitor.java nie przechwytuje zdarzen na wykonywanych me
 
 INFO: dziala dla xml, problem tylko z anotacjami
 
+- dodac zdalne uslugi: RMI/SpringInvoker + klient do testow
+
 - JPA
 
 Doprowadzic do dzialania JPA, Test_JPA rzuca bledem
