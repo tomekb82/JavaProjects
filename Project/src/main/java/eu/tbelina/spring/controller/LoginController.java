@@ -19,7 +19,7 @@ public class LoginController {
     public String viewLogin(Map<String, Object> model) {
         UserForm user = new UserForm();
         model.put("userForm", user);
-        return "LoginForm";
+        return "/jsp/LoginForm";
     }
  
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -27,10 +27,10 @@ public class LoginController {
             BindingResult result, Map<String, Object> model) {
  
         if (result.hasErrors()) {
-            return "LoginForm";
+            return "/jsp/LoginForm";
         }
  
-        return "LoginSuccess";
+        return "/jsp/LoginSuccess";
     }
     
 }
