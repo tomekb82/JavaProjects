@@ -1,10 +1,8 @@
 package eu.tbelina.spring.test.service;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
