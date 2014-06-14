@@ -1,12 +1,14 @@
 
 Spring3 Web Project contains:
 
-- Spring MVC framework
-- DI and AOP (annotation based)
+- Spring MVC framework (jsp pages, form validation)
+- Spring DI and AOP (around aspect for efficiency tests only)
 - declarative transactions (using annotations) 
-- databases: JDBC(JdbcTemplate,SimpleJdbcTemplate), hibernate, jpa -> one service for different DAOs
-- support for jsp and jsf/primafaces views (2 different dispatcher servlets)
+- databases: JDBC(JdbcTemplate,SimpleJdbcTemplate), Hibernate, JPA -> one service for different DAOs
+- support for jsp, jsf/primafaces and AngularJS views (3 different dispatcher servlets)
 - unit tests (Junit,Mockito) for: mvc controllers, sevices
-- Views: Tiles (fot jsp pages)
-- Spring Security support
-- spring REST API
+- Jsp views: Tiles template
+- Spring Security support (configuration in Spring context)
+- spring REST API + rest client for tests(RestTemplate)
+- Remote services: RMI/HttpInvoker
+- build: Maven
