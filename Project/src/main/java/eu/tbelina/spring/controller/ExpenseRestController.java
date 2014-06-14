@@ -36,12 +36,12 @@ public class ExpenseRestController {
 	/*
 	 * GET - HTML
 	 */
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	/*@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public String getRestExpense(@PathVariable("id") long id, Model model){
 		
 		model.addAttribute(expenseService.getExpenseById(id));
 		return "rest_expense/view";
-	}
+	}*/
 	
 	/*
 	 * GET - JSON
