@@ -10,6 +10,18 @@ Jak ustawiac walidatory dla pol o typie Integer (dzialaja tylko dla String)?
 
 - Zaimplementowac REST API w kontrolerach
 
+Poprawic/dodac testy dla PUT/DELETE/POST.
+Nie dziala wolanie serwisu ExpenseService, dostaje blad:
+
+
+WARN : org.springframework.web.client.RestTemplate - DELETE request for "http://localhost:8080/spring/rest_expenses/json/163840" r
+esulted in 500 (Internal Server Error); invoking error handler
+
+
+links:
+http://learningviacode.blogspot.com/2013/06/using-springs-resttemplate-class.html
+http://learningviacode.blogspot.in/2013/05/rest-example-with-spring.html
+
 - dodac security
 
 - Doprowadzic do dzialania AOP.
