@@ -67,6 +67,7 @@ public class ExpenseServiceTest {
 		Expense changedExpense  = expenseService.getExpenseByName("Filip");
 		changedExpense.setName("dominik");
 		expenseService.updateExpense(changedExpense);
+	
 		assertTrue("testUpdateExpense(): error", expenseService.getExpenseByName("dominik").equals(changedExpense));
 	}
 	
@@ -76,6 +77,25 @@ public class ExpenseServiceTest {
 		expenseService.addExpense(expense);
 		assertTrue("testAddExpense(): error", expenseService.getExpenseByName("kamila").equals(expense));
 		expenseService.deleteExpense(expense);
+		boolean test = true;
+		if (expenseService.getExpenses() != null){
+			for(Expense e: expenseService.getExpenses()){
+				if(e.equals(expense))
+					test = false;
+			}
+		}
+		
+		assertTrue(test);
+	}
+	
+	@Test
+	public void testDeleteExpenseById(){
+		Expense expense = new Expense("kamila", 50.6f, 4, new Date());
+		expenseService.addExpense(expense);
+		assertTrue("testAddExpense(): error", expenseService.getExpenseByName("kamila").equals(expense));
+		
+		System.out.println("DD=" + expenseService.getExpenseByName("kamila").getId());
+		expenseService.deleteExpenseById(expenseService.getExpenseByName("kamila").getId());
 		boolean test = true;
 		if (expenseService.getExpenses() != null){
 			for(Expense e: expenseService.getExpenses()){
