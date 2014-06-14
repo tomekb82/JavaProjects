@@ -2,6 +2,7 @@ package eu.tbelina.spring.dao.impl.hibernate;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import eu.tbelina.spring.model.Expense;
 public class HibernateExpenseDAO implements IExpenseDAO{
 
 	private static final String SQL_SELECT_EXPENSE_BY_ID = "from Expense where id=?";
-	private static final String SQL_DELETE_EXPENSE_BY_ID = "delete from Expense where id=?";
+	private static final String SQL_DELETE_EXPENSE_BY_ID = "delete Expense where id=?";
 	private static final String SQL_SELECT_EXPENSE_BY_NAME = "from Expense where name=?";
 	private static final String SQL_SELECT_EXPENSES = "from Expense";
 	
@@ -69,9 +70,10 @@ public class HibernateExpenseDAO implements IExpenseDAO{
 
 	@Override
 	public void deleteExpenseById(long id) {
-		List<Expense> list = getSessionFactory().getCurrentSession()
+		Query query = getSessionFactory().getCurrentSession()
 				.createQuery(SQL_DELETE_EXPENSE_BY_ID)
-		        .setParameter(0, id).list();
+		        .setParameter(0, id);
+		query.executeUpdate();
 	}
 
 }
