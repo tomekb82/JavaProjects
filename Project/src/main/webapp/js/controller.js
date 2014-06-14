@@ -30,7 +30,7 @@
     });
 
     as.controller('PersonController', function ($scope, $http, i18n) {
-        var actionUrl = 'action/person/',
+        var actionUrl = 'jsp/rest_expenses/json/',//'action/person/',
             load = function () {
                 $http.get(actionUrl).success(function (data) {
                     $scope.persons = data;
@@ -51,7 +51,7 @@
             });
         };
 
-        $scope.order = '+firstName';
+        $scope.order = 'name';//'+firstName';
 
         $scope.orderBy = function (property) {
             $scope.order = ($scope.order[0] === '+' ? '-' : '+') + property;
