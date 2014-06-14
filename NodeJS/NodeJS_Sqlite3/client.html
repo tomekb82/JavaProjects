@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Todos project</title>
+
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/angularnodecontroller.js"></script>
+
+</head>
+<body ng-controller="UserListCtrl">
+
+<h3> Przeglądarka <em>"TODO"</em></h3>
+
+<div class="nav pull-right">
+Szukaj: <input ng-model="searchText">
+</div>
+</br>
+<div class="container-fluid" ng-show="isReady()">
+
+<div class="row-fluid">
+
+    <div class="alert alert-success" ng-show="isEdit()" ng-click="edited=0">
+    	<b> TASKID: </b>{{desc.taskid}} </br>
+    	<b> - Description: </b>{{desc.description}} </br>
+    	<b> - Comments: </b>{{desc.comments}} </br>
+    </div>
+
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+    <tr>
+        <th class="span1"><a ng-click="predicate='taskid'; reverse=!reverse">Id</a></th>
+        <th class="span2"><a ng-click="predicate='projects'; reverse=!reverse">Projekt</a></th>
+        <th class="span1"><a ng-click="predicate='creator'; reverse=!reverse">Autor</a></th>
+        <th class="span1"><a ng-click="predicate='assignees'; reverse=!reverse">Adresat</a></th>
+        <th class="span1"><a ng-click="predicate='status'; reverse=!reverse">Status</a></th>
+        <th class="span4"><a ng-click="predicate='file'; reverse=!reverse">Plik</a></th>
+        <th class="span2"><a ng-click="predicate='last_change'; reverse=!reverse">Data</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="todo in todos | filter:searchText |  orderBy:predicate:reverse | startFrom:currentPage*pageSize | limitTo:pageSize" class="{{todo.chart}}" ng-click="edit(todo.taskid)">
+	<td><b>{{todo.taskid}}</b></td>
+	<td style="text-transform: uppercase;">{{todo.projects}}</td>
+        <td>{{todo.creator}}</td>
+	<td>{{todo.assignees}}</td>
+        <td>{{todo.status}}</td>
+	<td><em>{{todo.file}}</em></td>
+        <td>{{todo.last_change}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div align="center">
+    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button>
+    {{currentPage+1}}/{{numberOfPages()}}
+    <button ng-disabled="isNextPage()" ng-click="currentPage=currentPage+1">
+        Next
+    </button>
+</div>
+
+</div>
+
+</div>
+</body>
+</html>
