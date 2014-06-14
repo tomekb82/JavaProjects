@@ -40,5 +40,6 @@
     			<entry key="xml" value="text/xml"/>
     		</map>
     	</property>
-    </bean>
+    	<property name="defaultContentType" value="text/html"/>
+    </bean> 
 </beans>
