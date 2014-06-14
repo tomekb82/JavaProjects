@@ -14,7 +14,7 @@
                 }
             });
         };
-        this.setLanguage('en');
+        this.setLanguage('pl');
     });
 
     as.directive('msg', function () {
