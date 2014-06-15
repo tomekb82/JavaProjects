@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /jsp_pages/ directory -->
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp_pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>  -->
+
+	<!-- Tiles View Resolver -->
+	<bean class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"/>
+	
+	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Message properties for: validation, security login -->
+	<bean id="messageSource"
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+ 		<property name="basenames">
+			<list>
+				<value>mymessages</value>
+				<value>/WEB-INF/messages</value>
+			</list>
+			</property>
+	</bean>
+ 
+    <!-- REST API: Content view resolver (support for json/xml format data) -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    	<property name="mediaTypes">
+    		<map>
+    			<entry key="json" value="application/json"/>
+    			<entry key="htm" value="text/html"/>
+    			<entry key="xml" value="text/xml"/>
+    		</map>
+    	</property>
+    	<property name="defaultContentType" value="text/html"/>
+    </bean> 
+</beans>
