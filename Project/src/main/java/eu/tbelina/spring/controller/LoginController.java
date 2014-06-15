@@ -15,14 +15,14 @@ import eu.tbelina.spring.model.UserForm;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login2", method = RequestMethod.GET)
     public String viewLogin(Map<String, Object> model) {
         UserForm user = new UserForm();
         model.put("userForm", user);
         return "/jsp/LoginForm";
     }
  
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login2", method = RequestMethod.POST)
     public String doLogin(@Valid @ModelAttribute("userForm") UserForm userForm,
             BindingResult result, Map<String, Object> model) {
  
