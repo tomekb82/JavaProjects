@@ -3,16 +3,47 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+	<!-- ****************************************************************************** -->
+	<!-- 								SPRING MVC 										-->
+	
+	<!-- Processes application requests -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- <init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/servlet-context.xml</param-value>
+		</init-param> -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>  
+		
+	<!-- appServlet supports JSP (all) types of requests -->	
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/jsp/*</url-pattern>
+		<!-- <url-pattern>/</url-pattern> -->
+	</servlet-mapping>  
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class> org.springframework.web.context.request.RequestContextListener </listener-class>
+	</listener>
+	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			/WEB-INF/applicationContext.xml
+			/WEB-INF/applicationContext.xml,
+			/WEB-INF/appServlet-servlet.xml,
 			/WEB-INF/spring-security.xml
 		</param-value> 
 	</context-param>
 
-	<!-- Spring Security filters -->
+	<!-- ****************************************************************************** -->
+	<!-- 							SPRING SECURITY (filters) 							-->
 	<filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -23,33 +54,8 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     	
-	<!-- Creates the Spring Container shared by all Servlets and Filters -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class> org.springframework.web.context.request.RequestContextListener </listener-class>
-	</listener>
-
-    <!-- JSP functionality -->
-	<!-- Processes application requests -->
-	<servlet>
-		<servlet-name>appServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/servlet-context.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>  
-		
-	<!-- appServlet supports all types of requests -->	
-	<servlet-mapping>
-		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/jsp/*</url-pattern>
-	</servlet-mapping>  
-
-  	<!-- AngularJS servlet -->
+    <!-- ****************************************************************************** -->
+  	<!-- 								AngularJS servlet 								-->
   	<servlet>
         <servlet-name>action</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -61,35 +67,35 @@
         <url-pattern>/action/*</url-pattern> 
     </servlet-mapping>
     
-      <!-- JSF functionality -->
+    <!-- ****************************************************************************** -->
+    <!-- 								JSF/Primafaces servlet				 			-->
    
-      <!-- Project Stage Level -->
-	  <context-param>
-	    <param-name>javax.faces.PROJECT_STAGE</param-name>
-	    <param-value>Development</param-value>
-	  </context-param>
+    <!-- JSF Servlet is defined to container -->
+	<servlet>
+	  <servlet-name>Faces Servlet</servlet-name>
+	   <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+	  <load-on-startup>1</load-on-startup> 
+	</servlet>
 	  
-      <!-- Welcome Page -->
-	 <!--  <welcome-file-list>
+	<!-- Mapping with servlet and url for the http requests. -->
+	<servlet-mapping>
+	  <servlet-name>Faces Servlet</servlet-name>
+	  <url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	  <servlet-name>Faces Servlet</servlet-name>
+	  <url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping> 
+
+    <!-- Project Stage Level -->
+	<context-param>
+	  <param-name>javax.faces.PROJECT_STAGE</param-name>
+	  <param-value>Development</param-value>
+	</context-param>
+	  
+    <!-- Welcome Page -->
+	<!--  <welcome-file-list>
 	    <welcome-file>/jsf_pages/index.xhtml</welcome-file>
 	  </welcome-file-list> 
-	   -->
-      <!-- JSF Servlet is defined to container -->
-	  <servlet>
-	    <servlet-name>Faces Servlet</servlet-name>
-	    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-	    <load-on-startup>1</load-on-startup> 
-	  </servlet>
-	  
-	  <!-- Mapping with servlet and url for the http requests. -->
-	  <servlet-mapping>
-	    <servlet-name>Faces Servlet</servlet-name>
-	    <url-pattern>*.jsf</url-pattern>
-	  </servlet-mapping>
-	  <servlet-mapping>
-	    <servlet-name>Faces Servlet</servlet-name>
-	    <url-pattern>*.xhtml</url-pattern>
-	  </servlet-mapping> 
-
-
+	-->
 </web-app>
