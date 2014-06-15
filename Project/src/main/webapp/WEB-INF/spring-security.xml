@@ -8,14 +8,23 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	
-	<http auto-config="true">
-		<intercept-url pattern="/**" access="ROLE_EXPENSE" />
+	<http auto-config="true" use-expressions="false">
+		<!-- <intercept-url pattern="/**" access="ROLE_USER" />
+		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" /> -->
+		
+		<!-- Set custom login page -->
+		<intercept-url pattern="/welcome*" access="ROLE_USER" />
+
+		<form-login login-page="/login" default-target-url="/welcome"
+			authentication-failure-url="/loginfailed" />
+		<logout logout-success-url="/logout" />
+		
 	</http>
 	
 	<authentication-manager alias="authenticationManager">
         <authentication-provider>
             <user-service>
-                <user name="filip" password="filip" authorities="ROLE_EXPENSE"/>
+                <user name="filip" password="filip" authorities="ROLE_USER"/>
                 <user name="kamila" password="kamila" authorities="ROLE_ADMIN"/>
             </user-service>
         </authentication-provider>
