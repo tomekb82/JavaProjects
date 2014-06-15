@@ -54,17 +54,23 @@
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
 	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+    		<value>WEB-INF/classes/config/database/db.properties</value>
+    	</property>
+	</bean>
+	
 	<!-- Data Source Declaration -->
 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/SpringProject" />
-		<property name="user" value="postgres" />
-		<property name="password" value="postgres" />
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 		<property name="maxPoolSize" value="10" />
 		<property name="maxStatements" value="0" />
 		<property name="minPoolSize" value="5" />
-	</bean>
+	</bean> 
 
 	<!-- Session Factory Declaration -->
 	<bean id="SessionFactory"
