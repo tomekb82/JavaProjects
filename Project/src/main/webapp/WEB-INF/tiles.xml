@@ -33,7 +33,7 @@
   
   	<!-- Login Form -->
    	<definition name="/jsp/LoginForm" extends="template">  
-        <put-attribute name="body" value="/WEB-INF/tiles_jsp/LoginForm.jsp"/> 
+		<put-attribute name="body" value="/WEB-INF/tiles_jsp/LoginForm.jsp"/>  
     </definition> 
     <definition name="/jsp/LoginSuccess" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/LoginSuccess.jsp"/> 
@@ -42,5 +42,13 @@
    <definition name="/jsp/rest_expense/view" extends="template">  
         <put-attribute name="body" value="/WEB-INF/tiles_jsp/expenseByName.jsp"/> 
     </definition> 
+    
+    <!-- Security Login -->
+  	<definition name="login" extends="template">  
+        <put-attribute name="body" value="/WEB-INF/tiles_jsp/login.jsp"/> 
+    </definition> 
+    <definition name="hello" extends="template">  
+        <put-attribute name="body" value="/WEB-INF/tiles_jsp/hello.jsp"/> 
+    </definition> 	
   		
 </tiles-definitions>
