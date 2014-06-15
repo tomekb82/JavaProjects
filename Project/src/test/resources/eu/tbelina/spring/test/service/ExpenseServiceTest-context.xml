@@ -69,7 +69,7 @@
 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/SpringProject_TEST" />
+		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/SpringProject_testHibernate" />
 		<property name="user" value="postgres" />
 		<property name="password" value="postgres" />
 		<property name="maxPoolSize" value="10" />
@@ -132,7 +132,7 @@
 	<!-- Expenses: JDBC Data Source Declaration -->
 	<bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">		
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/SpringProject_TEST2" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/SpringProject_testJdbc" />
 		<property name="username" value="postgres" />
 		<property name="password" value="postgres" />
 	</bean> 
@@ -140,7 +140,7 @@
 	<!-- Expenses: SimpleJDBC Data Source Declaration -->
 	<bean id="simpleJdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">		
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/SpringProject_TEST3" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/SpringProject_testSimpleJdbc" />
 		<property name="username" value="postgres" />
 		<property name="password" value="postgres" />
 	</bean>
