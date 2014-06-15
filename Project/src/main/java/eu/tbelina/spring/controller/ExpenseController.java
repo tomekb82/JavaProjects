@@ -54,8 +54,6 @@ public class ExpenseController {
 	@RequestMapping(method=RequestMethod.GET, params="new")
 	public String createExpense(Model model){
 		
-		//Expense expense = new Expense();
-		//expense.setDate(new Date());
 		model.addAttribute(new Expense());
 		return "/jsp/expenses/edit";
 	}
@@ -65,17 +63,14 @@ public class ExpenseController {
 		
 		/* Check errors */
 		if(bindingResult.hasErrors()){
-			System.out.println("EEEEEEEERRRRRRROR binding");
 			return"/jsp/expenses/edit";
 		}
 		
 		/* Save data */
-		
-		System.out.println("TTTTTTT=" + expense.toString());
 		expenseService.addExpense(expense);
 		
 		/* Redirect after POST */
-		return "redirect:/jsp//expenses/" + expense.getName();
+		return "redirect:/jsp/expenses/" + expense.getName();
 	}
 	
 	@RequestMapping(value="/{name}", method=RequestMethod.GET)
