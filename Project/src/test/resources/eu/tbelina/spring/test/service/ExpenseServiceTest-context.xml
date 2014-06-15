@@ -64,7 +64,7 @@
 	<bean id="hibernateExpenseDAO" class="eu.tbelina.spring.dao.impl.hibernate.HibernateExpenseDAO">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
-	
+		
 	<!-- Data Source Declaration -->
 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
@@ -75,7 +75,7 @@
 		<property name="maxPoolSize" value="10" />
 		<property name="maxStatements" value="0" />
 		<property name="minPoolSize" value="5" />
-	</bean>
+	</bean> 
 
 	<!-- Session Factory Declaration -->
 	<bean id="SessionFactory"
@@ -92,6 +92,8 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				<!-- Add exemplary data into database -->
+				<prop key="hibernate.hbm2ddl.import_files">import.sql</prop>
 			</props>
 		</property>
 	</bean>
