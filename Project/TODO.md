@@ -33,7 +33,7 @@ INFO: dziala dla xml, problem tylko z anotacjami
 
 ====================================================================================
 
-- Dodac zdalne uslugi: RMI/ HttpInvoker/ JAX-WS + klient do testow
+- Dodac zdalne uslugi: HttpInvoker + klient do testow
 
 Doprowadzic do dzialania HttpInvoker, bo jest problem z URLami:
 Exception in thread "main" org.springframework.remoting.RemoteAccessException: Could not access HTTP invoker remote service at [ht
