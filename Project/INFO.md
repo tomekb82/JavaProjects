@@ -45,6 +45,22 @@ URLs: http://localhost:8080/spring/ <==> http://localhost:8080/spring/main.html#
 Description: AngularJS client, collecting data using REST API
 from server side.
 
+--------------------------------------------
+Name: Spring REST API - tests
 
+Test: Deploy project first.
+Run ExpenseRestClient (REST client)
+Run UserRestClient (other REST client) 
+
+--------------------------------------------
+Name: Spring RMI
+
+Test1: Run Host.java (server RMI)
+Run Client.java (client RMI)
+
+Test2: Deploy project.
+Run RmiExpenseClient (REST client)
+
+--------------------------------------------
 
 
