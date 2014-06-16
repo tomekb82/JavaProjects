@@ -62,5 +62,10 @@ Test2: Deploy project.
 Run RmiExpenseClient (REST client)
 
 --------------------------------------------
+Name: JAX-WS
 
+Test: Deploy project.
+Run eu.tbelina.spring.jax_ws.Client.
+
+--------------------------------------------
 
