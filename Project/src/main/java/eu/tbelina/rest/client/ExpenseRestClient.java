@@ -20,7 +20,7 @@ import eu.tbelina.spring.model.UserRest;
 @Component(value = "expenseRestClient")
 public class ExpenseRestClient {
 
-	private final static String expenseServiceUrl = "http://localhost:8080/spring/rest_expenses/json/";
+	private final static String expenseServiceUrl = "http://localhost:8080/spring/jsp/rest_expenses/json/";
 	private final static String EXPENSE_NAME = "sss";
 	
 	// Inject RestTemplate 
@@ -123,7 +123,9 @@ public class ExpenseRestClient {
 		// PUT
 		Expense changedExpense = newExpense;
 		expense.setValue(666);
-		restClient.updateExpense(changedExpense);
+		// TODO: there is a problem with PUT (error 500):
+		//        org.springframework.web.client.HttpServerErrorException: 500 Internal Server Error
+		//restClient.updateExpense(changedExpense);
 		expenses = restClient.getAllExpenses();
 		System.out.println("after PUT , All expenses:");
 		for(Expense e: expenses)
