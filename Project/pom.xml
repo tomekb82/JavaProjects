@@ -86,6 +86,13 @@
             <version>${org.springframework-version}</version>
         </dependency>
         
+        <!-- JAX-WS support -->
+        <dependency>
+	    	<groupId>org.jvnet.jax-ws-commons.spring</groupId>
+	        <artifactId>jaxws-spring</artifactId>
+	        <version>1.9</version>
+	    </dependency>
+
 		<!--  JDBC data source: BasicDataSource -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
