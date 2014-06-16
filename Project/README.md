@@ -1,17 +1,79 @@
 
 Spring3 Web Project contains:
 
-- Spring MVC framework (jsp pages, form validation)
-- Spring DI and AOP (around aspect for efficiency tests only)
-- declarative transactions (using annotations) 
-- databases: JDBC(JdbcTemplate,SimpleJdbcTemplate), Hibernate, JPA -> one service for different DAOs
+--------------------------------------------------------
+Spring MVC framework:
+
+- MVC controllers
+- dispatcher servlet: appServlet
+- support for jsp pages
+- form controllers, form validation
+
+--------------------------------------------------------
+Spring DI and AOP:
+
+- annotation based DI (@Autowired)
+- AOP: around aspect for efficiency tests (only) 
+
+--------------------------------------------------------
+Spring transactions:
+
+- declarative transactions support
+- annotation based 
+
+--------------------------------------------------------
+Spring JDBC, ORM:
+
+- database types: 
+	JDBC(JdbcTemplate,SimpleJdbcTemplate), 
+	Hibernate, 
+	JPA 
+- one service for different DAOs
+- database properties configuration in external file
+- initializing database with default values: .sql files
+
+--------------------------------------------------------
+Spring security:
+
+- configuration in Spring context
+- creating custom login page
+- no support for securing methods
+
+--------------------------------------------------------
+REST API:
+
+- implementing Spring REST API
+- preparing clients for tests (using RestTemplate)
+
+--------------------------------------------------------
+Remote services:
+
+- support for: RMI, HttpInvoker, JAX-WS 
+- preparing clients for tests
+
+--------------------------------------------------------
+Frontend:
+
 - support for jsp, jsf/primafaces and AngularJS views (3 different dispatcher servlets)
-- unit tests (Junit,Mockito,sql files) for: mvc controllers, services
 - Jsp views: Tiles template
 - JSF: forms, primafaces support
 - AngularJS: collecting data from REST API, I18N support (pl,en), boostrap support
-- Spring Security support (configuration in Spring context, custom login page, no support for methods security)
-- spring REST API + rest client for tests(RestTemplate)
-- build tool: Maven
-- extracting configuration to an external file (database properties)
-- Remote services: RMI/HttpInvoker
+
+--------------------------------------------------------
+Build:
+
+- using Maven to build all sources
+
+--------------------------------------------------------
+Tests:
+
+- unit tests: Junit,Mockito
+- tests for mvc controllers, services
+- testing clients for REST API, RMI, JAX-WS
+- more info about URLs to test in INFO.md file
+
+
+
+
+
+
