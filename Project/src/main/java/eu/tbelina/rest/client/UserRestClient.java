@@ -15,7 +15,7 @@ import eu.tbelina.spring.model.UserRest;
 @Component(value = "userRestClient")
 public class UserRestClient {
 
-	private final static String userServiceUrl = "http://localhost:8080/spring/userRest/";
+	private final static String userServiceUrl = "http://localhost:8080/spring/jsp/userRest/";
 	
 	// Inject RestTemplate 
 	private RestTemplate restTemplate;
