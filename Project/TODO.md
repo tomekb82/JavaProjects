@@ -27,7 +27,12 @@ Wolane sa funkcje, lecz Monitor.java nie przechwytuje zdarzen na wykonywanych me
 
 INFO: dziala dla xml, problem tylko z anotacjami
 
-- dodac zdalne uslugi: RMI/SpringInvoker + klient do testow
+- dodac zdalne uslugi: RMI/ HttpInvoker/ JAX-WS + klient do testow
+
+Doprowadzic do dzialania HttpInvoker, bo jest problem z URLami:
+Exception in thread "main" org.springframework.remoting.RemoteAccessException: Could not access HTTP invoker remote service at [ht
+tp://localhost:8080/httpinvoker/Calculation.http]; nested exception is java.io.IOException: Did not receive successful HTTP respon
+se: status code = 404, status message = [Not Found]
 
 - JPA
 
