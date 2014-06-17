@@ -43,7 +43,8 @@ Spring security:
 REST API:
 
 - implementing Spring REST API
-- preparing clients for tests (using RestTemplate)
+- preparing clients for Spring REST tests (using RestTemplate)
+- implementing JAX-RS (Jersey) + test client
 
 --------------------------------------------------------
 Remote services:
