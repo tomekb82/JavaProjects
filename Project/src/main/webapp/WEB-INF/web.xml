@@ -108,7 +108,7 @@
 	</servlet-mapping>
 	
 	<!-- ****************************************************************************** -->
-    <!-- 								  JAX-WS                                        -->
+    <!-- 					Web Services: JAX-WS (SOAP)                                 -->
     
 	<servlet>
    		<servlet-name>jaxws-servlet</servlet-name>
@@ -121,4 +121,24 @@
         	<url-pattern>/jaxws-spring</url-pattern>
     </servlet-mapping>
 
+    <!-- ****************************************************************************** -->
+    <!-- 						    REST: JAX-RS (Jersey)                               -->
+	<servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<servlet-class>
+			com.sun.jersey.spi.spring.container.servlet.SpringServlet
+		</servlet-class>
+		<init-param>
+			<param-name>
+                                 com.sun.jersey.config.property.packages
+                        </param-name>
+			<param-value>eu.tbelina.spring.jax_rs</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/jaxrs/*</url-pattern>
+	</servlet-mapping>
 </web-app>
