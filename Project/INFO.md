@@ -21,12 +21,29 @@ Description: Spring Security login page.
 Valid credentials: filip/filip
 
 --------------------------------------------
-Name: Rest API
+Name: MVC Rest API
 
 URLs: http://localhost:8080/spring/jsp/rest_expenses/json/
 http://localhost:8080/spring/jsp/rest_expenses/json/sss
 
-Description: Get REST resources
+Description: Get Spring REST resources
+
+--------------------------------------------
+Name: REST JAX-RS (jersey)
+
+URLs: 
+http://localhost:8080/spring/jaxrs/hello/sss
+
+Description: Get JAX-RS REST resources
+
+--------------------------------------------
+Name: REST JAX-RS(Jersey)
+
+URLs: http://localhost:8080/spring/jaxrs/hello/ss
+http://localhost:8080/spring/jaxrs/exp
+http://localhost:8080/spring/jaxrs/exp/sss
+
+Description: REST Jersey convention.
 
 --------------------------------------------
 Name: JSF/Primafaces pages
