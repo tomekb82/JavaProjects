@@ -1,0 +1,10 @@
+
+przyklady komparatorow
+
+kompilacja:
+javac Helloworld.java Fruit.java
+javac ParityCompare.java
+
+wykonanie:
+java HelloWorld
+java ParityCompare
