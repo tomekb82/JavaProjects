@@ -31,6 +31,9 @@ Spring JDBC, ORM:
 - one service for different DAOs
 - database properties configuration in external file
 - initializing database with default values: .sql files
+- Hibernate: 
+	relations: @OneToOne, @OneToMany, @ManyToMany
+	unit tests for all relations
 
 --------------------------------------------------------
 Spring security:
@@ -73,7 +76,10 @@ Tests:
 - testing clients for REST API, RMI, JAX-WS
 - more info about URLs to test in INFO.md file
 
+--------------------------------------------------------
+Utils:
 
+- comparator vs comparable
 
 
 
