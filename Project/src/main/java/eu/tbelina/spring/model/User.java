@@ -1,8 +1,21 @@
 package eu.tbelina.spring.model;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -16,11 +29,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="users")
-public class User {
+public class User implements Serializable{
 
 	private int id;
 	private String name;
 	private String surname;
+	
+	/* Relations */
+	private Contact contact; // OneToOne relation
+	private Set<Income> incomes = new HashSet<Income>(0);  // OneToMany relation
+	private Set<Group> userGroups = new HashSet<Group>(0); // ManyToMany relation
 	
 	/**
 	 * Get User Id
@@ -28,7 +46,8 @@ public class User {
 	 * @return int - User Id
 	 */
 	@Id
-	@Column(name="ID", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="USER_ID", unique = true, nullable = false)
 	public int getId() {
 		return id;
 	}
@@ -42,12 +61,42 @@ public class User {
 		this.id = id;
 	}
 	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Income> getIncomes() {
+		return incomes;
+	}
+
+	public void setIncomes(Set<Income> incomes) {
+		this.incomes = incomes;
+	}
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+		@JoinTable(name = "user_group", 
+		joinColumns = { @JoinColumn(name = "USER_ID", nullable = false, updatable = false) },
+		inverseJoinColumns = { @JoinColumn(name = "GROUP_ID",nullable = false, updatable = false) })
+	public Set<Group> getUserGroups() {
+		return userGroups;
+	}
+
+	public void setUserGroups(Set<Group> userGroups) {
+		this.userGroups = userGroups;
+	}
+
 	/**
 	 * Get User Name
 	 * 
 	 * @return String - User Name
 	 */
-	@Column(name="NAME", unique = true, nullable = false)
+	@Column(name="USER_NAME", unique = true, nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -66,7 +115,7 @@ public class User {
 	 * 
 	 * @return String - User Surname
 	 */
-	@Column(name="SURNAME", unique = true, nullable = false)
+	@Column(name="USER_SURNAME", unique = true, nullable = false)
 	public String getSurname() {
 		return surname;
 	}
@@ -82,10 +131,8 @@ public class User {
 	
 	@Override
 	public String toString() {
-		StringBuffer strBuff = new StringBuffer();
-		strBuff.append("id : ").append(getId());
-		strBuff.append(", name : ").append(getName());
-		strBuff.append(", surname : ").append(getSurname());
-		return strBuff.toString();
+		return "User [id=" + id + ", name=" + name + ", surname=" + surname
+				+ "]";
 	}
+
 }
