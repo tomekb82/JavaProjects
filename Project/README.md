@@ -1,6 +1,6 @@
 
-Spring3 Web Project contains
-=============================
+Spring3 Web Project 
+===================
 
 Spring MVC framework:
 ---------------------
