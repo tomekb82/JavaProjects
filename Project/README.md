@@ -57,10 +57,16 @@ Remote services:
 Frontend:
 ---------
 
-- support for jsp, jsf/primafaces and AngularJS views (3 different dispatcher servlets)
-- Jsp views: Tiles template
-- JSF: forms, primafaces support
-- AngularJS: collecting data from REST API, I18N support (pl,en), boostrap support
+- view types:
+	-  jsp: using Tiles template
+	-  jsf: forms, support for primafaces implementation
+	-  AngularJS views 
+		- collecting data from REST API, 
+		- I18N support (*pl,en(), 
+		- boostrap support
+
+- 3 different dispatcher servlets for each view types
+
 
 Build:
 ------
