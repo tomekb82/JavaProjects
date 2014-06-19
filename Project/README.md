@@ -47,25 +47,40 @@ REST API:
 - implementing Spring REST API
 - preparing clients for Spring REST tests (using *RestTemplate*)
 - implementing JAX-RS (*Jersey*) + test client
+	- dispatcher servlet: jersey-serlvet
+	- mapping: /jaxrs/*
 
 Remote services:
 ----------------
 
-- support for: RMI, HttpInvoker, JAX-WS 
+- support for: 
+	- RMI, 
+	- HttpInvoker:
+		- dispatcher servlet: httpInvoker 
+		- mapping: /services/*
+	- JAX-WS:
+		- dispatcher servlet: jaxws-servlet
+		- mapping: /jaxws-spring
 - preparing clients for tests
 
 Frontend:
 ---------
 
 - view types:
-	-  jsp: using Tiles template
-	-  jsf: forms, support for primafaces implementation
+	-  jsp: 
+		- dispatcher servlet: Faces Servlet
+		- mapping: /jsp/*
+		- using Tiles template
+	-  jsf: 
+		- dispatcher servlet: Faces Servlet
+		- mapping: *.jsf, *.xhtml
+		- forms, support for primafaces implementation
 	-  AngularJS views 
+		- dispatcher servlet: action
+		- mapping: /action/*
 		- collecting data from REST API, 
-		- I18N support (*pl,en(), 
+		- I18N support (*pl,en()*), 
 		- boostrap support
-
-- 3 different dispatcher servlets for each view types
 
 
 Build:
