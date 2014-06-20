@@ -34,7 +34,7 @@ public class ExpenseControllerTest {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 		String viewName = controller.showAllExpenses(model);
 		
-		assertEquals("/jsp/expenses", viewName);
+		assertEquals("expenses", viewName);
 		
 		// Check result
 		assertSame(expectedExpenses, model.get("expenses"));
