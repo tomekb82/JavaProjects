@@ -82,11 +82,10 @@ Frontend:
 		- I18N support (*pl,en()*), 
 		- boostrap support
 
-
-Build:
+Utils:
 ------
 
-- using Maven to build all sources
+- comparator vs comparable
 
 Tests:
 ------
@@ -96,11 +95,10 @@ Tests:
 - testing clients for REST API, RMI, JAX-WS
 - more info about URLs to test in INFO.md file
 
-Utils:
-------
+Build & deploy:
+---------------
 
-- comparator vs comparable
-
-
-
+- using Maven to build all sources
+- servlet container: tomcat7
+	
 
