@@ -1,0 +1,298 @@
+
+<p class="lead"> Wykres wydatków w przedziale czasu </p></br>
+
+<div>
+	Liczba wydatków:  <select id="lineNum">
+				<option ng-repeat="expense in expenses"> {{$index + 1}}</option>
+			  </select> 
+	<button>Pokaż</button>
+	<div id="line" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<div id="line2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<hr size="10"> 
+	
+        <script type="text/javascript">
+$(function () {
+    
+	$.getJSON('https://api.mongolab.com/api/1/databases/heroku_app18138245/collections/expenses?apiKey=-Z6EPVudg0zGJlkg-WgJmRWNm0gZUwid', function(data) {
+	var all = []; var life = []; var global = []; var private = []; var others = [];
+	var dataBar = [];	var cat = []; var tab1 = []; var tab2 = []; var tab3 = []; var tab4 = [];
+	var dataPieUsers = []; var val=0;
+	var dataPieCat = [];
+	var glob=0, priv=0, lif=0, oth=0;
+        var dates = []; var dataLine = []; var userLine = [];
+	var d; var curr_date; var curr_month; var curr_year;
+	var i=0; var found = 0;	
+
+
+		var dd=[];	
+		var gg=[];
+
+
+	/* Preparing data for charts */
+    	for(var i=0; i<data.length; i++){
+		if(i>0){
+			for(var user in all){
+				if(user == data[i].user){
+				     all[data[i].user] += data[i].value;
+				     if(data[i].aim.type == "private"){
+				     	private[data[i].user] += data[i].value;
+				     }else if(data[i].aim.type == "life"){
+				     	life[data[i].user] += data[i].value;
+				     }else if(data[i].aim.type == "global"){
+				     	global[data[i].user] += data[i].value;
+				     }else{
+				     	others[data[i].user] += data[i].value;
+				     }
+				     found = 1;
+				}
+			}
+		}
+		if(found == 0){
+			all[data[i].user] = data[i].value;
+                	private[data[i].user] = 0;
+           	     	global[data[i].user] = 0;
+               	 	life[data[i].user] = 0;
+                	others[data[i].user] = 0;
+			if(data[i].aim.type == "private"){
+				private[data[i].user] = data[i].value;
+			} else if(data[i].aim.type == "global"){
+				global[data[i].user] = data[i].value;
+			}else if(data[i].aim.type == "life"){
+				life[data[i].user] = data[i].value;
+			}else{
+				others[data[i].user] = data[i].value;
+			}
+		}
+
+		d = new Date(data[i].time);
+		curr_date = d.getDate();
+		curr_month = d.getMonth() + 1; //Months are zero based
+		curr_year = d.getFullYear();
+		dates[i] = curr_date + "-" + curr_month + "-" + curr_year;
+		userLine[i] = data[i].user;
+     	   	dataLine[i] = data[i].value;
+		val += data[i].value;
+		found = 0;
+        }
+
+
+        /* for Bar chart */
+	i=0;
+        for(var user in global){
+		tab1[i++] = global[user];
+	}	
+	dataBar.push({
+		name : "Global", 
+		data : tab1
+	});
+        i=0;
+	for(var user in private){
+		tab2[i++] = private[user];
+	}	
+	dataBar.push({
+		name : "Private", 
+		data : tab2
+	});
+        i=0;
+	for(var user in life){
+		tab3[i++] = life[user];
+	}	
+	dataBar.push({
+		name : "Life", 
+		data : tab3
+	});
+        i=0;
+	for(var user in others){
+		tab4[i++] = others[user];
+	}	
+	dataBar.push({
+		name : "Others", 
+		data : tab4
+	});
+        i=0;
+	for(var user in all){
+		cat[i++] = user;
+	}
+
+	/* for user Pie chart */
+        var dataPieUsers = [];
+	for(var user in all){
+		dataPieUsers.push([user,  ((all[user]/val)*100)]);
+	}
+
+	/* for category Pie chart */
+	for(var user in all){
+		glob += global[user];	
+		priv += private[user];	
+		lif += life[user];	
+		oth += others[user];	
+	}
+	dataPieCat.push(['Global',  ((glob/val)*100)]);
+	dataPieCat.push(['Private',  ((priv/val)*100)]);
+	dataPieCat.push(['Life',  ((lif/val)*100)]);
+	dataPieCat.push(['Other',  ((oth/val)*100)]);
+
+	
+        //**********************************************************************************************/
+	//********************************* LINE CHART  *************************************************/
+	//**********************************************************************************************/
+	$('#line').highcharts({
+            title: {
+                text: '',//'Wydatki w przedziale czasu',
+                x: -20 //center
+            },
+            subtitle: {
+                text: '',
+                x: -20
+            },
+            xAxis: {
+                categories: dates,
+		title: {
+                    text: 'Czas'
+                },
+            },
+            yAxis: {
+                title: {
+                    text: 'Wartość (PLN)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: 'PLN'
+            },
+
+
+	    plotOptions: {
+                series: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function() {
+                                hs.htmlExpand(null, {
+                                    pageOrigin: {
+                                        x: this.pageX,
+                                        y: this.pageY
+                                    },
+                                    headingText: this.series.name,
+                                    maincontentText: 'User: ' + userLine[this.x] + '</br> Wartość: ' + this.y + 'PLN </br> Data: ' + dates[this.x],
+                                    width: 200
+                                });
+                            }
+                        }
+                    },
+                    marker: {
+                        lineWidth: 1
+                    }
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Wydatki',
+                data: dataLine
+            }
+            ]
+        });
+
+$("#line2").slideUp();
+$("button").click(function() {
+		
+	$("#line2").slideDown();
+	$("#line").slideUp();
+        dd=[];gg=[];
+        for(var i=0; i< dates.length; i++){
+        	if( i < ($("#lineNum").val()) ){
+			dd[i] = dates[i];
+			gg[i] = dataLine[i];		
+		}
+	}
+	$('#line2').highcharts({
+            title: {
+                text: '',//'Wydatki w przedziale czasu',
+                x: -20 //center
+            },
+            subtitle: {
+                text: '',
+                x: -20
+            },
+            xAxis: {
+                categories: dd,//dates
+		 title: {
+                    text: 'Czas'
+                },
+            },
+            yAxis: {
+                title: {
+                    text: 'Wartość (PLN)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: 'PLN'
+            },
+
+
+	    plotOptions: {
+                series: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function() {
+                                hs.htmlExpand(null, {
+                                    pageOrigin: {
+                                        x: this.pageX,
+                                        y: this.pageY
+                                    },
+                                    headingText: this.series.name,
+                                    maincontentText: 'User: ' + userLine[this.x] + '</br> Wartość: ' + this.y + 'PLN </br> Data: ' + dates[this.x],
+                                    width: 200
+                                });
+                            }
+                        }
+                    },
+                    marker: {
+                        lineWidth: 1
+                    }
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Wydatki',
+                data: gg//dataLine
+            }
+            ]
+        });
+
+}) // end button
+
+    });
+  });
+        </script>
+
+</div>
+
+
+
+
+
+
+

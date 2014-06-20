@@ -1,0 +1,157 @@
+angular.module('expenses', ['resources.expenses', 'productbacklog', 'sprints', 'security.authorization'])
+
+.config(['$routeProvider', 'securityAuthorizationProvider', function ($routeProvider, securityAuthorizationProvider) {
+  $routeProvider.when('/expenses', {
+    templateUrl:'expenses/expenses-list.tpl.html',
+    controller:'ExpensesViewCtrl',
+    resolve:{
+      //currentUser: {'name':'Tomek B.'},
+//'function(){
+//	$http.get('/current-user').then(function(response) {
+  //      	return response.data.user;
+    //    }
+   //   },
+      expenses:['Expenses', function (Expenses) {
+        //TODO: fetch only for the current user
+        return Expenses.all();
+      }],
+      authenticatedUser: securityAuthorizationProvider.requireAuthenticatedUser
+    }
+  });
+}])
+
+  
+.factory('expensesFactory', function () {
+
+   var currentUserFactory = '';
+   var factory = {};
+  
+   factory.getCurrentUser = function() {
+  	return currentUserFactory; 
+   };
+
+   factory.postCurrentUser = function(user) {
+  	currentUserFactory = user; 
+   };
+   
+   return factory;
+})
+
+.controller('ExpensesViewCtrl', ['Expenses', '$scope', '$location', 'expenses', '$http','expensesFactory', function (Expenses, $scope, $location, expenses, $http, expensesFactory) {
+
+  $scope.expenses = expenses;
+  //$scope.currentUser = currentUser;
+  //console.log($scope.currentUser);
+
+  //console.log(" TEST QUERY..........")
+  //$scope.test_exp = Expenses.query({limit:3});
+  //console.log("exp = ", $scope.test_exp);  
+
+  init();
+
+  function init(){
+//  	$scope.currentUser = expensesFactory.getCurrentUser();
+  //	$scope.all_amount = expensesFactory.getAlUserAmount();
+  }
+ 
+  
+  $http.get('/current-user').then(function(response) {
+ 	$scope.currentUser = response.data.user;
+
+  	$scope.all_amount=0;
+  	for (var i=0; i<$scope.expenses.length; i++){
+    		if($scope.expenses[i].user == ($scope.currentUser.firstName + ' ' + $scope.currentUser.lastName)){
+        		$scope.all_amount += parseInt($scope.expenses[i].value, 10);
+    		}
+  	} 
+//	console.log($scope.currentUser);
+//	expensesFactory.postCurrentUser($scope.currentUser);
+//	console.log("after post (GET):",expensesFactory.getCurrentUser());
+  
+      	$.getJSON('https://api.mongolab.com/api/1/databases/heroku_app18138245/collections/expenses?apiKey=-Z6EPVudg0zGJlkg-WgJmRWNm0gZUwid', function(data) {
+	var all; var life; var global; var private; var others;
+	var dataPieCat = [];
+	var i=0; var found = 0;	
+
+        console.log( $scope.currentUser);
+
+
+    	for(var i=0; i<data.length; i++){
+		if(i==0){
+			all = 0;
+                	private = 0;
+           	     	global = 0;
+               	 	life = 0;
+                	others = 0;
+		}
+
+		if(data[i].user == 'Tomek B.'){
+			console.log('found');
+			all += data[i].value;
+			if(data[i].aim.type == "private"){
+				private += data[i].value;
+			}else if(data[i].aim.type == "life"){
+				life += data[i].value;
+			}else if(data[i].aim.type == "global"){
+				global += data[i].value;
+			}else{
+			    	others += data[i].value;
+			}	
+		}
+        }
+
+
+
+	dataPieCat.push(['Global',  ((global/all)*100)]);
+	dataPieCat.push(['Private',  ((private/all)*100)]);
+	dataPieCat.push(['Life',  ((life/all)*100)]);
+	dataPieCat.push(['Other',  ((others/all)*100)]);
+
+
+        $('#pieCat').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Procentowe wydatki'
+        },
+        tooltip: {
+    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: dataPieCat
+        }]
+    });
+
+    });
+
+  }); // end http
+
+  $scope.viewProject = function (expenseId) {
+    $location.path('/expenses/'+expenseId);
+  };
+
+  $scope.manageBacklog = function (expenseId) {
+    $location.path('/expenses/'+expenseId+'/productbacklog');
+  };
+
+  $scope.manageSprints = function (expenseId) {
+    $location.path('/expenses/'+expenseId+'/sprints');
+  };
+}]);

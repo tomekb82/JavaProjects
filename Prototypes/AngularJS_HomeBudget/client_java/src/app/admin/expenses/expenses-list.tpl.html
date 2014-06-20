@@ -1,0 +1,55 @@
+
+<p class="lead"> Panel zarządzania wydatkami użytkowników</p>
+
+<br/>
+<div class="nav pull-right">
+Szukaj: <input ng-model="searchText">
+</div>
+
+All <input type="checkbox" ng-model="type.all_check" ng-change="change()">
+Life <input type="checkbox" ng-model="type.life_check" ng-change="change()">
+Global <input type="checkbox" ng-model="type.global_check" ng-change="change()">
+Private <input type="checkbox" ng-model="type.private_check" ng-change="change()"><br>
+
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+    <tr>
+        <th><a ng-click="predicate='name'; reverse=!reverse"> Nazwa</a></th>
+        <th><a ng-click="predicate='aim.name'; reverse=!reverse"> Cel</a></th>
+        <th><a ng-click="predicate='aim.type'; reverse=!reverse"> Typ</a></th>
+        <th><a ng-click="predicate='value'; reverse=!reverse"> Watość</a></th>
+        <th><a ng-click="predicate='user'; reverse=!reverse"> Użytkownik</a></th>
+        <th><a ng-click="predicate='time'; reverse=!reverse"> Data</a></th>
+    </tr>
+    </thead>
+   <tbody>
+    <!--<tr ng-repeat="expense in expenses | filter:searchText | isType:type  | orderBy:predicate:reverse | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="edit(expense.$id())">-->
+    <tr ng-repeat="expense in expenses | filter:searchText | isType:type  | orderBy:predicate:reverse | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="edit(expense.$id())">
+        <td>{{expense.name}}</td>
+        <td>{{expense.aim.name}}</td>
+        <td>{{myFilterFn(expense.aim.type)}}</td>
+        <td>{{expense.value}}</td>
+        <td>{{expense.user}}</td>
+        <td>{{expense.time | date:'yyyy-MM-dd'}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div align="center">
+    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button>
+    {{currentPage+1}}/{{numberOfPages()}}
+    <button ng-disabled="isNextPage()" ng-click="currentPage=currentPage+1">
+        Next
+    </button>
+</div>
+
+<br/>
+<br/>
+
+<div class="well">
+    <h5 class="nav pull-right"> Łączna suma wydatków: {{all_amount}} PLN </h5>
+    <button class="btn btn-primary" ng-click="new()">Dodaj wydatek</button> &nbsp; &nbsp; 
+    <my-download id="content" get-data="getBlob()" />
+</div>

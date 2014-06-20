@@ -1,0 +1,13 @@
+[{name: 'jedzenie',    type: 'life'},
+{name: 'rachunki',    type: 'life'},
+{name: 'ubrania',     type: 'private'},
+{name: 'paliwo/auto', type: 'private'},
+{name: 'uroda',       type: 'private'},
+{name: 'kosmetyki',   type: 'private'},
+{name: 'kino',        type: 'entertainment'},
+{name: 'taniec',      type: 'entertainment'},
+{name: 'restauracje', type: 'entertainment'},
+{name: 'wycieczki',   type: 'entertainment'},
+{name: 'książki'  ,   type: 'global'},
+{name: 'szkolenia'  , type: 'global'}];
+

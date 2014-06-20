@@ -1,0 +1,30 @@
+
+<div class="well">
+
+    <form name="form" novalidate crud-edit="expense">
+        <legend>Nowy wydatek</legend>
+        <gravatar email="expense.email" size="200" class="img-polaroid pull-right"></gravatar>
+        
+	<label for="name">Nazwa</label>
+        <input class="span6" type="text" id="name" name="name" ng-model="expense.name" required>
+        <span ng-show="showError('name', 'required')" class="help-inline">This field is required.</span>
+        
+	<label for="value">Wartość</label>
+        <input class="span6" type="number" id="value" name="value" ng-model="expense.value" required>
+        <span ng-show="showError('value', 'required')" class="help-inline">This field is required.</span>
+
+	<body ng-controller="ExpensesEditCtrl">
+	  <label for="aim.name">Cel</label>
+          <select ng-model="expense.aim.name" ng-options="getAim(aim) as getAim(aim) for aim in aims" required> </select>
+
+  	  <label for="aim.type">Typ</label>
+          <select ng-model="expense.aim.type" ng-options="aim.type as aim.type for aim in aims | filter:expense.aim.name" required> </select>
+
+	  <label for="user">Użytkownik</label>
+          <select ng-model="expense.user" ng-options="getFullName(user) as getFullName(user) for user in users" required></select>
+	</body>
+
+	<hr>
+        <crud-buttons></crud-buttons>
+    </form>
+</div>

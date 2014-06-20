@@ -1,0 +1,25 @@
+
+https://devcenter.heroku.com/articles/quickstart
+
+
+Kompilacja klienta:
+angular-app-master/client$ /usr/lib/node_modules/grunt-cli/bin/grunt build
+
+uwaga: ważne aby uruchomie grunta z odpowiedniego katalogu:
+angular-app-master/client$ /usr/lib/node_modules/grunt-cli/bin/grunt -version
+grunt-cli v0.1.9
+grunt v0.4.1
+
+
+
+
+Step 1: Sign up
+
+Step 2: Install the Heroku Toolbelt
+
+$ heroku login
+$ cd ~/myapp
+$ heroku create
+
+
+wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh

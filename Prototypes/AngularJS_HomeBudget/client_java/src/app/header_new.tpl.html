@@ -1,0 +1,74 @@
+
+<div ng-controller="HeaderCtrl">
+
+<div class="navbar ">
+ 	<div class="navbar-inner">
+ 	 	<div class="container">
+ 	 		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-th-list"></span></a>
+			<a href="#" class="brand" ng-click="home()">HomeBudget</a>  
+				<div class="nav-collapse collapse">
+
+					<ul class="nav">
+            					<li ng-class="{active:isNavbarActive('info')}"><a href="/info">Strona główna</a></li>
+        				</ul>
+
+ 					<ul class="nav" ng-show="isAuthenticated()">
+            					<li ng-class="{active:isNavbarActive('expenses')}"><a href="/expenses">Moje wydatki</a></li>
+            					<li class="dropdown" ng-class="{active:isNavbarActive('admin'), open:isAdminOpen}" ng-show="isAdmin()">
+                					<a id="adminmenu" role="button" class="dropdown-toggle" ng-click="isAdminOpen=!isAdminOpen">Zarządzaj<b class="caret"></b></a>
+                					<ul class="dropdown-menu" role="menu" aria-labelledby="adminmenu">
+                    						<li><a tabindex="-1" href="/admin/expenses" ng-click="isAdminOpen=false">Wydatkami</a></li>
+                    						<li><a tabindex="-1" href="/admin/users" ng-click="isAdminOpen=false">Użytkownikami</a></li>
+                    						<li><a tabindex="-1" href="/admin/projects" ng-click="isAdminOpen=false">Projektami</a></li>
+                					</ul>
+            					</li>
+            					<li ng-class="{active:isNavbarActive('admin')}" ng-show="isAdmin()"><a href="/admin/charts">Raporty</a></li>
+            					<li ng-class="{active:isNavbarActive('explorer')}"><a href="/explorer">Przeglądarka</a></li>
+        				</ul>
+					<ul class="nav">
+            					<li ng-class="{active:isNavbarActive('contact')}"><a href="/contact">Kontakt</a></li>
+        				</ul>
+
+					<ul class="nav pull-right" ng-show="hasPendingRequests()">
+            					<li class="divider-vertical"></li>
+            					<li><a href="#"><img src="/static/img/spinner.gif"></a></li>
+        				</ul>
+        				<login-toolbar></login-toolbar>
+				</div>
+				<div class="nav pull-right">
+    					<form class="form-search">
+   						 <input type="text" class="input-medium search-query">
+    						<button type="submit" class="btn">Search</button>
+    					</form>
+				</div>
+		</div>
+	</div>
+</div>
+
+<div>
+	<ul class="breadcrumb">
+            <li ng-repeat="breadcrumb in breadcrumbs.getAll()">
+                <span class="divider">/</span>
+                <ng-switch on="$last">
+                    <span ng-switch-when="true">{{breadcrumb.name}}</span>
+                    <span ng-switch-default><a href="{{breadcrumb.path}}">{{breadcrumb.name}}</a></span>
+                </ng-switch>
+            </li>
+        </ul>
+</div>
+
+<div ng-show="!isAuthenticated()">
+    <div class="hero-unit">
+    	  <div class="container">
+
+                <h1>Home Budget</h1>
+                <p class="lead">Projekt do zarządzania domowym budżetem.</p>
+                <p><a href="#" class="btn btn-success btn-large">Rozpocznij</a></p>
+          </div>
+     </div>
+</div>
+
+
+</div> <!-- END controller -->
+
+

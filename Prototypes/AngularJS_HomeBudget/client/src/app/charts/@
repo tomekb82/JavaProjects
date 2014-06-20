@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta name"viewport" content="width=device-width, initial-scale-1.0">
+  <link rel="stylesheet" type="text/css" href="/static/<%= grunt.config.get('pkg.name') %>.css"/>
+  <script type="text/javascript" src="/static/jquery.js"></script>
+  <script type="text/javascript" src="/static/angular.js"></script>
+  <script type="text/javascript" src="/static/mongolab.js"></script>
+  <script type="text/javascript" src="/static/bootstrap.js"></script>
+  <script type="text/javascript" src="/static/<%= grunt.config.get('pkg.name') %>.js"></script>
+
+ <script type="text/javascript" src="/static/highstock.js"></script> 
+ <script type="text/javascript" src="/static/exporting.js"></script>
+ <script type="text/javascript" src="/static/highslide.js"></script>
+ <script type="text/javascript" src="/static/highslide_config.js"></script>
+ <script type="text/javascript" src="/static/d3v2.js"></script>
+ <script type="text/javascript" src="/static/d3cts.js"></script>
+
+</head>
+
+<body ng-controller="AppCtrl">
+  <div ng-include="'header_new.tpl.html'"></div>
+  
+<div class="container">
+	<div class="row-fluid">
+		<div class="span4 well" ng-controller="HeaderCtrl">
+			<ul class="nav nav-list" >
+				<li class="nav-header">Informacje ogólne</li>
+      				<li {active:isNavbarActive('info')}><a href="/info">Korzystanie z aplikacji</a></li>	 
+      				<li {active:isNavbarActive('info')}><a href="/info">Użytkownicy</a></li>	 
+      				<li {active:isNavbarActive('info')}><a href="/info">Wydatki</a></li>
+      				<li {active:isNavbarActive('info')}><a href="/info">Prezentacja wyników</a></li>
+     				<li class="divider"></li>
+			</ul>
+
+    			<ul class="nav nav-list" ng-show="isAuthenticated()">
+				<li class="nav-header">Zarządzanie</li>
+      				<li {active:isNavbarActive('admin')}><a href="/admin/users" ng-click="isAdminOpen=false">Użytkownicy</a></li>	 
+      				<li {active:isNavbarActive('admin')}><a href="/admin/expenses" ng-click="isAdminOpen=false">Wydatki</a></li>
+     				<li class="divider"></li>
+
+    		 		<li class="nav-header">Raporty</li>
+   		  		<li {active:isNavbarActive('charts')}><a href="/charts" ng-click="isAdminOpen=false">Sumaryczne wydatki użytkowników</a></li>
+    		   		<li {active:isNavbarActive('charts')}><a href="/charts" ng-click="isAdminOpen=false">Przegląd wydatków wg.typów</a></li>
+    		   		<li {active:isNavbarActive('charts')}><a href="/charts" ng-click="isAdminOpen=false">Porównanie aktualnych wydatków</a></li>
+   				<li class="divider"></li>
+			</ul>		
+    			<ul class="nav nav-list">
+        			<li><a href="#">Pomoc</a></li>
+    			</ul>
+		</div>
+	        <div class="span8">
+ 
+			  <div ng-include="'notifications.tpl.html'" class="container-fluid" ng-show="notifications.getCurrent().length"></div>
+			  <div ng-view class="container-fluid"></div>
+		</div>
+	</div>
+        <div ng-include="'footer.tpl.html'"></div>
+</body>
+
+</html>
+

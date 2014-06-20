@@ -1,0 +1,16 @@
+
+
+heroku:
+
+user: 
+fal4141@gmail.com
+
+passwd:
+descent2
+
+app:
+immense-ravine-9750Open Application
+
+
+To connect using the shell:
+% mongo ds045608.mongolab.com:45608/heroku_app18138245 -u userdb -p qwert6

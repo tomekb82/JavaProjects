@@ -1,0 +1,42 @@
+
+<p class="lead"> Wydatki użytkownika: {{currentUser.firstName}} {{currentUser.lastName}}</p>
+
+
+<br/>
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+    <tr>
+        <th class="span3"><a ng-click="predicate='name'; reverse=!reverse">Nazwa</a></th>
+        <th class="span2"><a ng-click="predicate='name'; reverse=!reverse">Cel</a></th>
+        <th class="span2"><a ng-click="predicate='name'; reverse=!reverse">Typ</a></th>
+        <th class="span2"><a ng-click="predicate='name'; reverse=!reverse">Wartość</a></th>
+        <th class="span2"><a ng-click="predicate='name'; reverse=!reverse">Data</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="expense in expenses | filter:currentUser.firstName | filter:currentUser.lastName | orderBy:predicate:reverse">
+        <td ng-click="manageBacklog(expense.$id())">{{expense.name}}</td>
+        <td ng-click="manageBacklog(expense.$id())">{{expense.aim.name}}</td>
+        <td ng-click="manageBacklog(expense.$id())">{{expense.aim.type}}</td>
+        <td ng-click="manageBacklog(expense.$id())">{{expense.value}}</td>
+        <td ng-click="manageBacklog(expense.$id())">{{expense.time | date:'yyyy-MM-dd'}}</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div class="well">
+    <h5 class="nav pull-right"> Łączna suma wydatków: {{all_amount}} PLN </h5>
+    <my-download id="content" get-data="getBlob()" />
+</div>
+
+<br/>
+<br/>
+<hr size="10">
+
+<div id="pieCat" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+</div>
+
+
+
