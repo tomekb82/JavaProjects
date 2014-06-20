@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yeomanProjectApp')
+angular.module('ngdemo.filters')
 .filter('myUpperCase', function() {
                 var titleCaseFilter = function(input) {
                         var words = input.split(' ');

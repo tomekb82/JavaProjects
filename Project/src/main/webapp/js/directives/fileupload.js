@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yeomanProjectApp')
+angular.module('ngdemo.directives')
 .directive('fileupload', function() {
 	return {
 		restrict: 'A',

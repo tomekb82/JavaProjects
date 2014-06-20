@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yeomanProjectApp')
+angular.module('ngdemo.directives')
 .directive('expander', function(){
     return {
       restrict: 'EA',
