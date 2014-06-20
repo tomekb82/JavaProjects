@@ -45,19 +45,9 @@
 	<!-- ************************************************************************ -->
 	<!-- 						HIBERNATE CONFIGURATION							  -->
 	
-	<!-- User: Service Declaration -->
-	<bean id="UserService" class="eu.tbelina.spring.service.impl.UserService">
-		<property name="userDAO" ref="UserDAO" />
-	</bean>
-	
 	<!-- Expenses: Hibernate Service Declaration -->
 	<bean id="expenseService" class="eu.tbelina.spring.service.impl.ExpenseService">
 		<property name="expenseDAO" ref="hibernateExpenseDAO" />
-	</bean>
-	
-	<!-- User: DAO Declaration -->
-	<bean id="UserDAO" class="eu.tbelina.spring.dao.impl.hibernate.UserDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
 	
 	<!-- Expenses: DAO Declaration -->
@@ -83,7 +73,6 @@
 		<property name="dataSource" ref="DataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>eu.tbelina.spring.model.User</value>
 				<value>eu.tbelina.spring.model.Expense</value> 
 			</list>
 		</property>
