@@ -7,18 +7,18 @@ Spring MVC
 
 - description: Spring MVC views
 - url: 
-	- http://localhost:8080/spring/jsp/expenses/
-	- http://localhost:8080/spring/jsp/expenses/sss
-	- http://localhost:8080/spring/jsp/expenses/expense?name=aaa
-	- http://localhost:8080/spring/jsp/expenses?new
-	- http://localhost:8080/spring/jsp/login2/  (*logging form*)
+	- http://localhost:8080/spring/mvc/expenses/
+	- http://localhost:8080/spring/mvc/expenses/sss
+	- http://localhost:8080/spring/mvc/expenses/expense?name=aaa
+	- http://localhost:8080/spring/mvc/expenses?new
+	- http://localhost:8080/spring/mvc/login2/  (*logging form*)
 
-Login Page (*only for Spring MVC pages*)
+Sping Security: Custom Login Page 
 --------------------------------------
 
 - description: Spring Security login page.
 - url: 
-	- http://localhost:8080/spring/jsp/login
+	- http://localhost:8080/spring/mvc/login
 
 - info: valid credentials *filip/filip*
 
@@ -27,22 +27,14 @@ MVC Rest API
 
 - description: Get Spring REST resources
 - url: 
-	- http://localhost:8080/spring/jsp/rest_expenses/json/
-	- http://localhost:8080/spring/jsp/rest_expenses/json/sss
-
-REST JAX-RS (jersey)
---------------------
-
-- description: Get JAX-RS REST resources
-- url: 
-	- http://localhost:8080/spring/jaxrs/hello/sss
+	- http://localhost:8080/spring/mvc/rest_expenses/json/
+	- http://localhost:8080/spring/mvc/rest_expenses/json/sss
 
 REST JAX-RS(Jersey)
 -------------------
 
-- description: REST Jersey convention.
+- description: Get JAX-RS REST resources
 - url: 
-	- http://localhost:8080/spring/jaxrs/hello/ss
 	- http://localhost:8080/spring/jaxrs/exp
 	- http://localhost:8080/spring/jaxrs/exp/sss
 
