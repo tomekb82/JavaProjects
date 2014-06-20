@@ -30,7 +30,7 @@
     });
 
     as.controller('PersonController', function ($scope, $http, i18n) {
-        var actionUrl = 'jsp/rest_expenses/json/',//'action/person/',
+        var actionUrl = 'mvc/rest_expenses/json/',//'action/person/',
             load = function () {
                 $http.get(actionUrl).success(function (data) {
                     $scope.persons = data;
