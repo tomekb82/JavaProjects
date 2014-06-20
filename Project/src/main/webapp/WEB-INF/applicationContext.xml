@@ -164,7 +164,10 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>eu.tbelina.spring.model.User</value>
-				<value>eu.tbelina.spring.model.Expense</value> 
+				<value>eu.tbelina.spring.model.Expense</value>
+				<value>eu.tbelina.spring.model.Contact</value>
+				<value>eu.tbelina.spring.model.Income</value>
+				<value>eu.tbelina.spring.model.Group</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
