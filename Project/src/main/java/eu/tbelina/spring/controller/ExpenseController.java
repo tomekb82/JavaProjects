@@ -34,7 +34,7 @@ public class ExpenseController {
 	@RequestMapping("/")
 	public String showAllExpenses(Map<String, Object> model){
 		model.put("expenses", expenseService.getExpenses());
-		return "/jsp/expenses";
+		return "expenses";
 	}
 	
 	/*
@@ -45,7 +45,7 @@ public class ExpenseController {
 		@RequestParam("name") String name, Model model){
 		Expense expense = expenseService.getExpenseByName(name);
 		model.addAttribute(expense);
-		return "/jsp/expenseByName";
+		return "expenseByName";
 	}
 	
 	/*
@@ -55,7 +55,7 @@ public class ExpenseController {
 	public String createExpense(Model model){
 		
 		model.addAttribute(new Expense());
-		return "/jsp/expenses/edit";
+		return "expenses/edit";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
@@ -63,21 +63,21 @@ public class ExpenseController {
 		
 		/* Check errors */
 		if(bindingResult.hasErrors()){
-			return"/jsp/expenses/edit";
+			return"expenses/edit";
 		}
 		
 		/* Save data */
 		expenseService.addExpense(expense);
 		
 		/* Redirect after POST */
-		return "redirect:/jsp/expenses/" + expense.getName();
+		return "redirect:/expenses/" + expense.getName();
 	}
 	
 	@RequestMapping(value="/{name}", method=RequestMethod.GET)
 	public String showExpense(@PathVariable String name, Model model){
 		
 		model.addAttribute(expenseService.getExpenseByName(name));
-		return "/jsp/expense/view";
+		return "expense/view";
 	}
 	
 	
