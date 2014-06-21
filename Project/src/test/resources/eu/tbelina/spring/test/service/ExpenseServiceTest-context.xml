@@ -14,21 +14,23 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/aop 
-	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	    
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!--  AOP -->
+	<aop:aspectj-autoproxy />
 	<aop:config>
 		<aop:aspect ref="monitor">
-			<!--<aop:pointcut id="calculate" expression="execution(* eu.tbelina.spring.service.impl.ExpenseService.getExpenses(..))" />
+			<aop:pointcut id="calculate" expression="execution(* eu.tbelina.spring.service.impl.ExpenseService.getExpenses(..))" />
 			<aop:before pointcut-ref="calculate" method="beforeCalculation"/>
 			<aop:after-returning pointcut-ref="calculate" method="afterCalculation"/>
-			<aop:after-throwing pointcut-ref="calculate" method="incorrectCalculation"/>
+			<aop:after-throwing pointcut-ref="calculate" method="incorrectCalculation"/>  
 			
-		 	<aop:around pointcut-ref="calculate" method="calculatePerformance"/> -->
+			<!-- IMPORTANT: UNCOMMENT THIS LINE FOR EFFICIENCY TESTS ONLY
+			<aop:around pointcut-ref="calculate" method="calculatePerformance"/>  -->
 		</aop:aspect>
-	</aop:config>
+	</aop:config>  
 	
 	<bean id="monitor" class="eu.tbelina.spring.aop.Monitor">
 	</bean>
