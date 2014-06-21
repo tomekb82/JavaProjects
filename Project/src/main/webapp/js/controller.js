@@ -39,18 +39,6 @@
 
         load();
 
-        $scope.delete = function (person) {
-            $http.delete(actionUrl + person.id).success(function () {
-                load();
-            });
-        };
-
-        $scope.save = function () {
-            $http.post(actionUrl, $scope.person).success(function () {
-                load();
-            });
-        };
-
         $scope.order = 'name';//'+firstName';
 
         $scope.orderBy = function (property) {
@@ -62,7 +50,41 @@
         };
     });
 
-    as.controller('AdminController', function ($scope, $http) {
+    as.controller('AdminController', function ($scope, $http, i18n) {
         $http.get('action/user');
+        
+        
+        var actionUrl = 'mvc/rest_expenses/json/',//'action/person/',
+        load = function () {
+            $http.get(actionUrl).success(function (data) {
+                $scope.persons = data;
+            });
+        };
+
+        load();
+
+        $scope.delete = function (person) {
+        	$http.delete(actionUrl + person.id).success(function () {
+        		load();
+        	});
+        };
+
+        $scope.save = function () {
+        	$http.post(actionUrl, $scope.person).success(function () {
+        		load();
+        	});
+        };
+
+        $scope.order = 'name';//'+firstName';
+
+        $scope.orderBy = function (property) {
+        	$scope.order = ($scope.order[0] === '+' ? '-' : '+') + property;
+        };
+
+        $scope.orderIcon = function (property) {
+        	return property === $scope.order.substring(1) ? $scope.order[0] === '+' ? 'icon-chevron-up' : 'icon-chevron-down' : '';
+        };
+      
+        
     });
 }());
