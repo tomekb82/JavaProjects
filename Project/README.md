@@ -79,6 +79,7 @@ Frontend:
 		- dispatcher servlet: action
 		- mapping: /action/*
 		- collecting data from REST API, 
+		- spring security support
 		- I18N support (*pl,en()*), 
 		- boostrap support
 
