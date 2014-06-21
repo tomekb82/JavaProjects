@@ -8,18 +8,31 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	
+	<!-- AngularJS -->
+    <http pattern="/admin/**" create-session="never">
+        <http-basic entry-point-ref="restAuthenticationEntryPoint"/>
+        <intercept-url pattern="/**" access="ROLE_USER"/>
+    </http>
+    <http pattern="/action/user" create-session="never">
+        <http-basic entry-point-ref="restAuthenticationEntryPoint"/>
+        <intercept-url pattern="/**" access="ROLE_USER"/>
+    </http>
+    <!--  <http pattern="/**" security="none"/> -->
+	<beans:bean id="restAuthenticationEntryPoint" class="eu.tbelina.angularjs.web.RestAuthenticationEntryPoint"/>
+	 	 
+	<!-- Spring Security MVC: custom login page -->
 	<http auto-config="true" use-expressions="false">
 		
-		<!-- Set custom login page -->
-		 <intercept-url pattern="/welcome*" access="ROLE_USER" /> 
+		<intercept-url pattern="/mvc/expenses/*" access="ROLE_USER" /> 
 
 		<form-login login-processing-url="/mvc/j_spring_security_check"
 			login-page="/mvc/login" default-target-url="/mvc/welcome"
 			authentication-failure-url="/mvc/loginfailed" />
-		<logout logout-success-url="/mvc/logout" />
-		
-	</http>
-	
+		<logout logout-success-url="/mvc/logout" />		
+	</http> 
+
+   
+
 	<authentication-manager alias="authenticationManager">
         <authentication-provider>
             <user-service>
@@ -27,6 +40,6 @@
                 <user name="kamila" password="kamila" authorities="ROLE_ADMIN"/>
             </user-service>
         </authentication-provider>
-    </authentication-manager>
-    
+    </authentication-manager> 
+       
 </beans:beans>
