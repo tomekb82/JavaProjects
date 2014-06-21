@@ -4,10 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+   
 </head>
 
 <body ng-controller="MainController">
 
+<!-- **************************************************************** -->
+<!-- 								MENU 							  -->
 <div class="navbar navbar-fixed">
     <div class="navbar-inner">
         <a class="brand" href="#">
@@ -15,10 +18,13 @@
         </a>
         <ul class="nav">
             <li ng-class="activeWhen(path()=='/person')">
-                <a href="#/person">Personen</a>
+                <a href="#/person"><msg key="person"></msg></a>
             </li>
             <li ng-class="activeWhen(path()=='/admin')">
-                <a href="#/admin">Administration</a>
+                <a href="#/admin"><msg key="admin"></msg></a>
+            </li>
+             <li ng-class="activeWhen(path()=='/person_adm')">
+                <a href="#/person_adm">Person admin</a>
             </li>
         </ul>
         <ul class="nav nav-pills pull-right">
@@ -30,7 +36,7 @@
             </li>
         </ul>
         <p class="navbar-text pull-right" style="margin-right: 5em" ng-show="user.name">
-            <a ng-click="logout()">Logout</a>
+            <a ng-click="logout()"><msg key="logout"></msg></a>
         </p>
 
         <p class="navbar-text pull-right" style="margin-right: 5em" ng-show="user.name">
@@ -39,11 +45,13 @@
     </div>
 </div>
 
+<!-- **************************************************************** -->
+<!-- 							LOGIN PAGE 							  -->
 <div class="container">
-   <!--  <div ng-class="'alert alert-'+message().type" ng-show="message().show">
+    <div ng-class="'alert alert-'+message().type" ng-show="message().show">
         <button type="button" class="close" ng-click="message().show=false">×</button>
         <msg key-expr="message().text"></msg>
-    </div>
+    </div> 
 
     <div class="modal" style="display: none" id="login">
         <div class="modal-header">
@@ -52,7 +60,7 @@
             <h3>Login</h3>
         </div>
         <div class="modal-body">
-            <label>See applicationContext.xml for valid username/password.</label>
+            <label>See spring-security.xml for valid username/password.</label>
             <div class="control-group">
                 <label class="control-label" for="username">Username</label>
 
@@ -72,11 +80,16 @@
             <a ng-click="login()" class="btn btn-primary">Login</a>
             <a data-dismiss="modal" class="btn">Cancel</a>
         </div>
-    </div> -->
+    </div>  
 
+<!-- **************************************************************** -->
+<!-- 							LOAD VIEW 							  -->
     <ng-view></ng-view>
 </div>
 
+
+<!-- **************************************************************** -->
+<!-- 							SCRIPTS 							  -->
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.i18n.properties-min-1.0.9.js"></script>
