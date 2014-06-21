@@ -14,9 +14,10 @@
 
     as.config(function ($routeProvider, $httpProvider) {
         //configure the rounting of ng-view
-        $routeProvider.when('/person', { controller: 'PersonController', templateUrl: 'person.html'});
-        $routeProvider.when('/admin', { controller: 'AdminController', templateUrl: 'admin/admin.html'});
-
+        $routeProvider.when('/person', { controller: 'PersonController', templateUrl: 'angularjs_pages/person.html'});
+        $routeProvider.when('/admin', { controller: 'AdminController', templateUrl: 'angularjs_pages/admin/admin.html'});
+        $routeProvider.when('/person_adm', { controller: 'AdminController', templateUrl: 'angularjs_pages/admin/person_adm.html'});
+        
         //configure $http to catch message responses and show them
         $httpProvider.responseInterceptors.push(function ($q) {
             var setMessage = function (response) {
