@@ -1,0 +1,42 @@
+
+Private page:
+<ul>
+	<li> access to view data</li>
+	<li> access to remove new data</li>
+</ul>
+
+<table class="table table-striped">
+    <tr>
+        <th ng-click="orderBy('id')">
+            <msg key="id"></msg>
+            <i ng-class="orderIcon('id')"></i></th>
+        <th ng-click="orderBy('name')">
+            <msg key="name"></msg>
+            <i ng-class="orderIcon('name')"></i></th>
+        <th ng-click="orderBy('quantity')">
+            <msg key="quantity"></msg>
+            <i ng-class="orderIcon('quantity')"></i></th>
+        <th ng-click="orderBy('value')">
+            <msg key="value"></msg>
+            <i ng-class="orderIcon('value')"></i></th>
+        <th ng-click="orderBy('date')">
+            <msg key="date"></msg>
+            <i ng-class="orderIcon('date')"></i></th>    
+        <th>
+            <msg key="delete"></msg>
+        </th>
+    </tr>
+    <tr ng-repeat="person in persons|orderBy:order">
+        <td>{{person.id}}</td>
+        <td>{{person.name}}</td>
+        <td>{{person.quantity}}</td>
+        <td>{{person.value}}</td>
+        <td>{{person.date | date:'dd/MM/yyyy'}}</td>
+        <td><a ng-click="delete(person)"><i class="icon-trash"></i></a></td>
+    </tr>
+    
+   
+</table>
+
+
+
