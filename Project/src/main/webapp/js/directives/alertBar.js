@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('ngdemo.directives')
-. directive('alertBar', ['$parse', function($parse) {
+var directive = angular.module('angularspring.directives', []);
+
+directive. directive('alertBar', ['$parse', function($parse) {
   return {
     restrict: 'A',
     template: '<div class="alert alert-error alert-bar" ng-show="errorMessage">' +
