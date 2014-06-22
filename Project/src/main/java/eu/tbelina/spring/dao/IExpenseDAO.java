@@ -11,6 +11,7 @@ public interface IExpenseDAO{
 	public void deleteExpense(Expense expense);
 	public void deleteExpenseById(long id);
 	public List<Expense> getExpenses();
+	public List<Expense> getExpenses(String name, int limit, int offset);
 	public Expense getExpenseById(long id);
 	public Expense getExpenseByName(String name);
 	
