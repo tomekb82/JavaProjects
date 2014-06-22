@@ -1,0 +1,45 @@
+ 
+Public page:
+<ul>
+	<li> access to view data</li>
+	<li> access to filter data</li>
+	<li> pagination </li>
+	<li> filter data</li>
+	<li> custom uppercase filter</li>
+	<li> click and get expense details for expense</li>
+</ul> 
+ 
+<msg key="filter"></msg>
+<br/>
+<input type="text" data-ng-model="name"/> {{ name }}
+
+
+<table class="table table-striped">
+    <tr>
+        <th ng-click="orderBy('id')">
+            <msg key="id"></msg>
+            <i ng-class="orderIcon('id')"></i></th>
+        <th ng-click="orderBy('name')">
+            <msg key="name"></msg>
+            <i ng-class="orderIcon('name')"></i></th>
+        <th ng-click="orderBy('quantity')">
+            <msg key="quantity"></msg>
+            <i ng-class="orderIcon('quantity')"></i></th>
+        <th ng-click="orderBy('value')">
+            <msg key="value"></msg>
+            <i ng-class="orderIcon('value')"></i></th>
+        <th ng-click="orderBy('date')">
+            <msg key="date"></msg>
+            <i ng-class="orderIcon('date')"></i></th>    
+    </tr>
+    <tr ng-repeat="person in expenses | filter:name | orderBy:order">
+        <td>{{person.id}}</td>
+        <td><a href='#/service/{{person.name}}'>{{person.name | uppercase }}</td>
+        <td>{{person.quantity}}</td>
+        <td>{{person.value}}</td>
+        <td>{{person.date | date:'dd/MM/yyyy'}}</td>
+    </tr>
+    
+    
+   
+</table>
