@@ -2,6 +2,11 @@
 Lista TODO:
 
 ====================================================================================
+AngularJS:
+
+Doprowadzic do dzialania loadery zasobow: ExpenseLoader i MultiExpenseLoader
+
+====================================================================================
 
 - Dodac kontrolery od obslugi formularzy MVC(POST)
 
