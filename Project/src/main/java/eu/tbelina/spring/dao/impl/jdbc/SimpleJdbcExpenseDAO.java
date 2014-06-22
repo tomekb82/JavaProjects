@@ -124,6 +124,12 @@ public class SimpleJdbcExpenseDAO extends SimpleJdbcDaoSupport implements IExpen
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<Expense> getExpenses(String name, int limit, int offset) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

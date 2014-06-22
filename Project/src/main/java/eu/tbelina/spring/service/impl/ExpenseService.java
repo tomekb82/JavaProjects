@@ -56,6 +56,11 @@ public class ExpenseService implements IExpenseService{
 	public List<Expense> getExpenses() {
 		return getExpenseDAO().getExpenses();
 	}
+	
+	@Override
+	public List<Expense> getExpenses(String name, int limit, int offset) {
+		return getExpenseDAO().getExpenses(name, limit, offset);
+	}
 
 	@Override
 	public Expense getExpenseByName(String name) {
