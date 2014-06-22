@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('ngdemo.directives')
-  .directive('accordion', function () {
+var directive = angular.module('angularspring.directives', []);
+
+directive.directive('accordion', function () {
     return {
       template: '<div></div>',
       restrict: 'E',
