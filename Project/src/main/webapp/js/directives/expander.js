@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('ngdemo.directives')
-.directive('expander', function(){
+var directive = angular.module('angularspring.directives', []);
+
+directive.directive('expander', function(){
     return {
       restrict: 'EA',
       replace: true,
