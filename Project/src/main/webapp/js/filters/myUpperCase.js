@@ -1,7 +1,10 @@
 'use strict';
 
-angular.module('ngdemo.filters')
-.filter('myUpperCase', function() {
+/* Filters */
+
+var filters = angular.module('angularspring.filters', []);
+
+filters.filter('myUpperCase', function() {
                 var titleCaseFilter = function(input) {
                         var words = input.split(' ');
                         for (var i = 0; i < words.length; i++) {
