@@ -1,82 +1,123 @@
-//Define a function scope, variables used inside it will NOT be globally visible.
-(function () {
+'use strict';
 
-    var
-    //the HTTP headers to be used by all requests
-        httpHeaders,
+//Declare app level module which depends on filters, and services
 
-    //the message to be shown to the user
-        message,
+//the HTTP headers to be used by all requests
+var httpHeaders;
 
-    //Define the main module.
-    //The module is accessible everywhere using "angular.module('angularspring')", therefore global variables can be avoided totally.
-        as = angular.module('angularspring', []);
+//the message to be shown to the user
+var message;
 
-    as.config(function ($routeProvider, $httpProvider) {
+//Define the main module.
+//The module is accessible everywhere using "angular.module('angularspring')", therefore global variables can be avoided totally.
+var as = angular.module('angularspring', [
+                      
+'angularspring.services',
+'angularspring.filters',
+'angularspring.directives',
+'angularspring.controllers',
+
+'ngResource'
+
+]);
+
+
+	as.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
         //configure the rounting of ng-view
-        $routeProvider.when('/person', { controller: 'PersonController', templateUrl: 'angularjs_pages/person.html'});
-        $routeProvider.when('/admin', { controller: 'AdminController', templateUrl: 'angularjs_pages/admin/admin.html'});
-        $routeProvider.when('/person_adm', { controller: 'AdminController', templateUrl: 'angularjs_pages/admin/person_adm.html'});
+        $routeProvider
+        	.when('/view_expense', { 
+        		controller: 'PersonController', 
+        		templateUrl: 'angularjs_pages/public/view_expense.html'})
+        	.when('/new_expense', { 
+        		controller: 'AdminController', 
+        		templateUrl: 'angularjs_pages/admin/new_expense.html'})
+        	.when('/del_expense', { 
+        		controller: 'AdminController', 
+        		templateUrl: 'angularjs_pages/admin/del_expense.html'})
+        	.when('/service', { 
+        		/*resolve: {
+        			expenses: ["MultiExpenseLoader", function(MultiExpenseLoader) {
+        				return MultiExpenseLoader();
+                    }]
+                },*/
+        		controller: 'ServiceController', 
+        		templateUrl: 'angularjs_pages/public/service.html'})
+        	.when('/service/:name', { 
+        		controller: 'ServiceController', 
+        		templateUrl: 'angularjs_pages/public/service_detail.html'})	
+        		
+        	.when('/filter', { 
+        		controller: 'ServiceController', 
+        		templateUrl: 'angularjs_pages/public/filter.html'})
+        	.when('/directive', { 
+        		controller: 'ServiceController', 
+        		templateUrl: 'angularjs_pages/public/directive.html'})
+        	.when('/form', { 
+        		controller: 'ServiceController', 
+        		templateUrl: 'angularjs_pages/public/form.html'})
+        	.when('/pagination', { 
+        		controller: 'PaginationController', 
+        		templateUrl: 'angularjs_pages/public/pagination.html'});
         
         //configure $http to catch message responses and show them
-        $httpProvider.responseInterceptors.push(function ($q) {
-            var setMessage = function (response) {
-                //if the response has a text and a type property, it is a message to be shown
-                if (response.data.text && response.data.type) {
-                    message = {
-                        text: response.data.text,
-                        type: response.data.type,
-                        show: true
-                    };
-                }
-            };
-            return function (promise) {
-                return promise.then(
-                    //this is called after each successful server request
-                    function (response) {
-                        setMessage(response);
-                        return response;
-                    },
-                    //this is called after each unsuccessful server request
-                    function (response) {
-                        setMessage(response);
-                        return $q.reject(response);
-                    }
-                );
-            };
-        });
+        $httpProvider
+        	.responseInterceptors.push(function ($q) {
+        		var setMessage = function (response) {
+        			//if the response has a text and a type property, it is a message to be shown
+        			if (response.data.text && response.data.type) {
+        				message = {
+        						text: response.data.text,
+        						type: response.data.type,
+        						show: true
+        				};
+        			}
+        		};
+        		return function (promise) {
+        			return promise.then(
+        					//this is called after each successful server request
+        					function (response) {
+        						setMessage(response);
+        						return response;
+        					},
+        					//this is called after each unsuccessful server request
+        					function (response) {
+        						setMessage(response);
+        						return $q.reject(response);
+        					}
+        			);
+        		};
+        	});
+        	//configure $http to show a login dialog whenever a 401 unauthorized response arrives
+        	$httpProvider
+        		.responseInterceptors.push(function ($rootScope, $q) {
+        			return function (promise) {
+        				return promise.then(
+        						//success -> don't intercept
+        						function (response) {
+        							return response;
+        						},
+        						//error -> if 401 save the request and broadcast an event
+        						function (response) {
+        							if (response.status === 401) {
+        								var deferred = $q.defer(),
+        								req = {
+        									config: response.config,
+        									deferred: deferred
+        								};
+        								$rootScope.requests401.push(req);
+        								$rootScope.$broadcast('event:loginRequired');
+        								return deferred.promise;
+        							}
+        							return $q.reject(response);
+        						}
+        				);
+        			};
+        		});
+        	httpHeaders = $httpProvider.defaults.headers;
+	}]);		
 
-        //configure $http to show a login dialog whenever a 401 unauthorized response arrives
-        $httpProvider.responseInterceptors.push(function ($rootScope, $q) {
-            return function (promise) {
-                return promise.then(
-                    //success -> don't intercept
-                    function (response) {
-                        return response;
-                    },
-                    //error -> if 401 save the request and broadcast an event
-                    function (response) {
-                        if (response.status === 401) {
-                            var deferred = $q.defer(),
-                                req = {
-                                    config: response.config,
-                                    deferred: deferred
-                                };
-                            $rootScope.requests401.push(req);
-                            $rootScope.$broadcast('event:loginRequired');
-                            return deferred.promise;
-                        }
-                        return $q.reject(response);
-                    }
-                );
-            };
-        });
-        httpHeaders = $httpProvider.defaults.headers;
-    });
-
-
-    as.run(function ($rootScope, $http, base64) {
-        //make current message accessible to root scope and therefore all scopes
+ 	as.run(function ($rootScope, $http, base64) {
+ 		//make current message accessible to root scope and therefore all scopes
         $rootScope.message = function () {
             return message;
         };
@@ -127,4 +168,3 @@
         });
     });
 
-}());
