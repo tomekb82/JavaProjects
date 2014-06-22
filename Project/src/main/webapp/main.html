@@ -17,14 +17,29 @@
             <msg key="title"></msg>
         </a>
         <ul class="nav">
-            <li ng-class="activeWhen(path()=='/person')">
-                <a href="#/person"><msg key="person"></msg></a>
+            <li ng-class="activeWhen(path()=='/view_expense')">
+                <a href="#/view_expense"><msg key="view_expense"></msg></a>
             </li>
-            <li ng-class="activeWhen(path()=='/admin')">
-                <a href="#/admin"><msg key="admin"></msg></a>
+            <li ng-class="activeWhen(path()=='/new_expense')">
+                <a href="#/new_expense"><msg key="new_expense"></msg></a>
             </li>
-             <li ng-class="activeWhen(path()=='/person_adm')">
-                <a href="#/person_adm">Person admin</a>
+             <li ng-class="activeWhen(path()=='/del_expense')">
+                <a href="#/del_expense"><msg key="del_expense"></msg></a>
+            </li>
+            <li ng-class="activeWhen(path()=='/service')">
+                <a href="#/service"><msg key="service"></msg></a>
+            </li>
+            <li ng-class="activeWhen(path()=='/filter')">
+                <a href="#/filter"><msg key="filter"></msg></a>
+            </li>
+            <li ng-class="activeWhen(path()=='/directive')">
+                <a href="#/directive"><msg key="directive"></msg></a>
+            </li>
+            <li ng-class="activeWhen(path()=='/form')">
+                <a href="#/form"><msg key="form"></msg></a>
+            </li>
+             <li ng-class="activeWhen(path()=='/pagination')">
+                <a href="#/pagination"><msg key="pagination"></msg></a>
             </li>
         </ul>
         <ul class="nav nav-pills pull-right">
@@ -91,14 +106,41 @@
 <!-- **************************************************************** -->
 <!-- 							SCRIPTS 							  -->
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/jquery/jquery.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script> -->
 <script type="text/javascript" src="js/jquery.i18n.properties-min-1.0.9.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script> -->
+
+
+<!-- main configuration file -->
 <script type="text/javascript" src="js/init.js"></script>
-<script type="text/javascript" src="js/controller.js"></script>
+<!-- controllers -->
+<script type="text/javascript" src="js/controllers/controller.js"></script>
+<!-- services -->
+<script type="text/javascript" src="js/services/expenses.js"></script>  
+<!--<script type="text/javascript" src="js/services/Expense.js"></script>  
+<script type="text/javascript" src="js/services/ExpenseLoader.js"></script>  
+<script type="text/javascript" src="js/services/MultiExpenseLoader.js"></script>   -->
+<script type="text/javascript" src="js/services/paginator.js"></script>  
+<!-- filters -->
+<script type="text/javascript" src="js/filters/myUpperCase.js"></script>  
+<!-- directives -->
+<script type="text/javascript" src="js/directives/focus.js"></script> 
+<script type="text/javascript" src="js/directives/expander.js"></script> 
+<script type="text/javascript" src="js/directives/accordion.js"></script> 
+<script type="text/javascript" src="js/directives/alertBar.js"></script> 
+
 <script type="text/javascript" src="js/i18n.js"></script>
 <script type="text/javascript" src="js/base64.js"></script>
+
+
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+<!-- NgResource: -->
+<script src="lib/angular/angular-resource.js"></script>
+<!-- <script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/socket.io/socket.io.js"></script> -->
 
 </body>
 
