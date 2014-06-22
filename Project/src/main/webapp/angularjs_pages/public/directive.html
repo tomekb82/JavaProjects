@@ -1,0 +1,43 @@
+ 
+Public page:
+<br/>
+<br/>
+Directives examples:
+<ul>
+	<li> focus directive </li>
+	<li> expander directive</li>
+	<li> accordion directive</li>
+</ul> 
+
+<b>focus:</b><br/>
+
+<body ng-controller="ServiceController">
+	<button ng-click="clickUnfocused()">
+		Not focused
+	</button>
+	<button ngbk-focus ng-click="clickFocused()">
+		I'm very focused!
+	</button>
+	<div>{{message.text}}</div>
+	</br/>
+
+<b>expander: </b><br/>
+
+<expander class='expander' expander-title='{{title}}'>
+    {{text}}
+</expander>
+<br/>
+<br/>
+
+<b>accordion: </b><br/>
+<accordion/>
+
+<br/>
+<br/>
+
+<b>alertBar: </b><br/>
+<alertBar></alertBar>
+
+</body>
+
+
