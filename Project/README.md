@@ -31,7 +31,10 @@ Spring JDBC, ORM:
 - database properties configuration in external file
 - initializing database with default values: .sql files
 - Hibernate: 
-	- relations: *@OneToOne, @OneToMany, @ManyToMany*
+	- relations: 
+		- *@OneToOne* : User <-> Contact	
+		- *@OneToMany* : User <-> Expense
+		- *@ManyToMany* :  User <-> Group
 	- unit tests for all relations
 
 Spring security:
@@ -78,10 +81,12 @@ Frontend:
 	-  AngularJS views 
 		- dispatcher servlet: action
 		- mapping: /action/*
-		- collecting data from REST API, 
+		- services: collecting data from REST API, loaders
+		- custom filters, directives
 		- spring security support
 		- I18N support (*pl,en()*), 
 		- boostrap support
+		- user forms with data validation
 
 Utils:
 ------
