@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ import eu.tbelina.spring.model.UserRest;
 import eu.tbelina.spring.service.IExpenseService;
 
 @Controller
-@RequestMapping("/rest_expenses/json/")
+@RequestMapping("/rest_expenses/json")
 public class ExpenseRestController {
 	
 	private IExpenseService expenseService;
@@ -62,6 +63,20 @@ public class ExpenseRestController {
 		List<Expense> getJsonRestAllExpenses(){
 		
 		return expenseService.getExpenses();
+	}
+	
+	/*
+	 * GET - JSON with LIMIT + OFFSET
+	 */
+	@RequestMapping(value="/limit_offset", method=RequestMethod.GET, 
+			headers={"Accept=application/json"})
+	public @ResponseBody 
+		List<Expense> getJsonRestAllExpensesLimitOffset(
+				 @QueryParam("limit") Integer limit,
+				 @QueryParam("offset") Integer offset,
+				 @QueryParam("query") String query){
+		
+		return expenseService.getExpenses(query, limit, offset);
 	}
 	
 	/*
