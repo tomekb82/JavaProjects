@@ -17,6 +17,7 @@ var as = angular.module('angularspring', [
 'angularspring.directives',
 'angularspring.controllers',
 
+/* externals */
 'ngResource'
 
 ]);
@@ -25,6 +26,7 @@ var as = angular.module('angularspring', [
 	as.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
         //configure the rounting of ng-view
         $routeProvider
+        	/* Expenses */
         	.when('/view_expense', { 
         		controller: 'PersonController', 
         		templateUrl: 'angularjs_pages/public/view_expense.html'})
@@ -34,27 +36,36 @@ var as = angular.module('angularspring', [
         	.when('/del_expense', { 
         		controller: 'AdminController', 
         		templateUrl: 'angularjs_pages/admin/del_expense.html'})
+        	/* Services */
         	.when('/service', { 
-        		/*resolve: {
+        		resolve: {
         			expenses: ["MultiExpenseLoader", function(MultiExpenseLoader) {
         				return MultiExpenseLoader();
                     }]
-                },*/
-        		controller: 'ServiceController', 
+                },
+        		controller: 'ListController', 
         		templateUrl: 'angularjs_pages/public/service.html'})
         	.when('/service/:name', { 
-        		controller: 'ServiceController', 
+        		resolve: {
+        			expense: ["ExpenseLoader", function(ExpenseLoader) {
+        				return ExpenseLoader();
+                    }]
+                },
+        		controller: 'EditController', 
         		templateUrl: 'angularjs_pages/public/service_detail.html'})	
-        		
+        	/* Filters */
         	.when('/filter', { 
-        		controller: 'ServiceController', 
+        		controller: 'CommonController', 
         		templateUrl: 'angularjs_pages/public/filter.html'})
+        	/* Directives */
         	.when('/directive', { 
-        		controller: 'ServiceController', 
+        		controller: 'CommonController', 
         		templateUrl: 'angularjs_pages/public/directive.html'})
+        	/* Forms */
         	.when('/form', { 
-        		controller: 'ServiceController', 
+        		controller: 'CommonController', 
         		templateUrl: 'angularjs_pages/public/form.html'})
+        	/* Pagination */
         	.when('/pagination', { 
         		controller: 'PaginationController', 
         		templateUrl: 'angularjs_pages/public/pagination.html'});
