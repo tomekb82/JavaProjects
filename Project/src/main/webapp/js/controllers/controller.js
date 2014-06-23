@@ -73,8 +73,17 @@ var app = angular.module('angularspring.controllers', []);
 		};
     }]);
     
-    app.controller('ServiceController', ['$scope', '$routeParams', 'ExpenseFactory', //'expenses', 
-                                         function ($scope, $routeParams, ExpenseFactory){//, expenses) {
+    app.controller('ListController', ['$scope', '$routeParams', 'expenses', 
+                                        function ($scope, $routeParams, expenses) {
+		$scope.expenses = expenses;
+   }]);
+    
+    app.controller('EditController', ['$scope', '$routeParams', 'expense', 
+                                        function ($scope, $routeParams, expense) {
+    	$scope.expense = expense;	
+   }]);
+    app.controller('CommonController', ['$scope', '$routeParams', 
+                                         function ($scope, $routeParams) {
     	/* filters */
         $scope.testFilter = 'program for demonstrating custom filter in angular js';
         
@@ -96,25 +105,6 @@ var app = angular.module('angularspring.controllers', []);
 			// TODO for the reader: actually save user to database...
 			$scope.message = 'Thanks, ' + $scope.user.first + ', we added you!';
 		};
-		
-		/* service */
-		//$scope.expenses = expenses;
-		
-		
-        ExpenseFactory.query({}, function (expenseFactory) {
-        	$scope.expenses = expenseFactory;
-        	//console.log("expenses: ", $scope.expenses);
-        });
-        
-		
-        $scope.expense_name = $routeParams.name;
-        if($scope.expense_name != null){
-        	ExpenseFactory.get({name: $scope.expense_name}, function (expenseFactory) {
-        		$scope.expense = expenseFactory;
-        		//console.log("expenses: ", $scope.expenses);
-        	});
-        }
-        
     }]);
         
     app.controller('AdminController', function ($scope, $http, i18n) {
