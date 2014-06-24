@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<f:view
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+	<h:head />
+	<h:body>
+		
+		<h:outputText value="#{i18n['mainPage']}" />
+	
+		<h:form>
+			<p:commandButton id="gotoListUsers" value="#{i18n['listUsers']}"
+				action="#{adminMB.gotoListUsers}" ajax="false"/>
+			<p:commandButton id="gotoAddUser" value="#{i18n['addUser']}"
+				action="#{adminMB.gotoAddUser}" ajax="false"/>
+			<p:commandButton id="gotoDelUser" value="#{i18n['delUser']}"
+				action="#{adminMB.gotoDelUser}" ajax="false"/>
+		</h:form>
+			
+	</h:body>
+</f:view>
