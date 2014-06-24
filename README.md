@@ -6,15 +6,15 @@ Repository contains following projects:
 
 Project
 -------
+
 Spring project contains:
+
 	- spring MVC
 	- spring DI and AOP
 	- spring transactions
 	- spring JDBC, ORM
-	- spring security:
-	- REST API:
-		- spring REST
-		- implementing JAX-RS (Jersey) 
+	- spring security
+	- REST API: spring REST, JAX-RS (Jersey) 
 	- remote services: RMI, HttpInvoker, JAX-WS:
     	- view types: jsp, jsf, AngularJS
     	- comparator vs comparable
