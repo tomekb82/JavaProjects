@@ -52,6 +52,12 @@ Hibernate
 - Hibernate – One-to-One example
 - XML_conf_quick_start
 
+Liferay
+-------
+- user management programatically
+- JSF(Primafaces)  views
+
+
 JAX-RS_REST_JSON
 ----------------
 TODO:
@@ -75,10 +81,6 @@ TODO:
 
 JSF
 ----
-TODO:
-
-Liferay
--------
 TODO:
 
 NodeJS
