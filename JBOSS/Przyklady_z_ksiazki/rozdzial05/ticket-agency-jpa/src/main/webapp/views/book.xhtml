@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h1>System rezerwacji biletów</h1>
+		<h:form id="reg">
+
+			<h3>Kwota: #{bookerService.money} zł</h3>
+			<h:messages errorClass="error" infoClass="info" globalOnly="true" />
+			<h:panelGrid columns="1" border="1" styleClass="smoke">
+				<h:dataTable var="_seat" value="#{seats}"
+					rendered="#{not empty seats}" styleClass="simpletablestyle">
+
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+                #{_seat.id}
+            </h:column>
+
+			 		<h:column>
+						<f:facet name="header">Opis</f:facet>
+                #{_seat.seatType.description}
+            </h:column>
+					<h:column>
+						<f:facet name="header">Cena</f:facet>
+                #{_seat.seatType.price} zł
+            </h:column>
+					<h:column>
+						<f:facet name="header">Rezerwacja</f:facet>
+                #{_seat.booked}
+            </h:column> 
+					<h:column>
+						<f:facet name="header">Akcja</f:facet>
+						<h:commandButton id="book"
+							action="#{bookerService.bookSeat(_seat.id, _seat.seatType.price)}"
+							disabled="#{_seat.booked}"
+							value="#{_seat.booked ? 'Zarezerwowano' : 'Zarezerwuj'}" />
+						
+					</h:column>
+
+				</h:dataTable>
+				
+				<h:commandButton id="restart"
+							action="#{ticketController.restart}"
+							 
+							value="Restart aplikacji" />	
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

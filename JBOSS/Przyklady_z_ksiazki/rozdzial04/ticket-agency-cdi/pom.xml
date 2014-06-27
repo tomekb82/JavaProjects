@@ -1,0 +1,128 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.packtpub.as7development.chapter4</groupId>
+  <artifactId>ticket-agency-cdi</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>ticket-agency-cdi Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+      <properties>
+      
+	    <version.jboss.maven.plugin>7.3.Final</version.jboss.maven.plugin>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.org.richfaces>4.2.0.Final</version.org.richfaces>
+
+        <version.org.jboss.bom>1.0.0.Final</version.org.jboss.bom>
+  	   <version.jboss.spec.javaee.6.0>3.0.2.Final</version.jboss.spec.javaee.6.0>
+
+        <!-- other plugin versions -->
+        <version.compiler.plugin>2.3.1</version.compiler.plugin>
+        <version.surefire.plugin>2.4.3</version.surefire.plugin>
+        <version.war.plugin>2.1.1</version.war.plugin>
+
+        <!-- maven-compiler-plugin -->
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.source>1.6</maven.compiler.source>
+    </properties>
+      <dependencyManagement>
+        <dependencies>
+            <!-- JBoss distributes a complete set of Java EE 6 APIs including 
+                a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
+                a collection) of artifacts. We use this here so that we always get the correct 
+                versions of artifacts. Here we use the jboss-javaee-6.0-with-tools stack 
+                (you can read this as the JBoss stack of the Java EE 6 APIs, with some extras 
+                tools for your project, such as Arquillian for testing) and the jboss-javaee-6.0-with-hibernate
+                stack you can read this as the JBoss stack of the Java EE 6 APIs, with extras 
+                from the Hibernate family of projects) -->
+           <dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-6.0</artifactId>
+				<version>${version.jboss.spec.javaee.6.0}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+            <dependency>
+                <groupId>org.richfaces</groupId>
+                <artifactId>richfaces-bom</artifactId>
+                <version>${version.org.richfaces}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+    <dependencies>
+
+        <!-- First declare the APIs we depend on and need for compilation. 
+            All of them are provided by JBoss AS 7 -->
+
+        <!-- Import the CDI API, we use provided scope as the API is included 
+            in JBoss AS 7 -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Import the Common Annotations API (JSR-250), we use provided 
+            scope as the API is included in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+         <groupId>org.jboss.logging</groupId>
+         <artifactId>jboss-logging</artifactId>
+         <version>RELEASE</version>
+      </dependency>
+
+        <!-- Import the EJB API, we use provided scope as the API is included 
+            in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+
+        <!-- Import the JSF API, we use provided scope as the API is included 
+            in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+          <!-- Import RichFaces runtime dependencies - these will be included
+         as libraries in the WAR -->
+        <dependency>
+            <groupId>org.richfaces.ui</groupId>
+            <artifactId>richfaces-components-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.richfaces.core</groupId>
+            <artifactId>richfaces-core-impl</artifactId>
+        </dependency>
+
+    </dependencies>
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+			<!-- JBoss AS plugin to deploy the application -->
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>${version.jboss.maven.plugin}</version>
+				<configuration>
+					<filename>${project.build.finalName}.war</filename>
+				</configuration>
+			</plugin>
+	</plugins>		
+  </build>
+</project>

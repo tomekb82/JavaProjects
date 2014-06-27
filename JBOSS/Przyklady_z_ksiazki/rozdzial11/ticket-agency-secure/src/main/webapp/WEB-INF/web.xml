@@ -1,0 +1,55 @@
+<web-app>
+	<context-param>
+		<param-name>com.sun.faces.enableRestoreView11Compatibility
+		</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>HtmlAuth</web-resource-name>
+			<description>zasady bezpieczeństwa aplikacji
+			</description>
+			<url-pattern>/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>Manager</role-name>
+		</auth-constraint>
+	</security-constraint>
+	  <login-config>
+        <!-- <auth-method>BASIC</auth-method>
+        <realm-name>file</realm-name> -->
+        <auth-method>FORM</auth-method>
+        <realm-name>other</realm-name>
+        <form-login-config>
+            <form-login-page>/login.jsf</form-login-page>
+            <form-error-page>/error.jsf</form-error-page>
+        </form-login-config> 
+    </login-config>
+ 
+	<security-role>
+		<role-name>Manager</role-name>
+	</security-role>
+
+
+
+
+
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<enabled>true</enabled>
+		<async-supported>false</async-supported>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>
+			*.jsf
+		</url-pattern>
+	</servlet-mapping>
+</web-app>

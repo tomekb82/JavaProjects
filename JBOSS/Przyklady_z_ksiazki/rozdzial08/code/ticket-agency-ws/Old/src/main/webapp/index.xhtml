@@ -1,0 +1,63 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<f:view>
+
+			<h:form>
+				<a4j:poll id="poll" interval="2000"
+					enabled="#{pollerBean.pollingActive}" render="grid" />
+				<rich:panel header="TicketBooker Machine" style="width:350px">
+
+					<h2>System rezerwacji biletów</h2>
+
+					<h3>Kwota: #{theatreBookerBean.money} zł</h3>
+					<h:messages errorClass="error" infoClass="info" globalOnly="true" />
+
+
+					<rich:dataTable id="grid" var="_seat" value="#{seats}"
+						rendered="#{not empty seats}" styleClass="simpletablestyle">
+
+						<h:column>
+							<f:facet name="header">Id</f:facet>
+                #{_seat.id}
+            </h:column>
+
+						<h:column>
+							<f:facet name="header">Nazwa</f:facet>
+                #{_seat.seatName}
+            </h:column>
+						<h:column>
+							<f:facet name="header">Cena</f:facet>
+                #{_seat.price}
+            </h:column>
+						<h:column>
+							<f:facet name="header">Rezerwacja</f:facet>
+                #{_seat.booked}
+            </h:column>
+						<h:column>
+							<f:facet name="header">Akcja</f:facet>
+							<h:commandButton id="book"
+								action="#{theatreBookerBean.bookSeat(_seat.id)}"
+								disabled="#{_seat.booked}"
+								value="#{_seat.booked ? 'Zarezerwowano' : 'Zarezerwuj'}" />
+						</h:column>
+
+					</rich:dataTable>
+
+
+
+
+				</rich:panel>
+
+
+			</h:form>
+
+		</f:view>
+	</ui:define>
+</ui:composition>

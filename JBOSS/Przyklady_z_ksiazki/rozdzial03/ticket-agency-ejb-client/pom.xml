@@ -1,0 +1,192 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.packtpub.as7development.chapter3.client</groupId>
+  <artifactId>ticket-agency-ejb-client</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>ticket-agency-ejb-client</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    
+    
+       <version.jboss.maven.plugin>7.3.Final</version.jboss.maven.plugin>
+
+        <version.jboss.as>7.2.0.Final</version.jboss.as>
+      
+        <version.jboss.spec.javaee.6.0>3.0.2.Final</version.jboss.spec.javaee.6.0>
+       
+       <!-- wersje innych dodatków -->
+       <version.compiler.plugin>2.3.1</version.compiler.plugin>
+       <version.exec.plugin>1.2.1</version.exec.plugin>
+       <version.war.plugin>2.1.1</version.war.plugin>
+
+       <!-- maven-compiler-plugin -->
+       <maven.compiler.target>1.6</maven.compiler.target>
+       <maven.compiler.source>1.6</maven.compiler.source>
+    
+  </properties>
+<dependencyManagement>
+      <dependencies>
+         <!-- Definicje API Javy EE 6 dostarczane przez JBoss -->
+         <!-- JBoss zawiera pełną dystrybucję API związanych z Javą EE, włączając w to
+            Bill of Materials (BOM). BOM określa wersję zboru artefaktów.
+			Używamy go w tym miejscu, by zawsze otrzymać właściwe wersje artefaktów.
+            Here we use the jboss-javaee-6.0 stack (you can
+            read this as the JBoss stack of the Java EE 6 APIs). W zasadzie przedstawiony
+            stos artefaktów można wykorzystywać z dowolnym JBoss AS implementującym Javę EE 6,
+            a nie tylko z JBoss AS 7! -->
+         <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <version>${version.jboss.spec.javaee.6.0}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>org.jboss.as</groupId>
+             <artifactId>jboss-as-ejb-client-bom</artifactId>
+             <version>${version.jboss.as}</version>
+             <type>pom</type>
+             <scope>import</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <dependencies>
+
+       <!-- Import API dotyczącego transakcji, używamy zakresu runtime, ponieważ referencje do tego API
+        nie występują w kodzie klienta w sposób bezpośredni. -->
+      <dependency>
+         <groupId>org.jboss.spec.javax.transaction</groupId>
+         <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+         <scope>runtime</scope>
+      </dependency>
+
+      <!-- Import API EJB 3.1, używamy zakresu runtime, ponieważ referencje do tego API
+        nie występują w kodzie klienta w sposób bezpośredni. -->
+         <dependency>
+         <groupId>org.jboss.spec.javax.ejb</groupId>
+         <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+         <scope>runtime</scope>
+      </dependency>
+
+       <!-- Potrzebny jest zdalny interfejs aplikacji EJB. -->
+       <dependency>
+          <groupId>com.packtpub.as7development.chapter3</groupId>
+          <artifactId>ticket-agency-ejb</artifactId>
+         <type>ejb-client</type>  
+       <!--   <version>${project.version}</version>-->
+       <version>0.0.1-SNAPSHOT</version>
+       </dependency>
+
+       <!-- Plik JAR API klienckiego EJB. Używamy zakresu runtime, ponieważ referencje do tego API
+        nie występują w kodzie klienta w sposób bezpośredni. Potrzebujemy posiadać ten plik w ścieżce. -->
+       <dependency>
+           <groupId>org.jboss</groupId>
+           <artifactId>jboss-ejb-client</artifactId>
+           <scope>runtime</scope>
+       </dependency>
+
+       <!-- Klient do komunikacji z serwerem używa XNIO. -->
+       <dependency>
+           <groupId>org.jboss.xnio</groupId>
+           <artifactId>xnio-api</artifactId>
+           <scope>runtime</scope>
+       </dependency>
+
+       <dependency>
+           <groupId>org.jboss.xnio</groupId>
+           <artifactId>xnio-nio</artifactId>
+           <scope>runtime</scope>
+       </dependency>
+
+      <!-- Klient potrzebuje JBoss remoting. -->
+       <dependency>
+            <groupId>org.jboss.remoting3</groupId>
+            <artifactId>jboss-remoting</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Zdalny dostęp warto zabezpieczyć. -->
+        <dependency>
+            <groupId>org.jboss.sasl</groupId>
+            <artifactId>jboss-sasl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Serializacja danych dla zdanie wywoływanych EJB -->
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling-river</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!-- Wymusza Javę 1.6  -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.compiler.plugin}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <fork>true</fork>
+                    
+                </configuration>
+            </plugin>
+
+            <!-- Dodaje moduł exec, by uruchamiać program przy użyciu maven -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${version.exec.plugin}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <workingDirectory>${project.build.directory}/exec-working-directory</workingDirectory>
+                    <arguments>
+                        <!-- automatycznie tworzy classpath z wszystkimi zależnościami projektu,
+                            a także folder wynikowy aplikacji. -->
+                        <argument>-classpath</argument>
+                        <classpath>
+                        </classpath>
+                        <argument>com.packtpub.as7development.chapter3.client.RemoteEJBClient</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <!-- tworzy niezależny plik jar -->
+          <!--   <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.jboss.as.quickstarts.ejb.remote.client.RemoteEJBClient</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin> -->
+         
+           
+        </plugins>
+
+    </build>
+
+</project>

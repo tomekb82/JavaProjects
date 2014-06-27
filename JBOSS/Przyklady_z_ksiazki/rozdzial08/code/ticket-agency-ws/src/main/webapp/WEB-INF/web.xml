@@ -1,0 +1,33 @@
+<web-app>
+	<context-param>
+		<param-name>com.sun.faces.enableRestoreView11Compatibility
+		</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>POJOService</servlet-name>
+		<servlet-class>
+			com.packtpub.as7development.chapter8.webservice.POJOWebService
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>POJOService</servlet-name>
+		<url-pattern>/pojoService</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<enabled>true</enabled>
+		<async-supported>false</async-supported>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>
+			*.jsf
+		</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>
