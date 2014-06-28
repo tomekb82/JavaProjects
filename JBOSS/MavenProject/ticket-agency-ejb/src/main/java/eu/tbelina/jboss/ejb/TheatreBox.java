@@ -3,9 +3,14 @@ package eu.tbelina.jboss.ejb;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.ejb.Lock;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ejb.Timeout;
+import javax.ejb.Timer;
+import javax.ejb.TimerConfig;
+import javax.ejb.TimerService;
 
 import org.jboss.logging.Logger;
 
@@ -24,8 +29,24 @@ public class TheatreBox {
 	private ArrayList<Seat> seatList;
 	private static final Logger logger = Logger.getLogger(TheatreBox.class);
 
+	@Resource
+	TimerService timerService;
+	long duration = 3000; // in ms
+
+	@PostConstruct
+	public void createTimer(){
+		timerService.createSingleActionTimer(duration, new TimerConfig());
+	}
+	
+	@Timeout// wykorzystanie pojedynczego czasomierza akcji
+	public void timeout(Timer timer){
+		logger.info("Przebudowanie XXXXXXXXX listy miejsc (pojedynczy czasomierze EJB");
+		//setupTheatre();
+	}
+	
 	@PostConstruct
 	public void setupTheatre(){
+
 		seatList = new ArrayList<Seat>();
 		int id = 0;
 		for (int i=0;i<5;i++) {
@@ -61,4 +82,5 @@ public class TheatreBox {
 
 		seat.setBooked(true);
 	}
+	
 }
