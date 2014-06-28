@@ -129,7 +129,7 @@ File->New->Maven Project
 
 Filter: ejb-javaee6
 
-- Dodac odpowiednie zaleznosci w pom.xml (patrz plik w projekcie *MavenProject*)
+- Dodac odpowiednie zaleznosci w pom.xml (patrz plik w projekcie *ticket-agency-ejb*)
 
 - Stworzyc w Eclipse nowa konfiguracje do wdrozenia projektu na JBoss
 
@@ -140,11 +140,39 @@ Goals: jboss-as:deploy
 Tworzenie zdalnego klienta EJB
 -------------------------------
 
+- jboss-remote-naming (JNDI): ejb:<app_name>/<module_name>/.../<classname-of-remote-interface>
+[logi z Jboss - przydatne do poierania JNDI dla 'ejb:']
+	java:global/ticket-agency-ejb/TheatreBox!eu.tbelina.jboss.ejb.TheatreBox
+        java:app/ticket-agency-ejb/TheatreBox!eu.tbelina.jboss.ejb.TheatreBox
+        java:module/TheatreBox!eu.tbelina.jboss.ejb.TheatreBox
+        java:global/ticket-agency-ejb/TheatreBox
+        java:app/ticket-agency-ejb/TheatreBox
+        java:module/TheatreBox
 
 
+- stworzyc nowy projekt Maven
+New->Maven Project
+
+wybrac archetyp: maven-archetype-quickstart
 
 
+- Dodac odpowiednie zaleznosci w pom.xml (patrz plik w projekcie *ticket-agency-ejb-client*)
 
+- context.lookup() do wyszukiwania komponenetów EJB
+
+- uruchomiene aplikacji klienckiej
+
+Dodano w pom.xml modul *exec-maven-plugin* umozliwiajacy wykonanie programow Javy przy uzyciu celu exec.
+
+- Stworzyc w Eclipse nowa konfiguracje do uruchominia klienta
+
+Run as->Run Configuration->Maven Build->New:
+base direcory: ${workspace_loc:/ticket-agency-ejb-client}
+goals: install exec:exec
+
+
+Dodanie uslugi czasomierze EJB
+------------------------------
 
 
 
