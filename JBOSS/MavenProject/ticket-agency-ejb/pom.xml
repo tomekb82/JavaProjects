@@ -27,9 +27,9 @@
     
     </properties>
 
+	<!-- BOM: import modulu zaweirajacego referencje do bibliotek stosu JBoss Enterprise -->
 	<dependencyManagement>
 		<dependencies>
-
 			<dependency>
 				<groupId>org.jboss.spec</groupId>
 				<artifactId>jboss-javaee-6.0</artifactId>
