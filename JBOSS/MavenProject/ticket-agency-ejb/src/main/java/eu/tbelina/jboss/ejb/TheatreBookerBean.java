@@ -4,6 +4,7 @@ import java.util.concurrent.Future;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.AsyncResult;
+import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
@@ -46,8 +47,10 @@ public class TheatreBookerBean implements TheatreBooker{
 		
 	}
 
+	@Asynchronous
 	@Override
 	public Future<String> bookSeatAsync(int seatId) {
+	
 		Seat seat = theatreBox.getSeatList().get(seatId);
 		if (seat.isBooked()) {
 			return new AsyncResult<String>("Miejsce "+seatId+" jest już zarezerwowane!"); // wyjątek sprawdzany
