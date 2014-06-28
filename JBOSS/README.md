@@ -71,7 +71,7 @@ http://localhost:9990/error/index.html
 Tworzenie pierwszego projektu w Eclipse
 ---------------------------------------
 
-Eclipse-> File-> New-> Dynami Web Project
+Eclipse-> File-> New-> Dynamic Web Project
 
 target runtime: JBoss 7.1 Runtime
 
@@ -104,3 +104,65 @@ HelloWorld.war
 
 Tworzenie pierwszego projektu Maven w Eclipse
 -----------------------------------------------
+
+- Add Archetype Catalog
+
+    Go to menu Window--->Preferences.
+
+    At the Preferences window, select Maven---->Archetypes,
+
+    On the Right Panel, click Add Remote Catalog... button.
+
+    At the Remote Archetype Catalog windows enter the following: -
+        Catalog file: http://repo.maven.apache.org/maven2
+        Description Maven Central
+
+    Add more remote catalog.
+        Catalog file: http://download.java.net/maven/2
+        Description Java.Net
+
+    Click OK to apply change.
+
+- Stworz nowy projekt Maven
+
+File->New->Maven Project
+
+Filter: ejb-javaee6
+
+- Dodac odpowiednie zaleznosci w pom.xml (patrz plik w projekcie *MavenProject*)
+
+- Stworzyc w Eclipse nowa konfiguracje do wdrozenia projektu na JBoss
+
+Run as->Run Configuration->Maven Build->New:
+Base directory: ${workspace_loc:/ticket-agency-ejb}
+Goals: jboss-as:deploy
+
+Tworzenie zdalnego klienta EJB
+-------------------------------
+
+
+
+
+
+
+
+
+
+
+
+Pobieranie przykladow z ksiazki
+-------------------------------------
+$ ftp ftp.helion.pl
+Connected to virtual115.helion.pl.
+220 ProFTPD 1.3.5rc3 Server ready.
+Name (ftp.helion.pl:tomek): anonymous
+331 Anonymous login ok, send your complete email address as your password
+Password:
+230-                          
+ 			    Serwer ftp wydawnictwa helion.
+ 			Przyklady do ksiazek prosze pobierac klikajac link na stronie !
+ 
+230 Anonymous access granted, restrictions apply
+Remote system type is UNIX.
+Using binary mode to transfer files.
+
