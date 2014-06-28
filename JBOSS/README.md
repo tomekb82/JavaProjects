@@ -171,8 +171,15 @@ base direcory: ${workspace_loc:/ticket-agency-ejb-client}
 goals: install exec:exec
 
 
-Dodanie uslugi czasomierze EJB
+Dodanie uslugi czasomierza EJB
 ------------------------------
+
+TODO: Nie dziala czasomierz pojedynczy w klasie TheatreBox
+
+TODO: Nie dziala obsluga obiektow Future - odbior wynikow
+
+
+
 
 
 
