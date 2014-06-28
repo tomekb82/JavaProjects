@@ -5,6 +5,8 @@ import java.util.concurrent.Future;
 import javax.annotation.PostConstruct;
 import javax.ejb.AsyncResult;
 import javax.ejb.EJB;
+import javax.ejb.Remote;
+import javax.ejb.Stateful;
 
 import org.jboss.logging.Logger;
 
@@ -12,6 +14,8 @@ import eu.tbelina.jboss.exception.NotEnoughMoneyException;
 import eu.tbelina.jboss.exception.SeatBookedException;
 import eu.tbelina.jboss.model.Seat;
 
+@Stateful
+@Remote(TheatreBooker.class)
 public class TheatreBookerBean implements TheatreBooker{
 
 	private static final Logger logger = Logger.getLogger(TheatreBookerBean.class);
