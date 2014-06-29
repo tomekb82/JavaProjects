@@ -178,11 +178,36 @@ TODO: Nie dziala czasomierz pojedynczy w klasie TheatreBox
 
 TODO: Nie dziala obsluga obiektow Future - odbior wynikow
 
+Realizacja czasomierza czasowego w eu.tbelina.jboss.timer.AutomaticSellerBean.
+Wywolanie rowniez czasomierza jednokrotnego z metody automaticCustomer()-> createTimer()
+
+Projekt webowy w maven dla obslugi CDI
+--------------------------------------
+
+New->Maven Project
+archetyp: webapp-javaee6
+artifact id (nazwa projektu): *ticket-agency-cdi*
 
 
+- uzycie adnotacji:
+	- @Named
+	- @SessionScoped, @RequestScoped
+	- @Model <=> @Named+@ReguestScoped
+	- @Produces - producenci, mozliwosc odwolania bezposrednio do obiektow z poziomu JSF
+
+- dodac obserwatra - oczekuja na zmiany danych
+
+- uzycie po stronie klienta AJAX'oweg odswiezania strony z uzyciem RchFaces	
 
 
+Projekt JPA + CDI
+------------------
 
+- Instalacja sterownika JDBC w JBoss AS7
+
+Instalowany jako modul: JBOSS_HOME/modules
+	- dodac plik .jar
+ 	- dodac plik module.ml zawierajacy deklaracje modulu i jego zaleznosci
 
 
 Pobieranie przykladow z ksiazki
