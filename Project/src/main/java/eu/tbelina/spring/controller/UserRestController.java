@@ -23,6 +23,19 @@ public class UserRestController {
 
 	private final  Map<Integer, UserRest> allUsers = new HashMap<Integer, UserRest>();
 	 
+	public UserRestController(){
+		
+		UserRest userRest1 = new UserRest();
+		userRest1.setId(1);
+		userRest1.setName("name1");
+		userRest1.setAge(21);
+		UserRest userRest2 = new UserRest();
+		userRest2.setId(2);
+		userRest2.setName("name2");
+		userRest2.setAge(22);
+		
+		allUsers.put(1, userRest1);
+	}
 	/* 
 	 * GET
 	 */
