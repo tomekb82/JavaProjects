@@ -209,6 +209,29 @@ Instalowany jako modul: JBOSS_HOME/modules
 	- dodac plik .jar
  	- dodac plik module.ml zawierajacy deklaracje modulu i jego zaleznosci
 
+	jboss-as-7.1.1.Final/modules/com$ mkdir mysql
+	jboss-as-7.1.1.Final/modules/com$ cd mysql/
+	jboss-as-7.1.1.Final/modules/com/mysql$ mkdir main
+	jboss-as-7.1.1.Final/modules/com/mysql$ cd main/
+	jboss-as-7.1.1.Final/modules/com/mysql/main$ cp /home/tomek/Desktop/mysql-connector-java-3.0.17-ga-bin.jar .
+	jboss-as-7.1.1.Final/modules/com/mysql/main$ ls
+	mysql-connector-java-3.0.17-ga-bin.jar
+
+	- module.xml ( o nazwie *com.mysql* dla Data Source) :
+	<module xmlns="urn:jboss:module:1.0" name="com.mysql">
+        	<resources>
+	                <resource-root path="mysql-connector-java-3.0.17-ga-bin.jar"/>
+	        </resources>
+        	<dependencies>
+	                <module name="javax.api"/>
+                	<module name="javax.transaction.api"/>
+        	</depndencies>
+	</module>
+
+- Instalacja zrodla danych (Data Source)
+
+	- edycja pliku standalone.xml
+
 
 Pobieranie przykladow z ksiazki
 -------------------------------------
