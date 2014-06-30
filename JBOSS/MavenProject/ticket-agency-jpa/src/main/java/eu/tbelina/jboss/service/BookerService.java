@@ -1,9 +1,5 @@
 package eu.tbelina.jboss.service;
 
-
-
-
-
 import java.io.Serializable;
 import java.util.List;
 
