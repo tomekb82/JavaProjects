@@ -317,7 +317,25 @@ $ sudo sh bin/standalone.sh -c standalone-full.xml
 	- tworzenie MDB(Ziarno sterowane komunikatami) - przechwytywanie/odczyt danych
 
 
+Web Services & REST API
+-----------------------
 
+Uwaga: na potrzeby testow dodano adnotacje @Stateless ,aby uniknac bledow zw. z transakcyjnoscia
+
+- testy SOAP:
+	- zainstalowac narzedzie soapUI w Eclipse
+		- Help->Install New Software: 
+			Name: SoapUI
+			Location: http://www/soapui.org/eclipse/update
+	- zainstalowano soapUI jako zewnetrzne narzedzie
+		- wklejono WSDL i wykonano testy operacji
+
+- testy REST: 
+	- zainstalowano soapUI jako zewnetrzne narzedzie
+		- wklejono URL i wykonano testy operacji
+	- plugin RESTClient do firefox:
+		- GET: http://localhost:8080/ticket-agency-jpa/rest/seat
+		- POST: http://localhost:8080/ticket-agency-jpa/rest/seat/3
 
 Pobieranie przykladow z ksiazki
 -------------------------------------
