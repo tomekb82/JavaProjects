@@ -218,19 +218,105 @@ Instalowany jako modul: JBOSS_HOME/modules
 	mysql-connector-java-3.0.17-ga-bin.jar
 
 	- module.xml ( o nazwie *com.mysql* dla Data Source) :
-	<module xmlns="urn:jboss:module:1.0" name="com.mysql">
-        	<resources>
-	                <resource-root path="mysql-connector-java-3.0.17-ga-bin.jar"/>
-	        </resources>
-        	<dependencies>
-	                <module name="javax.api"/>
-                	<module name="javax.transaction.api"/>
-        	</depndencies>
-	</module>
 
-- Instalacja zrodla danych (Data Source)
+WAZNE: w paczce .jar powinien byc tylko 1 driver (w paczkach z Maven sa 2 i rzuca bledem)
+	
+<module xmlns="urn:jboss:module:1.0" name="com.mysql">
+  <resources>
+    <resource-root path="mysql-connector-java-5.1.27-bin.jar"/>
+  </resources>
+  <dependencies>
+    <module name="javax.api"/>
+    <module name="javax.transaction.api"/>
+  </dependencies>
+</module>
+
+
+- konfiguracja zrodla danych (Data Source)
 
 	- edycja pliku standalone.xml
+
+
+	<subsystem xmlns="urn:jboss:domain:datasources:1.0">
+            <datasources>
+                <datasource jndi-name="java:jboss/datasources/MySqlDS" pool-name="MySqlDS" enabled="true" >
+                    <connection-url>jdbc:mysql://localhost:3306/ticketsystem</connection-url>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>jboss</user-name>
+                        <password>jboss</password>
+                    </security>
+                </datasource>
+                <drivers>
+                    <driver name="mysql" module="com.mysql" />
+                </drivers>
+            </datasources>
+        </subsystem>
+
+- utworzenie projektu web w Maven
+
+JMS Provider
+-------------------------------------
+
+- uruchomic serwer z uzyciem pliku konfiguracyjnego *standalone/configuration/standalone-full.xml* (dla obslugi JMS)
+
+$ sudo sh bin/standalone.sh -c standalone-full.xml
+
+	- dodanie w pliku standalone-full.xml fabryki polaczen JMS wykorzysujaca pule placzen
+
+		   <pooled-connection-factory name="hornetq-ra">
+                        <transaction mode="xa"/>
+                        <connectors>
+                            <connector-ref connector-name="in-vm"/>
+                        </connectors>
+                        <entries>
+                            <entry name="java:/JmsXA"/>
+                        </entries>
+                    </pooled-connection-factory>
+
+	- dodanie Data Source:
+ 	    
+  	  <datasources>
+                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</connection-url>
+                    <driver>h2</driver>
+                    <security>
+                        <user-name>sa</user-name>
+                        <password>sa</password>
+                    </security>
+                </datasource>
+                <datasource jta="false" jndi-name="java:jboss/datasources/MySqlDS" pool-name="MySqlDS" enabled="true">
+                    <connection-url>jdbc:mysql://localhost:3306/ticketsystem</connection-url>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>jboss</user-name>
+                        <password>jboss</password>
+                    </security>
+                </datasource>
+                <drivers>
+                    <driver name="mysql" module="com.mysql"/>
+                    <driver name="h2" module="com.h2database.h2">
+                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                </drivers>
+            </datasources>
+
+
+- jboss admin Console:
+
+	- dodawanie kolejki/tematu:
+	
+	Messaging-> Messaging Provider -> View -> JMS Destination -> Add
+	name: TicketQueue
+	JNDI name: java:jboss/jms/queue/ticketQueue
+
+- dodanie JMS do projektu
+
+	- tworzenie MDB(Ziarno sterowane komunikatami) - przechwytywanie/odczyt danych
+
+
 
 
 Pobieranie przykladow z ksiazki
