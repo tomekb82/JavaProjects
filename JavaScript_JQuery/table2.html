@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Podstay javascript </title>
+	<script type="text/javascript" language="javascript">
+
+		function printTable(header, table){
+			var message;
+			
+			message = header ? header + "\n\n" : "";
+
+			for(var i=0; i<table.length; i++){
+				message += "Element number " + i + ": " + table[i] + "\n";
+			}	
+			message += "\nTable size: " + table.length + " elementow";
+			alert(message);
+		}
+		function tableProperties(){
+		
+			// deklaracja zmiennej tablicowej
+			tableVariable = [];
+
+			// wypelnienie tablicy
+			for(var i=0; i<10; i++){
+				tableVariable.push(i+1);
+			}
+			
+			printTable("Table after init.", tableVariable);
+
+			// usuniecie pieciu ostatnich elementow
+			for(var i=tableVariable.length-1; i>=5; i--){
+				tableVariable.pop(i);
+			}
+			printTable("Table after delete.", tableVariable);
+
+			tableVariable.reverse();
+			printTable("Table after reverse.", tableVariable);
+			
+			tableVariable.sort();
+			printTable("Table after sort.", tableVariable);
+		}
+	</script>
+
+</head>
+<body>
+
+	<input id="button1" type="button" value="Table variable" onclick="tableProperties();"/>
+
+	<br/> <br/>
+
+
+
+</body>
+</html>
