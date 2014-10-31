@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Podstay javascript </title>
+	<script type="text/javascript" language="javascript">
+		function getName(){
+			var text = document.getElementById("text1");
+			return text.value.toString();
+		}
+		function getName(idText){
+			var text = document.getElementById(idText);
+			if(text){
+				return text.value.toString();
+			}else{
+				return "Element not found:" + idText;
+			}
+		}
+	</script>
+
+</head>
+<body>
+	Give a name:
+	<input id="text1" type="text"/>
+	<input id="button1" type="button" value="Show name" onclick="alert('Hello,' + getName() + '!!!');"/>
+	
+	<input id="button2" type="button" value="Show name by id" onclick="alert('Hello,' + getName('text1') + '!!!');"/>
+	<input id="button3" type="button" value="Name not found" onclick="alert('Hello,' + getName('text2') + '!!!');"/>
+</body>
+</html>
