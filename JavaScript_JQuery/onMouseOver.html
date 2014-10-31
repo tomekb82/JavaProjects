@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Podstay javascript </title>
+	<script type="text/javascript" language="javascript">
+
+		function changeFormat(element){
+			if(!element.style.fontWeight){
+				element.style.fontWeight = "bold";	
+			} else{
+				element.style.fontWeight = "";	
+			}
+		}
+	</script>
+
+</head>
+<body>
+	<div id="block1" onmouseover="changeFormat(this);" onmouseout="changeFormat(this);"> Blok tekstu </div>
+
+</body>
+</html>
