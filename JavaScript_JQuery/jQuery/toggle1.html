@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<style type="text/css">
+		a.pogrubiony
+		{
+			font-weight: bold;
+		}
+	</style>
+	<script type="text/javascript">
+		
+		function toggleClassObject(){
+			$(this).toggleClass("pogrubiony");
+		}
+		$(document).ready(function(){
+			$("a").hover(toggleClassObject);
+		});
+	</script>
+
+</head>
+<body>
+	<a href="www.onet.pl"> Onet </a>
+</body>
+</html>
