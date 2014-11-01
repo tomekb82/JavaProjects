@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Podstay javascript </title>
+	<script type="text/javascript" language="javascript">
+	
+		function getJsonObject(){
+			var numTable = new Array();
+			var numElements = 10;
+
+			for(var i=0; i< numElements; i++){
+				numTable[i] = numElements -i;
+			}
+			var numTableJSON = JSON.stringify(numTable);
+			alert(numTableJSON);
+
+			var charTable = new Array("Ala", "Ma", "Kota");
+			var charTableJSON = JSON.stringify(charTable);
+			alert(charTableJSON);
+
+			var dataJSON = '{"Firstname": "Dawid", "Lastname": "Kowalski", "Age" : "29"}';
+			var person = JSON.parse(dataJSON);
+			alert(person.Firstname + " " + person.Lastname + " (Age: " + person.Age + ")");
+	
+		}
+
+	</script>
+
+</head>
+<body>
+	<input id="button1" type="button" value="JSON" onclick="getJsonObject();"/>
+	
+</body>
+</html>

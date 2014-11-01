@@ -4,6 +4,22 @@
 
 <head>
 <title>Formularze </title>
+	
+
+	<style type="text/css">
+
+		span.error
+		{
+			color: #CC0000;
+			font-weight: bold;
+		}
+		input.error
+		{
+			border: 1px;
+			border-style: solid;
+			border-color: #CC0000;
+		}
+	</style>
 	<script type="text/javascript" language="javascript">
 
 		validForm = true;
@@ -68,10 +84,11 @@
 			validForm = false;
 			var span = document.createElement("SPAN");
 			span.appendChild(document.createTextNode(errorMessage));
-	
+			span.className = "error";
+
 			formField.parentNode.appendChild(span);
 			formField.hasError = span;	
-
+			formField.className = "error";
 			formField.onchange = clearError;
 	
 		}
@@ -79,14 +96,25 @@
 			this.parentNode.removeChild(this.hasError);
 			this.hasError = null;
 			this.onchange = null;
+			this.className = null;
 		}	
 
+		function confirmClearForm(){
+			return confirm("Confirm clearing form.");
+		}
+		function confirmSendForm(){
+			if(validateForm()){
+				return confirm("Form is filled properly. Do you want to send?");
+			}else{
+				return false;
+			}
+		}
 	</script>
 
 </head>
 <body>
 
-	<form method="post" name="Form1" onsubmit="return validateForm();">
+	<form method="post" name="Form1" onsubmit="return confirmSendForm();" onreset="return confirmClearForm();">
 		<fieldset>
 			<legend> Personal data: </legend>
 			<p> 

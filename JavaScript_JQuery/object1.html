@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Podstay javascript </title>
+	<script type="text/javascript" language="javascript">
+	
+		function Person(firstname, lastname, birthDate){
+			this.firstname = firstname;
+			this.lastname = lastname;
+			this.birthDate = birthDate;
+
+			// 1 wersja
+			//this.toString = personToString;
+			// 2 wersja - definicja inline
+			this.toString = function(){
+				var now = new Date();
+				var personAge = now.getFullYear() - this.birthDate.getFullYear();
+
+				return this.firstname + " " + this.lastname + " (Age: " + personAge + ")";
+			}
+
+			this.age = function(){
+				var now = new Date();
+				return (now.getFullYear() - this.birthDate.getFullYear());
+			}
+		}
+
+		function personToString(){
+			var now = new Date();
+			var personAge = now.getFullYear() - this.birthDate.getFullYear();
+
+			return this.firstname + " " + this.lastname + " (Age: " + personAge + ")";
+		}
+		
+		person = new Person("Dawid", "Kowalski", new Date(1982, 11, 17));
+		alert(person);
+
+		person2 = {
+			firstname: "Aga",
+			lastname: "Nowak",
+			birthDate: new Date(1982, 4, 15),
+			age: function(){
+				var now = new Date();
+				return (now.getFullYear() - this.birthDate.getFullYear());
+			}
+		}
+		alert(person2.age());
+	</script>
+
+</head>
+<body>
+	
+</body>
+</html>
