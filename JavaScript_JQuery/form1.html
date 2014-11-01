@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Formularze </title>
+	<script type="text/javascript" language="javascript">
+
+		validForm = true;
+		function validateForm(){
+			
+			//pobranie elementow formularza
+			var form = document.forms["Form1"].elements
+			
+			// czy wypelniono wymagane pola
+			/*if(!form["FirstName"].value || !form["Lastname"].value){
+				validForm = false;
+				alert("Fill all required form fields");
+			}*/
+
+			for(field in form){
+				if(form[field].name == "FirstName" || form[field].name == "LastName" 
+					|| form[field].name == "Age"){
+					if(!form[field].value){
+						printError(form[field], "Field is required");
+					}
+				}
+			}
+			
+			if(form["Profession"].selectedIndex == 0){
+				printError(form["Profession"], "Select profession");
+			}
+
+			// czy wprowadzono poprawna dlugosc imienia i nazwiska
+			var minLength = 2;
+			var maxLength = 50;
+			var digitPattern=/\d/;
+			var specialsPattern=/\W/;
+
+			if(form["FirstName"].value.length < minLength || form["FirstName"].value.length > maxLength){
+				printError(form["FirstName"], "First name should have length between 2-50 characters");
+			}else if(form["FirstName"].value.match(digitPattern) || form["FirstName"].value.match(specialsPattern)){
+                                printError(form["FirstName"], "First name should have only letters");
+                        }
+
+			if(form["LastName"].value.length < minLength || form["LastName"].value.length > maxLength){
+				printError(form["LastName"], "Last name should have length between 2-50 characters");
+			}
+	
+			// czy pole wiek ma wartosc z zakresu [0-120]
+			var minAge=0;
+			var maxAge=120;
+			var age = parseInt(form["Age"].value);
+			if(age < minAge || age > maxAge){
+				printError(form["Age"], "Age should be between 0-120 years");
+			}
+
+			if(!form["AcceptProcessPersonalData"].checked){
+				printError(form["AcceptProcessPersonalData"], "Please confirm operatin on personal data");			
+			}
+	
+			return validForm;
+		}
+		function printError(formField, errorMessage){
+			if(formField.hasError){
+				return;
+			}
+			validForm = false;
+			var span = document.createElement("SPAN");
+			span.appendChild(document.createTextNode(errorMessage));
+	
+			formField.parentNode.appendChild(span);
+			formField.hasError = span;	
+
+			formField.onchange = clearError;
+	
+		}
+		function clearError(){
+			this.parentNode.removeChild(this.hasError);
+			this.hasError = null;
+			this.onchange = null;
+		}	
+
+	</script>
+
+</head>
+<body>
+
+	<form method="post" name="Form1" onsubmit="return validateForm();">
+		<fieldset>
+			<legend> Personal data: </legend>
+			<p> 
+				Firstname: <br/>
+				<input type="text" size="45" name="FirstName">
+			</p>
+			<p> 
+				Lastname: <br/>
+				<input type="text" size="45" name="LastName">
+			</p>
+			<p> 
+				Age: <br/>
+				<input type="text" size="5" name="Age">
+			</p>
+			<p>	Profession:
+				<select type="text" name="Profession">
+					<option>-- Select profession --</option>
+					<option>Programmer </option>
+					<option>Analyst </option>
+					<option>Lecturer </option>
+					<option>Project manager </option>
+				</select>
+			</p>
+			<p>
+				Additional information: <br/>
+				<textarea cols="30" rows="10" name="Remarks" > </textarea>
+				</p>
+			<p>
+				<input type="checkbox" name="AcceptProcessPersonalData">
+				I consent to the processing of personal data
+			</p>
+			<p>
+				<input type="submit" value="Send" name="send">
+				<input type="reset" value="Clear form" name="clear">
+			</p>
+		</fieldset>
+	</form>
+
+</body>
+</html>
