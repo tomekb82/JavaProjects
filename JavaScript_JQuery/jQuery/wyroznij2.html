@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<style type="text/css">
+		a.pogrubiony
+		{
+			font-weight: bold;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			var liczbaElementow = 5;
+			for(var i=0; i<=liczbaElementow; i++){
+				$("#Lista1").append("<li name='" + i + "'> Element do wyroznienia nr " + i + "</li>");
+				$("#Lista2").append("<li> Element nr " + i + "</li>");
+			}
+
+			var index=-1;
+			function zmienIndex(zmniejsz){
+
+				if(zmniejsz){
+					if(--index < 0) index=0;
+				}else{
+					if(++index > (2*liczbaElementow-1) ) index = 2*liczbaElementow -1;
+				}
+
+				$("li:eq("+index+")").css({"list-style-type": "square", "color": "orange"});
+				$("li:not(li:eq("+index+"))").css({"list-style-type": "", "color": ""});
+			}
+
+			$("#Poprzedni").click(function(){
+				zmienIndex(true);
+			});
+			$("#Nastepny").click(function(){
+				zmienIndex(false);
+			});
+
+		});
+	</script>
+
+</head>
+<body>
+	<button id="Poprzedni"> Poprzedni</button>
+	<button id="Nastepny"> Nastepny</button>
+
+	<ul id="Lista1"></ul>
+	<ul id="Lista2"></ul>
+</body>
+</html>

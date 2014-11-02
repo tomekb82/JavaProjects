@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<style type="text/css">
+        	p.ukryty
+		{
+			display: none;
+		}
+	        div.pogrubiony
+                {
+                        font-weight: bold;
+                }
+        </style>
+
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#Przelacz").click(function(){
+				var czySwing = $("#typAnimacji").attr("checked"); // lub .is(":checked");
+				$("#toggle p").toggle(1500, czySwing ? "swing" : "linear");
+			});
+		});
+	</script>
+
+</head>
+<body>
+
+	<button id="Przelacz"> Przelacz tryb</button>
+	<input id="typAnimacji" type="checkbox"/> Swing
+
+	<div id="toggle" class="pogrubiony">
+	
+		<p>Lorem ipsum</p>
+		<p>Dolor sit</p>
+		<p>Amet consectetuer</p>
+
+		<p class="ukryty">Lorem ipsum2</p>
+		<p class="ukryty">Dolor sit2</p>
+		<p class="ukryty">Amet consectetuer2</p>
+
+	</div>
+	
+</body>
+</html>
