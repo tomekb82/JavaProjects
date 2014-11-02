@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<link type="text/css" href="jquery-ui.css" rel="stylesheet"/>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="jquery-ui.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			
+			$("#terminZajetyDialog").dialog({
+				autoOpen: false,
+				show: "fadeIn",
+				hide: "explode",
+			});
+
+			terminy = new Object();
+			$("#datepicker").datepicker({
+				onSelect: function(dateText, inst){
+					if(terminy[dateText.toString()] == 1){
+						$("#terminZajetyDialog").dialog("open");
+					}else{
+						terminy[dateText] = 1;
+						$("#terminy").append(dateText + "<br/>");
+					}
+				}	
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<p> Podaj date urodzenia: <input type="text" id ="datepicker2"/> </p>
+	<div id="datepicker"></div>
+	<p>Lista zajetych teminow: </p>
+	<div id="terminy"> </div>
+
+	<div id="terminZajetyDialog" title="Terminarz">
+		<p>Ten termin jest zajety. Wybierz inny termin.</p>
+	</div>
+</body>
+</html>

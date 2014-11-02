@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<link type="text/css" href="jquery-ui.css" rel="stylesheet"/>
+
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="jquery-ui.js"></script>
+	<style type="text/css">
+		#panel{
+			padding: 14px;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+			$("#poprzedni").button({
+				text: false,
+				icons: {
+					primary: "ui-icon-seek-start"
+				}
+			});
+			$("#odtwarzaj").button({
+				text: false,
+				icons: {
+					primary: "ui-icon-play"
+				}
+			});
+
+			$("#wstrzymaj").button({
+				text: false,
+				icons: {
+					primary: "ui-icon-pause"
+				}
+			});
+			$("#zatrzymaj").button({
+				text: false,
+				icons: {
+					primary: "ui-icon-stop"
+				}
+			});
+			$("#nastepny").button({
+				text: false,
+				icons: {
+					primary: "ui-icon-seek-end"
+				}
+			});
+			
+			$("#balans").buttonset();
+
+		});
+	</script>
+
+</head>
+<body>
+
+	<span id="panel" class="ui-widget-header ui-corner-all">
+
+		<button id="poprzedni"> Poprzedni</button>
+		<button id="odtwarzaj"> Odtwarzaj</button>
+		<button id="wstrzymaj"> Wstrzymaj</button>
+		<button id="zatrzymaj"> Zatrzymaj</button>
+		<button id="nastepny"> Nastepny</button>
+
+		Regulacja balansu:
+		<span id="balans">
+			<input type="radio" id="lewy" name="balans" /> <label for="lewy">Lewy</label>
+			<input type="radio" id="srodek" name="balans" /> <label for="srodek">Srodek</label>
+			<input type="radio" id="prawy"  name="balans" /> <label for="prawy">Prawy</label>
+		</span>
+	</span>
+
+
+
+</body>
+</html>
