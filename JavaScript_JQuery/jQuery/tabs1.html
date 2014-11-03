@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<link type="text/css" href="jquery-ui.css" rel="stylesheet"/>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="jquery-ui.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#kalendarz").datepicker();
+			
+			$("#karty").tabs();
+		});
+	</script>
+
+</head>
+<body>
+
+	<div id="karty">
+		<ul>
+			<li><a href="#karta1"> Zadania </a></li>
+			<li><a href="#karta2"> Kalendarz </a></li>
+			<li><a href="#karta3"> Lista klientow </a></li>
+		</ul>
+		<div id="karta1">
+			<p> Lista zadan:</p>
+			<ul>
+				<li> Zamowic ksiazke</li>
+				<li> Zrobic zakupy </li>
+				<li> Umyc samochod </li>
+			</ul>
+		</div>
+
+		<div id="karta2">
+			<p>Kalendarz</p>
+			<div id="kalendarz"> </div>
+		</div>
+
+		<div id="karta3">
+			<p>Lista klientow:</p>
+			<ul>
+				<li>Helion</li>
+				<li> Oxford</li>
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>

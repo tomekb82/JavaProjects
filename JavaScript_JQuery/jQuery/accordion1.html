@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<link type="text/css" href="jquery-ui.css" rel="stylesheet"/>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="jquery-ui.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#kalendarz").datepicker();
+			
+			$("#accordion").accordion({
+				collapsible: true,
+				animated: "easeOutBounce",
+				icons: {
+					header: "ui-icon-circle-plus",
+					headerSelected: "ui-icon-circle-minus"
+				}
+			});
+		});
+	</script>
+
+</head>
+<body>
+
+	<div id="accordion">
+		<h3><a href="#"> Zadania </a> </h3>
+			<div>
+				<p> Lista zadan:</p>
+				<ul>
+					<li> Zamowic ksiazke</li>
+					<li> Zrobic zakupy </li>
+					<li> Umyc samochod </li>
+				</ul>
+			</div>
+
+		<h3><a href="#"> Kalendarz </a> </h3>
+			<div>
+				<p>Kalendarz</p>
+				<div id="kalendarz"> </div>
+			</div>
+
+		<h3><a href="#"> Lista klientow </a> </h3>
+			<div>
+				<p>Lista klientow:</p>
+				<ul>
+					<li>Helion</li>
+					<li> Oxford</li>
+				</ul>
+			</div>
+	</div>
+</body>
+</html>
