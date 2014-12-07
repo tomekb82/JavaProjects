@@ -73,6 +73,18 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <version>${tapestry-release-version}</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+        	<groupId>org.apache.tapestry</groupId>
+        	<artifactId>tapestry-hibernate</artifactId>
+        	<version>${tapestry-release-version}</version>
+    	</dependency>
+ 
+    	<dependency>
+        	<groupId>hsqldb</groupId>
+        	<artifactId>hsqldb</artifactId>
+        	<version>1.8.0.7</version>
+    	</dependency>
 
     </dependencies>
     <build>
