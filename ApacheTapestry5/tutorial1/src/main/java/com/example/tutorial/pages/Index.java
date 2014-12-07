@@ -1,6 +1,8 @@
 package com.example.tutorial.pages;
 
 import java.util.Date;
+import java.util.Random;
+
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.*;
 import org.apache.tapestry5.corelib.components.*;
@@ -12,6 +14,11 @@ import org.apache.tapestry5.alerts.AlertManager;
  */
 public class Index
 {
+	private final Random random = new Random(System.nanoTime());
+	 
+    @InjectPage
+    private Guess guess;
+    
     @Property
     @Inject
     @Symbol(SymbolConstants.TAPESTRY_VERSION)
@@ -46,5 +53,14 @@ public class Index
         alertManager.info("Increment (via Ajax) clicked");
 
         return zone;
+    }
+    
+    @Log
+    Object onActionFromStart()
+    {
+    	int target = random.nextInt(10) + 1;
+    	 
+        guess.setup(target);
+        return guess;
     }
 }

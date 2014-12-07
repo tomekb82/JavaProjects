@@ -8,6 +8,13 @@
 
     <p>The current time is: <strong>${currentTime}</strong></p>
 
+    <p>
+        I'm thinking of a number between one and ten ...
+    </p>
+    <p>
+        <t:actionlink t:id="start">start guessing</t:actionlink>
+    </p>
+    
     <!-- A Zone is a component that can be updated in place, triggered by other components. -->
     <t:zone t:id="zone">
         <p>
