@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Podstay javascript </title>
+	<script type="text/javascript" language="javascript">
+		sprzedawcy = null;
+
+		function readXML(file){
+			// czy przegladarka obsluguje obiekt XMLhttprequest i nie jest to Internet Explorer
+			if(window.XMLHttpRequest && navigator.appName != "Microsoft Internet Explorer"){
+				xmlHttp = new XMLHttpRequest();
+			}else{
+				xmlHttp = new ActiveXObject("MSXML2.XMLHTTP");
+			}
+	
+			try{
+				xmlHttp.open("GET", file, false);
+				xmlHttp.send();
+
+				alert(xmlHttp.responseText);
+
+				var dataXml = xmlHttp.responseXML;
+				sellers = dataXml.getElementsByTagName("Sprzedawca");
+			} catch (e) {
+				alert(e);
+			}
+		}
+
+		function showSellerNames(){
+			if(!sellers){
+				alert("No sellers.");
+			} else{
+				for(var i=0; i< sellers.length; i++){
+					name = sellers[i].getElementsByTagName("Imie")[0].firstChild.nodeValue;
+					alert(name);
+				}
+			}
+		}
+	</script>
+
+</head>
+<body>
+	<input id="button1" type="button" value="Read xml" onclick="readXML('data.xml');"/>
+
+	<input id="button2" type="button" value="Read xml (with names)" onclick="readXML('data.xml'); showSellerNames();"/>
+</body>
+</html>

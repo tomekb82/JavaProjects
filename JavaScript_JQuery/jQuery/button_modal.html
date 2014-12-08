@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<link type="text/css" href="jquery-ui.css" rel="stylesheet"/>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="jquery-ui.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$("#terminZajetyDialog").dialog({
+				autoOpen: false,
+				show: "fadeIn",
+				hide: "explode",
+				modal: true,
+				buttons:{
+					OK: function(){
+						$(this).dialog("close");
+					}
+				}
+			});
+
+			$("#szczegolyTerminuDialog").dialog({
+				autoOpen: false,
+				show: "slide",
+				hide: "fold",
+				width: 400,
+				modal: true,
+				buttons:{
+					Zapisz: function(){
+						// zablokowanie terminu
+						terminy[data] = 1;
+
+						// pobranie daty i opisu
+						var szczegolyTerminu = "<b>" + data + "</b>: " + $("#opis").val() + "<br/>";
+						$("#terminy").append(szczegolyTerminu);
+
+						// usuniecie opisu
+						$("#opis").val("");
+
+						// zamkniecie okna
+						$(this).dialog("close");
+					},
+					Anuluj: function(){
+						// termin w dalszym ciagu wolnu
+						terminy[data] = 0;
+						// usuniecie opisu
+						$("#opis").val("");
+						// zamkniecie okna
+						$(this).dialog("close");
+
+					}
+				}
+			});
+
+			$("#wyczyscListe").button();
+
+			$("#potwierdzWyczyszczenieListyDialog").dialog({
+				autoOpen: false,
+				show: "fadeIn",
+				hide: "slideDown",
+				modal: true,
+				buttons:{
+					Usun: function(){
+						terminy = new Object();
+						$("#terminy").html("");
+						$(this).dialog("close");
+
+					
+					},
+
+					Anuluj: function(){
+						$(this).dialog("close");
+					}
+				}
+			});
+			$("#pustaListaDialog").dialog({
+				autoOpen: false,
+				show: "fadeIn",
+				hide: "slideDown",
+				modal: true,
+				buttons:{
+					OK: function(){
+						$(this).dialog("close");
+					}
+				}
+			});
+
+			
+			$("#wyczyscListe").click(function(){
+				if($("#terminy").html() == ""){
+					$("#pustaListaDialog").dialog("open");
+				}else{
+					$("#potwierdzWyczyszczenieListyDialog").dialog("open");
+				}
+			});
+
+
+			terminy = new Object();
+			var data;
+			$("#datepicker").datepicker({
+				onSelect: function(dateText, inst){
+					if(terminy[dateText.toString()] == 1){
+						$("#terminZajetyDialog").dialog("open");
+					}else{
+						data = dateText;
+						$("#szczegolyTerminuDialog").dialog("open");
+					}
+				}	
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<p> Podaj date urodzenia: <input type="text" id ="datepicker2"/> </p>
+	<div id="datepicker"></div>
+
+	<br/>
+	<button id="wyczyscListe"> Wyczysc liste </button>
+
+	<p>Lista zajetych teminow: </p>
+	<div id="terminy"> </div>
+
+	<div id="terminZajetyDialog" title="Terminarz">
+		<p>Ten termin jest zajety. Wybierz inny termin.</p>
+	</div>
+
+
+	<div id="szczegolyTerminuDialog" title="Szczegoly terminu">
+		<p> Wprowadz opis:</p>
+		<textarea id="opis" cols="40" rows="10"> </textarea>
+	</div>
+
+	<div id="potwierdzWyczyszczenieListyDialog" title="Potwierdz wyczyszczenie listy terminow">
+		<p> Czy rzeczywiscie usunac wszystkie terminy </p>
+	</div>
+
+	<div id="pustaListaDialog" title="Terminarz">
+		<p>Lista terminow pusta </p>
+	</div>
+
+</body>
+</html>

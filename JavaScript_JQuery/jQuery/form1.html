@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<style type="text/css">
+		fieldset
+		{
+			position: relative;
+			width: 340px;
+			border: 2px solid orange;
+		}
+		legend
+		{
+			position: relative;
+			text-align: center;
+			width: 100%;
+			background-color: orange;
+		}
+		table
+		{
+			border-collapse: collapse;
+			width: 320px;
+			border: 1px solid black;
+		}
+		th
+		{
+			background-color: orange;
+		}
+		input.ilosc,
+		td.ilosc
+		{
+			text-align; center;
+		}
+		td.cena,
+		td.wartosc,
+		td.suma
+		{
+			text-align: right;
+		}
+		span.error
+		{
+			border: 1px;
+			border-style: solid;
+			border-color: #CC0000;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+			$("td.ilosc input").change(function(){
+				var ilosc = parseInt($(this).val());
+				var cena = parseFloat($(this).parent().next().text());
+				$(this).parent().next().next().text((cena*ilosc).toFixed(2));
+				var suma=0;
+				$("#Zamowienie tbody tr").each(function(){
+					suma += parseFloat($("td.wartosc", this).text());
+				});
+				$("#Zamowienie tfoot td.suma").text(suma.toFixed(2));
+			});
+			
+			$("#Formularz1").submit(function(){
+				var formularzPoprawny = true;
+
+				$("input").each(function(){
+					$(this).removeClass("error");
+				});
+
+				if(!$("input[name='Imie']").val()){
+					$("input[name='Imie']").addClass("error");
+					formularzPoprawny = false;
+				}
+				if(!$("input[name='Nazwisko']").val()){
+					$("input[name='Nazwisko']").addClass("error");
+					formularzPoprawny = false;
+				}
+				return formularzPoprawny;
+			});	
+		});
+	</script>
+
+</head>
+<body>
+
+	<form id="Formularz1">
+		<fieldset>
+		<legend> Formularz zamowienia </legend>
+			<p>
+				Imie: <br/>
+				<input type="text" size="45" name="Imie"/>
+			</p>
+			<p>
+				Nazwisko: <br/>
+				<input type="text" size="45" name="Nazwisko"/>
+			</p>
+			<p>
+				<input type="checkbox" name="AkceptacjaRegulaminu"/>
+				Akceptuje regulamin
+			</p>
+			<table id="Zamowienie" border="1">
+				<thead>
+					<tr>
+						<th>Produkt</th>
+						<th>Ilosc</th>
+						<th>Cena</th>
+						<th>Wartosc</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td> Rower </td>
+						<td class="ilosc"> <input class="ilosc" type="text" size="2" value="0"/> </td>
+						<td class="cena">556.66</td>
+						<td class="wartosc">0.00</td>	
+					</tr>
+					<tr>
+						<td> Wozek dzieciecy </td>
+						<td class="ilosc"> <input class="ilosc" type="text" size="2" value="0"/> </td>
+						<td class="cena">2133.22</td>
+						<td class="wartosc">0.00</td>	
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3">SUMA</td>
+						<td class="suma">0.00</td>
+					</tr>
+				</tfoot>
+			</table>
+			<p>
+				<input type="submit" value="Wyslij" name="wyslij">
+				<input type="reset" value="Wyczysc" name="wyczysc">
+			</p>
+		</fieldset>
+	</form>
+
+</body>
+</html>

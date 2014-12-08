@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="jquery.tablesorter.js"></script>
+	<!--<script type="text/javascript" src="jquery.tablesorter.pager.js"></script>-->
+
+	<style type="text/css">
+		table{
+			border: solid 1px #e8eef4;
+			border-collapse: collapse;
+			width: 100%;
+		}
+		table.tablesorter{
+			background-color: #e8eef4;
+			border: solid 1px #e8eef4;
+			padding: 6px 5px;
+			text-align: left;
+		}
+		table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+			background-color: #e8eef4;
+			border: solid 1px #e8eef4;
+			padding: 6px 5px;
+			text-align: left;
+		}	
+		table.tablesorter thead tr .header{
+			background-repeat: no-repeat;
+			background-position: center right;
+			cursor: pointer;
+		}
+		table.tablesorter tbody td{
+			color: #3d3d3d;
+			padding: 4px;
+			background-color: #fff;
+			vertical-align: top;
+		}
+		table.tablesorter tbody tr.odd td{
+			background-color: #f3f5f7;
+		}
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("table").tablesorter({
+				
+				widthFixed: true,
+				widgets: ['zebra']
+			}).tablesorterPager({container:$("#pager"), size: $(".pagesize option:selected").val() });
+		});
+	</script>
+
+</head>
+<body>
+	<table id="table" class="tablesorter">
+		<thead>
+                	<tr>
+                                <th>Produkt</th>
+                                <th>Ilosc</th>
+                                <th>Cena</th>
+                                <th>Wartosc</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                                <td> Rower </td>
+                                <td class="ilosc"> 44 </td>
+                                <td class="cena">556.66</td>
+                                <td class="wartosc">0.00</td>
+                        </tr>
+                        <tr>
+                                <td> Wozek dzieciecy </td>
+                                <td class="ilosc"> 23 </td>
+                                <td class="cena">2133.22</td>
+                                <td class="wartosc">0.00</td>
+                        </tr>
+			<tr>
+                                <td> Motor </td>
+                                <td class="ilosc"> 232 </td>
+                                <td class="cena">21332.22</td>
+                                <td class="wartosc">0.200</td>
+                        </tr>
+			<tr>
+                                <td> Motor2 </td>
+                                <td class="ilosc"> 232 </td>
+                                <td class="cena">21332.22</td>
+                                <td class="wartosc">0.200</td>
+                        </tr>
+			<tr>
+                                <td> Motor3 </td>
+                                <td class="ilosc"> 232 </td>
+                                <td class="cena">21332.22</td>
+                                <td class="wartosc">0.200</td>
+                        </tr>
+
+
+
+                </tbody>
+                <tfoot>
+                        <tr>
+                                <td colspan="3">SUMA</td>
+                                <td class="suma">0.00</td>
+                        </tr>
+                </tfoot>
+
+	</table>
+
+	<div id="pager" class="pager">
+		<form>
+			<p class="first">First</p>
+			<p class="prev">Prev</p>
+			<p class="pagedisplay">Display</p>
+			<p class="next">Next</p>
+			<p class="last">Last</p>
+
+			<select class="pagesize">
+				<option selected="selected" value="5"> 5 </option>
+				<option value="10">10</option>
+			</select>
+		</form>
+	</div>
+</body>
+</html>

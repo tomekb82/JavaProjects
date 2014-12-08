@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Sprzedawcy>
+	<Sprzedawca>
+		<Id>1</Id>
+		<Imie>Anna</Imie>
+		<Nazwisko>Nowak</Nazwisko>
+	</Sprzedawca>
+	<Sprzedawca>
+		<Id>2</Id>
+		<Imie>Adam</Imie>
+		<Nazwisko>Nowak</Nazwisko>
+	</Sprzedawca>
+	<Sprzedawca>
+		<Id>3</Id>
+		<Imie>Andrzej</Imie>
+		<Nazwisko>Nowak</Nazwisko>
+	</Sprzedawca>
+</Sprzedawcy>
+

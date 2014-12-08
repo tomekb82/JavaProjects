@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Podstay javascript </title>
+	<script type="text/javascript" language="javascript">
+
+		enlarge=false;	
+		function showTableProperties(){
+			table = document.getElementById("table1");
+			var message;
+			if(table){
+				message = "Table properties:\n" +
+					"Width: " + table.width + "\n" + 
+					"Border: " + table.border + "\n" + 
+					"Background color: " + table.bgColor + "\n" + 
+					"Cell spacing: " + table.cellspacing; 
+			}else{
+				message = "No table";
+			}
+			alert(message);
+		}
+
+		function changeTableSize(){
+			table = document.getElementById("table1");
+			if(!enlarge){
+				table.width *= 2;		
+				enlarge = true;
+			}else{
+				table.width /= 2;		
+				enlarge = false;
+			}
+		}
+		function changeBgTableColor(newColor){
+			table = document.getElementById("table1");
+			if(table){
+				table.bgColor = newColor;
+			}	
+			
+		}
+
+	</script>
+
+</head>
+<body>
+
+	<table id="table1" width="400" border="1" cellspacing="10" cellpadding="10">
+		<tr>
+			<td> Left cell </td>
+			<td> Right cell </td>
+		</tr>
+	</table>
+
+	<br/>
+
+	<input id="button1" type="button" value="Read table properties" onclick="showTableProperties();"/>
+	<input id="button2" type="button" value="Change table size" onclick="changeTableSize();"/>
+
+	<br/> <br/>
+
+	Choose background color:
+	<select onchange="changeBgTableColor(this.value);">
+		<option value="White"> White </option>
+		<option value="Red"> Red </option>
+		<option value="Green"> Green </option>
+		<option value="Blue"> Blue </option>
+		<option value="Yellow"> Yellow </option>
+	</select>
+
+
+</body>
+</html>

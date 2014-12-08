@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>jQuery </title>
+	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<style type="text/css">
+		div.pogrubiony
+		{
+			font-weight: bold;
+		}
+		div.czerwony
+		{
+			color: red;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+			$("div").addClass("czerwony");
+			$("#block2").addClass("pogrubiony");
+
+			alert("Nastapi usuniecie formatowania bloku o id 'block1'");
+			$("#block1").removeClass("czerwony");
+			
+		});
+	</script>
+
+</head>
+<body>
+	<div id="block1">
+		BLOK 1
+	</div>
+
+	<div id="block2">
+		BLOK 2
+	</div>
+
+
+</body>
+</html>

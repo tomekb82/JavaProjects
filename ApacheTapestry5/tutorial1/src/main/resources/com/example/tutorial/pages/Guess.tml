@@ -1,0 +1,39 @@
+<html t:type="layout" title="Guess The Number"
+    xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter">
+  
+    <p>
+        The secret number is: ${target}.
+    </p>
+  
+    <strong>Guess number ${guessCount}</strong>
+  
+    <p>Make a guess from the options below:</p>
+  
+  <!--
+  This snippet uses Tapestry's If component. 
+  The If component evaluates its test parameter and, 
+  if the value evaluates to true, renders its body. 
+  The property bound to test doesn't have to be a boolean; 
+  Tapestry treats null as false, it treats zero as false 
+  and non-zero as true, it treats an empty Collection as false ... 
+  and for Strings (such as message) it treats a blank string 
+  (one that is null, or consists only of white space) as false, 
+  and a non-blank string is true.
+  -->
+  <t:if test="message">
+    <p>
+        <strong>${message}</strong>
+    </p>
+  </t:if>
+
+    <ul class="list-inline">
+        <t:loop source="1..10" value="current">
+            <li>
+            <t:actionlink t:id="makeGuess" context="current">${current}
+            </t:actionlink>
+            </li>
+        </t:loop>
+    </ul>
+  
+</html>

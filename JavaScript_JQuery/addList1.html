@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Podstay javascript </title>
+	<script type="text/javascript" language="javascript">
+		function addElementToList(){
+			var text = document.getElementById("text1");
+			var list = document.getElementById("list1");
+
+			list.innerHTML += text.value + "<br>";
+		}
+		function addElementToListConfirm(){
+			var text = document.getElementById("text1");
+			var confirmation = confirm("Are you sure to add " + text.value + " to list.");
+			if(confirmation){
+				var list = document.getElementById("list1");
+				list.innerHTML += text.value + "<br>";
+			}
+		}
+
+
+	</script>
+
+</head>
+<body>
+
+	Give a name:
+	<input id="text1" type="text"/>
+	<input id="button4" type="button" value="Add element to list" onclick="addElementToList();"/>
+	<input id="button4" type="button" value="Add element to list (with confirm)" onclick="addElementToListConfirm();"/>
+
+	<br/>
+	<div id="list1">
+		<b>Name list:</b><br/>
+	</div>
+</body>
+</html>

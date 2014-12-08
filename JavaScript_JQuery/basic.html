@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<title>Podstay javascript </title>
+	<script type="text/javascript" language="javascript">
+		liczba1 = 10;//zmienna globalna
+		var liczba2 = 5; // zmienna lokalna
+
+		function dodaj(liczba1, liczba2){	
+			return liczba1 + liczba2;
+		}
+		function odejmij(liczba1, liczba2){	
+			return liczba1 - liczba2;
+		}
+		function pomnoz(liczba1, liczba2){	
+			return liczba1 * liczba2;
+		}
+		function podziel(liczba1, liczba2){	
+			if(liczba2 == 0){
+				return 0;
+			}
+			return liczba1/liczba2;
+		}
+
+		var wynikDodawania = dodaj(liczba1, liczba2);
+		var wynikOdejmowania = odejmij(liczba1, liczba2);
+		alert("Wynik dodawania=" + wynikDodawania + "\n Wynik odejmowania=" + wynikOdejmowania);
+
+		document.writeln("<b>Wynik dodawania</b>=" + wynikDodawania + "\n <i>Wynik odejmowania</i>=" + wynikOdejmowania);
+	</script>
+
+</head>
+<body>
+</body>
+</html>
