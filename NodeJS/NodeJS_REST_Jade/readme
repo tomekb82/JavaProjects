@@ -1,0 +1,41 @@
+strona: http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/
+
+npm update -g express
+npm install -g express-generator
+
+package.json
+{
+    "name": "application-name",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "express": "~4.0.0",
+        "serve-favicon": "*",
+        "morgan": "~1.0.0",
+        "cookie-parser": "~1.0.1",
+        "body-parser": "~1.0.0",
+        "debug": "~0.7.4",
+        "jade": "*",
+        "mongodb": "*",
+        "mongoskin": "*"
+    }
+}
+npm install
+
+npm install -d
+
+express nodetest2
+
+mkdir data
+
+node ./bin/www.js
+
+./mongod --dbpath /home/tomekb/Desktop/REST/data/
+
+
+mongo
+use nodetest2
+db.userlist.insert({'username' : 'test1','email' : 'test1@test.com','fullname' : 'Bob Smith','age' : 27,'location' : 'San Francisco','gender' : 'Male'})
