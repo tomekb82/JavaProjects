@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${db.driverClassName}" />
+		<property name="jdbcUrl" value="${db.url}" />
+		<property name="user" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+
+        <property name="acquireIncrement" value="${pool.aquireIncrement}" />
+        <property name="minPoolSize" value="${pool.minSize}" />
+        <property name="maxPoolSize" value="${pool.maxSize}" />
+        <property name="maxIdleTime" value="${pool.maxIdleTime}" />
+        <property name="testConnectionOnCheckout" value="${pool.testConnectionOnCheckout}" />
+        <property name="idleConnectionTestPeriod" value="${pool.idleConnectionTestPeriod}" />
+		<property name="unreturnedConnectionTimeout" value="${pool.unreturnedConnectionTimeout}" />
+	</bean>
+</beans>
