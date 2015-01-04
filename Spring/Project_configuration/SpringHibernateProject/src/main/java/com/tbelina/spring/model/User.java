@@ -72,6 +72,11 @@ public class User {
 		return lastName;
 	}
 	
+	@Transient
+	public String getNameFull() {
+		return this.firstName + " " + this.lastName;
+	}
+	
 	/**
 	* 
 	*/
