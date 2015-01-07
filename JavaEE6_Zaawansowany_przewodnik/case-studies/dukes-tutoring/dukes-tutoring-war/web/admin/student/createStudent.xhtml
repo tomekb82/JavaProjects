@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./../adminTemplate.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid id="createStudentPanel" columns="3"
+                         summary="#{bundle['student.create.form.title']}">
+                <f:facet name="header">
+                    <h:outputText value="#{bundle['student.create.form.title']}" />
+                </f:facet>
+                <h:outputLabel for="firstName" value="#{bundle['person.firstName']}:" />
+                <h:inputText id="firstName" value="#{studentManager.newStudent.firstName}" />
+                <h:message for="firstName" style="color: #D20005"/>
+                <h:outputLabel for="middleName" value="#{bundle['person.middleName']}:" />
+                <h:inputText id="middleName" value="#{studentManager.newStudent.middleName}" />
+                <h:message for="middleName" style="color: #D20005"/>
+                <h:outputLabel for="lastName" value="#{bundle['person.lastName']}:" />
+                <h:inputText id="lastName" value="#{studentManager.newStudent.lastName}" />
+                <h:message for="lastName" style="color: #D20005"/>
+                <h:outputLabel for="nickName" value="#{bundle['person.nickName']}:" />
+                <h:inputText id="nickName" value="#{studentManager.newStudent.nickname}" />
+                <h:message for="nickName" style="color: #D20005"/>
+                <h:outputLabel for="suffix" value="#{bundle['person.suffix']}:" />
+                <h:inputText id="suffix" value="#{studentManager.newStudent.suffix}" />
+                <h:message for="suffix" style="color: #D20005"/>
+                <h:outputLabel for="school" value="#{bundle['student.school']}:" />
+                <h:inputText id="school" value="#{studentManager.newStudent.school}" />
+                <h:message for="school" style="color: #D20005" />
+                <h:outputLabel for="grade" value="#{bundle['student.grade']}:" />
+                <h:selectOneMenu id="grade" value="#{studentManager.newStudent.grade}">
+                    <f:selectItem itemLabel="-Select One-" itemValue="None selected" />
+                    <f:selectItems value="#{adminManager.allGrades}" />
+                </h:selectOneMenu>
+                <h:message for="grade" style="color: #D20005" />
+                <h:outputLabel for="email" value="#{bundle['person.email']}:" />
+                <h:inputText id="email" value="#{studentManager.newStudent.email}" />
+                <h:message for="email" style="color: #D20005"/>
+                <h:outputLabel for="homePhone" value="#{bundle['person.homePhone']}:" />
+                <h:inputText id="homePhone" value="#{studentManager.newStudent.homePhone}" />
+                <h:message for="homePhone" style="color: #D20005"/>
+                <h:outputLabel for="mobilePhone" value="#{bundle['person.mobilePhone']}:" />
+                <h:inputText id="mobilePhone" value="#{studentManager.newStudent.mobilePhone}" />
+                <h:message for="mobilePhone" style="color: #D20005"/>
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit" 
+                                         action="#{adminBean.createStudent(studentManager.newStudent)}"
+                                         value="#{bundle['action.submit']}" />
+                        <h:commandButton id="cancel"
+                                         action="/admin/index"
+                                         immediate="true"
+                                         value="#{bundle['action.cancel']}" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+

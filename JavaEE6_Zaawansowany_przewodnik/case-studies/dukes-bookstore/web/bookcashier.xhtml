@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                template="/bookstoreTemplate.xhtml"> 
+
+    <ui:define name="top"></ui:define> 
+    <ui:define name="content">
+        <h:form id="bookcashier" >
+            <p>
+                <h:outputText value="#{bundle.Amount}" />
+                <strong>
+                    <h:outputText value="#{cart.total}">
+                        <f:convertNumber currencySymbol="$" type="currency"/>
+                    </h:outputText>
+                </strong>
+            </p>
+            <p>
+                <h:outputText value="#{bundle.Purchase}"/>
+            </p>
+
+            <h:panelGrid columns="2"
+                         headerClass="list-header"
+                         styleClass="list-background"
+                         rowClasses="list-row-even, list-row-odd"
+                         summary="#{bundle.CustomerInfo}"
+                         title="#{bundle.Checkout}">
+                <!-- Panel header -->
+                <f:facet name="header">
+                    <h:outputText value="#{bundle.Checkout}"/>
+                </f:facet>
+
+                <!-- Customer name -->
+                <h:outputLabel for="name" value="#{bundle.Name}" />
+                <h:inputText id="name"
+                             size="30"
+                             value="#{cashier.name}"
+                             required="true"
+                             requiredMessage="#{bundle.ReqCustomerName}" >
+                    <f:valueChangeListener
+                        type="dukesbookstore.listeners.NameChanged" /> 
+                </h:inputText>
+                <h:message styleClass="error-message" for="name"/>
+
+                <!-- Credit card number -->
+                <h:outputLabel for="ccno" value="#{bundle.CCNumber}"/>
+                <h:inputText id="ccno" 
+                             size="19"
+                             value="#{cashier.creditCardNumber}"
+                             required="true"
+                             requiredMessage="#{bundle.ReqCreditCard}" >
+                    <f:converter converterId="ccno"/>
+                    <f:validateRegex 
+                        pattern="\d{16}|\d{4} \d{4} \d{4} \d{4}|\d{4}-\d{4}-\d{4}-\d{4}" /> 
+                </h:inputText>
+                <h:message styleClass="error-message" for="ccno"/>
+
+                <!-- Shipping option -->
+                <h:outputLabel for="shippingOption" value="#{bundle.Shipping}"/>
+                <h:selectOneMenu id="shippingOption"
+                                 required="true"
+                                 value="#{cashier.shippingOption}">
+                    <f:selectItem itemValue="2"
+                                  itemLabel="#{bundle.QuickShip}"/>
+                    <f:selectItem itemValue="5"
+                                  itemLabel="#{bundle.NormalShip}"/>
+                    <f:selectItem itemValue="7"
+                                  itemLabel="#{bundle.SaverShip}"/>
+                </h:selectOneMenu>
+                <h:message styleClass="error-message" for="shippingOption"/>
+
+                <!-- Newsletter subscriptions -->
+                <h:outputLabel for="newslettercheckbox" 
+                               value="#{bundle.Newsletters}"/>
+                <h:selectManyCheckbox id="newslettercheckbox"
+                                      layout="pageDirection"
+                                      value="#{cashier.newsletters}">
+                    <f:selectItems value="#{cashier.newsletterItems}"/>
+                </h:selectManyCheckbox>
+                <h:message styleClass="error-message" for="newslettercheckbox"/>
+
+                <h:message styleClass="error-message" for="fanClub" />
+
+            </h:panelGrid>
+            <h:panelGrid columns="2" 
+                         columnClasses="special-offer, list-column-left" 
+                         summary="#{bundle.DukeFanClub}" >
+                <h:selectBooleanCheckbox id="fanClub" 
+                                         rendered="false"
+                                         binding="#{cashier.specialOffer}" />
+                <h:outputLabel for="fanClub"
+                               rendered="false"
+                               binding="#{cashier.specialOfferText}"
+                               value="#{bundle.DukeFanClub}" />
+            </h:panelGrid>
+            <h:panelGrid columns="1" 
+                         columnClasses="special-offer" 
+                         summary="#{bundle.ThanksMsg}">
+                <h:outputText id="thanksMsg" 
+                              rendered="false"
+                              binding="#{cashier.thankYou}"
+                              value="#{bundle.ThanksMsg}" />
+                <h:commandButton value="#{bundle.Submit}"
+                                 action="#{cashier.submit}">
+                    <f:setPropertyActionListener 
+                        target="#{cashier.stringProperty}" value=""/>
+                </h:commandButton>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

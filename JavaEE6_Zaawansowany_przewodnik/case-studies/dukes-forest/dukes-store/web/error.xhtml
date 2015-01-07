@@ -1,0 +1,30 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/template.xhtml"
+    xmlns:util="http://java.sun.com/jsf/composite/util"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="title">
+        Error Page
+    </ui:define>
+
+    <ui:define name="body">
+        <h2 style="color:red; border:0px">Sorry for the inconvenience but an unexpected error occurred:</h2>
+
+        <h4><strong>Error Message:</strong> #{exceptionMessage}</h4>
+
+        <a href="#" onmousedown="if(document.getElementById('mydiv').style.display == 'none'){ document.getElementById('mydiv').style.display = 'block'; }else{ document.getElementById('mydiv').style.display = 'none'; }">Show more details</a>
+
+        <br />
+        <div id="mydiv" style="border:1px solid black; display:none; background-color:lightgray;">            
+            <pre>
+#{exceptionTrace}
+            </pre>
+        </div>
+
+    </ui:define> 
+
+</ui:composition>

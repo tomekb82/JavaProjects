@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Tworzenie listy zadań</title>
+        <h:outputStylesheet library="css" name="default.css"/>
+    </h:head>
+    <h:body>
+        <h2>Tworzenie listy zadań</h2>
+        <p>Wpisz zadania do wykonania.</p>
+        <h:form id="todolist">
+            <p><h:outputLabel value="Wpisz tekst: " for="inputString"/>
+                <h:inputText id="inputString"
+                             value="#{listBean.inputString}"/></p>
+            <p><h:commandButton value="Wyślij"
+                                action="#{listBean.createTask()}"/></p>
+            <p><h:commandButton value="Pokaż elementy"
+                                action="todolist"/></p>
+        </h:form>
+        <div class="messagecolor">
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+    </h:body>
+</html>
+

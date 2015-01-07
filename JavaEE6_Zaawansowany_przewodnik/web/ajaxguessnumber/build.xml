@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ajaxguessnumber" default="default" basedir=".">
+  <description>Builds, deploys, and runs the project ajaxguessnumber.</description>
+  <property name="is.war.module" value="true" />
+
+  <import file="../../bp-project/main.xml" />
+
+</project>

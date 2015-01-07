@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".." name="mailconnector-ra">
+    <property file="nbproject/nbjdk.properties"/>
+    <property location="${netbeans.user}/build.properties" name="user.properties.file"/>
+    <property file="${user.properties.file}"/>
+    <import file="jdk.xml"/>
+    <target depends="-jdk-init" name="assemble_rar">
+        <ant inheritall="false" target="assemble_rar"/>
+    </target>
+    <target depends="-jdk-init" name="clean_rar_common">
+        <ant inheritall="false" target="clean_rar_common"/>
+    </target>
+</project>

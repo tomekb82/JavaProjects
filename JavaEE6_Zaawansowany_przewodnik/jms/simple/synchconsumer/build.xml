@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="synchconsumer" default="default" basedir=".">
+    <description>Builds, tests, and runs the project synchconsumer.</description>
+    <property name="is.app-client.module" value="true"/>
+    <import file="../../../bp-project/main.xml"/>
+
+  <target name="-pre-deploy" unless="netbeans.home" depends="init">
+      <antcall target="add-resources"/>
+  </target>
+
+  <target name="getclient">
+      <antcall target="run-deploy"/>
+      <antcall target="client-jar"/>
+  </target>
+
+</project>

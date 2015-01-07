@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:util="http://java.sun.com/jsf/composite/components/util">
+
+    <h:form rendered="#{userController.logged == false}">
+        
+        <h:outputLabel for="username" value="#{bundle.Topbar_User_Label}" />
+        <h:inputText id="username" value="#{userController.username}" size="50" />
+        <h:outputLabel for="password" value="#{bundle.Topbar_Pass_Label}" />
+        <h:inputSecret id="password" value="#{userController.password}" size="50" />
+
+        <h:commandButton action="#{userController.login}"  value="#{bundle.Topbar_Login_Label}" /> 
+        <h:commandButton action="customer/Create.xhtml"  value="#{bundle.Topbar_Signup_Label}" />
+        <h:outputLink value="/dukes-store/" >${bundle.GoToStore}</h:outputLink>
+    </h:form>
+    <h:form rendered="#{userController.logged}">
+        <h:commandButton action="#{userController.logout}" immediate="true" value="#{bundle.Topbar_Logout_Label}"/>
+            <h:outputText value=" #{bundle.Topbar_User_Label} #{userController.authenticatedUser.email}"  styleClass="user"/>
+        <h:outputLink value="/dukes-store/" >${bundle.GoToStore}</h:outputLink>
+    </h:form>
+    
+</ui:composition>

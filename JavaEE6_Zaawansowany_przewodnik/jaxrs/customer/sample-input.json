@@ -1,0 +1,15 @@
+{
+    "@id": "1",
+    "firstname": "Duke",
+    "lastname": "OfJava",
+    "address": {
+        "number": 1,
+        "street": "Duke's Way",
+        "city": "JavaTown",
+        "state": "JA",
+        "zip": "12345",
+        "country": "USA"
+    },
+    "email": "duke@example.com",
+    "phone": "123-456-7890"
+}

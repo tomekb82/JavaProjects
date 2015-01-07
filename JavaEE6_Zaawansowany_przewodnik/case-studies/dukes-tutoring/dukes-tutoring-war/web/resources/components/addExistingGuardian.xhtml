@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form id="addExistingGuardian">
+            <h:panelGrid id="addExistingGuardianPanel" 
+                         columns="3"
+                         rendered="#{!empty guardianManager.allGuardians}">
+                <h:selectManyListbox id="selectGuardiansMenu"
+                                     title="#{bundle['action.add.guardian']}"
+                                  value="#{guardianManager.selectedGuardians}"
+                                  size="5"
+                                  converter="guardian">
+                    <f:selectItems value="#{guardianManager.allGuardians}"
+                                   var="selectedGuardian"
+                                   itemLabel="#{selectedGuardian.name}"
+                                   itemValue="#{selectedGuardian}" />
+                </h:selectManyListbox>
+                <h:commandButton id="addGuardiansButton"
+                                 value="#{bundle['action.add.guardian']}"
+                                 action="#{adminBean.addGuardiansToStudent(guardianManager.selectedGuardians, adminManager.currentStudent)}" />
+                <h:message id="addGuardiansMessage"
+                           for="selectGuardiansMenu"
+                           style="color: #D20005" />
+            </h:panelGrid>
+        </h:form>
+    </cc:implementation>
+</html>

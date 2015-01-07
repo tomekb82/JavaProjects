@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Lista zadań</title>
+        <h:outputStylesheet library="css" name="default.css"/>
+    </h:head>
+    <h:body>
+        <h2>Lista zadań</h2>
+        <h:form id="showlist">
+            <h:dataTable var="toDo"
+                         summary="Zadania do wykonania"
+                         value="#{listBean.toDos}"
+                         rules="all"
+                         border="1"
+                         cellpadding="5">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Znacznik czasowy" />
+                    </f:facet>
+                    <h:outputText value="#{toDo.timeCreated}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Zadanie" />
+                    </f:facet>
+                    <h:outputText value="#{toDo.taskText}" />
+                </h:column>
+            </h:dataTable>
+            <p><h:commandButton id="back" value="Powrót" action="index" /></p>
+        </h:form>
+    </h:body>
+</html>

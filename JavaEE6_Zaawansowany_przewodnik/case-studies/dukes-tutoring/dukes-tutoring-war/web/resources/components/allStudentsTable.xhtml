@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title><h:outputText value="#{bundle['students.page.title']}" /></title>
+    </h:head>
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="isAdmin" default="false" />
+        </composite:interface>
+
+        <composite:implementation>
+            <h2><h:outputText value="#{bundle['students.table.title']}" /></h2>
+            <h:form>
+                <h:dataTable value="#{requestBean.allStudents}" 
+                             var="student"
+                             summary="#{bundle['students.table.title']}"
+                             rowClasses="table-row-odd,table-row-even">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['student.name']}" />
+                        </f:facet>
+                        <h:outputText value="#{student.name}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['student.status']}" />
+                        </f:facet>
+                        <h:outputText value="#{statusManager.getLocalizedStatus(student.status)}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['table.header.actions']}" />
+                        </f:facet>
+                        <h:panelGroup rendered="#{cc.attrs.isAdmin}">
+                            <h:commandButton action="#{adminManager.editStudent(student)}"
+                                             value="#{bundle['action.edit']}" />
+                            <h:commandButton action="#{adminManager.deleteStudent(student)}"
+                                             value="#{bundle['action.delete']}" />
+                            <h:commandButton action="#{adminManager.createGuardian(student)}"
+                                             value="#{bundle['action.add.guardian']}" />
+                            <h:commandButton action="#{adminManager.createStudentAddress(student)}"
+                                             value="#{bundle['action.add.address']}" />
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{!cc.attrs.isAdmin}">
+                            <h:commandButton action="#{requestBean.checkIn(student)}"
+                                             value="#{bundle['action.checkin']}"
+                                             rendered="#{student.status == 'OUT'}" />
+                            <h:commandButton action="#{requestBean.checkOut(student)}"
+                                             value="#{bundle['action.checkout']}"
+                                             rendered="#{student.status == 'IN'}"/>
+                            <h:commandButton action="#{requestBean.atPark(student)}"
+                                             value="#{bundle['action.park.at']}"
+                                             rendered="#{student.status == 'IN'}"/>
+                            <h:commandButton action="#{requestBean.backFromPark(student)}"
+                                             value="#{bundle['action.park.back']}"
+                                             rendered="#{student.status == 'PARK'}" />
+                        </h:panelGroup>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </composite:implementation>
+    </h:body>
+</html>
+

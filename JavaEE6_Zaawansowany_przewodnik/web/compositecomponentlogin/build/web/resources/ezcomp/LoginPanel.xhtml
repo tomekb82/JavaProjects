@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <h:head>
+        <title>This will not be present in rendered output</title>
+    </h:head>
+
+    <h:body>
+
+        <composite:interface>
+            <composite:attribute name="namePrompt" default="Nazwa użytkownika: "/>
+            <composite:attribute name="passwordPrompt" default="Hasło: "/>
+
+            <composite:attribute name="loginButtonText" default="Zaloguj się"/>
+            <composite:attribute name="loginAction"
+                                 method-signature="java.lang.String action()"/>
+            <composite:attribute name="myLoginBean"/>
+            <composite:editableValueHolder name="vals" targets="form:name"/>
+            <composite:editableValueHolder name="passwordVal" targets="form:password"/>
+        </composite:interface>
+
+        <composite:implementation>
+            <h:form id="form">
+                <table columns="2" role="presentation">
+                    <tr>
+                        <td><h:outputLabel for="name" 
+                                           value="#{cc.attrs.namePrompt}"/></td>
+                        <td><h:inputText id="name" 
+                                         value="#{cc.attrs.myLoginBean.name}" 
+                                         required="true"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="password" 
+                                           value="#{cc.attrs.passwordPrompt}"/></td>
+                        <td><h:inputSecret id="password" 
+                                           value="#{cc.attrs.myLoginBean.password}" 
+                                           required="true"/></td>
+                    </tr>
+                </table>
+                <p>
+                    <h:commandButton id="loginButton" 
+                                     value="#{cc.attrs.loginButtonText}"
+                                     action="#{cc.attrs.loginAction}"/>
+                </p>
+            </h:form>
+            <div class="messagecolor">
+                <h:messages showSummary="true" 
+                            showDetail="false"
+                            errorStyle="color: #d20005" 
+                            infoStyle="color: blue"/>
+            </div>
+        </composite:implementation>
+    </h:body>
+</html>

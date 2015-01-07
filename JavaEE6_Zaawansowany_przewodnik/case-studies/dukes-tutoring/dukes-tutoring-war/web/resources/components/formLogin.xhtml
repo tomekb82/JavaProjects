@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <h:head>
+        <title>Form-based login page</title>
+    </h:head>
+    <h:body>
+        <composite:interface />
+        <composite:implementation>
+            <form name="loginForm"
+                  action="j_security_check"
+                  method="post">
+                <h:outputLabel for="usernameInput">
+                    #{bundle['login.username']}:
+                </h:outputLabel>
+                <input id="usernameInput"
+                       type="text"
+                       title="#{bundle['login.username']}"
+                       name="j_username" />
+                <h:outputLabel for="passwordInput">
+                    #{bundle['login.password']}:
+                </h:outputLabel>
+                <input id="passwordInput"
+                       type="password"
+                       title="#{bundle['login.password']}"
+                       name="j_password"/>
+                <input type="submit" value="#{bundle['action.login']}"/>
+                <input type="reset" value="#{bundle['action.cancel']}" />
+            </form>
+        </composite:implementation>
+    </h:body>
+</html>
+

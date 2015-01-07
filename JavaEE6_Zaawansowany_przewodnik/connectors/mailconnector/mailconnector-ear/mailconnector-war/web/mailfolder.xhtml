@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="stylesheet.css"/>
+        <title>#{bundle.mailfolderTitle}: #{mailBrowserBean.mailBox}</title>
+    </h:head>
+    <h:body>
+        <h2>#{bundle.mailfolderTitle}: #{mailBrowserBean.mailBox}</h2>
+        <p><h:outputFormat value="#{bundle.mailfolderNumMessages}">
+                <f:param value="#{mailBrowserBean.numberOfMessages}"/>
+            </h:outputFormat></p>
+        <h:form>
+            <h:outputText value="#{bundle.mailfolderConnectionUnavailable}" 
+                          style="font-weight:bold"
+                          rendered="#{!mailBrowserBean.connectionAvailable}"/>
+            <h:dataTable id="mailtable"
+                         value="#{mailBrowserBean.mailMessages}"
+                         var="mailMessage"
+                         rendered="#{mailBrowserBean.numberOfMessages gt 0}"
+                         headerClass="list-header"
+                         styleClass="list-background"
+                         rowClasses="list-row-even, list-row-odd"
+                         border="1" 
+                         summary="New messages at #{mailBrowserBean.mailBox}" >
+                <f:facet name="caption">
+                    <h:outputText value="#{bundle.mailfolderCaption}"/>
+                </f:facet>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.mailfolderId}" />
+                    </f:facet>
+                    <h:outputText value="#{mailMessage.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.mailfolderSender}" />
+                    </f:facet>
+                    <h:outputText value="#{mailMessage.sender}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.mailfolderSubject}" />
+                    </f:facet>
+                    <h:outputText value="#{mailMessage.subject}" />
+                </h:column>
+            </h:dataTable>
+            <p><h:commandLink id="check" action="mailbrowser">
+                    <h:outputText value="#{bundle.mailfolderCheck}"/>
+                </h:commandLink></p>
+            <p><h:commandLink id="index" action="index">
+                    <h:outputText value="#{bundle.mailfolderReturn}"/>
+                </h:commandLink></p>
+            <p><h:commandLink id="login" action="#{mailBrowserBean.logout}">
+                    <h:outputText value="Log in as another user"/>
+                </h:commandLink></p>
+        </h:form>
+    </h:body>
+</html>
+

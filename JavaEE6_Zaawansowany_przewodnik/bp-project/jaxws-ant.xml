@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jaxws-ant-tasks" default="default">
+    <import file="${ant.file.command-line-ant-tasks}/../common-properties.xml"/>
+    <import file="${ant.file.command-line-ant-tasks}/../app-server-ant.xml"/>
+    
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.dir}/wsimport/client"/>
+        <mkdir dir="${build.classes.dir}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport" onerror="ignore">
+            <classpath path="${java.home}/../lib/tools.jar:${javac.classpath}"/>
+            <classpath refid="javaee.classpath"/>
+        </taskdef>
+        <condition property="wsimport.secure">
+            <isset property="wsimport.jvm.args"/>
+        </condition>
+        <property name="jaxws.endorseddir.prefix"
+                  value="${javaee.home}/glassfish" />
+    </target>
+    
+    <target name="wsimport-client-generate" depends="wsimport-init,wsimport-client-generate-secure,wsimport-client-generate-nosecure"/>
+    
+    <target name="wsimport-client-generate-secure" if="wsimport.secure">
+        <antcall target="wsimport-client-generate-jvmargs"/>
+    </target>
+    
+    <target name="wsimport-client-generate-nosecure" unless="wsimport.secure">
+        <antcall target="wsimport-client-generate-nojvmargs"/>
+    </target>
+    
+    <target name="wsimport-client-generate-nojvmargs">
+        <wsimport sourcedestdir="${build.generated.dir}/wsimport/client"
+                  package="${wsimport.package}" 
+                  destdir="${build.classes.dir}"
+                  wsdl="${wsimport.wsdl.location}"
+                  verbose="${verbose}"
+                  fork="true"
+                  xendorsed="true">
+            <jvmarg line="-Djava.endorsed.dirs=${jaxws.endorseddir.prefix}/lib/endorsed"/>
+        </wsimport>
+    </target>
+    
+    <target name="wsimport-client-generate-jvmargs">
+        <wsimport fork="true"
+                  verbose="${verbose}"
+                  debug="${debug}"
+                  keep="${keep}"
+                  sourcedestdir="${build.generated.dir}/wsimport/client" 
+                  package="${wsimport.package}" 
+                  destdir="${build.classes.dir}"
+                  target="${jaxws.version}"
+                  wsdl="${wsimport.wsdl.location}"
+                  xendorsed="true">
+            <jvmarg line="${wsimport.jvm.args}"/>
+            <jvmarg line="-Djava.endorsed.dirs=${javaee.home}/lib/endorsed"/>
+        </wsimport>
+    </target>
+
+</project>

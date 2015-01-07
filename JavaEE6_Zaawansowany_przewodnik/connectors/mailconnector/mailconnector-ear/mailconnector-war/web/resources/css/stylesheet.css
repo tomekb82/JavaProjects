@@ -1,0 +1,93 @@
+
+#top {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+body {
+    background-color: white;
+    color: black;
+    margin: 10px;
+}
+
+h1, h2, h3, h4 {
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    color: black;
+}
+
+a:link, a:visited {
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+.center_content {
+    position: relative;
+    background-color: #e0e0e0;
+    padding: 5px;
+}
+
+.list-background { 
+  background-color: #ffffff;
+  border-collapse: collapse;
+  font-family: sans-serif;
+  font-size: 12pt;
+  padding: 10px;
+  width: 35%;
+}
+
+.list-caption {
+  background-color: #050505;
+  font-family: arial;
+  font-size: 12pt;
+  padding: 5px;
+  text-align: right;
+}
+
+.list-column-center { 
+  text-align: center;
+  width: 15%;
+}
+
+.list-column-left {
+  text-align: left;
+  width: 70%;
+}
+
+.list-column-right {
+  text-align: right;
+  width: 15%;
+}
+
+.list-footer { 
+  background-color: #A5A5A5;
+  color: #000000;
+  font-weight: bold;
+  text-align: center;
+}
+
+.list-header { 
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+}
+
+.list-row-even { 
+}
+
+.list-row-odd { 
+  background-color: #eaf1f8;
+}
+

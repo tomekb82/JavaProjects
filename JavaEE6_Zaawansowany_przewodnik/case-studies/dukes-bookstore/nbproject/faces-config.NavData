@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="bookshowcart.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="bookstoreTemplate.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="bookcatalog.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="index.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="bookstore.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="bookordererror.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="bookcashier.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="bookdetails.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="bookreceipt.xhtml" x="1150" y="150" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

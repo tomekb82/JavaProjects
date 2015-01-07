@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mailconnector-war" default="default" basedir=".">
+    <property name="is.war.module" value="true"/>
+    <property name="extra.classpath" value="../../mailconnector.jar"/>
+
+    <import file="../../../../bp-project/main.xml"/>
+
+    <target name="-post-compile">
+        <copy todir="${build.classes.dir}">
+            <fileset dir="src/conf"/>
+        </copy>
+    </target>
+
+    <target name="-pre-deploy" unless="netbeans.home" depends="init">
+        <antcall target="add-resources"/>
+    </target>
+</project>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="address" type="address"/>
+
+  <xs:element name="customer" type="customer"/>
+
+  <xs:complexType name="address">
+    <xs:sequence>
+      <xs:element name="number" type="xs:int"/>
+      <xs:element name="street" type="xs:string"/>
+      <xs:element name="city" type="xs:string"/>
+      <xs:element name="state" type="xs:string"/>
+      <xs:element name="zip" type="xs:string"/>
+      <xs:element name="country" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customer">
+    <xs:sequence>
+      <xs:element name="firstname" type="xs:string"/>
+      <xs:element name="lastname" type="xs:string"/>
+      <xs:element ref="address"/>
+      <xs:element name="email" type="xs:string"/>
+      <xs:element name="phone" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:int" use="required"/>
+  </xs:complexType>
+</xs:schema>
+

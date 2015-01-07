@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Faces Configuration Only" version="2">
+    <Scope Scope="Faces Configuration Only">
+        <Node id="admin/guardian/editGuardian.xhtml" x="667" y="177" zoom="true"/>
+        <Node id="login.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="admin/index.xhtml" x="222" y="191" zoom="true"/>
+        <Node id="admin/guardian/createGuardian.xhtml" x="467" y="187" zoom="true"/>
+        <Node id="admin/guardian/deleteGuardian.xhtml" x="456" y="259" zoom="true"/>
+        <Node id="admin/address/deleteAddress.xhtml" x="492" y="435" zoom="true"/>
+        <Node id="loginError.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="admin/student/deleteStudent.xhtml" x="494" y="141" zoom="true"/>
+        <Node id="admin/address/createAddress.xhtml" x="489" y="378" zoom="true"/>
+        <Node id="error.xhtml" x="272" y="-56" zoom="true"/>
+        <Node id="index.xhtml" x="41" y="36" zoom="true"/>
+        <Node id="admin/student/createStudent.xhtml" x="490" y="61" zoom="true"/>
+        <Node id="admin/student/editStudent.xhtml" x="544" y="-51" zoom="true"/>
+        <Node id="admin/address/editAddress.xhtml" x="490" y="409" zoom="true"/>
+    </Scope>
+    <Scope Scope="Project">
+        <Node id="admin/guardian/createGuardian.xhtml" x="467" y="187" zoom="true"/>
+        <Node id="template.xhtml" x="31" y="505" zoom="true"/>
+        <Node id="admin/guardian/deleteGuardian.xhtml" x="456" y="259" zoom="true"/>
+        <Node id="resources/components/allStudentsTable.xhtml" x="149" y="633" zoom="true"/>
+        <Node id="error.xhtml" x="272" y="-56" zoom="true"/>
+        <Node id="park.xhtml" x="14" y="86" zoom="true"/>
+        <Node id="admin/adminTemplate.xhtml" x="43" y="472" zoom="true"/>
+        <Node id="admin/loginError.xhtml" x="64" y="307" zoom="true"/>
+        <Node id="admin/guardian/editGuardian.xhtml" x="456" y="223" zoom="true"/>
+        <Node id="admin/index.xhtml" x="222" y="191" zoom="true"/>
+        <Node id="current.xhtml" x="37" y="164" zoom="true"/>
+        <Node id="admin/address/deleteAddress.xhtml" x="492" y="435" zoom="true"/>
+        <Node id="resources/components/formLogin.xhtml" x="156" y="563" zoom="true"/>
+        <Node id="admin/student/deleteStudent.xhtml" x="494" y="141" zoom="true"/>
+        <Node id="admin/address/createAddress.xhtml" x="489" y="378" zoom="true"/>
+        <Node id="greeting.xhtml" x="210" y="82" zoom="true"/>
+        <Node id="resources/components/currentSessionTable.xhtml" x="12" y="374" zoom="true"/>
+        <Node id="index.xhtml" x="41" y="36" zoom="true"/>
+        <Node id="statusEntries.xhtml" x="29" y="130" zoom="true"/>
+        <Node id="admin/student/createStudent.xhtml" x="494" y="57" zoom="true"/>
+        <Node id="resources/components/parkTable.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="admin/login.xhtml" x="63" y="338" zoom="true"/>
+        <Node id="admin/student/editStudent.xhtml" x="494" y="99" zoom="true"/>
+        <Node id="admin/address/editAddress.xhtml" x="490" y="409" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

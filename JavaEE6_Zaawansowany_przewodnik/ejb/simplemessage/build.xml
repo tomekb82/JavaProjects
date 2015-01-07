@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="simplemessage" default="default" basedir="." xmlns:ear="http://www.netbeans.org/ns/j2ee-earproject/2">
+    <description>Builds, tests, and runs the project simplemessage.</description>
+    <property name="is.ear.module" value="true"/>
+    <import file="../../bp-project/main.xml"/>
+
+    <path id="ear-components">
+        <filelist dir="./simplemessage-ejb" files="build.xml"/>
+        <filelist dir="./simplemessage-app-client" files="build.xml"/>
+    </path>
+
+    <target name="run-nb" if="netbeans.home" depends="init">
+        <antcall target="run-ac"/>
+    </target>
+
+    <target name="-pre-deploy" unless="netbeans.home" depends="init">
+        <antcall target="add-resources"/>
+    </target>
+
+    <target name="run-ant" unless="netbeans.home" depends="init">
+        <antcall target="client-jar"/>
+        <antcall target="bpp-run-app-client"/>
+    </target>
+
+    <target name="run" depends="init,run-deploy">
+        <antcall target="run-ant"/>
+        <antcall target="run-nb"/>
+    </target>
+
+</project>

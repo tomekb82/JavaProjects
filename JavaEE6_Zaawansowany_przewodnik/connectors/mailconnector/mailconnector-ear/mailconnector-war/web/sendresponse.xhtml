@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="stylesheet.css"/>
+        <title>#{bundle.sendresponseTitle}</title>
+    </h:head>
+    <h:body>
+        <h2>#{bundle.sendresponseTitle}</h2>
+        <h:form>
+            <p>
+            <h:outputText id="goodResult" 
+                          value="#{bundle.sendresponseMessageSuccess}" 
+                          rendered="#{sendMailBean.sendSuccessful}"/>
+            <h:outputText id="badResult" 
+                          value="#{bundle.sendresponseMessageFailure}" 
+                          rendered="#{!sendMailBean.sendSuccessful}"/>
+            </p>
+            <p><h:commandLink id="sendagain" action="sendmail">
+                    <h:outputText value="#{bundle.sendresponseCreate}"/>
+                </h:commandLink></p>
+            <p><h:commandLink id="index" action="index">
+                    <h:outputText value="#{bundle.sendresponseMain}"/>
+                </h:commandLink></p>
+            <p><h:commandLink id="login" action="#{sendMailBean.logout}">
+                    <h:outputText value="Log in as another user"/>
+                </h:commandLink></p>
+        </h:form>
+    </h:body>
+</html>
+

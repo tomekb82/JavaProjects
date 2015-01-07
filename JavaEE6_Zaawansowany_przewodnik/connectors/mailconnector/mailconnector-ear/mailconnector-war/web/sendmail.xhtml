@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="stylesheet.css"/>
+        <title>#{bundle.sendmailTitle}</title>
+    </h:head>
+    <h:body>
+        <h2>#{bundle.sendmailTitle}</h2>
+        <p>#{bundle.sendmailOverview1} <code>javax.mail.Session</code> 
+            #{bundle.sendmailOverview2}</p>
+        <p>#{bundle.sendmailAllfields}</p>
+        <h:form>
+            <table columns="2"
+                   role="presentation">
+                <tr>
+                    <td>
+                        <h:outputLabel for="from" 
+                                       style="font-weight:bold" 
+                                       value="#{bundle.sendmailFrom}" />
+                    </td>
+                    <td>
+                        <h:outputText id="from"
+                                      value="#{sendMailBean.sender}" /> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel for="to" 
+                                       style="font-weight:bold" 
+                                       value="#{bundle.sendmailTo}" />
+                    </td>
+                    <td>
+                        <h:inputText id="to"
+                                     size="32"
+                                     value="#{sendMailBean.recipient}"
+                                     required="true"
+                                     requiredMessage="#{bundle.sendmailToRequired}" />                   
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel for="subject" 
+                                       style="font-weight:bold" 
+                                       value="#{bundle.sendmailSubject}" />
+                    </td>
+                    <td>
+                        <h:inputText id="subject"
+                                     size="32"
+                                     value="#{sendMailBean.subject}"
+                                     required="true"
+                                     requiredMessage="#{bundle.sendmailSubjectRequired}" />                   
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        <h:outputLabel for="text" 
+                                       style="font-weight:bold"
+                                       value="#{bundle.sendmailText}" />
+                    </td>
+                    <td>
+                        <h:inputTextarea id="text"
+                                         rows="5"
+                                         cols="50"
+                                         value="#{sendMailBean.body}" />
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <h:commandButton id="submit" 
+                                 value="#{bundle.sendmailSendbutton}" 
+                                 action="#{sendMailBean.sendMessage}">
+                </h:commandButton>
+                &nbsp;
+                <h:commandButton id="reset" 
+                                 value="#{bundle.sendmailResetbutton}" 
+                                 type="reset">
+                </h:commandButton>
+            </p>
+            <div class="messagecolor">
+                <h:messages showSummary="true" 
+                            showDetail="false"
+                            errorStyle="color: #d20005" 
+                            infoStyle="color: blue"/>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

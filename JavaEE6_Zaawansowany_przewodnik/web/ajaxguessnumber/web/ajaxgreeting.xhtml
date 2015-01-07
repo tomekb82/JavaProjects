@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <title>Aplikacja faceletowa zgadywania liczby z użyciem technologii Ajax</title>
+    </h:head>
+    <h:body>
+        <h:form id="AjaxGuess">
+            <h:outputScript name="ui.js" target="head"/>
+            <h:graphicImage library="images" name="wave.med.gif"
+                            alt="Duke macha ręką"/>
+            <h2>
+                Witaj, mam na imię Duke. Myślę o liczbie w przedziale od
+                #{userNumberBean.minimum} do #{userNumberBean.maximum}.
+                Czy potrafisz ją odgadnąć?
+            </h2>
+            <p>
+                <h:inputText 
+                    id="userNo" 
+                    title="Wpisz liczbę od 0 do 10:"
+                    value="#{userNumberBean.userNumber}">
+                    <f:validateLongRange
+                        minimum="#{userNumberBean.minimum}"
+                        maximum="#{userNumberBean.maximum}"/>
+                </h:inputText>
+
+                <h:commandButton id="submit" value="Wyślij" >
+                    <!--<f:ajax execute="userNo" render="result errors1" />-->
+                    <f:ajax execute="userNo" render="result errors1" 
+                            onevent="msg"/>
+                </h:commandButton>
+            </p>
+            <p><h:outputText id="result" style="color:blue"
+                             value="#{userNumberBean.response}"/>
+            </p>
+
+            <h:message id="errors1" showSummary="true" showDetail="false"
+                       style="color: #d20005;
+                       font-family: 'New Century Schoolbook', serif;
+                       font-style: oblique;
+                       text-decoration: overline" 
+                       for="userNo"/>
+        </h:form>
+    </h:body>
+</html>

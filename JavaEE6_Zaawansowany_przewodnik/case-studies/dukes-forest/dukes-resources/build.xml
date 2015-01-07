@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dukes-resources" default="default" basedir=".">
+    <description>Builds, tests, and runs the project dukes-resources.</description>
+    <property name="is.jar.module" value="true"/>
+    <import file="../../../bp-project/main.xml"/>
+
+    <patternset id="all.nonjava.files">
+        <!-- All conf files (including test files) -->
+        <include name="**/*.txt"/>
+        <include name="**/*.xml"/>
+        <include name="**/*.properties"/>
+        <include name="**/*.css"/>
+        <include name="**/*.xhtml"/>
+        <include name="**/*.png"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+    </patternset>
+</project>

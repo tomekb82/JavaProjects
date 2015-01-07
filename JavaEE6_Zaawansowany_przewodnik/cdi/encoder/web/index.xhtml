@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <title>Szyfrowanie tekstu</title>
+    </h:head>
+    <h:body>
+        <h2>Szyfrowanie tekstu</h2>
+        <p>Wpisz tekst i liczbę całkowitą, a następnie kliknij przycisk Szyfruj.</p>
+        <p>W zależności od włączonej alternatywy wynik będzie zawierał
+            albo informację o przekazanych argumentach, albo zaszyfrowany tekst,
+            wykorzystując przy tym szyfr Cezara.
+            Wartość liczbowa musi znajdować się w przedziale od 0 do 26.</p>
+        <h:form id="encodeit">
+            <p><h:outputLabel value="Wpisz tekst: " for="inputString"/>
+                <h:inputText id="inputString"
+                             value="#{coderBean.inputString}"/>
+                <h:outputLabel value="Wpisz liczbę liter przesunięcia: "
+                               for="transVal"/>
+                <h:inputText id="transVal" value="#{coderBean.transVal}"/></p>
+            <p><h:commandButton value="Szyfruj"
+                                action="#{coderBean.encodeString()}"/></p>
+            <p><h:outputLabel value="Wynik: " for="outputString"/>
+                <h:outputText id="outputString" value="#{coderBean.codedString}"
+                              style="color:blue"/> </p>
+            <p><h:commandButton value="Wyczyść" action="#{coderBean.reset}"/></p>
+        </h:form>
+        <div class="messagecolor">s
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+    </h:body>
+</html>
+

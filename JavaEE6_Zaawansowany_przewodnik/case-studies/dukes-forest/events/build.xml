@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="events" default="default" basedir=".">
+    <description>Builds, tests, and runs the project events.</description>
+    <property name="is.jar.module" value="true"/>
+    <import file="../../../bp-project/main.xml"/>
+
+</project>

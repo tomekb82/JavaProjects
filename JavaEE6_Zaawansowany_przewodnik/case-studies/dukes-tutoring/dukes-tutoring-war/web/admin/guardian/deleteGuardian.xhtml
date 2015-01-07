@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./../adminTemplate.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid id="deleteGuardianPanel" 
+                         summary="#{bundle['guardian.delete.form.title']} #{adminManager.currentStudent.name}"
+                         columns="2">
+                <f:facet name="header">
+                    <h:outputText value="#{bundle['guardian.delete.form.title']} #{adminManager.currentStudent.name}" />
+                </f:facet>
+                <h:outputText value="#{adminManager.currentGuardian.id}" />
+                <h:outputText value="#{adminManager.currentGuardian.name}" />
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit"
+                                         action="#{adminBean.removeGuardian(adminManager.currentGuardian)}"
+                                         value="#{bundle['action.confirm']}" />
+                        <h:commandButton id="cancel"
+                                         action="/admin/index"
+                                         immediate="true"
+                                         value="#{bundle['action.cancel']}" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

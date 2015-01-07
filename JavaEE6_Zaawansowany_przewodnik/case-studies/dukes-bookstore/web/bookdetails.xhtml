@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/bookstoreTemplate.xhtml">
+
+    <ui:define name="top"></ui:define> 
+    <ui:define name="content">
+        <h:form>
+
+            <h2>
+                <h:outputText value="#{selected.title}"/>
+            </h2>
+            <h:outputText value="#{bundle.By}"/>
+            <em><h:outputText value="#{selected.firstname} #{selected.surname}"/></em>
+            (<h:outputText value="#{selected.calendarYear}"/>)
+            <br /><br />
+
+            <h4>
+                <h:outputText value="#{bundle.Critics}"/>
+            </h4>
+            <blockquote>
+                <h:outputText value="#{selected.description}"/>
+            </blockquote>
+
+            <h4>
+                <h:outputText value="#{bundle.ItemPrice}"/>
+                <h:outputText value="#{selected.price}">
+                    <f:convertNumber currencySymbol="$" type="currency"/>
+                </h:outputText>
+            </h4>
+
+            <h:commandLink   id="add"
+                             action="#{details.add}"
+                             immediate="true">
+                <h:outputText value="#{bundle.CartAdd}"/>
+            </h:commandLink>
+            &nbsp;&nbsp;
+            <h:commandLink id="continue"
+                           action="bookcatalog"
+                           immediate="true">
+                <h:outputText value="#{bundle.ContinueShopping}"/>
+            </h:commandLink>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

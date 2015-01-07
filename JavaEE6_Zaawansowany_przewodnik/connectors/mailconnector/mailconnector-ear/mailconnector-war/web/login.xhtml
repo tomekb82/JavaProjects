@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Login Form</title>
+    </h:head>
+    <h:body>
+        <h2>Hello, please log in:</h2>
+        <p>You can log in as user1, user2, user3, or user4. The password is the
+            same as the user name.</p>
+        <form name="loginForm" method="post" action="j_security_check">
+            <table columns="2" role="presentation"> 
+                <tr>
+                    <td>
+                        <h:outputLabel for="j_username" 
+                                       value="Please type your user name:"/>
+                    </td>
+                    <td>
+                        <h:inputText id="j_username" size="20" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel for="j_password" 
+                                       value="Please type your password:"/>
+                    </td>
+                    <td>
+                        <h:inputSecret id="j_password" size="20"/>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <h:commandButton type="submit" value="Submit"/>
+                &nbsp;
+                <h:commandButton type="reset" value="Reset"/>
+            </p>
+        </form>
+    </h:body>
+</html>

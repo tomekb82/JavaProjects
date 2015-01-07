@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Szyfrowanie tekstu</title>
+        <h:outputStylesheet library="css" name="default.css"/>
+    </h:head>
+    <h:body>
+        <h2>Szyfrowanie tekstu</h2>
+        <p>Wybierz Test lub Przesunięcie, wpisz tekst i liczbę całkowitą,
+            a następnie kliknij przycisk Szyfruj.</p>
+        <p>Wybranie Test spowoduje użycie implementacji TestCoderImpl, która
+            wyświetli wartości argumentów.</p>
+        <p>Wybranie Przesunięcie liter spowoduje użycie implementacji CoderImpl, która
+            zwróci tekst przesuwając jego litery o zadaną wartość.
+            Wartość liczbowa musi znajdować się w przedziale od 0 do 26.</p>
+        <h:form id="encodeit">
+            <h:selectOneRadio id="coderType"
+                              required="true"
+                              value="#{coderBean.coderType}">
+                <f:selectItem
+                    itemValue="1"
+                    itemLabel="Test"/>
+                <f:selectItem
+                    itemValue="2"
+                    itemLabel="Przesunięcie liter"/>
+            </h:selectOneRadio>
+            <p><h:outputLabel value="Wpisz tekst: " for="inputString"/>
+                <h:inputText id="inputString"
+                             value="#{coderBean.inputString}"/>
+                <h:outputLabel value="Wpisz liczbę liter przesunięcia: "
+                               for="transVal"/>
+                <h:inputText id="transVal" value="#{coderBean.transVal}"/></p>
+            <p><h:commandButton value="Szyfruj"
+                                action="#{coderBean.encodeString()}"/></p>
+            <p><h:outputLabel value="Wynik: " for="outputString"/>
+                <h:outputText id="outputString" value="#{coderBean.codedString}"
+                              style="color:blue"/> </p>
+            <p><h:commandButton value="Wyczyść" action="#{coderBean.reset}"/></p>
+        </h:form>
+        <div class="messagecolor">
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+    </h:body>
+</html>
+

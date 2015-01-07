@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:dt="http://java.sun.com/jsf/composite/components"
+                template="./../adminTemplate.xhtml">
+
+    <ui:define name="content">
+        <dt:changeStudent action="/admin/guardian/editGuardian" />
+        <h:form>
+            <h:panelGrid id="editGuardianPanel" 
+                         summary="#{bundle['guardian.edit.form.title']} #{adminManager.currentStudent.name}"
+                         columns="3">
+                <f:facet name="header">
+                    <h:outputText value="#{bundle['guardian.edit.form.title']} #{adminManager.currentStudent.name}" />
+                </f:facet>
+                <h:outputLabel for="firstName" value="#{bundle['person.firstName']}:" />
+                <h:inputText id="firstName" value="#{adminManager.currentGuardian.firstName}" />
+                <h:message for="firstName" style="color: #D20005"/>
+                <h:outputLabel for="middleName" value="#{bundle['person.middleName']}" />
+                <h:inputText id="middleName" value="#{adminManager.currentGuardian.middleName}" />
+                <h:message for="middleName" style="color: #D20005"/>
+                <h:outputLabel for="lastName" value="#{bundle['person.lastName']}:" />
+                <h:inputText id="lastName" value="#{adminManager.currentGuardian.lastName}" />
+                <h:message for="lastName" style="color: #D20005"/>
+                <h:outputLabel for="nickName" value="#{bundle['person.nickName']}:" />
+                <h:inputText id="nickName" value="#{adminManager.currentGuardian.nickname}" />
+                <h:message for="nickName" style="color: #D20005"/>
+                <h:outputLabel for="suffix" value="#{bundle['person.suffix']}:" />
+                <h:inputText id="suffix" value="#{adminManager.currentGuardian.suffix}" />
+                <h:message for="suffix" style="color: #D20005"/>
+                <h:outputLabel for="email" value="#{bundle['person.email']}:" />
+                <h:inputText id="email" value="#{adminManager.currentGuardian.email}" />
+                <h:message for="email" style="color: #D20005"/>
+                <h:outputLabel for="homePhone" value="#{bundle['person.homePhone']}:" />
+                <h:inputText id="homePhone" value="#{adminManager.currentGuardian.homePhone}" />
+                <h:message for="homePhone" style="color: #D20005"/>
+                <h:outputLabel for="mobilePhone" value="#{bundle['person.mobilePhone']}:" />
+                <h:inputText id="mobilePhone" value="#{adminManager.currentGuardian.mobilePhone}" />
+                <h:message for="mobilePhone" style="color: #D20005"/>
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit" 
+                                         action="#{adminBean.editGuardian(adminManager.currentGuardian)}"
+                                         value="#{bundle['action.submit']}" />
+                        <h:commandButton id="cancel"
+                                         action="/admin/index"
+                                         immediate="true"
+                                         value="#{bundle['action.cancel']}" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+

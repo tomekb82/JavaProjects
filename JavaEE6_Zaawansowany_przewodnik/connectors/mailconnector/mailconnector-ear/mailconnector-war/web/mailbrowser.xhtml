@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="stylesheet.css"/>
+        <title>#{bundle.mailbrowserTitle} #{mailBrowserBean.username}</title>
+    </h:head>
+    <h:body>
+        <h2>#{bundle.mailbrowserTitle} #{mailBrowserBean.username}</h2>
+        <p>#{bundle.mailbrowserOverview}</p>
+        <p>#{bundle.mailbrowserNotes}</p>
+        <ul>
+            <li>#{bundle.mailbrowserAllfields}</li>
+            <li>#{bundle.mailbrowserDefaultconfig}</li>
+        </ul>
+        <h:form id="browserForm">
+            <table columns="2" role="presentation">
+                <tr>
+                    <td>
+                        <h:outputLabel for="user" 
+                                       style="font-weight:bold" 
+                                       value="#{bundle.mailbrowserFolder}" />
+                    </td>
+                    <td>
+                        <h:outputText id="user"
+                                      value="#{mailBrowserBean.user}" /> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel for="folder" 
+                                       style="font-weight:bold" 
+                                       value="#{bundle.mailbrowserFolder}" />
+                    </td>
+                    <td>
+                        <h:inputText id="folder"
+                                     size="30"
+                                     value="#{mailBrowserBean.folder}"
+                                     required="true"
+                                     requiredMessage="#{bundle.mailbrowserFolderRequired}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel for="server" 
+                                       style="font-weight:bold" 
+                                       value="#{bundle.mailbrowserServer}" />
+                    </td>
+                    <td>
+                        <h:inputText id="server"
+                                     size="30"
+                                     value="#{mailBrowserBean.server}"
+                                     required="true"
+                                     requiredMessage="#{bundle.mailbrowserServerRequired}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel for="protocol" 
+                                       style="font-weight:bold" 
+                                       value="#{bundle.mailbrowserProtocol}" />
+                    </td>
+                    <td>
+                        <h:inputText id="protocol"
+                                     size="30"
+                                     value="#{mailBrowserBean.protocol}"
+                                     required="true"
+                                     requiredMessage="#{bundle.mailbrowserProtocolRequired}" />
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <h:commandButton id="browse"
+                                 value="#{bundle.mailbrowserBrowsebutton}"
+                                 type="submit"
+                                 action="#{mailBrowserBean.retrieveMessages}"/>
+                &nbsp;
+                <h:commandButton id="reset"
+                                 value="#{bundle.mailbrowserResetbutton}"
+                                 type="reset"/>
+            </p>
+        </h:form>
+        <div class="messagecolor">
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+    </h:body>
+</html>

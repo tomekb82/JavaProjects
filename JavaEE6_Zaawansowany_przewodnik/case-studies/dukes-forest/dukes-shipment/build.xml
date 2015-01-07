@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dukes-shipment" default="default" basedir=".">
+    <description>Builds, tests, and runs the project dukes-shipment.</description>
+
+    <path id="common.jars">
+        <filelist dir="../events" files="build.xml" />
+     <!--   <filelist dir="../entities" files="build.xml" />
+        <filelist dir="../dukes-resources" files="build.xml" />-->
+    </path>
+
+    <property name="is.war.module" value="true"/>
+    <import file="../../../bp-project/main.xml"/>
+
+    <macrodef name="iterate">
+        <attribute name="target" />
+        <sequential>
+            <subant target="@{target}" failonerror="false">
+                <buildpath refid="common.jars" />
+            </subant>
+        </sequential>
+    </macrodef>
+
+    <target name="-pre-compile" unless="netbeans.home" depends="init, build-common, copy-common-jars">
+    </target>
+
+    <target name="build-common" unless="netbeans.home" depends="init">
+        <iterate target="default" />
+    </target>
+
+    <target name="copy-common-jars" unless="netbeans.home" depends="init">
+        <mkdir dir="${build.web.dir}/WEB-INF/lib" />
+        <copy file="${reference.events.jar}" todir="${build.web.dir}/WEB-INF/lib" />
+        <copy file="${reference.entities.jar}" todir="${build.web.dir}/WEB-INF/lib" />
+        <copy file="${reference.dukes-resources.jar}" todir="${build.web.dir}/WEB-INF/lib" />
+    </target>
+
+    <target name="all" unless="netbeans.home" depends="init,default,run-deploy"/>
+
+</project>

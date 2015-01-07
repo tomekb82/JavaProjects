@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML>
+
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:composite="http://java.sun.com/jsf/composite"
+        xmlns:f="http://java.sun.com/jsf/core">
+
+    <head><title>(For validation only)</title></head>
+    <body>
+    <composite:interface>
+        <composite:attribute name="data" />
+    </composite:interface>
+
+    <composite:implementation>
+        <h:panelGrid columns="2" border="0">
+            <h:column>
+                <h:graphicImage value="/image?id=#{cc.attrs.data.id}" height="100" width="100" />
+            </h:column>
+            <h:column>
+                <h:panelGrid columns="2" border="0" rules="none" cellpadding="0" cellspacing="0" style="float:left;" >
+                    <h:column>
+                        <h:outputText value="#{cc.attrs.data.name} (SKU: #{cc.attrs.data.id})"/><br />
+                        <h:outputLabel for="description" value="#{bundle.ListProductTitle_description}: "/><br />
+                        <h:outputText id="description" value="#{cc.attrs.data.description}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputLabel for="price" value="#{bundle.ListProductTitle_price}: "/>
+                        <h:outputText id="price" value="#{cc.attrs.data.price}">
+                            <f:convertNumber currencySymbol="$" type="currency"/>
+                        </h:outputText>
+                    </h:column>
+                </h:panelGrid>
+
+                <!-- if user is admin 
+                     @TODO test
+                --> 
+                <h:panelGroup rendered="false" layout="block" >
+                    <h:commandButton styleClass="btn" action="#{productController.prepareView}" value="#{bundle.ListProductViewLink}"/>
+                    <h:outputText value=" "/>
+                    <h:commandButton styleClass="btn" action="#{productController.prepareEdit}" value="#{bundle.ListProductEditLink}"/>
+                    <h:outputText value=" "/>
+                    <h:commandButton styleClass="btn" action="#{productController.destroy}" value="#{bundle.ListProductDestroyLink}"/>
+                </h:panelGroup>
+
+                <!-- if it's a common user -->
+                <h:panelGroup rendered="true" layout="block">
+                    <h:commandButton action="#{shoppingCart.addItem(cc.attrs.data)}" value="#{bundle.AddToCart}" styleClass="btn" style="margin-top:10px;" />
+                </h:panelGroup>
+
+            </h:column>    
+
+        </h:panelGrid>
+    </composite:implementation>
+
+</body>
+
+</html>

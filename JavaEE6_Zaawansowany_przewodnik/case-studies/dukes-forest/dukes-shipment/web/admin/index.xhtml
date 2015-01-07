@@ -1,0 +1,89 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/template.xhtml">
+
+    <ui:define name="title">
+        Orders
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div id="pendingOrders">
+                <nav id="pendingOrders">
+                    <h2 style="height: 40px"> <h:outputText value="#{bundle.ShipmentPending_title}" />
+                        
+                        <h:commandLink>
+                            <h:graphicImage library="img" title="Check for new orders" style="border:0px" name="refresh.png"/>
+                            <f:ajax execute="refresh" render="out" />
+                        </h:commandLink>
+
+                        <h:commandLink action="#{shippingBean.listByStatus('PENDING_SHIPMENT')}" id="refresh" rendered="false" />
+                    </h2>
+                    <ul>
+                        <h:dataTable id="out" value="#{shippingBean.pendingOrders}" var="item" style="width: 97%" >
+                            <h:column>
+                                <li class="shipItem">
+                                <h:outputLabel for="id" value="#{bundle.ViewCustomerOrderLabel_id} "/>
+                                <h:outputText id="id" value="#{item.id}"/><br />
+
+                                <h:outputLabel for="customer" value="#{bundle.ViewCustomerLabel_name}"/>
+                                <h:outputText id="customer" value="#{item.customer.firstname} #{item.customer.lastname}"/><br />
+
+                                <h:outputLabel for="total" value="#{bundle.ViewCustomerOrderLabel_amount}"/>
+                                <h:outputText id="total" value="#{item.amount}">
+                                    <f:convertNumber currencySymbol="$" type="currency"/>
+                                </h:outputText>
+                                <br />
+
+                                <h:outputLabel value="#{bundle.ViewCustomerOrderTitle_dateCreated}"/>
+                                <h:outputText value="#{item.dateCreated}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+
+                                <div id="option"> 
+                                    <h:commandButton value="Approve" action="#{shippingBean.updateOrderStatus(item.id, 'SHIPPED')}" />
+                                    <h:commandButton value="Deny" action="#{shippingBean.updateOrderStatus(item.id, 'CANCELLED_MANUAL')}" />
+                                </div>
+                                </li>
+                            </h:column>
+
+
+                        </h:dataTable>
+                    </ul>
+                </nav>
+                
+                <nav id="completedOrders">
+                    <h2 style="height: 40px"> #{bundle.ShipmentClosed_title} </h2>
+                    <ul>
+                        <h:dataTable id="completedOrders" value="#{shippingBean.completedOrders}" var="item" style="width: 97%">
+                            <h:column>
+                                <li>
+                                <h:outputLabel for="id" value="#{bundle.ViewCustomerOrderLabel_id} "/>
+                                <h:outputText id="id" value="#{item.id}"/><br />
+
+                                <h:outputLabel for="customer" value="#{bundle.ViewCustomerLabel_name}"/>
+                                <h:outputText id="customer" value="#{item.customer.firstname} #{item.customer.lastname}"/><br />
+
+                                <h:outputLabel for="total" value="#{bundle.ViewCustomerOrderLabel_amount}"/>
+                                <h:outputText id="total" value="#{item.amount}">
+                                    <f:convertNumber currencySymbol="$" type="currency"/>
+                                </h:outputText>
+                                <br />
+
+                                <h:outputLabel value="#{bundle.ViewCustomerOrderTitle_dateCreated}"/>
+                                <h:outputText value="#{item.dateCreated}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                                </li>
+                            </h:column>
+                        </h:dataTable>
+                    </ul>
+                </nav>
+                </div>
+
+        </h:form>
+    </ui:define> 
+</ui:composition>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customer id="1">
+    <firstname>Duke</firstname>
+    <lastname>OfJava</lastname>
+    <address>
+        <number>1</number>
+        <street>Duke's Way</street>
+        <city>JavaTown</city>
+        <state>JA</state>
+        <zip>12345</zip>
+        <country>USA</country>
+    </address>
+    <email>duke@example.com</email>
+    <phone>123-456-7890</phone>
+</customer>

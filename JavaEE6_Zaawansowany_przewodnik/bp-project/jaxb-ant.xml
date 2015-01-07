@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jaxb-ant-tasks" default="default">
+    <import file="${ant.file.command-line-ant-tasks}/../common-properties.xml"/>
+    <import file="${ant.file.command-line-ant-tasks}/../app-server-ant.xml"/>
+    
+    <property name="xjc.src.dir" value="${src.generated.dir}"/>
+    
+    <target name="schemagen-init" depends="init">
+        <taskdef name="schemagen"
+            classname="com.sun.tools.jxc.SchemaGenTask">
+            <classpath refid="javaee.classpath"/>
+        </taskdef>
+    </target>
+    
+    <target name="schemagen-generate" depends="schemagen-init">
+        <echo message="Generating schemas..." />
+        <schemagen destdir="${schemagen.destdir}" fork="true">
+            <src path="${src.dir}" />
+            <classpath refid="javaee.classpath"/>
+        </schemagen>
+    </target>
+    
+    <target name="xjc-init" depends="init">
+        <taskdef name="xjc"
+                 classname="com.sun.tools.xjc.XJCTask">
+            <classpath refid="javaee.classpath"/>
+        </taskdef>
+        <mkdir dir="${build.generated.dir}/jaxb" />
+        <mkdir dir="${build.generated.sources.dir}/jaxb" />
+    </target>
+    
+    <target name="xjc-generate" depends="xjc-init, xjc-generate-binding, xjc-generate-nobinding" />
+    
+    <target name="xjc-generate-binding" if="xjc.binding.file">
+        <echo message="Compiling the schema..." />
+        <xjc schema="${xjc.schema}"
+            package="${xjc.package}"
+            destdir="${build.generated.sources.dir}/jaxb"
+            binding="${xjc.binding.file}">
+            <depends dir="${conf.dir}/xml-resources/jaxb" includes="*.xsd"/>
+            <produces dir="${build.generated.dir}/jaxb" includes="**/*.java"/>
+        </xjc>
+    </target>
+    
+    <target name="xjc-generate-nobinding" unless="xjc.binding.file">
+        <echo message="Compiling the schema..." />
+        <xjc schema="${xjc.schema}"
+            package="${xjc.package}"
+            destdir="${build.generated.sources.dir}/jaxb">
+            <depends dir="${conf.dir}/xml-resources/jaxb" includes="*.xsd"/>
+            <produces dir="${build.generated.dir}/jaxb" includes="**/*.java"/>
+        </xjc>
+    </target>
+    
+    <target name="runapp" depends="-run"/>
+    
+    <target name="-run">
+        <java classname="${main.class}" fork="true">
+            <classpath refid="javaee.classpath"/>
+            <classpath path="${run.classpath}"/>
+        </java>
+    </target>
+    
+</project>

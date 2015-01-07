@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="earthmdb" default="default" basedir="." xmlns:ejbjarproject="http://www.netbeans.org/ns/j2ee-ejbjarproject/2">
+    <description>Builds, tests, and runs the project earthmdb.</description>
+    <property name="is.ejb-jar.module" value="true"/>
+    <import file="../../../bp-project/main.xml"/>
+
+  <target name="-pre-deploy" unless="netbeans.home" depends="init">
+      <antcall target="add-resources"/>
+  </target>
+
+  <target name="create-queue"
+    description="create JMS queue">
+    <antcall target="create-jms-resource">
+        <param name="jms.restype" value="javax.jms.Queue" />
+        <param name="jms.resource.property" value="Name=PhysicalQueue" />
+        <param name="jms.resource.name" value="jms/Queue" />
+    </antcall>
+  </target>
+
+</project>

@@ -1,0 +1,14 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:form>
+        <h:link outcome="/admin/index" value="${bundle['admin.nav.main']}" />
+        <br />
+        <h:link outcome="createStudent" value="${bundle['admin.nav.create_student']}" />
+        <br />
+        <h:link outcome="/admin/student/activateStudent" value="${bundle['admin.nav.activate_student']}" />
+        <br />
+        <h:commandLink action="${adminBean.logout}" value="${bundle['action.logout']}" rendered="${adminBean.isLoggedIn()}" />
+    </h:form>
+</html>
+

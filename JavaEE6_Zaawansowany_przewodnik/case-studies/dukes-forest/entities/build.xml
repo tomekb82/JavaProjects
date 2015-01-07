@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="entities" default="default" basedir=".">
+    <description>Builds, tests, and runs the project entities.</description>
+    <property name="is.jar.module" value="true"/>
+    <property name="uses.db.sql.file" value="true"/>
+    <property name="product.data.file" location="./sql/products.del"/>
+    <import file="../../../bp-project/main.xml"/>
+
+    <target name="-post-compile" unless="netbeans.home">
+        <antcall target="create-tables"/>
+	<echo message="Loading product data..."/>
+        <sql driver="${db.driver}"
+            url="${db.url}"
+            userid="${db.user}"
+            password="${db.password}"
+            classpathref="db.classpath"
+            delimiter="${db.delimiter}"
+            autocommit="false"
+            onerror="abort" >
+            <transaction>
+             CALL SYSCS_UTIL.SYSCS_IMPORT_DATA ('FOREST', 'PRODUCT', 'NAME,PRICE,DESCRIPTION,IMG,CATEGORY_ID,IMG_SRC', '2,3,4,5,6,7', '${product.data.file}', null, null, null,0);
+	    </transaction>
+        </sql>
+    </target>
+
+    <target name="drop-tables" unless="netbeans.home">
+      <antcall target="delete-tables"/>
+    </target>
+
+    <target name="create-forest-realm" depends="create-forest-resource"
+      description="create JDBC realm">
+      <antcall target="create-jdbc-realm">
+          <param name="jdbc.resource.name" value="jdbc/forest" />
+          <param name="jdbc.realm.name" value="jdbcRealm" />
+          <param name="user.table.name" value="forest.PERSON" />
+          <param name="user.name.column" value="email" />
+          <param name="password.column" value="password" />
+          <param name="group.table" value="forest.GROUPS" />
+          <param name="group.name.column" value="name" />
+          <param name="assign.groups" value="USERS,ADMINS" />
+          <param name="digest.algorithm" value="MD5" />
+      </antcall>
+    </target>
+
+    <target name="delete-forest-realm" depends="delete-forest-pool"
+      description="delete JDBC realm">
+      <antcall target="delete-jdbc-realm">
+          <param name="jdbc.realm.name" value="jdbcRealm" />
+      </antcall>
+    </target>
+
+    <target name="create-forest-resource" depends="create-forest-pool"
+      description="create JDBC resource">
+      <antcall target="create-jdbc-resource">
+          <param name="pool.name" value="derby_net_forest_forestPool" />
+          <param name="jdbc.resource.name" value="jdbc/forest" />
+      </antcall>
+    </target>
+
+    <target name="delete-forest-resource" 
+      description="delete JDBC resource">
+      <antcall target="delete-jdbc-resource">
+          <param name="jdbc.resource.name" value="jdbc/forest" />
+      </antcall>
+    </target>
+
+    <target name="create-forest-pool"
+      description="create JDBC connection pool">
+      <antcall target="create-jdbc-connection-pool">
+          <param name="pool.name" value="derby_net_forest_forestPool" />
+      </antcall>
+    </target>
+
+    <target name="delete-forest-pool" depends="delete-forest-resource"
+      description="delete JDBC connection pool">
+      <antcall target="delete-jdbc-connection-pool">
+          <param name="pool.name" value="derby_net_forest_forestPool" />
+      </antcall>
+    </target>
+</project>
