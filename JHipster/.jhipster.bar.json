@@ -1,0 +1,26 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "otherEntityName": "bar2",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Bar2"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "field1",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Field1",
+            "fieldNameUnderscored": "field1"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "changelogDate": "20150206211433"
+}

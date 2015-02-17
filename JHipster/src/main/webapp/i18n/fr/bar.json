@@ -1,0 +1,20 @@
+{
+    "jhipsterApp": {
+        "bar" : {
+            "home": {
+                "title": "Bars",
+                "createLabel": "Créer un nouveau Bar",
+                "createOrEditLabel": "Créer ou éditer un Bar"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Bar {{ id }} ?"
+            },
+            "detail": {
+                "title": "Bar"
+            },
+            "field1": "Field1",
+            "bar2": "bar2"
+        }
+    }
+}
+

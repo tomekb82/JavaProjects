@@ -1,0 +1,7 @@
+Openshift
+
+database mysql:
+       Root User: adminXrimhZF
+   Root Password: vsHJeWBMiNeL
+   Database Name: jhipster
+mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
