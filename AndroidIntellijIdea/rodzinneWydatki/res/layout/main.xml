@@ -5,7 +5,12 @@
                       android:layout_height="fill_parent"
                 >
 
-            <LinearLayout
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dodaj"
+            android:id="@+id/dodajWydatek"/>
+    <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
@@ -24,11 +29,20 @@
                     android:onClick="search"/>
             </LinearLayout>
 
-            <ListView
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <ListView
                     android:id="@android:id/list"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"/>
+            </LinearLayout>
 
+            <TextView
+                android:id="@+id/sumaWydatkow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
 </LinearLayout>
 
