@@ -1,0 +1,17 @@
+<sql>
+<statement>
+	CREATE TABLE IF NOT EXISTS wydatki (
+	_id INTEGER PRIMARY KEY AUTOINCREMENT,
+	nazwa VARCHAR(50),
+	cena VARCHAR(50),
+	data VARCHAR(50),
+	sklep VARCHAR(50),
+	typ VARCHAR(50))
+</statement>
+<statement>INSERT INTO wydatki VALUES(1, 'pieluchy', '23', '11/22/15', 'Sklep 1', 'dziecko')</statement>
+<statement>INSERT INTO wydatki VALUES(2, 'fryzjer', '23', '11/22/15', 'Sklep 1', 'uslugi')</statement>
+<statement>INSERT INTO wydatki VALUES(3, 'kino', '23', '11/22/15', 'Sklep 1', 'rozrywka')</statement>
+<statement>INSERT INTO wydatki VALUES(4, 'buty', '23', '11/22/15', 'Sklep 1', 'ubranie')</statement>
+<statement>INSERT INTO wydatki VALUES(5, 'basen', '23', '11/22/15', 'Sklep 1', 'rozrywka')</statement>
+<statement>INSERT INTO wydatki VALUES(6, 'szczepionki', '23', '11/22/15', 'Sklep 1', 'zdrowie')</statement>
+</sql>
