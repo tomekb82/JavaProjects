@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">rodzinneWydatki</string>
+    <string name="feedbacktitle">feedbacktitle</string>
+    <string name="feedbackname">feedbackname</string>
+    <string name="feedbackemail">feedbackemail</string>
+
+    <string name="feedbacktype">feedbacktype</string>
+    <string name="feedbackbody">feedbackbody</string>
+    <string name="feedbackresponse">feedbackresponse</string>
+    <string name="feedbackbutton">feedbackbutton</string>
+
+    <!--Other string resources also defined in this file… -->
+    <string name="feedbacktype1">Praise</string>
+    <string name="feedbacktype2">Gripe</string>
+    <string name="feedbacktype3">Suggestion</string>
+    <string name="feedbacktype4">Bug</string>
 </resources>

@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <!--<TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/frutaTxt"/>
+
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:hint="@string/frutasHint"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/frutaTxt"
+                    android:imeOptions="flagNoExtractUi"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/colorTxt"/>
+
+            <Spinner
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/colorSpinner"
+                    android:entries="@array/colorEntries"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/telefonoTxt"/>
+
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:hint="@string/telefonoHint"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/telefonoTxt"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="phone"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/emailTxt"/>
+
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:hint="@string/emailHint"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/emailTxt"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:maxLength="20"
+                    android:imeOptions="actionSend|flagNoExtractUi"
+                    android:imeActionLabel="@string/guardarBtn"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/guardarBtn"
+            android:id="@+id/guardarBtn"/>-->
+</LinearLayout> 

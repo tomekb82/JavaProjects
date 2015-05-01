@@ -8,10 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Wydatki extends ListActivity {
 
     protected EditText searchText;
@@ -25,7 +21,7 @@ public class Wydatki extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.wydatki_glowna);
 
         db = (new DatabaseHelper(this)).getWritableDatabase();
         DatabaseHelper databaseHelper = new DatabaseHelper(this);

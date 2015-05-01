@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/akcja_dodaj_wydatek"
+          android:showAsAction="always"
+          android:icon="@android:drawable/ic_menu_add"
+          android:title="Dodaj wydatek" />
+
+    <item android:id="@+id/akcja_autor"
+          android:showAsAction="always"
+          android:icon="@android:drawable/ic_menu_info_details"
+          android:title="Informacje o autorze" />
+
+</menu>
