@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="vertical"
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"
+                >
+
+    <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/searchText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/searchButton"
+                    android:text="Szukaj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="search"/>
+            </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/entertainment"
+                android:layout_height="wrap_content"
+                android:text="@string/entertainment"
+                android:layout_width="wrap_content">
+            </CheckBox>
+            <CheckBox
+                    android:id="@+id/baby"
+                    android:layout_height="wrap_content"
+                    android:text="@string/baby"
+                    android:layout_width="wrap_content">
+            </CheckBox>
+            <CheckBox
+                    android:id="@+id/home"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home"
+                    android:layout_width="wrap_content">
+            </CheckBox>
+            </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                    android:id="@+id/bills"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bills"
+                    android:layout_width="wrap_content">
+            </CheckBox>
+            <CheckBox
+                    android:id="@+id/other"
+                    android:layout_height="wrap_content"
+                    android:text="@string/other"
+                    android:layout_width="wrap_content">
+            </CheckBox>
+        </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <ListView
+                    android:id="@android:id/list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/sumaWydatkow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+</LinearLayout>
+

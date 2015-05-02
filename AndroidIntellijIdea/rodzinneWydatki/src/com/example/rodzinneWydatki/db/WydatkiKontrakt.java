@@ -14,6 +14,9 @@ public class WydatkiKontrakt {
     public class Columns {
         public static final String NAZWA_WYDATKU = "nazwa";
         public static final String CENA_WYDATKU = "cena";
+        public static final String TYP_WYDATKU = "typ";
+        public static final String NAZWA_SKLEPU = "sklep";
+        public static final String DATA_WYDATKU = "data";
         public static final String _ID = BaseColumns._ID;
     }
 }

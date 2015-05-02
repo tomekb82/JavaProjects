@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="feedbacktypelist">
-        <item>@string/feedbacktype1</item>
-        <item>@string/feedbacktype2</item>
-        <item>@string/feedbacktype3</item>
-        <item>@string/feedbacktype4</item>
+    <string-array name="expenseTypeList">
+        <item>@string/none</item>
+        <item>@string/entertainment</item>
+        <item>@string/baby</item>
+        <item>@string/tomek</item>
+        <item>@string/kamila</item>
+        <item>@string/home</item>
+        <item>@string/bills</item>
+        <item>@string/grocery_shopping</item>
+        <item>@string/other</item>
     </string-array>
 </resources>

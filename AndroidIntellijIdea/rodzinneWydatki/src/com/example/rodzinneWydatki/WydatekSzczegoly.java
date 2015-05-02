@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.example.rodzinneWydatki.db.WydatkiDBHepler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class WydatekSzczegoly extends ListActivity {
         setContentView(R.layout.wydatki_szczegoly);
 
         idWydatku = getIntent().getIntExtra("WYDATEK_ID", 0);
-        SQLiteDatabase db = (new DatabaseHelper(this)).getWritableDatabase();
+        SQLiteDatabase db = (new WydatkiDBHepler(this)).getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT exp._id, exp.nazwa, exp.cena, exp.data, exp.sklep, exp.typ FROM wydatki exp WHERE exp._id = ?",
                 new String[]{"" + idWydatku});
 

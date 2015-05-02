@@ -7,6 +7,11 @@
           android:icon="@android:drawable/ic_menu_add"
           android:title="Dodaj wydatek" />
 
+    <item android:id="@+id/akcja_szukaj_wydatek"
+          android:showAsAction="always"
+          android:icon="@android:drawable/ic_menu_search"
+          android:title="Wyszukaj wydatek" />
+
     <item android:id="@+id/akcja_autor"
           android:showAsAction="always"
           android:icon="@android:drawable/ic_menu_info_details"

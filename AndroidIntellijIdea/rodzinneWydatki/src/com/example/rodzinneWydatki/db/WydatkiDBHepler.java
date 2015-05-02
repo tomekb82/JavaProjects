@@ -20,9 +20,15 @@ public class WydatkiDBHepler extends SQLiteOpenHelper {
                 String.format("CREATE TABLE %s (" +
                                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                 "%s TEXT,  " +
+                                "%s TEXT,  " +
+                                "%s TEXT,  " +
+                                "%s TEXT,  " +
                                 "%s TEXT)", WydatkiKontrakt.TABLE,
                         WydatkiKontrakt.Columns.NAZWA_WYDATKU,
-                        WydatkiKontrakt.Columns.CENA_WYDATKU);
+                        WydatkiKontrakt.Columns.CENA_WYDATKU,
+                        WydatkiKontrakt.Columns.TYP_WYDATKU,
+                        WydatkiKontrakt.Columns.NAZWA_SKLEPU,
+                        WydatkiKontrakt.Columns.DATA_WYDATKU);
 
         Log.d("WydatkiDBHepler", "Zapytanie SQL: " + sqlQuery);
         sqlDB.execSQL(sqlQuery);

@@ -10,6 +10,7 @@ import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.example.rodzinneWydatki.db.WydatkiDBHepler;
 
 public class DirectReports extends ListActivity {
 
@@ -22,7 +23,7 @@ public class DirectReports extends ListActivity {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.direct_reports);
 
-        SQLiteDatabase db = (new DatabaseHelper(this)).getWritableDatabase();
+        SQLiteDatabase db = (new WydatkiDBHepler(this)).getWritableDatabase();
 
         String typWydatku = getIntent().getStringExtra("TYP_WYDATKU");
 
@@ -36,7 +37,7 @@ public class DirectReports extends ListActivity {
 
 		adapter = new SimpleCursorAdapter(
 				this, 
-				R.layout.wydatki_lista,
+				R.layout.szukaj_wydatek_lista,
 				cursor,
 				new String[] {"nazwa", "cena", "data"},
 				new int[] {R.id.nazwa, R.id.cena, R.id.data});

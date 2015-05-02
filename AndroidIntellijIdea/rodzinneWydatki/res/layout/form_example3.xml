@@ -15,34 +15,28 @@
                 android:id="@+id/TextViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/feedbacktitle"
+                android:text="feedbacktitle"
                 android:textSize="10pt">
         </TextView>
         <EditText
                 android:id="@+id/EditTextName"
                 android:layout_height="wrap_content"
-                android:hint="@string/feedbackname"
+                android:hint="feedbackname"
                 android:inputType="textPersonName"
                 android:layout_width="fill_parent">
         </EditText>
         <EditText
                 android:id="@+id/EditTextEmail"
                 android:layout_height="wrap_content"
-                android:hint="@string/feedbackemail"
+                android:hint="feedbackemail"
                 android:inputType="textEmailAddress"
                 android:layout_width="fill_parent">
         </EditText>
-        <Spinner
-                android:id="@+id/SpinnerFeedbackType"
-                android:layout_height="wrap_content"
-                android:prompt="@string/feedbacktype"
-                android:layout_width="fill_parent"
-                android:entries="@array/feedbacktypelist">
-        </Spinner>
+
         <EditText
                 android:id="@+id/EditTextFeedbackBody"
                 android:layout_height="wrap_content"
-                android:hint="@string/feedbackbody"
+                android:hint="feedbackbody"
                 android:inputType="textMultiLine"
                 android:lines="5"
                 android:layout_width="fill_parent">
@@ -50,13 +44,13 @@
         <CheckBox
                 android:id="@+id/CheckBoxResponse"
                 android:layout_height="wrap_content"
-                android:text="@string/feedbackresponse"
+                android:text="feedbackresponse"
                 android:layout_width="fill_parent">
         </CheckBox>
         <Button
                 android:id="@+id/ButtonSendFeedback"
                 android:layout_height="wrap_content"
-                android:text="@string/feedbackbutton"
+                android:text="feedbackbutton"
                 android:onClick="sendFeedback"
                 android:layout_width="fill_parent">
         </Button>

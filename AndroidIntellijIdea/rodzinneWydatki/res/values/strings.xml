@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">rodzinneWydatki</string>
-    <string name="feedbacktitle">feedbacktitle</string>
-    <string name="feedbackname">feedbackname</string>
-    <string name="feedbackemail">feedbackemail</string>
-
-    <string name="feedbacktype">feedbacktype</string>
-    <string name="feedbackbody">feedbackbody</string>
-    <string name="feedbackresponse">feedbackresponse</string>
-    <string name="feedbackbutton">feedbackbutton</string>
+    <string name="name">Nazwa</string>
+    <string name="expenseName">Nazwa wydatku</string>
+    <string name="price">Cena</string>
+    <string name="expensePrice">Wartość wydatku</string>
+    <string name="type">Typ</string>
+    <string name="expenseType">Typ wydatku</string>
+    <string name="shop">Sklep</string>
+    <string name="expenseShop">Nazwa sklepu</string>
+    <string name="submit">Dodaj</string>
+    <string name="cancel">Anuluj</string>
 
     <!--Other string resources also defined in this file… -->
-    <string name="feedbacktype1">Praise</string>
-    <string name="feedbacktype2">Gripe</string>
-    <string name="feedbacktype3">Suggestion</string>
-    <string name="feedbacktype4">Bug</string>
+    <string name="none">--brak--</string>
+    <string name="entertainment">Rozrywka</string>
+    <string name="baby">Dziecko</string>
+    <string name="tomek">Tomek</string>
+    <string name="kamila">Kamila</string>
+    <string name="home">Domowe</string>
+    <string name="bills">Rachunki</string>
+    <string name="grocery_shopping">Zakupy spoż.</string>
+    <string name="other">Inne</string>
 </resources>

@@ -12,10 +12,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="Wydatki"></activity>
+        <activity android:name="SzukajWydatek"></activity>
         <activity android:name="WydatekSzczegoly"></activity>
         <activity android:name="Sklep"></activity>
         <activity android:name="DirectReports"></activity>
+        <activity android:name="DodajWydatek"></activity>
+
 
     </application>
 </manifest>

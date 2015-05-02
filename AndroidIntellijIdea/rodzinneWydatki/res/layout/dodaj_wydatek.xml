@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical" >
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/name" />
+
+        <EditText
+                android:id="@+id/expenseName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:hint="@string/expenseName"
+                android:ems="10" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/price" />
+
+        <EditText
+                android:id="@+id/expensePrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:hint="@string/expensePrice"
+                android:ems="10" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:text="@string/type" />
+
+        <Spinner
+            android:id="@+id/expenseType"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:prompt="@string/expenseType"
+            android:layout_weight="0.65"
+            android:entries="@array/expenseTypeList">
+        </Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/shop" />
+
+        <EditText
+                android:id="@+id/expenseShop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:hint="@string/expenseShop"
+                android:ems="10" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                 />
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:orientation="horizontal" >
+
+            <Button
+                    android:id="@+id/anulujDodajWydatek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text="@string/cancel"
+                    android:onClick="anulujDodajWydatekOnClick"/>
+
+            <Button
+                    android:id="@+id/potwierdzDodajWydatek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text="@string/submit"
+                    android:onClick="potwierdzDodajWydatekOnClick"/>/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
