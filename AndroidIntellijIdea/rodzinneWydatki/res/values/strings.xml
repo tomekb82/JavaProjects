@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">rodzinneWydatki</string>
+    <string name="app_name">Wydatki</string>
     <string name="name">Nazwa</string>
     <string name="expenseName">Nazwa wydatku</string>
     <string name="price">Cena</string>
     <string name="expensePrice">Wartość wydatku</string>
     <string name="type">Typ</string>
     <string name="expenseType">Typ wydatku</string>
+    <string name="date">Data</string>
+    <string name="expenseDate">Data wydatku</string>
     <string name="shop">Sklep</string>
     <string name="expenseShop">Nazwa sklepu</string>
+    <string name="changeDate">Zmień datę</string>
+    <string name="deleteExpense">Usuń</string>
     <string name="submit">Dodaj</string>
     <string name="cancel">Anuluj</string>
 
@@ -20,6 +24,19 @@
     <string name="kamila">Kamila</string>
     <string name="home">Domowe</string>
     <string name="bills">Rachunki</string>
-    <string name="grocery_shopping">Zakupy spoż.</string>
+    <string name="grocery_shopping">Spożywcze</string>
     <string name="other">Inne</string>
+
+    <string name="january">Styczeń</string>
+    <string name="february">Luty</string>
+    <string name="march">Marzec</string>
+    <string name="april">Kwiecień</string>
+    <string name="may">Maj</string>
+    <string name="june">Czerwiec</string>
+    <string name="july">Lipiec</string>
+    <string name="august">Sierpień</string>
+    <string name="september">Wrzesień</string>
+    <string name="october">Październi</string>
+    <string name="november">Listopad</string>
+    <string name="december">Grudzień</string>
 </resources>

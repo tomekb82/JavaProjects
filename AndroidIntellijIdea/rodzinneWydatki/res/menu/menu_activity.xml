@@ -12,6 +12,11 @@
           android:icon="@android:drawable/ic_menu_search"
           android:title="Wyszukaj wydatek" />
 
+    <item android:id="@+id/akcja_raporty"
+          android:showAsAction="always"
+          android:icon="@android:drawable/ic_menu_report_image"
+          android:title="Raporty" />
+
     <item android:id="@+id/akcja_autor"
           android:showAsAction="always"
           android:icon="@android:drawable/ic_menu_info_details"

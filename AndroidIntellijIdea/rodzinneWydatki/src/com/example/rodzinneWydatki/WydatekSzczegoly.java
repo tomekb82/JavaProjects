@@ -52,12 +52,12 @@ public class WydatekSzczegoly extends ListActivity {
 
             sklep = cursor.getString(cursor.getColumnIndex("sklep"));
             if (sklep != null) {
-                actions.add(new WydatekAkcja("Nazwa sklepu", sklep, WydatekAkcja.AKCJA_SKLEP));
+                actions.add(new WydatekAkcja("Nazwa sklepu", sklep, WydatekAkcja.AKCJA_SKLEP,null));
             }
 
             typWydatku = cursor.getString(cursor.getColumnIndex("typ"));
             if (typWydatku != null) {
-                actions.add(new WydatekAkcja("Typ wydatku", typWydatku, WydatekAkcja.AKCJA_TYP));
+                actions.add(new WydatekAkcja("Typ wydatku", typWydatku, WydatekAkcja.AKCJA_TYP,null));
             }
 
             cursor = db.rawQuery("SELECT count(*) FROM wydatki WHERE typ = ?",
@@ -65,13 +65,13 @@ public class WydatekSzczegoly extends ListActivity {
             cursor.moveToFirst();
             int count = cursor.getInt(0);
             if (count>0) {
-                actions.add(new WydatekAkcja("Pokaz raporty", "(" + count + ")", WydatekAkcja.AKCJA_RAPORTY));
+                actions.add(new WydatekAkcja("Pokaz raporty", "(" + count + ")", WydatekAkcja.AKCJA_RAPORTY,null));
             }
 
             adapter = new WydatekAkcjaAdapter();
             setListAdapter(adapter);
 
-        }
+            }
     }
 
     public void onListItemClick(ListView parent, View view, int position, long id) {

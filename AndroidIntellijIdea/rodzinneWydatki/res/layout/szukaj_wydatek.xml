@@ -57,6 +57,12 @@
                     android:text="@string/bills"
                     android:layout_width="wrap_content">
             </CheckBox>
+        <CheckBox
+                android:id="@+id/grocery_shopping"
+                android:layout_height="wrap_content"
+                android:text="@string/grocery_shopping"
+                android:layout_width="wrap_content">
+        </CheckBox>
             <CheckBox
                     android:id="@+id/other"
                     android:layout_height="wrap_content"
@@ -64,6 +70,23 @@
                     android:layout_width="wrap_content">
             </CheckBox>
         </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        <CheckBox
+                android:id="@+id/tomek"
+                android:layout_height="wrap_content"
+                android:text="@string/tomek"
+                android:layout_width="wrap_content">
+        </CheckBox>
+        <CheckBox
+                android:id="@+id/kamila"
+                android:layout_height="wrap_content"
+                android:text="@string/kamila"
+                android:layout_width="wrap_content">
+        </CheckBox>
+    </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"

@@ -74,6 +74,31 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
+                android:text="@string/date" />
+
+        <EditText
+                android:id="@+id/expenseDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:hint="@string/expenseDate"
+                android:ems="10" />
+        <Button
+                android:id="@+id/changeDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/changeDate" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
                 android:text="@string/shop" />
 
         <EditText
@@ -87,7 +112,7 @@
 
     <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="58dp"
             android:orientation="horizontal" >
 
         <View
@@ -106,18 +131,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="@string/cancel"
-                    android:onClick="anulujDodajWydatekOnClick"/>
+                    android:text="@string/cancel"/>
 
             <Button
                     android:id="@+id/potwierdzDodajWydatek"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="@string/submit"
-                    android:onClick="potwierdzDodajWydatekOnClick"/>/>
+                    android:text="@string/submit"/>/>
 
         </LinearLayout>
     </LinearLayout>
+
 
 </LinearLayout>

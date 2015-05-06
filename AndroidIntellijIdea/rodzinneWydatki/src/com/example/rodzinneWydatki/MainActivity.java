@@ -1,21 +1,16 @@
 package com.example.rodzinneWydatki;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ListActivity;
+import android.app.*;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
+import android.widget.*;
 import com.example.rodzinneWydatki.db.WydatkiDBHepler;
 import com.example.rodzinneWydatki.db.WydatkiKontrakt;
 
@@ -24,11 +19,15 @@ import com.example.rodzinneWydatki.db.WydatkiKontrakt;
  */
 public class MainActivity extends ListActivity {
 
+    private static final int AUTHOR_DIALOG_ID = 999;
+    private static final int DEL_EXPENSE_ID = 998;
     private WydatkiDBHepler helper;
     private SimpleCursorAdapter listAdapter;
     protected int sumaWydatkow;
     protected TextView sumaWydatkowText;
     String wydatek;
+
+    private Button usunWydatek;
 
     /**
      * Called when the activity is first created.
@@ -37,8 +36,8 @@ public class MainActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-
         updateUI();
+        //addListenerOnButton();
         /*
         SQLiteDatabase sqlDB = new WydatkiDBHepler(this).getWritableDatabase();
         Cursor cursor = sqlDB.query(WydatkiKontrakt.TABLE,
@@ -51,6 +50,42 @@ public class MainActivity extends ListActivity {
                             cursor.getColumnIndexOrThrow(
                                     WydatkiKontrakt.Columns.NAZWA_WYDATKU)));
         }*/
+    }
+
+    /*
+    public void addListenerOnButton() {
+        usunWydatek = (Button) findViewById(R.id.deleteExpense);
+        /*usunWydatek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //View vParent = (View)v.getParent();
+                //TextView nazwaWydatku = (TextView) findViewById(R.id.expenseName);
+                //wydatek = nazwaWydatku.getText().toString();
+                //showDialog(DEL_EXPENSE_ID);
+            }
+        });
+    }*/
+
+    public void showExpenseOnClick(View view){
+        View v = (View) view.getParent();
+        TextView nazwaWydatku = (TextView) v.findViewById(R.id.expenseName);
+        wydatek = nazwaWydatku.getText().toString();
+
+        Intent intent = new Intent(this, WydatekSzczegoly.class);
+        helper = new WydatkiDBHepler(MainActivity.this);
+        SQLiteDatabase sqlDB = helper.getReadableDatabase();
+        Cursor cursor = sqlDB.rawQuery("SELECT * FROM wydatki WHERE nazwa LIKE ?",
+                new String[]{"%" + wydatek + "%"});
+        cursor.moveToFirst();
+        intent.putExtra("WYDATEK_ID", cursor.getInt(cursor.getColumnIndex("_id")));
+        startActivity(intent);
+    }
+
+    public void deleteExpenseOnClick(View view){
+        View v = (View) view.getParent();
+        TextView nazwaWydatku = (TextView) v.findViewById(R.id.expenseName);
+        wydatek = nazwaWydatku.getText().toString();
+        showDialog(DEL_EXPENSE_ID);
     }
 
     private void updateUI() {
@@ -69,7 +104,7 @@ public class MainActivity extends ListActivity {
                 cursor,
                 new String[] { WydatkiKontrakt.Columns.NAZWA_WYDATKU
                         , WydatkiKontrakt.Columns.CENA_WYDATKU},
-                new int[] { R.id.nazwaWydatku, R.id.cenaWydatku},
+                new int[] { R.id.expenseName, R.id.expensePrice},
                 0
         );
         sumaWydatkow = 0;
@@ -83,12 +118,58 @@ public class MainActivity extends ListActivity {
         this.setListAdapter(listAdapter);
     }
 
-    public void usunWydatekOnClick(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity, menu);
+        return true;
+    }
 
-        View v = (View) view.getParent();
-        TextView nazwaWydatku = (TextView) v.findViewById(R.id.nazwaWydatku);
-        wydatek = nazwaWydatku.getText().toString();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.akcja_szukaj_wydatek:
+                Log.d("MainActivity", "Wyszukaj wydatek");
+                Intent intentWyszukaj = new Intent(this, SzukajWydatek.class);
+                startActivity(intentWyszukaj);
+                return true;
+            case R.id.akcja_dodaj_wydatek:
+                Log.d("MainActivity", "Dodaj wydatek");
+                Intent intentDodaj = new Intent(this, DodajWydatek.class);
+                startActivity(intentDodaj);
+                return true;
+            case R.id.akcja_raporty:
+                Intent intentRaporty = new Intent(this, Raport.class);
+                startActivity(intentRaporty);
+                return true;
+            case R.id.akcja_autor:
+                Log.d("MainActivity", "Informacja o autorze");
+                showDialog(AUTHOR_DIALOG_ID);
+                return true;
+            default:
+                 return false;
+        }
+    }
 
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case AUTHOR_DIALOG_ID:
+                return authorDialog();
+            case DEL_EXPENSE_ID:
+                return deleteExpenseDialog();
+        }
+        return null;
+    }
+
+    private Dialog authorDialog(){
+        AlertDialog.Builder authorDialog = new AlertDialog.Builder(this);
+        authorDialog.setTitle("Autor");
+        authorDialog.setMessage("Tomasz Belina\n Wersja apliacji: 0.0.1");
+        authorDialog.setNegativeButton("Zamknij", null);
+        return authorDialog.create();
+    }
+
+    private Dialog deleteExpenseDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Potwierdzenie");
         builder.setMessage("Czy chcesz usunąć wydatek '" + wydatek + "' ?");
@@ -106,42 +187,6 @@ public class MainActivity extends ListActivity {
                 updateUI();
             }
         });
-        builder.create().show();
+        return builder.create();
     }
-
-            @Override
-            public boolean onCreateOptionsMenu(Menu menu) {
-                getMenuInflater().inflate(R.menu.menu_activity, menu);
-                return true;
-            }
-
-            @Override
-            public boolean onOptionsItemSelected(MenuItem item) {
-                switch (item.getItemId()) {
-
-                    case R.id.akcja_szukaj_wydatek:
-                        Log.d("MainActivity", "Wyszukaj wydatek");
-                        Intent intentWyszukaj = new Intent(this, SzukajWydatek.class);
-                        startActivity(intentWyszukaj);
-                        return true;
-
-                    case R.id.akcja_dodaj_wydatek:
-                        Log.d("MainActivity", "Dodaj wydatek");
-                        Intent intentDodaj = new Intent(this, DodajWydatek.class);
-                        startActivity(intentDodaj);
-                        return true;
-
-                    case R.id.akcja_autor:
-                        Log.d("MainActivity", "Informacja o autorze");
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        builder.setTitle("Autor");
-                        builder.setMessage("Tomasz Belina\n Wersja apliacji: 0.0.1");
-                        builder.setNegativeButton("Zamknij", null);
-                        builder.create().show();
-                        return true;
-
-                    default:
-                        return false;
-                }
-            }
-        }
+}

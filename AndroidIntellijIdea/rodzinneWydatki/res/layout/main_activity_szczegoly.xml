@@ -8,35 +8,36 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wydatek"
-            android:id="@+id/nazwaWydatku"
+            android:text="@string/expenseName"
+            android:id="@+id/expenseName"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textSize="20dp"
-            android:layout_alignBottom="@+id/przyciskUsun"
-            android:gravity="center_vertical" />
+            android:layout_alignBottom="@+id/deleteExpense"
+            android:gravity="center_vertical"
+            android:onClick="showExpenseOnClick"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cena"
-                android:id="@+id/cenaWydatku"
+                android:text="@string/expensePrice"
+                android:id="@+id/expensePrice"
                 android:textSize="20dp"
                 android:gravity="center_vertical"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_alignBottom="@+id/nazwaWydatku"/>
+                android:layout_alignBottom="@+id/expenseName"/>
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Usuń"
-            android:id="@+id/przyciskUsun"
+            android:text="@string/deleteExpense"
+            android:id="@+id/deleteExpense"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:onClick="usunWydatekOnClick"/>
+            android:onClick="deleteExpenseOnClick"/>
 
 
 </RelativeLayout>

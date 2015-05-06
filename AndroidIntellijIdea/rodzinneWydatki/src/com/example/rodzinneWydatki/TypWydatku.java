@@ -7,7 +7,11 @@ public enum TypWydatku {
 
     ROZRYWKA("Rozrywka"),
     DZIECKO("Dziecko"),
+    DOMOWE("Domowe"),
     RACHUNKI("Rachunki"),
+    SPOZYWCZE("Spożywcze"),
+    TOMEK("Tomek"),
+    KAMILA("Kamila"),
     INNE("Inne");
 
     private String value;

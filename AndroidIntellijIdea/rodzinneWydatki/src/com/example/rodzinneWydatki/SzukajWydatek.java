@@ -24,6 +24,9 @@ public class SzukajWydatek extends ListActivity {
     protected CheckBox entertainmentCheckbox;
     protected CheckBox babyCheckbox;
     protected CheckBox homeCheckbox;
+    protected CheckBox groceryShoppingCheckbox;
+    protected CheckBox tomekCheckbox;
+    protected CheckBox kamilaCheckbox;
     protected CheckBox billsCheckbox;
     protected CheckBox otherCheckbox;
     private String types;
@@ -40,9 +43,10 @@ public class SzukajWydatek extends ListActivity {
         babyCheckbox = (CheckBox) findViewById (R.id.baby);
         homeCheckbox = (CheckBox) findViewById (R.id.home);
         billsCheckbox = (CheckBox) findViewById (R.id.bills);
+        groceryShoppingCheckbox = (CheckBox) findViewById (R.id.grocery_shopping);
+        tomekCheckbox = (CheckBox) findViewById (R.id.tomek);
+        kamilaCheckbox = (CheckBox) findViewById (R.id.kamila);
         otherCheckbox = (CheckBox) findViewById (R.id.other);
-
-
     }
 
     private static String createQuery(int length) {
@@ -56,12 +60,6 @@ public class SzukajWydatek extends ListActivity {
         return queryBuilder.toString();
     }
 
-    private String createQueryList(List<String> list){
-        String s = list.toString();
-        s = s.substring(1, s.length()-1);
-        return s;
-    }
-
     public void search(View view) {
         List<String> types = new ArrayList<String>();
         types.add("%" + searchText.getText().toString() + "%");
@@ -71,11 +69,28 @@ public class SzukajWydatek extends ListActivity {
         if(babyCheckbox.isChecked()){
             types.add(TypWydatku.DZIECKO.getValue());
         }
+        if(homeCheckbox.isChecked()){
+            types.add(TypWydatku.DOMOWE.getValue());
+        }
+        if(billsCheckbox.isChecked()){
+            types.add(TypWydatku.RACHUNKI.getValue());
+        }
+        if(groceryShoppingCheckbox.isChecked()){
+            types.add(TypWydatku.SPOZYWCZE.getValue());
+        }
+        if(otherCheckbox.isChecked()){
+            types.add(TypWydatku.INNE.getValue());
+        }
+        if(tomekCheckbox.isChecked()){
+            types.add(TypWydatku.TOMEK.getValue());
+        }
+        if(kamilaCheckbox.isChecked()){
+            types.add(TypWydatku.KAMILA.getValue());
+        }
         String [] strings = new String[types.size()];
         for(int i=0; i < types.size(); i++){
             strings[i] = types.get(i);
         }
-
 
         // || is the concatenation operation in SQLite
         if(types.size()==1) {
@@ -84,11 +99,7 @@ public class SzukajWydatek extends ListActivity {
         } else{
             cursor = db.rawQuery(createQuery(types.size()), strings);
         }
-/*
-        Cursor cursor2 = db.query(WydatkiKontrakt.TABLE,
-                new String[]{WydatkiKontrakt.Columns._ID, WydatkiKontrakt.Columns.NAZWA_WYDATKU, WydatkiKontrakt.Columns.CENA_WYDATKU},
-                null,null,null,null,null);
-*/
+
         adapter = new SimpleCursorAdapter(
                 this,
                 R.layout.szukaj_wydatek_lista,

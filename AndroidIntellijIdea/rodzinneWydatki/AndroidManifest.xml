@@ -17,6 +17,10 @@
         <activity android:name="Sklep"></activity>
         <activity android:name="DirectReports"></activity>
         <activity android:name="DodajWydatek"></activity>
+        <activity android:name="Raport"></activity>
+        <activity android:name="RaportSzczegoly"></activity>
+
+
 
 
     </application>
