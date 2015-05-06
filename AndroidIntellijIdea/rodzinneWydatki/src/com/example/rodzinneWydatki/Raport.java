@@ -2,6 +2,7 @@ package com.example.rodzinneWydatki;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -31,6 +32,11 @@ public class Raport extends ListActivity {
 
     protected List<WydatekAkcja> actions;
     protected WydatekAkcjaAdapter adapter;
+    private static final int NORMAL_COLOR = 0xFF00FF00;
+    private static final int MEDIUM_COLOR = 0xFFFFFC1A;
+    private static final int MEDIUM_VALUE = 300;
+    private static final int CRITICAL_COLOR =0xFFFF0000;
+    private static final int CRITICAL_VALUE = 600;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,42 +47,25 @@ public class Raport extends ListActivity {
 
         actions = new ArrayList<WydatekAkcja>();
 
-        actions.add(new WydatekAkcja("Styczeń", "(" + String.valueOf(getReportsCount(db, Calendar.JANUARY)) + ")",
-                WydatekAkcja.AKCJA_RAPORT_STYCZEN, null));
-        actions.add(new WydatekAkcja("Luty", "(" + String.valueOf(getReportsCount(db, Calendar.FEBRUARY)) + ")",
-                WydatekAkcja.AKCJA_RAPORT_LUTY, null));
-        actions.add(new WydatekAkcja("Marzec", "(" + String.valueOf(getReportsCount(db, Calendar.MARCH)) + ")",
-                WydatekAkcja.AKCJA_RAPORT_MARZEC, null));
-        actions.add(new WydatekAkcja("Kwiecień", "(" + String.valueOf(getReportsCount(db, Calendar.APRIL)) + ")",
-                WydatekAkcja.AKCJA_RAPORT_KWIECIEN, null));
-        String color = "#FFFFFF";
-        if (getReportsCount(db, Calendar.MAY) > 620){
-            color ="#FF0000";
-        }
-        actions.add(new WydatekAkcja("Maj", "(" + String.valueOf(getReportsCount(db, Calendar.MAY)) + ")",
-                WydatekAkcja.AKCJA_RAPORT_MAJ, color));
-        actions.add(new WydatekAkcja("Czerwiec", "(" + String.valueOf(getReportsCount(db, Calendar.JUNE)) + ")",
-                WydatekAkcja.AKCJA_RAPORT_CZERWIEC, null));
+        actions.add(new WydatekAkcja("Styczeń (" + getReportsMonthSum(db,Calendar.JANUARY) + " pln)",
+                "(" + String.valueOf(getReportsCount(db, Calendar.JANUARY)) + ")",
+                WydatekAkcja.AKCJA_RAPORT_STYCZEN, getReportsMonthColor(db, Calendar.JANUARY)));
+        actions.add(new WydatekAkcja("Luty (" + getReportsMonthSum(db,Calendar.FEBRUARY) + " pln)",
+                "(" + String.valueOf(getReportsCount(db, Calendar.FEBRUARY)) + ")",
+                WydatekAkcja.AKCJA_RAPORT_LUTY, getReportsMonthColor(db, Calendar.FEBRUARY)));
+        actions.add(new WydatekAkcja("Marzec (" + getReportsMonthSum(db,Calendar.MARCH) + " pln)",
+                "(" + String.valueOf(getReportsCount(db, Calendar.MARCH)) + ")",
+                WydatekAkcja.AKCJA_RAPORT_MARZEC, getReportsMonthColor(db, Calendar.MARCH)));
+        actions.add(new WydatekAkcja("Kwiecień (" + getReportsMonthSum(db,Calendar.APRIL) + " pln)",
+                "(" + String.valueOf(getReportsCount(db, Calendar.APRIL)) + ")",
+                WydatekAkcja.AKCJA_RAPORT_KWIECIEN, getReportsMonthColor(db, Calendar.APRIL)));
+        actions.add(new WydatekAkcja("Maj (" + getReportsMonthSum(db,Calendar.MAY) + " pln)",
+                "(" + String.valueOf(getReportsCount(db, Calendar.MAY)) + ")",
+                WydatekAkcja.AKCJA_RAPORT_MAJ, getReportsMonthColor(db, Calendar.MAY)));
+        actions.add(new WydatekAkcja("Czerwiec(" + getReportsMonthSum(db,Calendar.JUNE) + " pln)",
+                "(" + String.valueOf(getReportsCount(db, Calendar.JUNE)) + ")",
+                WydatekAkcja.AKCJA_RAPORT_CZERWIEC, getReportsMonthColor(db, Calendar.JUNE)));
 
-        /*
-        january_number = (TextView) findViewById(R.id.january_number);
-        january_number.setText("(" + String.valueOf(getReportsCount(db, Calendar.JANUARY)) + ")");
-
-        february_number = (TextView) findViewById(R.id.february_number);
-        february_number.setText("(" + String.valueOf(getReportsCount(db, Calendar.FEBRUARY)) + ")");
-
-        march_number = (TextView) findViewById(R.id.march_number);
-        march_number.setText("(" + String.valueOf(getReportsCount(db, Calendar.MARCH)) + ")");
-
-        april_number = (TextView) findViewById(R.id.april_number);
-        april_number.setText("(" + String.valueOf(getReportsCount(db, Calendar.APRIL)) + ")");
-
-        may_number = (TextView) findViewById(R.id.may_number);
-        may_number.setText("(" + String.valueOf(getReportsCount(db, Calendar.MAY)) + ")");
-
-        june_number = (TextView) findViewById(R.id.june_number);
-        june_number.setText("(" + String.valueOf(getReportsCount(db, Calendar.JUNE)) + ")");
-*/
         adapter = new WydatekAkcjaAdapter();
         setListAdapter(adapter);
 
@@ -86,22 +75,22 @@ public class Raport extends ListActivity {
         WydatekAkcja action = actions.get(position);
         switch (action.getType()) {
             case WydatekAkcja.AKCJA_RAPORT_STYCZEN:
-                idzRaportMiesiac(0);
-                break;
-            case WydatekAkcja.AKCJA_RAPORT_LUTY:
                 idzRaportMiesiac(1);
                 break;
-            case WydatekAkcja.AKCJA_RAPORT_MARZEC:
+            case WydatekAkcja.AKCJA_RAPORT_LUTY:
                 idzRaportMiesiac(2);
                 break;
-            case WydatekAkcja.AKCJA_RAPORT_KWIECIEN:
+            case WydatekAkcja.AKCJA_RAPORT_MARZEC:
                 idzRaportMiesiac(3);
                 break;
-            case WydatekAkcja.AKCJA_RAPORT_MAJ:
+            case WydatekAkcja.AKCJA_RAPORT_KWIECIEN:
                 idzRaportMiesiac(4);
                 break;
-            case WydatekAkcja.AKCJA_RAPORT_CZERWIEC:
+            case WydatekAkcja.AKCJA_RAPORT_MAJ:
                 idzRaportMiesiac(5);
+                break;
+            case WydatekAkcja.AKCJA_RAPORT_CZERWIEC:
+                idzRaportMiesiac(6);
                 break;
         }
     }
@@ -119,6 +108,23 @@ public class Raport extends ListActivity {
         return cursor.getInt(0);
     }
 
+    private int getReportsMonthSum(SQLiteDatabase db, int month) {
+        Cursor cursor = db.rawQuery("SELECT sum(cena) FROM wydatki WHERE data LIKE ?",
+                new String[]{"%/" + month + "/%"});
+        cursor.moveToFirst();
+        return cursor.getInt(0);
+    }
+
+    private int getReportsMonthColor(SQLiteDatabase db, int month){
+        int sum = getReportsMonthSum(db, month);
+        if (sum > CRITICAL_VALUE) {
+            return CRITICAL_COLOR;
+        }else if (sum > MEDIUM_VALUE) {
+            return MEDIUM_COLOR;
+        }
+        return NORMAL_COLOR;
+    }
+
     class WydatekAkcjaAdapter extends ArrayAdapter<WydatekAkcja> {
 
         WydatekAkcjaAdapter() {
@@ -132,12 +138,10 @@ public class Raport extends ListActivity {
             View view = inflater.inflate(R.layout.akcja_lista, parent, false);
             TextView label = (TextView) view.findViewById(R.id.label);
             label.setText(action.getLabel());
+            label.setTextColor(action.getColor());
             TextView data = (TextView) view.findViewById(R.id.data);
             data.setText(action.getData());
-
-            label.setTextColor(action.getColor());
             return view;
         }
-
     }
 }

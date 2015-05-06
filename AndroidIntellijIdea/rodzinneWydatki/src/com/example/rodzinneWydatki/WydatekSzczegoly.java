@@ -30,7 +30,7 @@ public class WydatekSzczegoly extends ListActivity {
 
     protected List<WydatekAkcja> actions;
     protected WydatekAkcjaAdapter adapter;
-
+    private static final int DEFAULT_COLOR = 0xFF0000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,12 +52,12 @@ public class WydatekSzczegoly extends ListActivity {
 
             sklep = cursor.getString(cursor.getColumnIndex("sklep"));
             if (sklep != null) {
-                actions.add(new WydatekAkcja("Nazwa sklepu", sklep, WydatekAkcja.AKCJA_SKLEP,null));
+                actions.add(new WydatekAkcja("Nazwa sklepu", sklep, WydatekAkcja.AKCJA_SKLEP,DEFAULT_COLOR));
             }
 
             typWydatku = cursor.getString(cursor.getColumnIndex("typ"));
             if (typWydatku != null) {
-                actions.add(new WydatekAkcja("Typ wydatku", typWydatku, WydatekAkcja.AKCJA_TYP,null));
+                actions.add(new WydatekAkcja("Typ wydatku", typWydatku, WydatekAkcja.AKCJA_TYP,DEFAULT_COLOR));
             }
 
             cursor = db.rawQuery("SELECT count(*) FROM wydatki WHERE typ = ?",
@@ -65,7 +65,7 @@ public class WydatekSzczegoly extends ListActivity {
             cursor.moveToFirst();
             int count = cursor.getInt(0);
             if (count>0) {
-                actions.add(new WydatekAkcja("Pokaz raporty", "(" + count + ")", WydatekAkcja.AKCJA_RAPORTY,null));
+                actions.add(new WydatekAkcja("Pokaz raporty", "(" + count + ")", WydatekAkcja.AKCJA_RAPORTY,DEFAULT_COLOR));
             }
 
             adapter = new WydatekAkcjaAdapter();

@@ -57,13 +57,13 @@ public class DodajWydatek extends Activity {
 
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
-        month = c.get(Calendar.MONTH);
+        month = c.get(Calendar.MONTH) + 1;
         day = c.get(Calendar.DAY_OF_MONTH);
 
         // set current date into textview
         dataWydatku.setText(new StringBuilder()
                 // Month is 0 based, just add 1
-                .append(day).append("/").append(month + 1).append("/")
+                .append(day).append("/").append(month).append("/")
                 .append(year).append(" "));
     }
 
@@ -127,7 +127,11 @@ public class DodajWydatek extends Activity {
                     values.clear();
                     values.put(WydatkiKontrakt.Columns.NAZWA_WYDATKU, nazwaWydatku.getText().toString());
                     values.put(WydatkiKontrakt.Columns.CENA_WYDATKU, cenaWydatku.getText().toString());
-                    values.put(WydatkiKontrakt.Columns.TYP_WYDATKU, typWydatku.getSelectedItem().toString());
+                    if(typWydatku.getSelectedItem().toString().equals("--brak--")){
+                        values.put(WydatkiKontrakt.Columns.TYP_WYDATKU, TypWydatku.INNE.getValue());
+                    }else{
+                        values.put(WydatkiKontrakt.Columns.TYP_WYDATKU, typWydatku.getSelectedItem().toString());
+                    }
                     values.put(WydatkiKontrakt.Columns.DATA_WYDATKU, dataWydatku.getText().toString());
                     if (nazwaSklepu != null) {
                         values.put(WydatkiKontrakt.Columns.NAZWA_SKLEPU, nazwaSklepu.getText().toString());
@@ -155,7 +159,7 @@ public class DodajWydatek extends Activity {
 
             // set selected date into textview
             dataWydatku.setText(new StringBuilder().append(day)
-                    .append("/").append(month + 1).append("/").append(year)
+                    .append("/").append(month).append("/").append(year)
                     .append(" "));
         }
     };

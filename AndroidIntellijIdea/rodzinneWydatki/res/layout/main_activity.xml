@@ -16,9 +16,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kwota łącznie:"
+            android:text="Kwota łącznie: "
             android:id="@+id/suma"
-            android:textSize="20dp"
             android:gravity="center_vertical"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
@@ -28,7 +27,6 @@
             android:layout_height="wrap_content"
             android:text="suma"
             android:id="@+id/sumaWydatkow"
-            android:textSize="20dp"
             android:gravity="center_vertical"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"/>

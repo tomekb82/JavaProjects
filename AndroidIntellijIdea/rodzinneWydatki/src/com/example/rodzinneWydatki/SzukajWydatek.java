@@ -113,7 +113,7 @@ public class SzukajWydatek extends ListActivity {
             sumaWydatkow += cursorCena.getInt(cursor.getColumnIndex("cena"));
         }
         sumaWydatkowText = (TextView) findViewById(R.id.sumaWydatkow);
-        sumaWydatkowText.setText("Suma wydatków:" + String.valueOf(sumaWydatkow));
+        sumaWydatkowText.setText("Suma wydatków: " + String.valueOf(sumaWydatkow) + " pln");
 
         setListAdapter(adapter);
     }

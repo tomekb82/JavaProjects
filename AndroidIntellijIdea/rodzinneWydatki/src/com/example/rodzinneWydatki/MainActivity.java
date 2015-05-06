@@ -113,7 +113,7 @@ public class MainActivity extends ListActivity {
             sumaWydatkow += cursorCena.getInt(cursor.getColumnIndex(WydatkiKontrakt.Columns.CENA_WYDATKU));
         }
         sumaWydatkowText = (TextView) findViewById(R.id.sumaWydatkow);
-        sumaWydatkowText.setText(String.valueOf(sumaWydatkow));
+        sumaWydatkowText.setText(String.valueOf(sumaWydatkow) + "pln");
 
         this.setListAdapter(listAdapter);
     }

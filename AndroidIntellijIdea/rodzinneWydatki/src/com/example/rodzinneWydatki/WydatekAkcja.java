@@ -5,12 +5,10 @@ package com.example.rodzinneWydatki;
  */
 public class WydatekAkcja {
     private String label;
-
     private String data;
 
     private int type;
-
-    private String color;
+    private int color;
 
     public static final int AKCJA_SKLEP = 1;
     public static final int AKCJA_TYP = 2;
@@ -23,16 +21,21 @@ public class WydatekAkcja {
     public static final int AKCJA_RAPORT_MAJ = 995;
     public static final int AKCJA_RAPORT_CZERWIEC = 994;
 
+    public static final int AKCJA_RAPORT_ROZRYWKA = 993;
+    public static final int AKCJA_RAPORT_DZIECKO = 992;
+    public static final int AKCJA_RAPORT_DOMOWE = 991;;
+    public static final int AKCJA_RAPORT_RACHUNKI = 990;
+    public static final int AKCJA_RAPORT_SPOZYWCZE = 989;
+    public static final int AKCJA_RAPORT_TOMEK = 988;
+    public static final int AKCJA_RAPORT_KAMILA = 987;
+    public static final int AKCJA_RAPORT_INNE = 986;
 
-    public WydatekAkcja(String label, String data, int type, String color) {
+    public WydatekAkcja(String label, String data, int type, int color) {
         super();
         this.label = label;
         this.data = data;
         this.type = type;
-        this.color = "#FFFFFF";
-        if(color != null){
-            this.color = color;
-        }
+        this.color = color;
     }
 
     public String getLabel() {
@@ -59,11 +62,11 @@ public class WydatekAkcja {
         this.type = type;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 }
