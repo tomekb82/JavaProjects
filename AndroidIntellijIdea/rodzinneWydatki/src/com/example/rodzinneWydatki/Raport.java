@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by tomek on 03.05.15.
  */
-public class Raport extends ListActivity {
+public class Raport extends ListMenuActivity {
 
     private TextView january_number;
     private TextView february_number;
@@ -42,6 +42,8 @@ public class Raport extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.raport);
+        TextView tytulText = (TextView) findViewById(R.id.title);
+        tytulText.setText("Raport roczny");
 
         SQLiteDatabase db = (new WydatkiDBHepler(this)).getWritableDatabase();
 
@@ -75,42 +77,42 @@ public class Raport extends ListActivity {
         WydatekAkcja action = actions.get(position);
         switch (action.getType()) {
             case WydatekAkcja.AKCJA_RAPORT_STYCZEN:
-                idzRaportMiesiac(1);
+                idzRaportMiesiac(Calendar.JANUARY);
                 break;
             case WydatekAkcja.AKCJA_RAPORT_LUTY:
-                idzRaportMiesiac(2);
+                idzRaportMiesiac(Calendar.FEBRUARY);
                 break;
             case WydatekAkcja.AKCJA_RAPORT_MARZEC:
-                idzRaportMiesiac(3);
+                idzRaportMiesiac(Calendar.MARCH);
                 break;
             case WydatekAkcja.AKCJA_RAPORT_KWIECIEN:
-                idzRaportMiesiac(4);
+                idzRaportMiesiac(Calendar.APRIL);
                 break;
             case WydatekAkcja.AKCJA_RAPORT_MAJ:
-                idzRaportMiesiac(5);
+                idzRaportMiesiac(Calendar.MAY);
                 break;
             case WydatekAkcja.AKCJA_RAPORT_CZERWIEC:
-                idzRaportMiesiac(6);
+                idzRaportMiesiac(Calendar.JUNE);
                 break;
         }
     }
 
     private void idzRaportMiesiac(int miesiac){
         Intent intent = new Intent(this, RaportSzczegoly.class);
-        intent.putExtra("MIESIAC", miesiac);
+        intent.putExtra("MIESIAC", miesiac+1);
         startActivity(intent);
     }
 
     private int getReportsCount(SQLiteDatabase db, int month) {
         Cursor cursor = db.rawQuery("SELECT count(*) FROM wydatki WHERE data LIKE ?",
-                new String[]{"%/" + month + "/%"});
+                new String[]{"%/" + (month+1) + "/%"});
         cursor.moveToFirst();
         return cursor.getInt(0);
     }
 
     private int getReportsMonthSum(SQLiteDatabase db, int month) {
         Cursor cursor = db.rawQuery("SELECT sum(cena) FROM wydatki WHERE data LIKE ?",
-                new String[]{"%/" + month + "/%"});
+                new String[]{"%/" + (month+1) + "/%"});
         cursor.moveToFirst();
         return cursor.getInt(0);
     }

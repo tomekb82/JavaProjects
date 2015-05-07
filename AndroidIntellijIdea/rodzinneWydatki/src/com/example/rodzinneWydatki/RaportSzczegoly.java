@@ -16,14 +16,16 @@ import android.widget.TextView;
 import com.example.rodzinneWydatki.db.WydatkiDBHepler;
 import com.example.rodzinneWydatki.db.WydatkiKontrakt;
 
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by tomek on 03.05.15.
  */
-public class RaportSzczegoly extends ListActivity {
+public class RaportSzczegoly extends ListMenuActivity {
 
 
     private int miesiac;
@@ -45,8 +47,11 @@ public class RaportSzczegoly extends ListActivity {
         setContentView(R.layout.main_activity);
 
         miesiac = getIntent().getIntExtra("MIESIAC", 0);
+
+        TextView tytulText = (TextView) findViewById(R.id.title);
+        tytulText.setText("Raport miesięczny: " + new DateFormatSymbols().getMonths()[miesiac-1]);
+
         SQLiteDatabase db = (new WydatkiDBHepler(this)).getWritableDatabase();
-        miesiac--;
         actions = new ArrayList<WydatekAkcja>();
 
         actions.add(new WydatekAkcja(TypWydatku.ROZRYWKA.getValue() + " (" + + getReportsTypeMonthSum(db, TypWydatku.ROZRYWKA.getValue(), miesiac) + " pln)",
@@ -109,36 +114,37 @@ public class RaportSzczegoly extends ListActivity {
         WydatekAkcja action = actions.get(position);
         switch (action.getType()) {
             case WydatekAkcja.AKCJA_RAPORT_ROZRYWKA:
-                idzRaportTyp(TypWydatku.ROZRYWKA.getValue());
+                idzRaportTyp(miesiac, TypWydatku.ROZRYWKA.getValue());
                 break;
             case WydatekAkcja.AKCJA_RAPORT_DZIECKO:
-                idzRaportTyp(TypWydatku.DZIECKO.getValue());
+                idzRaportTyp(miesiac, TypWydatku.DZIECKO.getValue());
                 break;
             case WydatekAkcja.AKCJA_RAPORT_DOMOWE:
-                idzRaportTyp(TypWydatku.DOMOWE.getValue());
+                idzRaportTyp(miesiac, TypWydatku.DOMOWE.getValue());
                 break;
             case WydatekAkcja.AKCJA_RAPORT_RACHUNKI:
-                idzRaportTyp(TypWydatku.RACHUNKI.getValue());
+                idzRaportTyp(miesiac, TypWydatku.RACHUNKI.getValue());
                 break;
             case WydatekAkcja.AKCJA_RAPORT_SPOZYWCZE:
-                idzRaportTyp(TypWydatku.SPOZYWCZE.getValue());
+                idzRaportTyp(miesiac, TypWydatku.SPOZYWCZE.getValue());
                 break;
             case WydatekAkcja.AKCJA_RAPORT_TOMEK:
-                idzRaportTyp(TypWydatku.TOMEK.getValue());
+                idzRaportTyp(miesiac, TypWydatku.TOMEK.getValue());
                 break;
             case WydatekAkcja.AKCJA_RAPORT_KAMILA:
-                idzRaportTyp(TypWydatku.KAMILA.getValue());
+                idzRaportTyp(miesiac, TypWydatku.KAMILA.getValue());
                 break;
             case WydatekAkcja.AKCJA_RAPORT_INNE:
-                idzRaportTyp(TypWydatku.INNE.getValue());
+                idzRaportTyp(miesiac, TypWydatku.INNE.getValue());
                 break;
         }
     }
 
-    private void idzRaportTyp(String typWydatku){
-        //Intent intent = new Intent(this, RaportTypWydatkuSzczegoly.class);
-        //intent.putExtra("TYP_WYDATKU", typWydatky);
-        //startActivity(intent);
+    private void idzRaportTyp(int miesiac, String typWydatku){
+        Intent intent = new Intent(this, RaportTypWydatkuSzczegoly.class);
+        intent.putExtra("TYP_WYDATKU", typWydatku);
+        intent.putExtra("MIESIAC", miesiac);
+        startActivity(intent);
     }
 
     private int getReportsTypeCount(SQLiteDatabase db, String type, int month) {

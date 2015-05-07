@@ -17,7 +17,7 @@ import com.example.rodzinneWydatki.db.WydatkiKontrakt;
 /**
  * Created by tomek on 30.04.15.
  */
-public class MainActivity extends ListActivity {
+public class MainActivity extends ListMenuActivity {
 
     private static final int AUTHOR_DIALOG_ID = 999;
     private static final int DEL_EXPENSE_ID = 998;
@@ -27,8 +27,6 @@ public class MainActivity extends ListActivity {
     protected TextView sumaWydatkowText;
     String wydatek;
 
-    private Button usunWydatek;
-
     /**
      * Called when the activity is first created.
      */
@@ -36,6 +34,8 @@ public class MainActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        TextView tytulText = (TextView) findViewById(R.id.title);
+        tytulText.setText("Lista wydatków");
         updateUI();
         //addListenerOnButton();
         /*
@@ -119,38 +119,6 @@ public class MainActivity extends ListActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.akcja_szukaj_wydatek:
-                Log.d("MainActivity", "Wyszukaj wydatek");
-                Intent intentWyszukaj = new Intent(this, SzukajWydatek.class);
-                startActivity(intentWyszukaj);
-                return true;
-            case R.id.akcja_dodaj_wydatek:
-                Log.d("MainActivity", "Dodaj wydatek");
-                Intent intentDodaj = new Intent(this, DodajWydatek.class);
-                startActivity(intentDodaj);
-                return true;
-            case R.id.akcja_raporty:
-                Intent intentRaporty = new Intent(this, Raport.class);
-                startActivity(intentRaporty);
-                return true;
-            case R.id.akcja_autor:
-                Log.d("MainActivity", "Informacja o autorze");
-                showDialog(AUTHOR_DIALOG_ID);
-                return true;
-            default:
-                 return false;
-        }
-    }
-
-    @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case AUTHOR_DIALOG_ID:
@@ -159,14 +127,6 @@ public class MainActivity extends ListActivity {
                 return deleteExpenseDialog();
         }
         return null;
-    }
-
-    private Dialog authorDialog(){
-        AlertDialog.Builder authorDialog = new AlertDialog.Builder(this);
-        authorDialog.setTitle("Autor");
-        authorDialog.setMessage("Tomasz Belina\n Wersja apliacji: 0.0.1");
-        authorDialog.setNegativeButton("Zamknij", null);
-        return authorDialog.create();
     }
 
     private Dialog deleteExpenseDialog(){

@@ -23,7 +23,7 @@ import java.util.Date;
 /**
  * Created by tomek on 01.05.15.
  */
-public class DodajWydatek extends Activity {
+public class DodajWydatek extends MenuActivity {
 
     private static final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     private static final int DATE_DIALOG_ID = 999;
@@ -57,13 +57,13 @@ public class DodajWydatek extends Activity {
 
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
-        month = c.get(Calendar.MONTH) + 1;
+        month = c.get(Calendar.MONTH);
         day = c.get(Calendar.DAY_OF_MONTH);
 
         // set current date into textview
         dataWydatku.setText(new StringBuilder()
                 // Month is 0 based, just add 1
-                .append(day).append("/").append(month).append("/")
+                .append(day).append("/").append(month+1).append("/")
                 .append(year).append(" "));
     }
 
@@ -159,7 +159,7 @@ public class DodajWydatek extends Activity {
 
             // set selected date into textview
             dataWydatku.setText(new StringBuilder().append(day)
-                    .append("/").append(month).append("/").append(year)
+                    .append("/").append(month+1).append("/").append(year)
                     .append(" "));
         }
     };

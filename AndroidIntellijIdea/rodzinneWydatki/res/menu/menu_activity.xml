@@ -21,5 +21,9 @@
           android:showAsAction="always"
           android:icon="@android:drawable/ic_menu_info_details"
           android:title="Informacje o autorze" />
+    <item android:id="@+id/akcja_glowna"
+          android:showAsAction="always"
+          android:icon="@android:drawable/ic_media_previous"
+          android:title="Strona glowna" />
 
 </menu>

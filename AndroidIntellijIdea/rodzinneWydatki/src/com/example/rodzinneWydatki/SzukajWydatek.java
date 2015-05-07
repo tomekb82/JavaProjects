@@ -13,7 +13,7 @@ import com.example.rodzinneWydatki.db.WydatkiKontrakt;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SzukajWydatek extends ListActivity {
+public class SzukajWydatek extends ListMenuActivity {
 
     protected EditText searchText;
     protected SQLiteDatabase db;

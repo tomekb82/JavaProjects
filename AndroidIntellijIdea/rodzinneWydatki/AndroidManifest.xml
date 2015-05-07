@@ -4,7 +4,9 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="22"/>
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher"
+                 android:logo="@drawable/ic_launcher" android:banner="@drawable/ic_launcher"
+                 >
         <activity android:name="MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
@@ -19,9 +21,7 @@
         <activity android:name="DodajWydatek"></activity>
         <activity android:name="Raport"></activity>
         <activity android:name="RaportSzczegoly"></activity>
-
-
-
+        <activity android:name="RaportTypWydatkuSzczegoly"></activity>
 
     </application>
 </manifest>
