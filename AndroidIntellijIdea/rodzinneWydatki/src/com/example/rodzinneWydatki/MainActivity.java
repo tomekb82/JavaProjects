@@ -1,16 +1,15 @@
 package com.example.rodzinneWydatki;
 
-import android.app.*;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import com.example.rodzinneWydatki.db.WydatkiDBHepler;
 import com.example.rodzinneWydatki.db.WydatkiKontrakt;
 
@@ -36,6 +35,7 @@ public class MainActivity extends ListMenuActivity {
         setContentView(R.layout.main_activity);
         TextView tytulText = (TextView) findViewById(R.id.title);
         tytulText.setText("Lista wydatków");
+
         updateUI();
         //addListenerOnButton();
         /*
