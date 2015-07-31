@@ -1,0 +1,12 @@
+﻿<div class="jumbotron text-center">
+    <h1>{{message}}</h1>
+    <br />
+    <button ng-click='change()' ui-sref={{stan}} >
+        <img ng-init="value=false" src="assets/images/P1010773.JPG" />
+    </button>
+</div>
+
+<ui-view>
+
+</ui-view>
+

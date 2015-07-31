@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <title>AngularJS: UI-Router</title>
+    <meta charset="utf-8" />
+    <meta name="fragment" content="!">
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+	 <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="home">AngularJS</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a ui-sref="home">Home</a></li>
+            <li><a ui-sref="cats">Page1</a></li>          
+            <li><a ui-sref="multiView">MultiViews</a></li>
+	    <li><a ui-sref="provider">Providers</a></li>
+        </ul>
+    </nav>
+    <!-- Navigation -->
+    
+    <!-- Routing -->
+    <div class="container">
+        <div ui-view></div>
+    </div>
+    <!-- Routing -->
+
+    <!-- Scripts -->
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script> 
+	<!-- <script src="lib/angular.js"></script>-->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+	<script src="lib/angular-ui-router.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/modules/home/homeController.js"></script>
+    <script src="app/modules/nestedView/nestedViewController.js"></script>
+    <script src="app/modules/cats/catsController.js"></script>
+    <script src="app/modules/superDeepView/superDeepViewController.js"></script>
+    <script src="app/modules/multiView/multiViewController.js"></script>
+
+    <script src="app/providers/providerCtrl.js"></script>
+    <!-- Scripts -->
+</body>
+</html>
