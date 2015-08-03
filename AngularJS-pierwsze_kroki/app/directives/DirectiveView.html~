@@ -1,0 +1,58 @@
+﻿<div class="jumbotron text-center">
+    <h1>Dyrektywy</h1>
+</div>
+
+<ul>  
+	<li>
+		<h4> Dyrektywa a</h4>
+		<a href="" ng-click="deleteElement()">Usuń element</a>
+	</li>
+	<li> 
+		<h4> Dyrektywa form</h4>
+		<form name="myForm" class="my-form">
+			<input name="input1" ng-model="userType" required>
+			<span ng-show="myForm.input1.$error.required">Pole wymagane!</span><br>
+		</form>
+	</li>
+	<li> 
+		<h4> Dyrektywa ngBind</h4>
+		<span ng-bind="test"></span>
+	</li>
+	<li> 
+		<h4> Dyrektywy ngBlur i ngFocus</h4>
+		<input type="text"
+			data-ng-class="{ testFocus: focus, testBlur: blur }"
+			data-ng-focus="focus=true;blur=false;"
+			data-ng-blur="blur=true;focus=false;" />
+	</li>
+	<li> 
+		<h4> Dyrektywa ngChange</h4>
+		<input type="text" data-ng-change="change()" data-ng-model="testModel" />
+		{{testModel}}
+	</li>
+	<li> 
+		<h4> Dyrektywa ngClass</h4>
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+<th>Góra</th>
+<th>Metry</th>
+</tr>
+</thead>
+<tbody>
+<tr data-ng-repeat="m in mountainsList | orderBy:sorting"
+data-ng-class="{warning: m.metres<8500, danger: m.metres>8600}">
+<td>{{m.mountain}}</td>
+<td>{{m.metres}}</td>
+</tr>
+</tbody>
+</table>
+	</li>
+<ul>
+
+
+
+<ui-view>
+
+</ui-view>
+
