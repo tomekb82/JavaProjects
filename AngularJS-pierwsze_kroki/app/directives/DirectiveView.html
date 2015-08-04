@@ -51,27 +51,48 @@
 	<li> 
 		<h4> Dyrektywa ngRepeat</h4>
 		<table class="table">
-<tr data-ng-repeat="mountain in mountainsList" data-ng-class="{info:$even, danger:$odd}">
-<td class="col-sm-1">{{$index}}</td>
-<td class="col-sm-4" data-ng-show="!showForms" data-ng-click="showForms=true">
-{{mountain.mountain}} </td>
-<td class="col-sm-4" data-ng-show="showForms">
-<input data-ng-model="mountain.mountain" /></td>
-<td class="col-sm-4" data-ng-show="!showForms" data-ng-click="showForms=true">{{mountain.metres}} </td>
-<td class="col-sm-3" data-ng-show="showForms">
-<input data-ng-model="mountain.metres" />
-<a href="#" data-ng-click="saveChanges($index, mountain.mountain, mountain.metres);
-showForms=false" class="glyphicon glyphicon-ok"> Zapisz</a></td>
-<td class="col-sm-1">
-<a href="#" data-ng-click="showForms=true" class="glyphicon glyphicon-pencil">
-</a></td>
-<td class="col-sm-1"><a href="#" data-ng-show="!$first" data-ng-click="up($index)"
-class="glyphicon glyphicon-arrow-up"></a></td>
-<td class="col-sm-1"><a href="#" data-ng-show="!$last" data-ng-click="down($index)"
-class="glyphicon glyphicon-arrow-down"></a></td>
-</tr>
-</table>
+			<tr data-ng-repeat="mountain in mountainsList" data-ng-class="{info:$even, danger:$odd}">
+				<td class="col-sm-1">{{$index}}</td>
+				<td class="col-sm-4" data-ng-show="!showForms" data-ng-click="showForms=true"> {{mountain.mountain}} </td>
+				<td class="col-sm-4" data-ng-show="showForms"><input data-ng-model="mountain.mountain" /></td>
+				<td class="col-sm-4" data-ng-show="!showForms" data-ng-click="showForms=true">{{mountain.metres}} </td>
+				<td class="col-sm-3" data-ng-show="showForms"><input data-ng-model="mountain.metres" />
+					<a href="#" data-ng-click="saveChanges($index, mountain.mountain, mountain.metres);showForms=false" class="glyphicon glyphicon-ok"> Zapisz</a></td>
+				<td class="col-sm-1"><a href="#" data-ng-click="showForms=true" class="glyphicon glyphicon-pencil"></a></td>
+				<td class="col-sm-1"><a href="#" data-ng-show="!$first" data-ng-click="up($index)" class="glyphicon glyphicon-arrow-up"></a></td>
+				<td class="col-sm-1"><a href="#" data-ng-show="!$last" data-ng-click="down($index)" class="glyphicon glyphicon-arrow-down"></a></td>
+			</tr>
+		</table>
 	</li>
+	<li> 
+		<h4> Dyrektywa ngClick</h4>
+		<!--<div> <a data-ng-repeat="execute in mountainsList" data-ng-click="execute.execute(execute.metres)" {{execute.mountain}}</a> </div>
+		<div class="text-danger"> {{result}}</div>-->
+	
+	</li>
+	<li> 
+		<h4> Dyrektywa ngFocus</h4>
+		<div data-ng-repeat="mountain in mountainsList">
+			<textarea data-ng-cut="cut=true" data-ng-focus="f=true">{{$index+1}}.{{mountain.mountain}} - {{mountain.metres}}</textarea>
+			<div class="text-danger" data-ng-show="cut">
+				Uwaga, część tekstu <b>"{{mountain.mountain}} - {{mountain.metres}}"</b> o ID={{$index}} została wycięta!
+			</div>
+			<div class="text-success" data-ng-show="f">Jesteś wewnątrz elementu o ID={{$index}}!</div>
+		</div>
+	</li>
+	<li> 
+		<h4> Dyrektywa ngIf</h4>
+		<div data-ng-init="checked=true">
+			<a hreh="#" data-ng-click="checked=false"> Ukryj </a>
+			<a hreh="#" data-ng-click="checked=true"> Pokaż </a>
+			<span data-ng-if="checked"> Text </span>
+		</div>
+	</li>
+
+
+
+
+
 <ul>
 
 

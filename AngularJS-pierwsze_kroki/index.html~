@@ -39,7 +39,9 @@
 	<!-- <script src="lib/angular.js"></script>-->
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
 	<script src="lib/angular-ui-router.min.js"></script>
-<script src=" http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-resource.js "></script>
+
+    <script src=" http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-resource.js "></script>
+
     <script src="app/app.js"></script>
     <script src="app/modules/home/homeController.js"></script>
     <script src="app/modules/nestedView/nestedViewController.js"></script>
