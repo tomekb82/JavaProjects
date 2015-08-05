@@ -1,0 +1,44 @@
+﻿	<style>
+	.done-true {
+		text-decoration: line-through;
+		color: #ddd;
+	}
+	</style>
+	
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title"> Add task! </h3>
+	</div>
+	<div class="panel-body">
+		<form name="f" data-ng-submit="addTodo()">
+			To do: <textarea class="form-control" name="newTodo" data-ng-model="formData.newTodo" required></textarea>
+			Type: <select class = "form-control" name="type" data-ng-model="formData.type" data-ng-options="value.name for value in categories" required></select>
+			Estimated time: <select class="form-control" name="estimates" data-ng-model="formData.estimates" data-ng-options="value for value in estimates" required></select><br/>
+			<button class="btn btn-success" data-ng-disabled="f.$invalid"> Add <span class="glyphicon glyphicon-ok"></span></button>
+		</form>
+	</div>
+</div>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title"> To Do List </h3>
+	</div>
+	<div class="panel-body">
+		<ul>
+			<li data-ng-repeat="todo in todos">
+				<input type="checkbox" data-ng-model="todo.done" title="Mark Complete" />
+				<span class="done-{{todo.done}}"> {{todo.title}}</span> [{{todo.estimates}}h] <span class="glyphicon glyphicon-{{todo.type.gico}} done-{{todo.done}}"></span>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<button class="btn btn-danger" data-ng-click="deleteCompleted()"> Delete Completed <span class="glyphicon glyphicon-remove"> </span></button>
+		<button class="btn btn-danger" data-ng-click="toggleJson=!toggleJson"> Toggle JSON <span class="glyphicon glyphicon-arrow-down"> </span></button>
+		
+	</div>
+</div>	
+
+<pre data-ng-show="toggleJson">
+{{todos | json}}
+</pre>
