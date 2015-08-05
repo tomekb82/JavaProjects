@@ -1,0 +1,41 @@
+﻿<div class="jumbotron text-center">
+    <h1>Filtry</h1>
+</div>
+
+<h3> Operacje na stringach </h3>
+{{text | lowercase}}<br/>
+{{text | uppercase}}
+
+<h3> Liczbowe</h3>
+
+{{ 123456789 | number }} <br/><!-- 1,234,567,890 -->
+{{ 1.234567 | number:2 }} <br/><!-- 1.23 -->
+{{1234.777777|number:3}} <br/><!-- 1,234.778 -->
+
+
+{{ 1000000 | currency }} <br/><!-- $1,000,000.00 -->
+{{ 1000000 | currency : '£'}} <br/><!-- $1,000,000.00 -->
+{{ 1000000 | currency : '€'}} <br/><!-- $1,000,000.00 -->
+
+
+<h3> Operacje na datach</h3>
+
+{{teraz | date:'medium' }} <br/> <!-- 19 lip 2014 16:43:36 -->
+{{teraz | date:'short' }} <br/> <!-- 19 lip 2014 16:43:36 -->
+{{teraz | date:'fullDate' }} <br/> <!-- 19 lip 2014 16:43:36 -->
+{{teraz | date:'longDate' }} <br/> <!-- 19 lip 2014 16:43:36 -->
+{{teraz | date:'mediumDate' }} <br/> <!-- 19 lip 2014 16:43:36 -->
+
+<h3> JSON </h3>
+{{ uzytkownicy | json}}
+
+<h3> Filter, orderBy, limitTo </h3>
+<input data-ng-model="wyszukaj" />
+<div data-ng-repeat="uzytkownik in uzytkownicy | orderBy:[ 'imie', '-wiek', 'miasto'] | limitTo:7| filter:wyszukaj">
+	{{uzytkownik.imie}}: {{uzytkownik.wiek}}: {{uzytkownik.miasto}}
+</div>
+
+<ui-view>
+
+</ui-view>
+

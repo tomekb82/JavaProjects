@@ -35,3 +35,13 @@ font-weight: bold;
 text-decoration: line-through;
 border:1px solid;
 }
+
+.my-input {
+-webkit-transition:all linear 0.7s;
+transition:all linear 0.7s;
+background: green;
+}
+.my-input.ng-invalid {
+color:white;
+background: red;
+}
