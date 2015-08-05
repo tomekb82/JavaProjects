@@ -3,30 +3,19 @@
 </div>
 
 <div>
-	<div>
-		Pokaż / ukryj przyciski
-		<input type="checkbox" data-ng-model="showButtons" /><br />
-		Pokaż / ukryj listę rozwijalną
-		<input type="checkbox" data-ng-model="selectionList" />
-	</div>
-	<div data-ng-show="showButtons">
-		<button type="button" class="btn btn-primary btn-sm"
-			data-ng-repeat="file in files"
-			data-ng-click="getFileData(file)">{{file.name}}</button>
-	</div>
-	<div data-ng-show="selectionList">
-		<select data-ng-model="file"
-			data-ng-change="getFileData(file)"
-			data-ng-options="file as file.name for file in files">
-		</select>
-	</div>
-	<pre data-ng-show="fileData">
-		Nazwa: {{fileData.data.nazwa}}
-		Autor: {{fileData.data.autor | uppercase}}
-		Data: {{fileData.data.data | date}}
-		URL: {{fileData.config.url}}
-	</pre>
-	<img data-ng-show="fileData" data-ng-src="{{fileImage}}">
+
+	<table class="table">
+		<tr data-ng-repeat="file in files" data-ng-class="{info:$even, danger:$odd}">
+			<td class="col-sm-1">{{$index+1}}</td>
+			<td class="col-sm-4" data-ng-show="!showForms" data-ng-click="saveFile(file)" ui-sref="gallery.details">{{file.name}}	</td>
+			<td class="col-sm-3" data-ng-show="showForms"><input data-ng-model="file.URL" />
+				<a href="#" data-ng-click="saveChanges($index, mountain.name, mountain.URL);showForms=false" class="glyphicon glyphicon-ok"> Zapisz</a></td>
+			<td class="col-sm-1"><a href="#" data-ng-click="showForms=true" class="glyphicon glyphicon-pencil"></a></td>
+			<td class="col-sm-1"><a href="#" data-ng-show="!$first" data-ng-click="up($index)" class="glyphicon glyphicon-arrow-up"></a></td>
+			<td class="col-sm-1"><a href="#" data-ng-show="!$last" data-ng-click="down($index)" class="glyphicon glyphicon-arrow-down"></a></td>
+		</tr>
+	</table>
+
 </div>
 
 

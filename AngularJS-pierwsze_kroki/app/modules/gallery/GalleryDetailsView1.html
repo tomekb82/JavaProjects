@@ -1,0 +1,16 @@
+
+<div>	
+	<img data-ng-show="fileData" data-ng-src="{{fileImage}}">
+	<pre data-ng-show="fileData">
+		Nazwa: {{fileData.data.nazwa}}
+		Autor: {{fileData.data.autor | uppercase}}
+		Data: {{fileData.data.data | date}}
+		URL: {{fileData.config.url}}
+	</pre>
+</div>
+
+
+<ui-view>
+
+</ui-view>
+

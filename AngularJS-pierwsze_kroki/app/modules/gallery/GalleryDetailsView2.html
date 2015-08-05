@@ -1,0 +1,33 @@
+<div>
+
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title"> Dodaj opinie </h3>
+	</div>
+	<div class="panel-body">
+		<form name="f" data-ng-submit="addOpinion()">
+			Opinia: <textarea class="form-control" name="newOpinion" data-ng-model="formData.newOpinion" required></textarea>
+			<button class="btn btn-success" data-ng-disabled="f.$invalid"> Add <span class="glyphicon glyphicon-ok"></span></button>
+		</form>
+	</div>
+</div>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title"> List of opinions </h3>
+	</div>
+	<div class="panel-body">
+		<ul>
+			<li data-ng-repeat="opinion in opinions">
+				<span> {{opinion}}</span> 
+			</li>
+		</ul>
+	</div>
+</div>
+
+</div>
+
+
+<ui-view>
+
+</ui-view>
+

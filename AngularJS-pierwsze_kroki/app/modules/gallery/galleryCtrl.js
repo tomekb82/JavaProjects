@@ -22,6 +22,11 @@
 			});
 		
 		};
+		$scope.savedFile = null;
+		$scope.saveFile = function (file) {
+			$scope.savedFile = file;
+			$scope.getFileData(file);
+		};
 	}
 
 	function fileDataService($http) {
