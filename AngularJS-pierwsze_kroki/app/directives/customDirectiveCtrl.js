@@ -4,9 +4,42 @@
      angular
 	.module('app')
 	.config(['$stateProvider', appConfiguration])
+	.directive("customDirective", customDirective)
+	.directive('transcludeDirective', transcludeDirective)
+	.directive('requireDirective', requireDirective)
 	.directive("colorChanger", colorChanger)
 	.directive("eventsEvaluation", eventsEvaluation)
 	.controller('customDirectiveCtrl', ['$scope', customDirectiveCtrl]);
+
+	function customDirective(){
+    		return {
+            		restrict: 'EA',
+            		template: '<div>Dyrektywa szyta na miarę!</div>'
+            	}
+	}
+
+
+	function transcludeDirective(){
+    		return {
+            		restrict: 'E',
+            		transclude: true,
+            		scope: { name: '@'}, // jednostronne
+            		template: '<div>' +
+                        	'<div>{{name}}</div><br>' +
+                        	'<div ng-transclude></div>' +
+                        	'</div>'
+            	}
+	}
+
+
+	function requireDirective(){
+    		return {
+        	    	restrict: 'A',
+            		require: '^ngModel',
+            		scope: { ngModel: '='}, // dwustronne
+            		template: '<div><h4>Text: {{ngModel}} </h4></div>'
+            	}
+	}
 
 	function colorChanger() {
 		return function (scope, element, attrs) {
@@ -54,6 +87,7 @@
                     		templateUrl: 'app/directives/CustomDirectiveView.html',
                     		controller: 'customDirectiveCtrl'
                 	});
+		
 	}
 
 

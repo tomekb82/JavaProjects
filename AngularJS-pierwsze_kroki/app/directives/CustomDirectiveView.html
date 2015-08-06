@@ -5,6 +5,23 @@
 <hr/>
 <ul>  
 	<li>
+		<h3> Prosta dyrektywa - 2 sposoby wywołania</h3>
+		<div custom-directive></div>
+		<custom-directive></custom-directive>
+	</li>
+
+	<li>
+		<h3> Dyrektywa transcludeDirective</h3>
+		<transclude-directive name="test">Ramka</transclude-directive>
+	</li>
+
+	<li>
+		<h3> Dyrektywa requireDirective</h3>
+		<input type="text" ng-model="text" placeholder="Wpisz tekst" />
+		<div require-directive ng-model="text"></div>
+	</li>
+
+	<li>
 		<h3> Dyrektywa colorChanger</h3>
 		<div data-color-changer="red">Tło czerwone</div>
 		<div data-color-changer="yellow">Tło żółte</div>

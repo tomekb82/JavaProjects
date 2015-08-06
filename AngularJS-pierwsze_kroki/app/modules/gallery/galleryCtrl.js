@@ -3,7 +3,7 @@
 
      angular
 	.module('app')
-	.config(['$stateProvider', appConfiguration])
+	.config(['$stateProvider' , appConfiguration])
 	.factory('FileDataService',  ['$http', '$q', fileDataService])
 	.controller('galleryCtrl', ['$scope', 'FileDataService', galleryCtrl]);
 
@@ -46,8 +46,13 @@
                	     		url: '/gallery',
                     		templateUrl: 'app/modules/gallery/GalleryView.html',
                     		controller: 'galleryCtrl'
-                	});
+                	})
+			
+		
+	
+
 	}
+		
 
 
 }());

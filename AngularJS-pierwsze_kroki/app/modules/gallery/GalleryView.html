@@ -6,10 +6,10 @@
 
 	<table class="table">
 		<tr data-ng-repeat="file in files" data-ng-class="{info:$even, danger:$odd}">
-			<td class="col-sm-1">{{$index+1}}</td>
+			<td class="col-sm-1" ui-sref="galleryDetails({id:{{$index}}})">{{$index+1}}</td>
 			<td class="col-sm-4" data-ng-show="!showForms" data-ng-click="saveFile(file)" ui-sref="gallery.details">{{file.name}}	</td>
 			<td class="col-sm-3" data-ng-show="showForms"><input data-ng-model="file.URL" />
-				<a href="#" data-ng-click="saveChanges($index, mountain.name, mountain.URL);showForms=false" class="glyphicon glyphicon-ok"> Zapisz</a></td>
+				<a href="#" data-ng-click="saveChanges($index, file.name, file.URL);showForms=false" class="glyphicon glyphicon-ok"> Zapisz</a></td>
 			<td class="col-sm-1"><a href="#" data-ng-click="showForms=true" class="glyphicon glyphicon-pencil"></a></td>
 			<td class="col-sm-1"><a href="#" data-ng-show="!$first" data-ng-click="up($index)" class="glyphicon glyphicon-arrow-up"></a></td>
 			<td class="col-sm-1"><a href="#" data-ng-show="!$last" data-ng-click="down($index)" class="glyphicon glyphicon-arrow-down"></a></td>
