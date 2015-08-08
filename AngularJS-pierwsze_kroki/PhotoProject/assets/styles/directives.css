@@ -1,0 +1,47 @@
+.my-form.ng-valid
+{
+background: green;
+}
+.my-form.ng-invalid {
+background: red;
+}
+input[type="text"].testFocus {
+background-color: green;
+}
+input[type="text"].testBlur {
+background-color: red;
+}
+
+.a {
+color:red;
+font-weight: bold;
+border:1px dashed;
+}
+.b {
+color:blue;
+font-weight: bold;
+text-decoration:underline;
+border:1px dotted;
+}
+.c {
+color:green;
+font-weight: bold;
+text-decoration:overline;
+border:1px double;
+}
+.d {
+color:orange;
+font-weight: bold;
+text-decoration: line-through;
+border:1px solid;
+}
+
+.my-input {
+-webkit-transition:all linear 0.7s;
+transition:all linear 0.7s;
+background: green;
+}
+.my-input.ng-invalid {
+color:white;
+background: red;
+}

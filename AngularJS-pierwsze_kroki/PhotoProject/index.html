@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- CSS (load bootstrap) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+    <link rel="stylesheet" href="assets/styles/directives.css" />
+    <style>
+        .navbar { border-radius:0; }
+
+.view-change-animation.ng-enter{
+    -webkit-animation:bounceInLeft 1s;
+    animation: bounceInLeft 1s;
+}
+.view-change-animation.ng-leave{
+    -webkit-animation:bounceOutRight 2s;
+    animation: bounceOutRight 2s;
+}
+
+.pulse.ng-enter {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
+
+
+    </style>
+
+    <!-- JS (load angular, ui-router, and our custom js file) -->
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-sanitize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.min.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/modules/photos/photos.js"></script>
+</head>
+<!-- apply our angular app to our site -->
+<body ng-app="photoApp">
+
+<!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+<div ui-view></div>
+
+</body>
+</html>
+
+

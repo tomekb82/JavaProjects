@@ -1,0 +1,9 @@
+<ul class="left">
+    <li ng-repeat="photo in photos" ui-sref-active="active" class="item">
+        <a ui-sref="photos.photo({id: photo.id})">
+                {{photo.name}}
+        </a>
+    </li>
+</ul>
+
+<ui-view class="center"> </ui-view>
