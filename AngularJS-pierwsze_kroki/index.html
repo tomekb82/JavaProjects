@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="assets/styles/styles.css" />
 
     <link rel="stylesheet" href="assets/styles/directives.css" />
+ <link rel="stylesheet" href="assets/styles/animations.css" />
+
 </head>
 
 <body>
@@ -24,28 +26,35 @@
 	    <li><a ui-sref="provider">Providers</a></li>
 	    <li><a ui-sref="directive">Directives</a></li>
 	    <li><a ui-sref="filter">Filters</a></li>	
+	    <li><a ui-sref="animations">Animations</a></li>
 	    <li><a ui-sref="gallery">Gallery</a></li>
 	    <li><a ui-sref="todos">Todos</a></li>
+	    
         </ul>
     </nav>
     <!-- Navigation -->
     
     <!-- Routing -->
     <div class="container">
-        <div ui-view></div>
+        <!--<div ui-view class="main-animation"></div>-->
+	<div ui-view class="view-fade-in"></div>
+
+
     </div>
     <!-- Routing -->
 
     <!-- Scripts -->
 
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+ <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-sanitize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.min.js"></script>
 	<script src="lib/angular-ui-router.min.js"></script>
 
     <script src=" http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-resource.js "></script>
-     <script src=" http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-route.js "></script>
 
     <script src="app/app.js"></script>
     <script src="app/modules/home/homeController.js"></script>
@@ -62,6 +71,7 @@
     <script src="app/filters/filterCtrl.js"></script>
     <script src="app/modules/gallery/galleryCtrl.js"></script>
 <script src="app/modules/gallery/galleryDetailsCtrl.js"></script>
+<script src="app/modules/animations/animations.js"></script>
     <!-- Scripts -->
 </body>
 </html>

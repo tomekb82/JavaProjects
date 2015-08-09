@@ -1,0 +1,78 @@
+
+.pierwsza-animacja.ng-enter,
+.pierwsza-animacja.ng-leave,
+.pierwsza-animacja.ng-move {
+	-webkit-transition: 1s linear all;
+	transition: 1s linear all;
+}
+.pierwsza-animacja.ng-enter,
+.pierwsza-animacja.ng-move {
+	opacity: 0;
+}
+.pierwsza-animacja.ng-enter.ng-enter-active,
+.pierwsza-animacja.ng-move.ng-move-active {
+	opacity: 1;
+}
+.pierwsza-animacja.ng-leave {
+	opacity: 1;
+}
+.pierwsza-animacja.ng-leave.ng-leave-active {
+	opacity: 0;
+}
+
+
+.main-container {
+height: 300px;
+position: relative;
+}
+.main-animation.ng-enter {
+-webkit-animation: enter 2s;
+animation: enter 2s;
+left: 100%;
+}
+.main-animation.ng-leave {
+-webkit-animation: leave 2s;
+animation: leave 2s;
+left: 19px;
+}
+.main-animation.ng-leave,
+.main-animation.ng-enter {
+position: absolute;
+top: 19px;
+width: 100%;
+}
+@keyframes enter {
+from {
+left: 100%;
+}
+to {
+left: 19px;
+background: red;
+}
+}
+@-webkit-keyframes enter {
+from {
+left: 100%;
+}
+to {
+left: 19px;
+background: red;
+}
+}
+@keyframes leave {
+from {
+left: 19px;
+}
+to {
+left: -100%;
+}
+}
+@-webkit-keyframes leave {
+from {
+left: 19px;
+}
+to {
+left: -100%;
+}
+}
+

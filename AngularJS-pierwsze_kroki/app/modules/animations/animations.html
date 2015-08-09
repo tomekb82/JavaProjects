@@ -1,0 +1,26 @@
+
+<input placeholder="Szukaj" data-ng-model="search" class="form-control" />
+
+<h3> Animacja 'pierwsza-animacja'  </h3>
+<ol>
+	<li data-ng-repeat="grade in grades | filter:search" class="pierwsza-animacja">{{ grade }}</li>
+</ol>
+
+<hr/>
+
+<h3> Animacja 'moving-sideways'  </h3>
+<ol>
+	<li data-ng-repeat="grade in grades | filter:search" class="moving-sideways">{{ grade }}</li>
+</ol>
+
+
+<h3> Animacja 'show-hide'  </h3>
+<div ng-init="checked=true">
+	<label><input type="checkbox" ng-model="checked" style="float:left;margin-right:10px;"> Pokaż / ukryj</label>
+	<div class="show-hide" ng-show="checked" style="clear:both;">
+		<ol>
+			<li data-ng-repeat="grade in grades">{{ grade }}</li>
+		</ol>
+	</div>
+</div>
+
