@@ -1,0 +1,231 @@
+﻿(function () {
+    'use strict';
+
+    angular
+        .module('photoApp')
+        .config(['$urlRouterProvider','$locationProvider', '$stateProvider', appConfiguration]);
+
+	
+    function appConfiguration($urlRouterProvider, $locationProvider, $stateProvider) {
+        $urlRouterProvider.otherwise('/home');
+        //$locationProvider.hashPrefix('!');
+	//$locationProvider.html5Mode(true);
+
+	$stateProvider
+        
+	// main application layout
+    	.state('app', {
+        	abstract: true,  // no urls, abstract state to be inherited
+        	views: {
+            		"": {
+                		templateUrl: "app/common/views/layout.html"
+            		},
+            		"navbar@app": {
+                		templateUrl: "app/common/views/navbar.html"
+            		}
+        	}
+    	})
+
+        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+        .state('about', {
+        	url: '/about',
+		parent: 'app',
+        	views: {
+            		// the main template will be placed here (relatively named)
+            		'': { 
+				templateUrl: 'app/core/about/partial-about.html' 
+			},
+            		// the child views will be defined here (absolutely named)
+            		'columnOne@about': { 
+				template: 'Look I am a column!' 
+			},
+            		// for column two, we'll define a separate controller 
+            		'columnTwo@about': { 
+               			templateUrl: 'app/core/about/table-data.html',
+                		controller: 'scotchController'
+            		}
+		}
+        })
+
+	// animations PAGE AND MULTIPLE NAMED VIEWS =================================
+        .state('animations', {
+        	url: '/animations',
+		parent: 'app',
+        	views: {
+            		// the main template will be placed here (relatively named)
+            		'': { 
+				templateUrl: 'app/core/animations/animations.html',
+				controller: function($scope) {
+            				$scope.grades = ['Niedostateczny', 'Dopuszczający', 'Dostateczny','Dobry', 'Bardzo dobry','Celujący'];
+				}
+			}
+		}
+        })
+
+	// TODOS PAGE AND MULTIPLE NAMED VIEWS =================================
+        .state('todos', {
+        	url: '/todos',
+		parent: 'app',
+        	views: {
+            		// the main template will be placed here (relatively named)
+            		'': { 
+				templateUrl: 'app/core/todos/todos.html',
+				controller: 'mainTodos' 
+			},
+			"content@todos": {
+              			templateUrl: 'app/core/todos/default.html'
+        		},
+		}
+        })
+	.state('todos.list', {
+        	url: '/list',
+        	views: {
+			"content@todos": { 
+               			templateUrl: 'app/core/todos/listTodos.html',
+                		controller: 'listTodos'
+            		}
+		}
+        })
+	.state('todos.edit', {
+        	url: '/edit',
+        	views: {
+            		// for column two, we'll define a separate controller 
+            		"content@todos": { 
+               			templateUrl: 'app/core/todos/editTodos.html',
+                		controller: 'editTodos'
+            		}
+		}
+        })
+	.state('todos.json', {
+        	url: '/json',
+        	views: {
+			"content@todos": { 
+               			templateUrl: 'app/core/todos/jsonTodos.html'
+            		}
+		}
+        })
+      
+
+    	// HOME STATES AND NESTED VIEWS ========================================
+   	.state('home', {
+   	    url: '/home',
+	    parent: 'app',
+    	    views: {
+            		// the main template will be placed here (relatively named)
+            		'': { 	
+   	    			templateUrl: 'app/core/home/partial-home.html'
+			}
+		}
+   	})
+	// nested list with custom controller
+    	.state('home.list', {
+        	url: '/list',
+       		templateUrl: 'app/core/home/partial-home-list.html',
+        	controller: function($scope) {
+            		$scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
+		}
+        	
+    	})
+
+    	// nested list with just some random string data
+    	.state('home.paragraph', {
+        	url: '/paragraph',
+        	template: 'I could sure use a drink right now.'
+    	})
+
+	// PHOTOS STATES AND NESTED VIEWS ========================================
+	.state('photos', {
+        	url: "/photos",
+		parent: 'app',
+		views: {
+        		"": {
+             			templateUrl: "app/core/photos/photos.html"
+        		},
+        		"content@photos": {
+              			//template: "Default product list page, ready for your customization"
+				templateUrl: "app/core/photos/photos-detail.html",
+				controller: "photosController"
+        		},
+        		"menu@photos": {
+              			templateUrl: "app/core/photos/photos-menu.html",
+               			controller: "photosController"
+        		}
+		},
+		// inna opcja wstrzykiwania danych niż przez fabryki
+		/*resolve: {
+        		photos: function(){
+               			return [
+               				{id:1, name: "AngulrJS", features: ['ready']},
+               				{id:2, name: "ReactJS", features: ['ready']},
+               				{id:3, name: "EmberJS", features: ['ready']}
+              			];
+       			}
+		}*/
+	})
+	.state('photoDetails', {
+        	url: "/photoDetails/:id",
+		parent: 'app',
+		views: {
+        		"": {
+             			templateUrl: "app/core/photos/photos-detail.html",
+				controller: "photoController"
+			}
+		}
+	})
+
+
+	// photos features list
+    	.state('photos.photo', {
+        	url: "/photo/:id",
+        	views: {
+            		"content@photos": {
+                		templateUrl: "app/core/photos/photos-detail.html",
+				controller: "photoController"
+            		}
+	        }
+    	})
+    	// single feature view
+    	.state('photos.photo.feature', {
+        	url: "/feature/:index",
+        	views: {
+            		"content@photos": {
+                		templateUrl: "app/core/photos/photo-feature.html",
+                		controller: 'FeatureController'
+            		}
+        	}
+    	})
+    	// feature - edit
+    	.state('photos.photo.feature-edit', {
+        	url: "/feature-edit/:index",
+        	views: {
+            		"navbar@app": {
+                		template: "<b>Edit photos hoses here</b>"
+            		},
+            		"@app": {
+                		templateUrl: "app/core/photos/photo-feature-edit.html",
+                		controller: 'FeatureEditController'
+            		}
+        	}
+    	})
+   
+    	// feature - edit in MODAL
+    	.state('photos.photo.feature-view', {
+        	url: "/feature-view/:index",
+        	views: {
+            	"modal@": {
+                	templateUrl: "app/core/photos/photo-modal-layout.html"
+            	},
+            	"@photos.photo.feature-view": {
+                	templateUrl: "app/core/photos/photo-feature-edit.html",
+                	controller: 'FeatureEditController'
+            	}
+        	}
+    	})
+   
+}
+}());
+
+
+
+
+

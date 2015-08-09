@@ -1,0 +1,15 @@
+
+
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h3>Szczegóły</h3>
+		<div class="list-group">
+			<a href="#" class="list-group-item active">{{photo.name}}</a>
+			<a href="#" class="list-group-item"> Obraz: <b> {{photo.img}}</b></a>
+			<a href="#" class="list-group-item"> Feature: <b>{{photo.feature}}</b></a>
+		</div>
+		<a href="#/photos" class="btn btn-default">Powrót do listy</a>
+		<a href="" ng-click="delete(photo.id)" class="btn btn-danger">Usuń {{photo.name}}</a>
+	</div>
+</div>
+

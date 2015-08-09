@@ -1,0 +1,16 @@
+
+<div class="panel panel-default left">
+	<div class="panel-body">
+		<h3>Lista</h3>
+		<p data-ng-repeat="photo in photos track by $index">
+			{{$index+1}}. 
+			<a ui-sref="photoDetails({id: photo.id})" ng-mouseenter="change(photo.id)">{{photo.name}}
+				<span class="glyphicon glyphicon-info-sign"></span>
+			</a>
+		</p>
+	</div>
+</div>
+
+<ui-view class="center"> </ui-view>
+
+

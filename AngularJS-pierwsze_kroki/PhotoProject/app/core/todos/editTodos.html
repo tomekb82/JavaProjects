@@ -1,0 +1,19 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title">Dodaj zadanie!</h3>
+	</div>
+	<div class="panel-body">
+		<form name="f" data-ng-submit="addTodo()">
+			Nazwa:
+			<textarea class="form-control" name="newTodo" data-ng-model="formData.newTodo"required></textarea>
+			Typ:
+			<select class="form-control" name="type" data-ng-model="formData.type" data-ng-options="value.name for value in categories" required></select>
+			Estymowany czas:
+			<select class="form-control" name="estimates" data-ng-model="formData.estimates" data-ng-options="value +' h' for value in [] | rangeTime:9:true" required></select>
+			Data:
+			<input class="form-control" type="text" data-ng-model="formData.date" data-ng-date-picker="" name="date" required readonly="readonly">
+			<br />
+			<button class="btn btn-success" data-ng-disabled="f.$invalid">Add <span class="glyphicon glyphicon-ok"></span></button>
+		</form>
+	</div>
+</div>

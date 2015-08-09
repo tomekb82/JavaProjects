@@ -9,6 +9,7 @@
 	.directive('requireDirective', requireDirective)
 	.directive("colorChanger", colorChanger)
 	.directive("eventsEvaluation", eventsEvaluation)
+	.directive('ngDatePicker', ngDatePicker)
 	.controller('customDirectiveCtrl', ['$scope', customDirectiveCtrl]);
 
 	function customDirective(){
@@ -77,6 +78,27 @@
 		};
 		$scope.reduce = function () {
 			$scope.number--;
+		};
+	}
+
+	function ngDatePicker(){
+		return {
+			restrict: 'A',
+			require: 'ngModel',
+			link: function (scope, element, attrs, ctrl) {
+				element.datepicker({
+					changeYear: true,
+					changeMonth: true,
+					showWeek: true,
+					firstDay: 1,
+					dayNames: "pl",
+					dateFormat: 'dd/m/yy',
+					onSelect: function (date) {
+						ctrl.$setViewValue(date);
+						scope.$apply();
+					}
+				});
+			}
 		};
 	}
 

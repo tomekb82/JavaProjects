@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Zadania</h3>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Lp.</th>
+					<th>Nazwa</th>
+					<th>Estymacja</th>
+					<th>Data</th>
+					<th>Ico</th>
+					<th>Zaznacz jako wykonane</th>
+				</tr>
+			</thead>
+			<tr data-ng-repeat="todo in todos">
+				<td>{{$index+1}}. </td>
+				<td><span class="done-{{todo.done}}">{{todo.title}}</span></td>
+				<td><span class="done-{{todo.done}}">({{todo.estimates}}h)</span></td>
+				<td><span class="done-{{todo.done}}">{{todo.date}}</span></td>
+				<td><span class="glyphicon glyphicon-{{todo.type.gico}}done-{{todo.done}}"></span></td>
+				<td><input type="checkbox" data-ng-model="todo.done" title="Mark Complete" /></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<button class="btn btn-danger" data-ng-click="deleteCompleted()">
+			Usuń wykonane <span class="glyphicon glyphicon-remove"></span></button>
+	</div>
+</div>
