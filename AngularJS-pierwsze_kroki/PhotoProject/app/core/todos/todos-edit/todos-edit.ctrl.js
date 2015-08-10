@@ -3,9 +3,9 @@
 
     angular
         .module('photoApp')
-        .controller('editTodos', ['$scope', '$location', 'categories', editTodos]);
+        .controller('photoApp.core.todos.todosEditCtrl', ['$scope', '$location', 'photoApp.core.todos.todoCategoryFtr', todosEditCtrl]);
 
-	function editTodos($scope, $location, categories) {
+	function todosEditCtrl($scope, $location, categories) {
 		$scope.categories = categories;
 		$scope.formData = { type: $scope.categories[0], estimates: $scope.estimates = 1 };
 		$scope.addTodo = function () {

@@ -3,9 +3,9 @@
 
      angular
 	.module('photoApp')
-	.factory('photos', photos);
+	.factory('photoApp.core.photos.photosFtr', photosFtr);
 
-	function photos(){
+	function photosFtr(){
 		var photos =  [
 			{id:1, name: "AngulrJS", features: ['ready'], img: "A1"},
 			{id:2, name: "ReactJS", features: ['ready'], img: "A2"},

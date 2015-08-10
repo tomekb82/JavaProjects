@@ -3,9 +3,9 @@
 
     angular
         .module('photoApp')
-        .controller('listTodos', ['$scope', listTodos]);
+        .controller('photoApp.core.todos.todosListCtrl', ['$scope', todosListCtrl]);
 
-	function listTodos($scope) {
+	function todosListCtrl($scope) {
 		$scope.deleteCompleted = function () {
 			$scope.$parent.todos = $scope.$parent.todos.filter(function (item) {
 				return !item.done;

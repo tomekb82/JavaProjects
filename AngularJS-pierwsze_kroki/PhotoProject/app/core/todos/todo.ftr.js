@@ -3,9 +3,9 @@
 
      angular
 	.module('photoApp')
-	.factory('todos', todos);
+	.factory('photoApp.core.todos.todoFtr', todoFtr);
 
-	function todos(){
+	function todoFtr(){
 		return [
 		{
 			'title': 'Randka z Julitą', 'done': false, "type": { "name":"Personalne", "gico": "heart" }, 'estimates': 3, "date": "11/11/2015"

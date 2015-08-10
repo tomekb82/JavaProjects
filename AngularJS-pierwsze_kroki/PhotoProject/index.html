@@ -2,31 +2,12 @@
 <html>
 <head>
 
-    <!-- CSS (load bootstrap) -->
+    <!-- CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="assets/styles/styles.css" />
     <link rel="stylesheet" href="assets/styles/directives.css" />
-    <style>
-        .navbar { border-radius:0; }
-
-.view-change-animation.ng-enter{
-    -webkit-animation:bounceInLeft 1s;
-    animation: bounceInLeft 1s;
-}
-.view-change-animation.ng-leave{
-    -webkit-animation:bounceOut	Right 2s;
-    animation: bounceOutRight 2s;
-}
-
-.pulse.ng-enter {
-  -webkit-animation-name: pulse;
-  animation-name: pulse;
-}
-
-
-    </style>
-
+    
     <!-- JS (load angular, ui-router, and our custom js file) -->
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -35,21 +16,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-sanitize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.min.js"></script>
 
-    <script src="app/app_module.js"></script>
-    <script src="app/app_route.js"></script>
-    <script src="app/core/photos/photos.js"></script>
-    <script src="app/core/about/about.js"></script>
-    <script src="app/core/todos/mainTodos.js"></script>
-    <script src="app/core/todos/editTodos.js"></script>
-    <script src="app/core/todos/listTodos.js"></script>
+    <!-- main -->
+    <script src="app/app.mdl.js"></script>
+    <script src="app/app.route.js"></script>
+    
+    <!-- common -->
+    <script src="app/common/directive/ng-date-picker.drv.js"></script>
+    <script src="app/common/filter/range-time.fltr.js"></script>
 
-    <script src="app/common/factories/categories-data.js"></script>
-    <script src="app/common/factories/todos-data.js"></script>
-    <script src="app/common/factories/photos-data.js"></script>
-
-    <script src="app/common/directives/ng-date-picker.js"></script>
-    <script src="app/common/filters/filters.js"></script>
-
+    <!-- core: about -->
+    <script src="app/core/about/about.mdl.js"></script>
+    <script src="app/core/about/about-list/about-list.ctrl.js"></script>
+    <!-- core: home -->
+    <!-- core: photos -->
+    <script src="app/core/photos/photos.mdl.js"></script>
+    <script src="app/core/photos/photos.ftr.js"></script>
+    <script src="app/core/photos/photos-details/photos-details.ctrl.js"></script>
+    <script src="app/core/photos/photos-list/photos-list.ctrl.js"></script>
+    <!-- core: todos -->
+    <script src="app/core/todos/todos.mdl.js"></script>
+    <script src="app/core/todos/todos.ctrl.js"></script>
+    <script src="app/core/todos/todo.ftr.js"></script>
+    <script src="app/core/todos/todo-category.ftr.js"></script>
+    <script src="app/core/todos/todos-list/todos-list.ctrl.js"></script>
+    <script src="app/core/todos/todos-edit/todos-edit.ctrl.js"></script>
+   
 </head>
 <!-- apply our angular app to our site -->
 <body ng-app="photoApp">

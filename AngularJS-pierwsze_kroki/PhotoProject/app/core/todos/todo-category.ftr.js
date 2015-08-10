@@ -3,9 +3,9 @@
 
      angular
 	.module('photoApp')
-	.factory('categories', categories);
+	.factory('photoApp.core.todos.todoCategoryFtr', todoCategoryFtr);
 	
-	function categories(){
+	function todoCategoryFtr(){
 		return [
 			{ name: 'Personalne', 'gico': 'heart' },
 			{ name: 'Zdrowie', 'gico': 'tint' },

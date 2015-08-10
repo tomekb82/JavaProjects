@@ -3,9 +3,9 @@
 
      angular
 	.module('photoApp')
-	.filter('rangeTime', rangeTime)
+	.filter('rangeTime', rangeTimeFltr)
 	
-	function rangeTime(){
+	function rangeTimeFltr(){
 		return function (input, total, halfHour) {
 			total = parseInt(total);
 			for (var i = 1; i < total; i++) {

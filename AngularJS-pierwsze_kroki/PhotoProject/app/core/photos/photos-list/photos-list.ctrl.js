@@ -3,15 +3,9 @@
 
     angular
         .module('photoApp')
-        .config(['$stateProvider', appConfiguration])
-        .controller('photosController', ['$scope', 'photos', photosController])
-	.controller('photoController', ['$scope', '$stateParams', '$location', 'photos', photoController]);
-
-	function appConfiguration($stateProvider) {
-    		
-    	}
-
-    	function photosController($scope, photos) {
+        .controller('photoApp.core.photos.photosListCtrl', ['$scope', 'photoApp.core.photos.photosFtr', photosListCtrl]);
+	
+    	function photosListCtrl($scope, photos) {
 		$scope.photos = photos.getAll();
 		$scope.photo = photos.getById(1);
 		$scope.change = function(id){
@@ -21,18 +15,9 @@
 			}
 		}
     	}
-	function photoController($scope, $stateParams, $location, photos) {		
-		//$scope.photos = photos.getAll();
-		//$scope.id = $stateParams.id;
-		$scope.photo = photos.getById($stateParams.id);
-console.log("FFFFF=" + $scope.photo);
-		$scope.delete = function (id) {
-			photos.deleteById(id);
-			$location.path('/photos')
-		};	
-    	}
+	
 
-  function FeatureListController($scope, $stateParams, photos){
+    function FeatureListController($scope, $stateParams, photos){
         $scope.id = $stateParams.id;
         $scope.photo = $filter('filter')(photos, $stateParams.id);
     }

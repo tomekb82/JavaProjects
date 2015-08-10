@@ -3,10 +3,10 @@
 
     angular
         .module('photoApp')
-	.controller('scotchController', ['$scope', scotchController]);
+	.controller('photoApp.core.about.aboutListCtrl', ['$scope', aboutListCtrl]);
        
 	// let's define the scotch controller that we call up in the about state
-	function scotchController($scope) {
+	function aboutListCtrl($scope) {
     		$scope.message = 'test';
 		$scope.scotches = [
         		{name: 'Macallan 12', price: 50},

@@ -5,23 +5,21 @@
         .module('photoApp')
         .config(['$urlRouterProvider','$locationProvider', '$stateProvider', appConfiguration]);
 
-	
     function appConfiguration($urlRouterProvider, $locationProvider, $stateProvider) {
         $urlRouterProvider.otherwise('/home');
         //$locationProvider.hashPrefix('!');
 	//$locationProvider.html5Mode(true);
 
 	$stateProvider
-        
 	// main application layout
     	.state('app', {
         	abstract: true,  // no urls, abstract state to be inherited
         	views: {
             		"": {
-                		templateUrl: "app/common/views/layout.html"
+                		templateUrl: "app/common/view/layout.view.html"
             		},
             		"navbar@app": {
-                		templateUrl: "app/common/views/navbar.html"
+                		templateUrl: "app/common/view/navbar.view.html"
             		}
         	}
     	})
@@ -33,7 +31,7 @@
         	views: {
             		// the main template will be placed here (relatively named)
             		'': { 
-				templateUrl: 'app/core/about/partial-about.html' 
+				templateUrl: 'app/core/about/about.view.html' 
 			},
             		// the child views will be defined here (absolutely named)
             		'columnOne@about': { 
@@ -41,24 +39,9 @@
 			},
             		// for column two, we'll define a separate controller 
             		'columnTwo@about': { 
-               			templateUrl: 'app/core/about/table-data.html',
-                		controller: 'scotchController'
+               			templateUrl: 'app/core/about/about-list/about-list.view.html',
+                		controller: 'photoApp.core.about.aboutListCtrl'
             		}
-		}
-        })
-
-	// animations PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('animations', {
-        	url: '/animations',
-		parent: 'app',
-        	views: {
-            		// the main template will be placed here (relatively named)
-            		'': { 
-				templateUrl: 'app/core/animations/animations.html',
-				controller: function($scope) {
-            				$scope.grades = ['Niedostateczny', 'Dopuszczający', 'Dostateczny','Dobry', 'Bardzo dobry','Celujący'];
-				}
-			}
 		}
         })
 
@@ -69,11 +52,11 @@
         	views: {
             		// the main template will be placed here (relatively named)
             		'': { 
-				templateUrl: 'app/core/todos/todos.html',
-				controller: 'mainTodos' 
+				templateUrl: 'app/core/todos/todos.view.html',
+				controller: 'photoApp.core.todos.todosCtrl' 
 			},
 			"content@todos": {
-              			templateUrl: 'app/core/todos/default.html'
+              			templateUrl: 'app/core/todos/todos-default.view.html'
         		},
 		}
         })
@@ -81,8 +64,8 @@
         	url: '/list',
         	views: {
 			"content@todos": { 
-               			templateUrl: 'app/core/todos/listTodos.html',
-                		controller: 'listTodos'
+               			templateUrl: 'app/core/todos/todos-list/todos-list.view.html',
+                		controller: 'photoApp.core.todos.todosListCtrl'
             		}
 		}
         })
@@ -91,8 +74,8 @@
         	views: {
             		// for column two, we'll define a separate controller 
             		"content@todos": { 
-               			templateUrl: 'app/core/todos/editTodos.html',
-                		controller: 'editTodos'
+               			templateUrl: 'app/core/todos/todos-edit/todos-edit.view.html',
+                		controller: 'photoApp.core.todos.todosEditCtrl'
             		}
 		}
         })
@@ -100,7 +83,7 @@
         	url: '/json',
         	views: {
 			"content@todos": { 
-               			templateUrl: 'app/core/todos/jsonTodos.html'
+               			templateUrl: 'app/core/todos/todos-json/todos-json.view.html'
             		}
 		}
         })
@@ -113,14 +96,14 @@
     	    views: {
             		// the main template will be placed here (relatively named)
             		'': { 	
-   	    			templateUrl: 'app/core/home/partial-home.html'
+   	    			templateUrl: 'app/core/home/home.view.html'
 			}
 		}
    	})
 	// nested list with custom controller
     	.state('home.list', {
         	url: '/list',
-       		templateUrl: 'app/core/home/partial-home-list.html',
+       		templateUrl: 'app/core/home/home-list/home-list.view.html',
         	controller: function($scope) {
             		$scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
 		}
@@ -139,16 +122,15 @@
 		parent: 'app',
 		views: {
         		"": {
-             			templateUrl: "app/core/photos/photos.html"
+             			templateUrl: "app/core/photos/photos.view.html"
         		},
         		"content@photos": {
-              			//template: "Default product list page, ready for your customization"
-				templateUrl: "app/core/photos/photos-detail.html",
-				controller: "photosController"
+              			template: "Default product list page, ready for your customization"
+				
         		},
-        		"menu@photos": {
-              			templateUrl: "app/core/photos/photos-menu.html",
-               			controller: "photosController"
+        		"menu-details@photos": {
+              			templateUrl: "app/core/photos/photos-list/photos-list.view.html",
+               			controller: "photoApp.core.photos.photosListCtrl"
         		}
 		},
 		// inna opcja wstrzykiwania danych niż przez fabryki
@@ -167,8 +149,8 @@
 		parent: 'app',
 		views: {
         		"": {
-             			templateUrl: "app/core/photos/photos-detail.html",
-				controller: "photoController"
+             			templateUrl: "app/core/photos/photos-details/photos-details.view.html",
+				controller: "photoApp.core.photos.photosDetailsCtrl"
 			}
 		}
 	})
@@ -179,8 +161,8 @@
         	url: "/photo/:id",
         	views: {
             		"content@photos": {
-                		templateUrl: "app/core/photos/photos-detail.html",
-				controller: "photoController"
+                		templateUrl: "app/core/photos/photos-details/photos-details.view.html",
+				controller: "photoApp.core.photos.photosDetailsCtrl"
             		}
 	        }
     	})
