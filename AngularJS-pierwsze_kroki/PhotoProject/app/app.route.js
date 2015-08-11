@@ -125,7 +125,8 @@
              			templateUrl: "app/core/photos/photos.view.html"
         		},
         		"content@photos": {
-              			template: "Default product list page, ready for your customization"
+              			template: "Default product list page, ready for your customization <br/> {{data}}",
+				controller: "photoApp.core.photos.photosListCtrl"
 				
         		},
         		"menu-details@photos": {

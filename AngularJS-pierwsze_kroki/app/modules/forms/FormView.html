@@ -1,0 +1,19 @@
+<form name="ContactForm">
+	Imię:
+	<input type="text" ng-model="contact.firstName" name="firstName" class="form-control" required />
+	Nazwisko:
+	<input type="text" ng-model="contact.lastName" class="form-control"required />
+	E-mail:
+	<input type="email" ng-model="contact.email" class="form-control"required />
+	Wiadomość:
+	<textarea ng-model="contact.info" class="form-control" required></textarea>
+	Płeć:
+	<input type="radio" ng-model="contact.gender" value="male" class="radio radio-inline" />mężczyzna
+	<input type="radio" ng-model="contact.gender" value="female" class="radio radio-inline" />kobieta
+	<br /><br />
+	Wiek:	
+	<input type="number" ng-model="contact.age" class="form-control"required />
+	<button class="btn btn-success" ng-click="update(contact)" ng-disabled="form.$invalid">Zapisz</button>
+</form>
+<pre>form = {{contact | json}}</pre>
+<pre>contactForm = {{contactForm | json}}</pre>
