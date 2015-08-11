@@ -124,7 +124,12 @@
         		"": {
              			templateUrl: "app/core/photos/photos.view.html"
         		},
-        		"content@photos": {
+			"content@photos": {
+              			templateUrl: "app/core/photos/photos-form/photos-form.view.html",
+				controller: "photoApp.core.photos.photosFormCtrl"
+				
+        		},
+        		"info@photos": {
               			template: "Default product list page, ready for your customization <br/> {{data}}",
 				controller: "photoApp.core.photos.photosListCtrl"
 				
