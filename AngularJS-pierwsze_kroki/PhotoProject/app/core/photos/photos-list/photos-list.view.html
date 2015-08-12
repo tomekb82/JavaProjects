@@ -1,7 +1,5 @@
 
-<p data-ng-repeat="res in combinedResult track by $index">
-{{res.nazwa}}
-</p>
+
 
 <div class="row">
 
@@ -17,6 +15,12 @@
 		</p>
 	</div>
 	</div>
+
+<p data-ng-repeat="res in combinedResult track by $index">
+	{{res | json}}
+</p>
+
+
     </div>
     
     <div class="col-sm-6">

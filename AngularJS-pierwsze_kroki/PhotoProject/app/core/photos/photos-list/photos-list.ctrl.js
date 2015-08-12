@@ -11,6 +11,7 @@
 			$scope.data = data;
 		});
 
+		$scope.combinedResult = null;
 		var data1 = $http.get('assets/files/data1.json'),
 			data2 = $http.get('assets/files/data2.json'),
 			data3 = $http.get('assets/files/data3.json');
@@ -21,7 +22,7 @@
 			});
 			return full;
 		}).then(function (fullResult) {
-			$scope.combinedResult = fullResult.join(", ");
+			$scope.combinedResult = fullResult;//.join(", ");	
 		});
 
 		$scope.photos = photos.getAll();

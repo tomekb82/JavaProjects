@@ -1,8 +1,5 @@
-﻿(function () {
-    'use strict';
-
-    angular
-        .module('photoApp')
+﻿var app = angular
+        .module('photoApp', [])
 	.controller('photoApp.core.about.aboutListCtrl', ['$scope', aboutListCtrl]);
        
 	// let's define the scotch controller that we call up in the about state
@@ -16,7 +13,7 @@
     
 	}
 
-}());
+
 
 
 
