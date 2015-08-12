@@ -1,0 +1,21 @@
+{
+  "generator-jhipster": {
+    "baseName": "jHipsterPhoto",
+    "packageName": "com.angularjs",
+    "packageFolder": "com/angularjs",
+    "authenticationType": "session",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "spring-websocket",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": "no",
+    "useCompass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "enableTranslation": true,
+    "rememberMeKey": "afb1842630e535b1a54ab828b1fa3d548f877ba7"
+  }
+}
