@@ -125,10 +125,11 @@
              			templateUrl: "app/core/photos/photos.view.html"
         		},
 			"content@photos": {
-              			templateUrl: "app/core/photos/photos-form/photos-form.view.html",
+              			templateUrl: "app/core/photos/photos-default.view.html",
 				controller: "photoApp.core.photos.photosFormCtrl"
 				
-        		},
+        		}/*,
+		
         		"info@photos": {
               			template: "Default product list page, ready for your customization <br/> {{data}}",
 				controller: "photoApp.core.photos.photosListCtrl"
@@ -137,7 +138,7 @@
         		"menu-details@photos": {
               			templateUrl: "app/core/photos/photos-list/photos-list.view.html",
                			controller: "photoApp.core.photos.photosListCtrl"
-        		}
+        		}*/
 		},
 		// inna opcja wstrzykiwania danych niż przez fabryki
 		/*resolve: {
@@ -150,11 +151,28 @@
        			}
 		}*/
 	})
-	.state('photoDetails', {
-        	url: "/photoDetails/:id",
-		parent: 'app',
+	.state('photos.list', {
+        	url: '/list',
+        	views: {
+			"content@photos": { 
+               			templateUrl: "app/core/photos/photos-list/photos-list.view.html",
+               			controller: "photoApp.core.photos.photosListCtrl"
+            		}
+		}
+        })
+	.state('photos.form', {
+        	url: '/form',
+        	views: {
+			"content@photos": { 
+               			templateUrl: "app/core/photos/photos-form/photos-form.view.html",
+				controller: "photoApp.core.photos.photosFormCtrl"
+            		}
+		}
+        })
+	.state('photos.details', {
+        	url: "/details/:id",
 		views: {
-        		"": {
+        		"content@photos": {
              			templateUrl: "app/core/photos/photos-details/photos-details.view.html",
 				controller: "photoApp.core.photos.photosDetailsCtrl"
 			}

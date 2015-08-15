@@ -1,18 +1,27 @@
 
 
-<div class="row">
+<div class="container">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#/photos">Photos</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li data-ng-class="getClass('/photos/list')"><a href="#/photos/list">Gallery</a></li>
+					<li data-ng-class="getClass('/photos/form')"><a href="#/photos/form">Form</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
 
+<div class="row">
     <div class="col-sm-12">
-        <div ui-view="menu-details"></div>
-    </div>
-    
-    <div class="col-sm-6">
         <div ui-view="content"></div>
-    </div>
-    <div class="col-sm-6">
-        <div ui-view="info"></div>
     </div>
 
 </div> 
+
 
 
