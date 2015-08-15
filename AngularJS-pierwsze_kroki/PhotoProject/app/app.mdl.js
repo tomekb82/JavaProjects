@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('photoApp', ['ui.router', 'ngSanitize','ngAnimate']);
+        .module('photoApp', ['ui.router', 'ngSanitize','ngAnimate', 'ngResource']);
 
 }());
 

@@ -32,6 +32,28 @@
 		</div>
 		<a href="#/photos" class="btn btn-default">Powrót do listy</a>
 		<a href="" ng-click="delete(photo.id)" class="btn btn-danger">Usuń {{photo.nazwa}}</a>
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Opinie</h3>
+			</div>
+			<div class="panel-body">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Lp.</th>
+						<th>Opinia</th>
+					</tr>
+				</thead>
+			<tr data-ng-repeat="opinion in opinions">
+				<td>{{$index+1}}. </td>
+				<td><span class="done-{{todo.done}}">{{opinion}}</span></td>
+				<td><input type="checkbox" data-ng-model="todo.done" title="Like" /></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
 	</div>
 	</div>
     </div>

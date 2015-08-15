@@ -3,15 +3,25 @@
 
      angular
 	.module('photoApp')
-	.factory('photoApp.core.photos.photosFtr', photosFtr);
+	.factory('photoApp.core.photos.photosFtr', ['$http', photosFtr]);
 
-	function photosFtr(){
-		var photos =  [
-			{id:1, name: "AngulrJS", features: ['ready'], img: "A1"},
-			{id:2, name: "ReactJS", features: ['ready'], img: "A2"},
-			{id:3, name: "EmberJS", features: ['ready'], img: "A3"}
-		];
+	function photosFtr($http){
+
+		var _DIRNAME = "assets/img/";
+
 		return {
+			getFilenames: function () {
+				return $http.get('/photo/filenames');
+
+			},
+			getDescriptionByName: function (filename) {
+				return $http.get('/photo/description/' + filename);
+
+			},
+			getImageByName: function (filename) {
+				return _DIRNAME + filename; 
+
+			}/*,
 			getAll: function () {
 				return photos;
 			},
@@ -28,7 +38,7 @@
 						photos.splice(i, 1);
 					}
 				});
-			}
+			}*/
 		}
 	}
 

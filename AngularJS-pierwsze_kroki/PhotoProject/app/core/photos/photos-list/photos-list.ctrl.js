@@ -3,25 +3,26 @@
 
     angular
         .module('photoApp')
-        .controller('photoApp.core.photos.photosListCtrl', ['$scope', '$http', '$q', 'photoApp.core.photos.photosFtr', 'photoApp.common.factory.httpGetFile', photosListCtrl]);
+        .controller('photoApp.core.photos.photosListCtrl', ['$scope', '$http', '$q', 'photoApp.core.photos.photosFtr',
+'photoApp.core.photos.photosOpinionFtr', 'photoApp.common.factory.httpGetFile', photosListCtrl]);
 	
-    	function photosListCtrl($scope, $http, $q, photos, httpGetFile) {
+    	function photosListCtrl($scope, $http, $q, photos, photosOpinion, httpGetFile) {
 		
-		$http.get('/photo/filenames').success(function (result){
+		var _DIRNAME = "assets/img/";
+
+		photos.getFilenames().success(function (result){
 			$scope.photos = result;
     		});
 
-		var _DIRNAME = "assets/img/";
-
-		$scope.photo = null;
+		$scope.opinions = photosOpinion.query();
 
 		$scope.change = function(filename){
 			if(filename != null){
-				$http.get('/photo/description/' + filename).success(function (result){
+				photos.getDescriptionByName(filename).success(function (result){
 					$scope.photo = result;
     				});	
 				
-				$scope.image = _DIRNAME + filename; 
+				$scope.image = photos.getImageByName(filename);
 				//todo: problem z kodowaniem obrazka pobieranego z serwera	
 				/*$http.get('/photo/image/' + filename).success(function (result){
 					//$scope.image = base64Encode(result);
@@ -50,15 +51,6 @@
 			$scope.combinedResult = fullResult;//.join(", ");	
 		});
 		*/
-		/*$scope.photos = photos.getAll();
-		$scope.photo = photos.getById(1);
-		$scope.change = function(id){
-			if(id != null){
-				$scope.photo = photos.getById(id);
-				console.log("change=" + $scope.photo.name);		
-			}
-		}*/
-
     	}
 	
 

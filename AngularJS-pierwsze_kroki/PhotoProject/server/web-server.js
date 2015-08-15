@@ -8,6 +8,15 @@ app.get('/test', function (req, res) {
 	res.send('Hello World!');
 });
 
+
+
+app.get('/photos/1234/opinion', function (req, res, next){
+	
+    	var results = ['Opinia 1', 'Opinia 2', 'Opinia 3'];
+	console.log('opinions');
+    	res.send(results);
+});
+
 var _DIRNAME = "/home/tomek/Desktop/repo/JavaProjects/AngularJS-pierwsze_kroki/PhotoProject/assets";
 
 app.get('/photo/filenames', function (req, res, next){
