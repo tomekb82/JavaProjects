@@ -1,0 +1,19 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "opinions",
+            "fieldType": "List<String>",
+            "fieldValidateRules": []
+        }
+    ],
+    "dto": "mapstruct",
+    "pagination": "no"
+}

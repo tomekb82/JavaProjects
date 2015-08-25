@@ -1,6 +1,9 @@
 package com.angularjs;
 
 import com.angularjs.config.Constants;
+import com.angularjs.domain.Photo;
+import com.angularjs.repository.PhotoRepository;
+import com.angularjs.repository.util.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,11 +16,14 @@ import org.springframework.core.env.SimpleCommandLinePropertySource;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class})
@@ -57,7 +63,10 @@ public class Application {
                     "It should not run with both the 'dev' and 'cloud' profiles at the same time.");
             }
         }
+
+
     }
+
 
     /**
      * Main method, used to run the application.
@@ -68,6 +77,7 @@ public class Application {
         SimpleCommandLinePropertySource source = new SimpleCommandLinePropertySource(args);
         addDefaultProfile(app, source);
         Environment env = app.run(args).getEnvironment();
+
         log.info("Access URLs:\n----------------------------------------------------------\n\t" +
             "Local: \t\thttp://127.0.0.1:{}\n\t" +
             "External: \thttp://{}:{}\n----------------------------------------------------------",

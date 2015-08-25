@@ -1,0 +1,20 @@
+{
+    "jhipsterphotoApp": {
+        "photo" : {
+            "home": {
+                "title": "Photos",
+                "createLabel": "Créer un nouveau Photo",
+                "createOrEditLabel": "Créer ou éditer un Photo"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Photo {{ id }} ?"
+            },
+            "detail": {
+                "title": "Photo"
+            },
+            "name": "Name",
+            "opinions": "Opinions"
+        }
+    }
+}
+

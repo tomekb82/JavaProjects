@@ -5,6 +5,7 @@ import com.mongodb.Mongo;
 import org.mongeez.Mongeez;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,7 @@ import javax.inject.Inject;
 @EnableMongoRepositories("com.angularjs.repository")
 @Import(value = MongoAutoConfiguration.class)
 @EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware")
+@AutoConfigureAfter(FilesConfigurer.class)
 public class DatabaseConfiguration extends AbstractMongoConfiguration  {
 
     private final Logger log = LoggerFactory.getLogger(DatabaseConfiguration.class);

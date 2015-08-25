@@ -1,0 +1,85 @@
+
+
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <div class="panel panel-default left">
+	        <div class="panel-body">
+		        <h3>Lista</h3>
+		        <!--<p data-ng-repeat="photo in photos | orderBy:'photo' | fileType:'(png|jpeg|jpg|gif|JPG)$'" >
+			        {{$index+1}}.
+			        <a ui-sref="photos.details({id: photo.id})" ng-mouseenter="change(photo)">{{photo}}
+				        <span class="glyphicon glyphicon-info-sign"></span>
+			        </a>
+		        </p>-->
+
+
+                <ul>
+                    <li dir-paginate="photo in photos | orderBy:'photo' | fileType:'(png|jpeg|jpg|gif|JPG)$' | itemsPerPage: 20">
+                        <a ui-sref="photos.details({id: photo.id})" ng-mouseenter="change(photo)">{{photo}}
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </a>
+
+                    </li>
+                </ul>
+
+                <dir-pagination-controls></dir-pagination-controls>
+	        </div>
+	        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+	        <div class="panel-body">
+		        <h3>Szczegóły</h3>
+
+		        <div class="list-group">
+			        <a href="#" class="list-group-item active">{{description.name}}</a>
+			        <a href="#" class="list-group-item"> Obraz: <b> {{description.name}}</b></a>
+			        <a href="#" class="list-group-item"> Date modified: <b>{{description.date | date}}</b></a>
+
+			        <!--<img ng-src="data:image/jpeg;base64,{{image}}" />-->
+			        <img ng-src="{{image}}" style="height: 70%;width: 70%"/>
+		        </div>
+		        <a href="#/photos" class="btn btn-default">Powrót do listy</a>
+		        <a href="" ng-click="delete(description.id)" class="btn btn-danger">Usuń {{photo.nazwa}}</a>
+
+		        <div class="panel panel-primary">
+			        <div class="panel-heading">
+				        <h3 class="panel-title">Opinie</h3>
+			        </div>
+			        <div class="panel-body">
+			            <table class="table table-striped">
+				            <thead>
+					            <tr>
+						            <th>Lp.</th>
+						            <th>Opinia</th>
+					            </tr>
+				            </thead>
+			                <tr data-ng-repeat="opinion in opinions">
+				                <td>{{$index+1}}. </td>
+				                <td><span class="done-{{todo.done}}">{{opinion}}</span></td>
+				                <td><input type="checkbox" data-ng-model="todo.done" title="Like" /></td>
+			                </tr>
+		                </table>
+	                </div>
+                </div>
+	        </div>
+	    </div>
+    </div>
+
+    {{files}}
+
+    <p data-ng-repeat="res in combinedResult track by $index">
+	    {{res | json}}
+    </p>
+
+</div>
+
+
+
+
+
+
+

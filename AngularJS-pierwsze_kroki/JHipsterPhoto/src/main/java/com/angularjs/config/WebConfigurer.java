@@ -1,5 +1,8 @@
 package com.angularjs.config;
 
+import com.angularjs.domain.Photo;
+import com.angularjs.repository.PhotoRepository;
+import com.angularjs.repository.util.FileUtil;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.servlet.InstrumentedFilter;
 import com.codahale.metrics.servlets.MetricsServlet;
@@ -19,10 +22,8 @@ import org.springframework.core.env.Environment;
 
 import javax.inject.Inject;
 import javax.servlet.*;
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import java.util.*;
 
 /**
  * Configuration of web application with Servlet 3.0 APIs.
@@ -51,8 +52,10 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
             initStaticResourcesProductionFilter(servletContext, disps);
             initGzipFilter(servletContext, disps);
         }
+
         log.info("Web application fully configured");
     }
+
 
     /**
      * Set up Mime types.
