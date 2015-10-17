@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>pl.tb.myApp.controller</groupId>
   <artifactId>myApp-controller</artifactId>
-  <packaging>ejb</packaging>
+  <!--<packaging>ejb</packaging>-->
   <version>${myApp.version}</version>
   <name>myApp-controller</name>
   <dependencies>

@@ -1,4 +1,4 @@
-package netgloo;
+package pl.tb.myApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

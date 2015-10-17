@@ -10,7 +10,8 @@ public abstract class BasicEntity implements Serializable, Cloneable {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_GENERATOR")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_GENERATOR")
     private Long id;
 
     @Column(name = "CREATED_DATE", nullable = false)

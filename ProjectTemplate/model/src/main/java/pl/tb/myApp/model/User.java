@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "MYAPP_USERS")
-@SequenceGenerator(name = "SEQUENCE_GENERATOR", sequenceName = "SEQ_KRH_SKIEROWANIA", allocationSize = 10)
+//@SequenceGenerator(name = "SEQUENCE_GENERATOR", sequenceName = "SEQ_MYAPP_USERS", allocationSize = 10)
 public class User extends BasicEntity{
 
   // ------------------------

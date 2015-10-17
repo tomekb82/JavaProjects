@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>pl.tb.myApp.service</groupId>
   <artifactId>myApp-service</artifactId>
-  <packaging>ejb</packaging>
+  <!--<packaging>ejb</packaging>-->
   <version>${myApp.version}</version>
   <name>myApp-service</name>
 
