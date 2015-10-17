@@ -1,12 +1,11 @@
-package netgloo.controllers;
-
-import netgloo.models.User;
-import netgloo.models.UserDao;
+package pl.tb.myApp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.tb.myApp.model.User;
+import pl.tb.myApp.repository.UserRepository;
 
 /**
  * A class to test interactions with the MySQL database using the UserDao class.
@@ -109,6 +108,6 @@ public class UserController {
   // ------------------------
 
   @Autowired
-  private UserDao userDao;
+  private UserRepository userDao;
   
 } // class UserController

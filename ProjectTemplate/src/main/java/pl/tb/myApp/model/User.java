@@ -1,4 +1,4 @@
-package netgloo.models;
+package pl.tb.myApp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

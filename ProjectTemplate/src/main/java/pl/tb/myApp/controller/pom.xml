@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>myApp</artifactId>
+    <groupId>pl.tb.myApp</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../../../../../../../pom.xml</relativePath>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>pl.tb.myApp.controller</groupId>
+  <artifactId>myApp-controller</artifactId>
+  <packaging>ejb</packaging>
+  <version>${myApp.version}</version>
+  <name>myApp-controller</name>
+  <dependencies>
+    <dependency>
+      <groupId>pl.tb.myApp.model</groupId>
+      <artifactId>myApp-model</artifactId>
+      <version>${myApp.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>pl.tb.myApp.service</groupId>
+      <artifactId>myApp-service</artifactId>
+      <version>${myApp.version}</version>
+    </dependency>
+  </dependencies>
+</project>
