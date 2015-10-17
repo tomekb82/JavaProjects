@@ -4,25 +4,21 @@
     <artifactId>myApp</artifactId>
     <groupId>pl.tb.myApp</groupId>
     <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../../../../../../../pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
+
   <modelVersion>4.0.0</modelVersion>
-  <groupId>pl.tb.myApp.service</groupId>
-  <artifactId>myApp-service</artifactId>
+  <groupId>pl.tb.myApp.repository</groupId>
+  <artifactId>myApp-repository</artifactId>
   <packaging>ejb</packaging>
   <version>${myApp.version}</version>
-  <name>myApp-service</name>
-
+  <name>myApp-dao</name>
   <dependencies>
     <dependency>
       <groupId>pl.tb.myApp.model</groupId>
       <artifactId>myApp-model</artifactId>
       <version>${myApp.version}</version>
     </dependency>
-    <dependency>
-      <groupId>pl.tb.myApp.repository</groupId>
-      <artifactId>myApp-repository</artifactId>
-      <version>${myApp.version}</version>
-    </dependency>
+
   </dependencies>
 </project>

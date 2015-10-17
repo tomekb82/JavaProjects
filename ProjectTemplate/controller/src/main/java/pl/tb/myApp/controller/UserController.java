@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.tb.myApp.model.User;
+import pl.tb.myApp.model.enumerations.EnumGender;
 import pl.tb.myApp.repository.UserRepository;
 
 /**
@@ -14,6 +15,13 @@ import pl.tb.myApp.repository.UserRepository;
  */
 @Controller
 public class UserController {
+
+  // ------------------------
+  // PRIVATE FIELDS
+  // ------------------------
+
+  @Autowired
+  private UserRepository userDao;
 
   // ------------------------
   // PUBLIC METHODS
@@ -28,10 +36,12 @@ public class UserController {
    */
   @RequestMapping("/create")
   @ResponseBody
-  public String create(String email, String name) {
+  public String create(String email, String name, String gender) {
     User user = null;
     try {
-      user = new User(email, name);
+      user = new User(email, name, EnumGender.fromValue(gender));
+      user.setVersion(0L);
+      user.setUser("Tomek");
       userDao.save(user);
     }
     catch (Exception ex) {
@@ -103,11 +113,6 @@ public class UserController {
     return "User succesfully updated!";
   }
 
-  // ------------------------
-  // PRIVATE FIELDS
-  // ------------------------
 
-  @Autowired
-  private UserRepository userDao;
   
 } // class UserController

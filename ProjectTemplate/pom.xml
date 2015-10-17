@@ -13,10 +13,10 @@
   <description>My app </description>
   <url>http://maven.apache.org</url>
   <modules>
-    <module>src/main/java/pl/tb/myApp/model</module>
-    <module>src/main/java/pl/tb/myApp/repository</module>
-    <module>src/main/java/pl/tb/myApp/service</module>
-    <module>src/main/java/pl/tb/myApp/controller</module>
+    <module>model</module>
+    <module>repository</module>
+    <module>service</module>
+    <module>controller</module>
   </modules>
 
   <profiles>
