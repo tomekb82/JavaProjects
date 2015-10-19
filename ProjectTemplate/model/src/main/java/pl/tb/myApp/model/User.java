@@ -1,6 +1,6 @@
 package pl.tb.myApp.model;
 
-import pl.tb.myApp.model.enumerations.EnumGender;
+import pl.tb.myApp.model.enumeration.Gender;
 import pl.tb.myApp.model.util.BasicEntity;
 
 import javax.persistence.*;
@@ -27,7 +27,7 @@ public class User extends BasicEntity{
 
   @Column(name = "GENDER")
   @Enumerated(value = EnumType.STRING)
-  private EnumGender gender;
+  private Gender gender;
 
   // ------------------------
   // PUBLIC METHODS
@@ -39,7 +39,7 @@ public class User extends BasicEntity{
     setId(id);
   }
 
-  public User(String email, String name, EnumGender gender) {
+  public User(String email, String name, Gender gender) {
     this.email = email;
     this.name = name;
     this.gender = gender;
@@ -63,11 +63,11 @@ public class User extends BasicEntity{
     this.name = value;
   }
 
-  public EnumGender getGender() {
+  public Gender getGender() {
     return gender;
   }
 
-  public void setGender(EnumGender gender) {
+  public void setGender(Gender gender) {
     this.gender = gender;
   }
 } // class User

@@ -1,6 +1,7 @@
 package pl.tb.myApp.repository;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Propagation;
 import pl.tb.myApp.model.User;
 
 import javax.transaction.Transactional;
@@ -11,10 +12,9 @@ import javax.transaction.Transactional;
  * available from such interface: save, delete, deleteAll, findOne and findAll.
  * The magic is that such methods must not be implemented, and moreover it is
  * possible create new query methods working only by defining their signature!
- * 
- * @author netgloo
+ *
  */
-@Transactional
+@Transactional(propagation=Propagation.REQUIRED)
 public interface UserRepository extends CrudRepository<User, Long> {
 
   /**

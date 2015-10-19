@@ -2,11 +2,16 @@ package pl.tb.myApp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.tb.myApp.controller.enumeration.ErrorType;
+import pl.tb.myApp.controller.util.BasicController;
 import pl.tb.myApp.model.User;
-import pl.tb.myApp.model.enumerations.EnumGender;
-import pl.tb.myApp.repository.UserRepository;
+import pl.tb.myApp.model.enumeration.Gender;
+import pl.tb.myApp.model.exception.MyAppException;
+import pl.tb.myApp.service.UserService;
 
 /**
  * A class to test interactions with the MySQL database using the UserDao class.
@@ -14,14 +19,15 @@ import pl.tb.myApp.repository.UserRepository;
  * @author netgloo
  */
 @Controller
-public class UserController {
+@Transactional(propagation = Propagation.REQUIRED)
+public class UserController extends BasicController{
 
   // ------------------------
   // PRIVATE FIELDS
   // ------------------------
 
   @Autowired
-  private UserRepository userDao;
+  private UserService userService;
 
   // ------------------------
   // PUBLIC METHODS
@@ -39,13 +45,12 @@ public class UserController {
   public String create(String email, String name, String gender) {
     User user = null;
     try {
-      user = new User(email, name, EnumGender.fromValue(gender));
+      user = new User(email, name, Gender.fromValue(gender));
       user.setVersion(0L);
       user.setUser("Tomek");
-      userDao.save(user);
-    }
-    catch (Exception ex) {
-      return "Error creating the user: " + ex.toString();
+      userService.addUser(user);
+    } catch (MyAppException ex) {
+      return prepareErrorMessage(ex, "");
     }
     return "User succesfully created! (id = " + user.getId() + ")";
   }
@@ -58,13 +63,11 @@ public class UserController {
    */
   @RequestMapping("/delete")
   @ResponseBody
-  public String delete(long id) {
+  public String delete(Long id) {
     try {
-      User user = new User(id);
-      userDao.delete(user);
-    }
-    catch (Exception ex) {
-      return "Error deleting the user:" + ex.toString();
+      userService.deleteUser(id);
+    } catch (MyAppException ex) {
+      return prepareErrorMessage(ex, "");
     }
     return "User succesfully deleted!";
   }
@@ -78,14 +81,16 @@ public class UserController {
   @RequestMapping("/get-by-email")
   @ResponseBody
   public String getByEmail(String email) {
-    String userId;
+    String userId = null;
     try {
-      User user = userDao.findByEmail(email);
+      User user = userService.findByEmail(email);
       userId = String.valueOf(user.getId());
-    }
-    catch (Exception ex) {
+    } catch (MyAppException ex) {
+      return prepareErrorMessage(ex, "");
+    } catch (Exception e) {
       return "User not found";
     }
+
     return "The user id is: " + userId;
   }
   
@@ -102,13 +107,12 @@ public class UserController {
   @ResponseBody
   public String updateUser(long id, String email, String name) {
     try {
-      User user = userDao.findOne(id);
+      User user = userService.getUser(id);
       user.setEmail(email);
       user.setName(name);
-      userDao.save(user);
-    }
-    catch (Exception ex) {
-      return "Error updating the user: " + ex.toString();
+      userService.updateUser(user);
+    }catch (MyAppException ex) {
+      return prepareErrorMessage(ex, "");
     }
     return "User succesfully updated!";
   }
