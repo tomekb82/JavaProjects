@@ -1,7 +1,10 @@
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/controller/BasicController.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/enumeration/ErrorType.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/controller/RestErrorHandler.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/user/dto/UserDTO.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/user/UserController.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/dto/ValidationErrorDTO.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/MainController.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/user/dto/UserDTOService.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/BasicDTO.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/BasicController.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/enumeration/ErrorType.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/dto/FieldErrorDTO.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/dto/BasicDTO.java

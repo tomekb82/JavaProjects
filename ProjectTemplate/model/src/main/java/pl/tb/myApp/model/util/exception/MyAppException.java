@@ -1,6 +1,6 @@
-package pl.tb.myApp.model.exception;
+package pl.tb.myApp.model.util.exception;
 
-import pl.tb.myApp.model.validation.ValidationMessage;
+import pl.tb.myApp.model.util.validation.ValidationMessage;
 
 import java.util.ArrayList;
 import java.util.List;

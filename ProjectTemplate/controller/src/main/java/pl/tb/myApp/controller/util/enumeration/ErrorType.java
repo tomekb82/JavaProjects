@@ -1,11 +1,11 @@
-package pl.tb.myApp.model.enumeration;
+package pl.tb.myApp.controller.util.enumeration;
 
 /**
  * Created by tomek on 17.10.15.
  */
-public enum Gender {
-    F("female"),  // Female
-    M("male");   // Male
+public enum ErrorType {
+    APP("Application error."),
+    INTERNAL("Internal system error.");
 
     private final String value;
 
@@ -13,12 +13,12 @@ public enum Gender {
         return value;
     }
 
-    Gender(String v) {
+    ErrorType(String v) {
         value = v;
     }
 
-    public static Gender fromValue(String v) {
-        for (Gender c: Gender.values()) {
+    public static ErrorType fromValue(String v) {
+        for (ErrorType c: ErrorType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

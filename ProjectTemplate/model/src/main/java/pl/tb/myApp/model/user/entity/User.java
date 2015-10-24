@@ -1,7 +1,7 @@
-package pl.tb.myApp.model;
+package pl.tb.myApp.model.user.entity;
 
-import pl.tb.myApp.model.enumeration.Gender;
-import pl.tb.myApp.model.util.BasicEntity;
+import pl.tb.myApp.model.user.enumeration.Gender;
+import pl.tb.myApp.model.util.entity.BasicEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -69,5 +69,20 @@ public class User extends BasicEntity{
 
   public void setGender(Gender gender) {
     this.gender = gender;
+  }
+
+  public void update(String name, String email, Gender gender) {
+    this.name = name;
+    this.email = email;
+    this.gender = gender;
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+            "email='" + email + '\'' +
+            ", name='" + name + '\'' +
+            ", gender=" + gender +
+            '}';
   }
 } // class User

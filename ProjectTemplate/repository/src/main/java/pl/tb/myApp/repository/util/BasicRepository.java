@@ -1,6 +1,6 @@
 package pl.tb.myApp.repository.util;
 
-import pl.tb.myApp.model.util.BasicEntity;
+import pl.tb.myApp.model.util.entity.BasicEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

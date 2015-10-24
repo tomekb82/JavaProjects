@@ -1,9 +1,8 @@
-package pl.tb.myApp.controller.util;
+package pl.tb.myApp.controller.util.controller;
 
-import pl.tb.myApp.controller.enumeration.ErrorType;
-import pl.tb.myApp.model.exception.MyAppException;
-import pl.tb.myApp.model.validation.ErrorMessage;
-import pl.tb.myApp.model.validation.ValidationMessage;
+import pl.tb.myApp.controller.util.enumeration.ErrorType;
+import pl.tb.myApp.model.util.exception.MyAppException;
+import pl.tb.myApp.model.util.validation.ValidationMessage;
 
 /**
  * Created by tomek on 17.10.15.

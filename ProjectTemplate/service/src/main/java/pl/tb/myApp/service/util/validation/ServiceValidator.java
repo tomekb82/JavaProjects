@@ -1,8 +1,8 @@
-package pl.tb.myApp.service.validation;
+package pl.tb.myApp.service.util.validation;
 
-import pl.tb.myApp.model.validation.ErrorMessage;
-import pl.tb.myApp.model.validation.MessagePriority;
-import pl.tb.myApp.model.validation.ValidationMessage;
+import pl.tb.myApp.model.util.validation.ErrorMessage;
+import pl.tb.myApp.model.util.validation.MessagePriority;
+import pl.tb.myApp.model.util.validation.ValidationMessage;
 
 public class ServiceValidator {
 

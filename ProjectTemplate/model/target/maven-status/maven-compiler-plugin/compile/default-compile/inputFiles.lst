@@ -1,7 +1,9 @@
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/validation/ValidationMessage.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/exception/MyAppException.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/User.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/util/BasicEntity.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/validation/ErrorMessage.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/validation/MessagePriority.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/enumeration/Gender.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/user/entity/UserBuilder.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/util/entity/BasicEntity.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/util/validation/ErrorMessage.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/util/validation/MessagePriority.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/user/enumeration/Gender.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/util/exception/MyAppException.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/user/exception/UserNotFoundException.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/util/validation/ValidationMessage.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/user/entity/User.java

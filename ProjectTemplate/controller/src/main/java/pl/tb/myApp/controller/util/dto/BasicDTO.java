@@ -1,4 +1,4 @@
-package pl.tb.myApp.controller.util;
+package pl.tb.myApp.controller.util.dto;
 
 import java.util.List;
 

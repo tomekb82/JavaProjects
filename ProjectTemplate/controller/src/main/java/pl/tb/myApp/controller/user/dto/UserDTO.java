@@ -1,6 +1,6 @@
 package pl.tb.myApp.controller.user.dto;
 
-import pl.tb.myApp.model.enumeration.Gender;
+import pl.tb.myApp.model.user.enumeration.Gender;
 
 import java.io.Serializable;
 public class UserDTO implements Serializable{

@@ -1,4 +1,4 @@
-package pl.tb.myApp.model.validation;
+package pl.tb.myApp.model.util.validation;
 
 public class ValidationMessage {
     protected String fieldName;

@@ -1,7 +1,9 @@
-pl/tb/myApp/model/util/BasicEntity.class
-pl/tb/myApp/model/validation/ErrorMessage.class
-pl/tb/myApp/model/validation/MessagePriority.class
-pl/tb/myApp/model/User.class
-pl/tb/myApp/model/enumeration/Gender.class
-pl/tb/myApp/model/validation/ValidationMessage.class
-pl/tb/myApp/model/exception/MyAppException.class
+pl/tb/myApp/model/user/enumeration/Gender.class
+pl/tb/myApp/model/user/entity/UserBuilder.class
+pl/tb/myApp/model/util/validation/ErrorMessage.class
+pl/tb/myApp/model/util/validation/ValidationMessage.class
+pl/tb/myApp/model/user/exception/UserNotFoundException.class
+pl/tb/myApp/model/user/entity/User.class
+pl/tb/myApp/model/util/entity/BasicEntity.class
+pl/tb/myApp/model/util/exception/MyAppException.class
+pl/tb/myApp/model/util/validation/MessagePriority.class

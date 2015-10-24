@@ -1,20 +1,24 @@
 package pl.tb.myApp.controller.user;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.tb.myApp.controller.user.dto.UserDTO;
 import pl.tb.myApp.controller.user.dto.UserDTOService;
-import pl.tb.myApp.controller.util.BasicController;
-import pl.tb.myApp.model.User;
-import pl.tb.myApp.model.enumeration.Gender;
-import pl.tb.myApp.model.exception.MyAppException;
-import pl.tb.myApp.service.UserService;
+import pl.tb.myApp.controller.util.controller.BasicController;
+import pl.tb.myApp.model.user.entity.User;
+import pl.tb.myApp.model.user.enumeration.Gender;
+import pl.tb.myApp.model.util.exception.MyAppException;
+import pl.tb.myApp.service.user.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -22,12 +26,11 @@ import java.util.List;
  *
  */
 @Controller
+@RequestMapping("/myApp/user")
 @Transactional(propagation = Propagation.REQUIRED)
 public class UserController extends BasicController{
 
-  // ------------------------
-  // PRIVATE FIELDS
-  // ------------------------
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
   @Autowired
   private UserService userService;
@@ -35,107 +38,81 @@ public class UserController extends BasicController{
   @Autowired
   private UserDTOService userDTOService;
 
-
-  // ------------------------
-  // PUBLIC METHODS
-  // ------------------------
-
-  @RequestMapping(value = "/users", method = RequestMethod.GET)
+  @RequestMapping(value = "/findAll", method = RequestMethod.GET)
   @ResponseBody
-  public List<UserDTO> findAll() {
-    List<User> models = null;
-    try {
-      models = userService.findAll();
-    } catch (MyAppException e) {
-      e.printStackTrace();
-    }
+  public List<UserDTO> findAll() throws MyAppException{
+    LOGGER.debug("Finding all todo entries.");
+
+    List<User> models = userService.findAll();
+    LOGGER.debug("Found {} to-do entries.", models.size());
+
     return userDTOService.createDTOs(models);
   }
 
-  /**
-   * /create  --> Create a new user and save it in the database.
-   * 
-   * @param email User's email
-   * @param name User's name
-   * @return A string describing if the user is succesfully created or not.
-   */
-  @RequestMapping("/create")
+  @RequestMapping(value = "/add/{name}{email}{gender}", method = RequestMethod.POST)
   @ResponseBody
-  public String create(String email, String name, String gender) {
-    User user = null;
-    try {
-      user = new User(email, name, Gender.fromValue(gender));
-      user.setVersion(0L);
-      user.setUser("Tomek");
-      userService.addUser(user);
-    } catch (MyAppException ex) {
-      return prepareErrorMessage(ex, "");
-    }
-    return "User succesfully created! (id = " + user.getId() + ")";
-  }
-  
-  /**
-   * /delete  --> Delete the user having the passed id.
-   * 
-   * @param id The id of the user to delete
-   * @return A string describing if the user is succesfully deleted or not.
-   */
-  @RequestMapping("/delete")
-  @ResponseBody
-  public String delete(Long id) {
-    try {
-      userService.deleteUser(id);
-    } catch (MyAppException ex) {
-      return prepareErrorMessage(ex, "");
-    }
-    return "User succesfully deleted!";
-  }
-  
-  /**
-   * /get-by-email  --> Return the id for the user having the passed email.
-   * 
-   * @param email The email to search in the database.
-   * @return The user id or a message error if the user is not found.
-   */
-  @RequestMapping("/get-by-email")
-  @ResponseBody
-  public String getByEmail(String email) {
-    String userId = null;
-    try {
-      User user = userService.findByEmail(email);
-      userId = String.valueOf(user.getId());
-    } catch (MyAppException ex) {
-      return prepareErrorMessage(ex, "");
-    } catch (Exception e) {
-      return "User not found";
-    }
+  public UserDTO add( @Valid @PathVariable("name") String name,
+                      @Valid @PathVariable("email") String email,
+                      @Valid @PathVariable("gender") String gender) throws MyAppException{
 
-    return "The user id is: " + userId;
-  }
-  
-  /**
-   * /update  --> Update the email and the name for the user in the database 
-   * having the passed id.
-   * 
-   * @param id The id for the user to update.
-   * @param email The new email.
-   * @param name The new name.
-   * @return A string describing if the user is succesfully updated or not.
-   */
-  @RequestMapping("/update")
-  @ResponseBody
-  public String updateUser(long id, String email, String name) {
-    try {
-      User user = userService.getUser(id);
-      user.setEmail(email);
-      user.setName(name);
-      userService.updateUser(user);
-    }catch (MyAppException ex) {
-      return prepareErrorMessage(ex, "");
-    }
-    return "User succesfully updated!";
+    User user = new User(email, name, Gender.fromValue(gender));
+    user.setVersion(0L);
+    user.setUser("Tomek");
+    LOGGER.debug("Adding a new to-do entry with information: {}", user);
+
+    User added = userService.add(user);
+    LOGGER.debug("Added a to-do entry with information: {}", added);
+
+    return userDTOService.createDTO(added);
   }
 
+  @RequestMapping(value ="/delete", method = RequestMethod.DELETE)
+  @ResponseBody
+  public User deleteById(@PathVariable("id") Long id) throws MyAppException{
+    LOGGER.debug("Deleting a to-do entry with id: {}", id);
 
-  
+    User user = userService.deleteById(id);
+    LOGGER.debug("Deleted to-do entry with information: {}", user);
+
+    return user;
+  }
+
+  @RequestMapping(value = "/findByEmail/{email}", method = RequestMethod.GET)
+  @ResponseBody
+  public UserDTO findByEmail(@PathVariable("email") String email) throws MyAppException{
+    LOGGER.debug("Finding to-do entry with email: {}", email);
+
+    User user = userService.findByEmail(email);
+    LOGGER.debug("Found to-do entry with information: {}", user);
+
+    return userDTOService.createDTO(user);
+  }
+
+  @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
+  @ResponseBody
+  public UserDTO findById(@PathVariable("id") Long id) throws MyAppException{
+    LOGGER.debug("Finding to-do entry with id: {}", id);
+
+    User user = userService.findById(id);
+    LOGGER.debug("Found to-do entry with information: {}", user);
+
+    return userDTOService.createDTO(user);
+  }
+
+  @RequestMapping(value ="/update/{id}{email}{name}", method = RequestMethod.PUT)
+  @ResponseBody
+  public UserDTO updateUser(@PathVariable("id") long id,
+                           @PathVariable("email") String email,
+                           @PathVariable("name") String name) throws MyAppException{
+    User user = userService.findById(id);
+    LOGGER.debug("Updating a to-do entry with information: {}", user);
+
+    user.setEmail(email);
+    user.setName(name);
+    User updated = userService.update(user);
+    LOGGER.debug("Updated the information of a to-entry to: {}", updated);
+
+    return userDTOService.createDTO(updated);
+  }
+
 } // class UserController

@@ -1,5 +1,5 @@
 
-package pl.tb.myApp.model.util;
+package pl.tb.myApp.model.util.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,10 +1,7 @@
-package pl.tb.myApp.repository;
+package pl.tb.myApp.repository.user;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.transaction.annotation.Propagation;
-import pl.tb.myApp.model.User;
-
-import javax.transaction.Transactional;
+import pl.tb.myApp.model.user.entity.User;
 
 /**
  * A DAO for the entity User is simply created by extending the CrudRepository
