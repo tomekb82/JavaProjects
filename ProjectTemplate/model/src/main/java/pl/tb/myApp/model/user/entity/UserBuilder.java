@@ -17,7 +17,7 @@ public class UserBuilder {
         return this;
     }
     public UserBuilder email(String email) {
-        model.update(model.getName(), model.getEmail(), model.getGender());
+        model.update(model.getName(), email, model.getGender());
         return this;
     }
     public UserBuilder name(String name) {

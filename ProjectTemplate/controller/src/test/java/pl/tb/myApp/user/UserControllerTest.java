@@ -68,12 +68,12 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(2)))
-                //.andExpect(jsonPath("$[0].id", is(1)))
+                //.andExpect(jsonPath("$[0].id", is(1L)))
                 .andExpect(jsonPath("$[0].name", is("Adam")))
-                //.andExpect(jsonPath("$[0].email", is("adam@wp.pl")))
+                .andExpect(jsonPath("$[0].email", is("adam@wp.pl")))
                 //.andExpect(jsonPath("$[1].id", is(2)))
-                .andExpect(jsonPath("$[1].name", is("Robert")));
-                //.andExpect(jsonPath("$[1].email", is("robert@onet.pl")));
+                .andExpect(jsonPath("$[1].name", is("Robert")))
+                .andExpect(jsonPath("$[1].email", is("robert@onet.pl")));
 
         verify(userServiceMock, times(1)).findAll();
         verifyNoMoreInteractions(userServiceMock);
