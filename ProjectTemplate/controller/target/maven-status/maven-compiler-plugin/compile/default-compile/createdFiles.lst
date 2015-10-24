@@ -1,2 +1,7 @@
+pl/tb/myApp/controller/user/dto/UserDTOService.class
+pl/tb/myApp/controller/user/dto/UserDTO.class
+pl/tb/myApp/controller/user/UserController.class
+pl/tb/myApp/controller/util/BasicDTO.class
+pl/tb/myApp/controller/enumeration/ErrorType.class
+pl/tb/myApp/controller/util/BasicController.class
 pl/tb/myApp/controller/MainController.class
-pl/tb/myApp/controller/UserController.class

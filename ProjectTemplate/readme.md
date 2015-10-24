@@ -8,7 +8,7 @@ http://blog.netgloo.com/2014/10/27/using-mysql-in-spring-boot-via-spring-data-jp
 - Run the application and go on http://localhost:8080/
 - Use the following urls to invoke controllers methods and see the interactions
   with the database:
-     http://localhost:8080/create?email="aa"&name="bb&gender=male
+     http://localhost:8080/create?email=aa&name=bb&gender=male
 
     * `/create?email=[email]&name=[name]&gender=[gender]`: create a new user with an
       auto-generated id and email and name as passed values.

@@ -23,6 +23,11 @@ public class UserServiceImpl extends BasicService implements UserService {
     private UserRepository userRepository;
 
     @Override
+    public List<User> findAll() throws MyAppException {
+        return (List<User>)userRepository.findAll();
+    }
+
+    @Override
     public List<User> findUser(User user) throws MyAppException {
         return (List<User>)userRepository.findAll();
     }

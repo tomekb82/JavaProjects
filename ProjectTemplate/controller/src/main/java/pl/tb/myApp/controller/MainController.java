@@ -10,8 +10,7 @@ public class MainController {
   @RequestMapping("/")
   @ResponseBody
   public String index() {
-    return "Proudly handcrafted by " +
-        "<a href='http://netgloo.com/en'>netgloo</a> :)";
+    return "Proudly handcrafted by Tomek Belina";
   }
 
 }

@@ -1,3 +1,7 @@
-pl/tb/myApp/model/enumerations/EnumGender.class
 pl/tb/myApp/model/util/BasicEntity.class
+pl/tb/myApp/model/validation/ErrorMessage.class
+pl/tb/myApp/model/validation/MessagePriority.class
 pl/tb/myApp/model/User.class
+pl/tb/myApp/model/enumeration/Gender.class
+pl/tb/myApp/model/validation/ValidationMessage.class
+pl/tb/myApp/model/exception/MyAppException.class

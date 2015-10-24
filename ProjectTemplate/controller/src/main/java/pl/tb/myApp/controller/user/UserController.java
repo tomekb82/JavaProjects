@@ -1,22 +1,25 @@
-package pl.tb.myApp.controller;
+package pl.tb.myApp.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.tb.myApp.controller.enumeration.ErrorType;
+import pl.tb.myApp.controller.user.dto.UserDTO;
+import pl.tb.myApp.controller.user.dto.UserDTOService;
 import pl.tb.myApp.controller.util.BasicController;
 import pl.tb.myApp.model.User;
 import pl.tb.myApp.model.enumeration.Gender;
 import pl.tb.myApp.model.exception.MyAppException;
 import pl.tb.myApp.service.UserService;
 
+import java.util.List;
+
 /**
  * A class to test interactions with the MySQL database using the UserDao class.
  *
- * @author netgloo
  */
 @Controller
 @Transactional(propagation = Propagation.REQUIRED)
@@ -29,10 +32,26 @@ public class UserController extends BasicController{
   @Autowired
   private UserService userService;
 
+  @Autowired
+  private UserDTOService userDTOService;
+
+
   // ------------------------
   // PUBLIC METHODS
   // ------------------------
-  
+
+  @RequestMapping(value = "/users", method = RequestMethod.GET)
+  @ResponseBody
+  public List<UserDTO> findAll() {
+    List<User> models = null;
+    try {
+      models = userService.findAll();
+    } catch (MyAppException e) {
+      e.printStackTrace();
+    }
+    return userDTOService.createDTOs(models);
+  }
+
   /**
    * /create  --> Create a new user and save it in the database.
    * 

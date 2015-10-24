@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
  * possible create new query methods working only by defining their signature!
  *
  */
-@Transactional(propagation=Propagation.REQUIRED)
+//@Transactional(propagation=Propagation.REQUIRED)
 public interface UserRepository extends CrudRepository<User, Long> {
 
   /**

@@ -1,3 +1,7 @@
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/validation/ValidationMessage.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/exception/MyAppException.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/User.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/util/BasicEntity.java
-/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/enumerations/EnumGender.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/validation/ErrorMessage.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/validation/MessagePriority.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/model/src/main/java/pl/tb/myApp/model/enumeration/Gender.java
