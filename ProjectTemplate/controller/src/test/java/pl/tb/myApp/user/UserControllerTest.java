@@ -3,6 +3,7 @@ package pl.tb.myApp.user;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,9 +24,13 @@ import pl.tb.myApp.util.TestUtil;
 
 import java.util.Arrays;
 
+import static junit.framework.Assert.assertNull;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 /**
  * Created by tomek on 24.10.15.
@@ -83,6 +88,18 @@ public class UserControllerTest {
     }
 
 
+    // todo: dodac weryfikacje parametrow wejsciowych żądania
+    //@Test
+    public void deleteById_UserIdNotFound_ShouldReturnHttpStatusCode404() throws Exception {
+        when(userServiceMock.deleteById(null)).thenThrow(new MyAppException(ServiceValidator.getErrorMessage("userId", ErrorMessage.IDENTIFIER_REQUIRED)));
+
+        mockMvc.perform(get("/myApp/user/delete/{id}", null))
+                .andExpect(status().isPreconditionRequired());
+
+        verify(userServiceMock, times(1)).deleteById(null);
+        verifyNoMoreInteractions(userServiceMock);
+    }
+
     @Test
     public void findById_UserEntryNotFound_ShouldReturnHttpStatusCode404() throws Exception {
         when(userServiceMock.findById(1L)).thenThrow(new MyAppException(ServiceValidator.getErrorMessage("", ErrorMessage.NOT_FOUND)));
@@ -139,5 +156,40 @@ public class UserControllerTest {
                 )));
 
         verifyZeroInteractions(userServiceMock);
+    }
+
+    @Test
+    public void add_NewTodoEntry_ShouldAddTodoEntryAndReturnAddedEntry() throws Exception {
+        User dto = new UserBuilder()
+                .name("name")
+                .email("email")
+                .build();
+
+        User added = new UserBuilder()
+                .id(1L) // important
+                .name("name")
+                .email("email")
+                .build();
+
+        when(userServiceMock.add(any(User.class))).thenReturn(added);
+
+        mockMvc.perform(post("/myApp/user/add")
+                        .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                        .content(TestUtil.convertObjectToJsonBytes(dto))
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.name", is("name")))
+                .andExpect(jsonPath("$.email", is("email")));
+
+        ArgumentCaptor<User> dtoCaptor = ArgumentCaptor.forClass(User.class);
+        verify(userServiceMock, times(1)).add(dtoCaptor.capture());
+        verifyNoMoreInteractions(userServiceMock);
+
+        User dtoArgument = dtoCaptor.getValue();
+        assertNull(dtoArgument.getId());
+        assertThat(dtoArgument.getName(), is("name"));
+        assertThat(dtoArgument.getEmail(), is("email"));
     }
 }

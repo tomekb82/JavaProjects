@@ -78,11 +78,7 @@ public class UserServiceImpl extends BasicService implements UserService {
         }
         User user = findById(userId);
         LOGGER.debug("Deleting to-do entry: {}", user);
-        try {
-            userRepository.delete(user);
-        }catch (Exception e){
-            throw new MyAppException(ServiceValidator.getErrorMessage("Error deleting the user:" + e.toString(), null));
-        }
+        userRepository.delete(user);
         return user;
     }
 

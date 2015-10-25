@@ -61,7 +61,7 @@ public class UserController extends BasicController{
     return userDTOService.createDTO(added);
   }
 
-  @RequestMapping(value ="/delete", method = RequestMethod.DELETE)
+  @RequestMapping(value ="/delete/{id}", method = RequestMethod.DELETE)
   @ResponseBody
   public User deleteById(@PathVariable("id") Long id) throws MyAppException{
     LOGGER.debug("Deleting a to-do entry with id: {}", id);
