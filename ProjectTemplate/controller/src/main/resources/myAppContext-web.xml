@@ -12,6 +12,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <mvc:resources mapping="/static/**" location="/static/"/>
     <mvc:default-servlet-handler/>
 
-    <context:component-scan base-package="pl.tb.myApp.controller.user"/>
+    <context:component-scan base-package="pl.tb.myApp.controller"/>
 
 </beans>

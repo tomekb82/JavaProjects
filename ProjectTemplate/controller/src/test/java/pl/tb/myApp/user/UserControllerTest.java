@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created by tomek on 24.10.15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:testContext.xml", "classpath:exampleApplicationContext-web.xml"})
+@ContextConfiguration(locations = {"classpath:testContext.xml", "classpath:myAppContext-web.xml"})
 //@ContextConfiguration(classes = {TestContext.class/*, WebAppContext.class*/})
 @WebAppConfiguration
 public class UserControllerTest {
@@ -38,8 +38,6 @@ public class UserControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
-
-    //The setUp() method is omitted.
 
     @Before
     public void setUp() {
@@ -68,10 +66,10 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(2)))
-                //.andExpect(jsonPath("$[0].id", is(1L)))
+                .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[0].name", is("Adam")))
                 .andExpect(jsonPath("$[0].email", is("adam@wp.pl")))
-                //.andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[1].id", is(2)))
                 .andExpect(jsonPath("$[1].name", is("Robert")))
                 .andExpect(jsonPath("$[1].email", is("robert@onet.pl")));
 

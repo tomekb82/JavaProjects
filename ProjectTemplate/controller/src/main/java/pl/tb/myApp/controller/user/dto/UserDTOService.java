@@ -29,6 +29,7 @@ public class UserDTOService implements BasicDTO<UserDTO, User> {
     public UserDTO createDTO(User model) {
         UserDTO dto = new UserDTO();
 
+        dto.setId(model.getId());
         dto.setName(model.getName());
         dto.setEmail(model.getEmail());
         dto.setGender(model.getGender());
