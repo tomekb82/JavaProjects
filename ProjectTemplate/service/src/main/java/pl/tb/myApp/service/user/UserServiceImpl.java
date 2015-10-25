@@ -18,13 +18,17 @@ import java.util.List;
 
 
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+//@Transactional(propagation = Propagation.REQUIRED)
 public class UserServiceImpl extends BasicService implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository repository) {
+        this.userRepository = repository;
+    }
 
     @Transactional
     @Override
@@ -36,9 +40,9 @@ public class UserServiceImpl extends BasicService implements UserService {
         }
         try{
             User savedUser = userRepository.save(user);
-            if(savedUser.getId()==null) {
+            /*if(savedUser==null || savedUser.getId()==null) {
                 throw new MyAppException(ServiceValidator.getErrorMessage("Error creating the user.", ErrorMessage.IDENTIFIER_REQUIRED));
-            }
+            }*/
         }catch (OptimisticLockException e){
             throw new MyAppException(ServiceValidator.getErrorMessage("", ErrorMessage.DATA_CHANAGED_BY_ANOTER_USER));
         }
@@ -62,7 +66,8 @@ public class UserServiceImpl extends BasicService implements UserService {
             throw new MyAppException(ServiceValidator.getErrorMessage("createdDate", ErrorMessage.FIELD_REQUIRED));
         }
         try{
-            return userRepository.save(user);
+            User updated = userRepository.save(user);
+            return updated;
         }catch (OptimisticLockException e){
             throw new MyAppException(ServiceValidator.getErrorMessage("", ErrorMessage.DATA_CHANAGED_BY_ANOTER_USER));
         }
