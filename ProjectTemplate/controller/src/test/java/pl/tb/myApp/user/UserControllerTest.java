@@ -29,8 +29,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 /**
  * Created by tomek on 24.10.15.
@@ -87,19 +86,6 @@ public class UserControllerTest {
         verifyNoMoreInteractions(userServiceMock);
     }
 
-
-    // todo: dodac weryfikacje parametrow wejsciowych żądania
-    //@Test
-    public void deleteById_UserIdNotFound_ShouldReturnHttpStatusCode404() throws Exception {
-        when(userServiceMock.deleteById(null)).thenThrow(new MyAppException(ServiceValidator.getErrorMessage("userId", ErrorMessage.IDENTIFIER_REQUIRED)));
-
-        mockMvc.perform(get("/myApp/user/delete/{id}", null))
-                .andExpect(status().isPreconditionRequired());
-
-        verify(userServiceMock, times(1)).deleteById(null);
-        verifyNoMoreInteractions(userServiceMock);
-    }
-
     @Test
     public void findById_UserEntryNotFound_ShouldReturnHttpStatusCode404() throws Exception {
         when(userServiceMock.findById(1L)).thenThrow(new MyAppException(ServiceValidator.getErrorMessage("", ErrorMessage.NOT_FOUND)));
@@ -133,7 +119,24 @@ public class UserControllerTest {
     }
 
     @Test
-    public void add_TitleAndDescriptionAreTooLong_ShouldReturnValidationErrorsForTitleAndDescription() throws Exception {
+    public void add_EmptyUserEntry_ShouldReturnValidationErrorForName() throws Exception {
+        UserDTO dto = new UserDTO();
+
+        mockMvc.perform(post("/myApp/user/add")
+                        .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                        .content(TestUtil.convertObjectToJsonBytes(dto))
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.fieldErrors", hasSize(1)))
+                .andExpect(jsonPath("$.fieldErrors[0].path", is("name")))
+                .andExpect(jsonPath("$.fieldErrors[0].message", is("The name cannot be empty.")));
+
+        verifyZeroInteractions(userServiceMock);
+    }
+
+    @Test
+    public void add_NameAndEmailAreTooLong_ShouldReturnValidationErrorsForNameAndEmail() throws Exception {
         String name = TestUtil.createStringWithLength(201);
         String email = TestUtil.createStringWithLength(51);
 
@@ -192,4 +195,147 @@ public class UserControllerTest {
         assertThat(dtoArgument.getName(), is("name"));
         assertThat(dtoArgument.getEmail(), is("email"));
     }
+
+    @Test
+    public void deleteById_UserEntryFound_ShouldDeleteUserEntryAndReturnIt() throws Exception {
+        User deleted = new UserBuilder()
+                .id(1L)
+                .name("Adam")
+                .email("adam@wpl.pl")
+                .build();
+
+        when(userServiceMock.deleteById(1L)).thenReturn(deleted);
+
+        mockMvc.perform(delete("/myApp/user/delete/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.name", is("Adam")))
+                .andExpect(jsonPath("$.email", is("adam@wpl.pl")));
+
+        verify(userServiceMock, times(1)).deleteById(1L);
+        verifyNoMoreInteractions(userServiceMock);
+    }
+
+    @Test
+    public void deleteById_UserIsNotFound_ShouldReturnHttpStatusCode404() throws Exception {
+        when(userServiceMock.deleteById(3L))
+                .thenThrow(new MyAppException());
+
+        mockMvc.perform(delete("/myApp/user/delete/{id}", 3L))
+                        .andExpect(status().isNotFound());
+
+        verify(userServiceMock, times(1)).deleteById(3L);
+        verifyNoMoreInteractions(userServiceMock);
+    }
+
+    ///////////////////////////
+    @Test
+    public void update_EmptyUserEntry_ShouldReturnValidationErrorForName() throws Exception {
+        UserDTO dto = new UserDTOBuilder()
+                .id(1L)
+                .build();
+
+        mockMvc.perform(put("/myApp/user/update/{id}", 1L)
+                        .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                        .content(TestUtil.convertObjectToJsonBytes(dto))
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.fieldErrors", hasSize(1)))
+                .andExpect(jsonPath("$.fieldErrors[0].path", is("name")))
+                .andExpect(jsonPath("$.fieldErrors[0].message", is("The name cannot be empty.")));
+
+        verifyZeroInteractions(userServiceMock);
+    }
+
+    @Test
+    public void update_NameAndEmailAreTooLong_ShouldReturnValidationErrorsForNameAndEmail() throws Exception {
+        String name = TestUtil.createStringWithLength(User.MAX_LENGTH_NAME + 1);
+        String email = TestUtil.createStringWithLength(User.MAX_LENGTH_EMAIL + 1);
+
+        UserDTO dto = new UserDTOBuilder()
+                .id(1L)
+                .name(name)
+                .email(email)
+                .build();
+
+        mockMvc.perform(put("/myApp/user/update/{id}", 1L)
+                        .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                        .content(TestUtil.convertObjectToJsonBytes(dto))
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.fieldErrors", hasSize(2)))
+                .andExpect(jsonPath("$.fieldErrors[*].path", containsInAnyOrder("name", "email")))
+                .andExpect(jsonPath("$.fieldErrors[*].message", containsInAnyOrder(
+                        "The maximum length of the name is 200 characters.",
+                        "The maximum length of the email is 50 characters."
+                )));
+
+        verifyZeroInteractions(userServiceMock);
+    }
+
+    @Test
+    public void update_UserEntryNotFound_ShouldReturnHttpStatusCode404() throws Exception {
+        UserDTO dto = new UserDTOBuilder()
+                .id(3L)
+                .name("name")
+                .email("email")
+                .build();
+
+        when(userServiceMock.update(any(User.class))).thenThrow(new MyAppException(ServiceValidator.getErrorMessage("", ErrorMessage.NOT_FOUND)));
+
+        mockMvc.perform(put("/myApp/user/update/{id}", 3L)
+                        .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                        .content(TestUtil.convertObjectToJsonBytes(dto))
+        )
+                .andExpect(status().isNotFound());
+
+        ArgumentCaptor<User> dtoCaptor = ArgumentCaptor.forClass(User.class);
+        verify(userServiceMock, times(1)).update(dtoCaptor.capture());
+        verifyNoMoreInteractions(userServiceMock);
+
+        User dtoArgument = dtoCaptor.getValue();
+        assertThat(dtoArgument.getId(), is(3L));
+        assertThat(dtoArgument.getName(), is("name"));
+        assertThat(dtoArgument.getEmail(), is("email"));
+    }
+
+    @Test
+    public void update_UserEntryFound_ShouldUpdateUserEntryAndReturnIt() throws Exception {
+        UserDTO dto = new UserDTOBuilder()
+                .id(1L)
+                .name("name")
+                .email("email")
+                .build();
+
+        User updated = new UserBuilder()
+                .id(1L)
+                .name("name")
+                .email("email")
+                .build();
+
+        when(userServiceMock.update(any(User.class))).thenReturn(updated);
+
+        mockMvc.perform(put("/myApp/user/update/{id}", 1L)
+                        .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                        .content(TestUtil.convertObjectToJsonBytes(dto))
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.name", is("name")))
+                .andExpect(jsonPath("$.email", is("email")));
+
+        ArgumentCaptor<User> dtoCaptor = ArgumentCaptor.forClass(User.class);
+        verify(userServiceMock, times(1)).update(dtoCaptor.capture());
+        verifyNoMoreInteractions(userServiceMock);
+
+        User dtoArgument = dtoCaptor.getValue();
+        assertThat(dtoArgument.getId(), is(1L));
+        assertThat(dtoArgument.getName(), is("name"));
+        assertThat(dtoArgument.getEmail(), is("email"));
+    }
+
 }

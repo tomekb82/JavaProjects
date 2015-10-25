@@ -4,14 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.tb.myApp.controller.user.dto.UserDTO;
 import pl.tb.myApp.controller.user.dto.UserDTOService;
 import pl.tb.myApp.controller.util.controller.BasicController;
 import pl.tb.myApp.model.user.entity.User;
-import pl.tb.myApp.model.user.enumeration.Gender;
 import pl.tb.myApp.model.util.exception.MyAppException;
 import pl.tb.myApp.service.user.UserService;
 
@@ -24,7 +21,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/myApp/user")
-@Transactional(propagation = Propagation.REQUIRED)
+//@Transactional(propagation = Propagation.REQUIRED)
 public class UserController extends BasicController{
 
   private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
@@ -49,12 +46,9 @@ public class UserController extends BasicController{
   @RequestMapping(value = "/add", method = RequestMethod.POST)
   @ResponseBody
   public UserDTO add(@Valid @RequestBody UserDTO userDTO) throws MyAppException{
+    LOGGER.debug("Adding a new to-do entry with information: {}", userDTO);
 
-    User user = new User(userDTO.getEmail(), userDTO.getName(), Gender.F);
-    //user.setVersion(0L);
-    user.setUser("Tomek");
-    LOGGER.debug("Adding a new to-do entry with information: {}", user);
-
+    User user = userDTOService.createEntity(userDTO);
     User added = userService.add(user);
     LOGGER.debug("Added a to-do entry with information: {}", added);
 
@@ -94,16 +88,13 @@ public class UserController extends BasicController{
     return userDTOService.createDTO(user);
   }
 
-  @RequestMapping(value ="/update/{id}{email}{name}", method = RequestMethod.PUT)
+  @RequestMapping(value ="/update/{id}", method = RequestMethod.PUT)
   @ResponseBody
-  public UserDTO updateUser(@PathVariable("id") long id,
-                           @PathVariable("email") String email,
-                           @PathVariable("name") String name) throws MyAppException{
-    User user = userService.findById(id);
-    LOGGER.debug("Updating a to-do entry with information: {}", user);
+  public UserDTO updateUser(@Valid @RequestBody UserDTO userDTO,
+                            @PathVariable("id") long id) throws MyAppException{
+    LOGGER.debug("Updating a to-do entry with information: {}", userDTO);
 
-    user.setEmail(email);
-    user.setName(name);
+    User user = userDTOService.createEntity(userDTO);
     User updated = userService.update(user);
     LOGGER.debug("Updated the information of a to-entry to: {}", updated);
 

@@ -10,4 +10,6 @@ public interface BasicDTO<E,T> {
     public List<E> createDTOs(List<T> models);
 
     public E createDTO(T model);
+
+    public T createEntity(E model);
 }

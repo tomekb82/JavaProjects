@@ -1,10 +1,10 @@
-pl/tb/myApp/controller/user/dto/UserDTOService.class
 pl/tb/myApp/controller/user/dto/UserDTO.class
 pl/tb/myApp/controller/util/controller/BasicController.class
-pl/tb/myApp/controller/user/UserController.class
-pl/tb/myApp/controller/util/controller/RestErrorHandler.class
-pl/tb/myApp/controller/util/enumeration/ErrorType.class
 pl/tb/myApp/controller/util/dto/FieldErrorDTO.class
 pl/tb/myApp/controller/util/dto/BasicDTO.class
 pl/tb/myApp/controller/MainController.class
+pl/tb/myApp/controller/user/dto/UserDTOService.class
+pl/tb/myApp/controller/user/UserController.class
+pl/tb/myApp/controller/util/controller/RestErrorHandler.class
+pl/tb/myApp/controller/util/enumeration/ErrorType.class
 pl/tb/myApp/controller/util/dto/ValidationErrorDTO.class

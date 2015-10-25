@@ -35,4 +35,15 @@ public class UserDTOService implements BasicDTO<UserDTO, User> {
         dto.setGender(model.getGender());
         return dto;
     }
+
+    @Override
+    public User createEntity(UserDTO model) {
+        User dto = new User();
+
+        dto.setId(model.getId());
+        dto.setName(model.getName());
+        dto.setEmail(model.getEmail());
+        dto.setGender(model.getGender());
+        return dto;
+    }
 }

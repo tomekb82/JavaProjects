@@ -6,5 +6,6 @@
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/dto/ValidationErrorDTO.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/MainController.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/user/dto/UserDTOService.java
+/home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/user/dto/UserDTOBuilder.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/dto/FieldErrorDTO.java
 /home/tomek/Desktop/repo/JavaProjects/ProjectTemplate/controller/src/main/java/pl/tb/myApp/controller/util/dto/BasicDTO.java

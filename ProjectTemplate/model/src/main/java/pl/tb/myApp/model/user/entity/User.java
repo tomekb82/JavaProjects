@@ -11,21 +11,18 @@ import javax.validation.constraints.NotNull;
 //@SequenceGenerator(name = "SEQUENCE_GENERATOR", sequenceName = "SEQ_MYAPP_USERS", allocationSize = 10)
 public class User extends BasicEntity{
 
-  // ------------------------
-  // PRIVATE FIELDS
-  // ------------------------
-  
+  public static final int MAX_LENGTH_NAME = 200;
+  public static final int MAX_LENGTH_EMAIL = 50;
+
   // The user's email
-  @Column(name = "EMAIL")
-  @NotNull
+  @Column(name = "EMAIL", nullable = true, length = MAX_LENGTH_EMAIL)
   private String email;
   
   // The user's name
-  @Column(name = "NAME")
-  @NotNull
+  @Column(name = "NAME", nullable = false, length = MAX_LENGTH_NAME)
   private String name;
 
-  @Column(name = "GENDER")
+  @Column(name = "GENDER", nullable = true)
   @Enumerated(value = EnumType.STRING)
   private Gender gender;
 
