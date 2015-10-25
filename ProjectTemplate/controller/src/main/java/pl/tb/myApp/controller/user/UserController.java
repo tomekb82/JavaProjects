@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import pl.tb.myApp.controller.user.dto.UserDTO;
 import pl.tb.myApp.controller.user.dto.UserDTOService;
 import pl.tb.myApp.controller.util.controller.BasicController;
@@ -49,14 +46,12 @@ public class UserController extends BasicController{
     return userDTOService.createDTOs(models);
   }
 
-  @RequestMapping(value = "/add/{name}{email}{gender}", method = RequestMethod.POST)
+  @RequestMapping(value = "/add", method = RequestMethod.POST)
   @ResponseBody
-  public UserDTO add( @Valid @PathVariable("name") String name,
-                      @Valid @PathVariable("email") String email,
-                      @Valid @PathVariable("gender") String gender) throws MyAppException{
+  public UserDTO add(@Valid @RequestBody UserDTO userDTO) throws MyAppException{
 
-    User user = new User(email, name, Gender.fromValue(gender));
-    user.setVersion(0L);
+    User user = new User(userDTO.getEmail(), userDTO.getName(), Gender.F);
+    //user.setVersion(0L);
     user.setUser("Tomek");
     LOGGER.debug("Adding a new to-do entry with information: {}", user);
 

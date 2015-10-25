@@ -1,5 +1,7 @@
 package pl.tb.myApp.controller.user.dto;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import pl.tb.myApp.model.user.enumeration.Gender;
 
 import java.io.Serializable;
@@ -7,8 +9,11 @@ public class UserDTO implements Serializable{
 
   private Long id ;
 
+  @Length(max = 50)
   private String email;
 
+  @NotEmpty
+  @Length(max = 200)
   private String name;
 
   private Gender gender;

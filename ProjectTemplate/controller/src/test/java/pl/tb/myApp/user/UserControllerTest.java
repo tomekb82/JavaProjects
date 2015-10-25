@@ -11,9 +11,14 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import pl.tb.myApp.controller.user.dto.UserDTO;
+import pl.tb.myApp.controller.user.dto.UserDTOBuilder;
 import pl.tb.myApp.model.user.entity.User;
 import pl.tb.myApp.model.user.entity.UserBuilder;
+import pl.tb.myApp.model.util.exception.MyAppException;
+import pl.tb.myApp.model.util.validation.ErrorMessage;
 import pl.tb.myApp.service.user.UserService;
+import pl.tb.myApp.service.util.validation.ServiceValidator;
 import pl.tb.myApp.util.TestUtil;
 
 import java.util.Arrays;
@@ -75,5 +80,64 @@ public class UserControllerTest {
 
         verify(userServiceMock, times(1)).findAll();
         verifyNoMoreInteractions(userServiceMock);
+    }
+
+
+    @Test
+    public void findById_UserEntryNotFound_ShouldReturnHttpStatusCode404() throws Exception {
+        when(userServiceMock.findById(1L)).thenThrow(new MyAppException(ServiceValidator.getErrorMessage("", ErrorMessage.NOT_FOUND)));
+
+        mockMvc.perform(get("/myApp/user/findById/{id}", 1L))
+                .andExpect(status().isNotFound());
+
+        verify(userServiceMock, times(1)).findById(1L);
+        verifyNoMoreInteractions(userServiceMock);
+    }
+
+    @Test
+    public void findById_UserEntryFound_ShouldReturnFoundUserEntry() throws Exception {
+        User found = new UserBuilder()
+                .id(1L)
+                .name("Adam")
+                .email("adam@wp.pl")
+                .build();
+
+        when(userServiceMock.findById(1L)).thenReturn(found);
+
+        mockMvc.perform(get("/myApp/user/findById/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.name", is("Adam")))
+                .andExpect(jsonPath("$.email", is("adam@wp.pl")));
+
+        verify(userServiceMock, times(1)).findById(1L);
+        verifyNoMoreInteractions(userServiceMock);
+    }
+
+    @Test
+    public void add_TitleAndDescriptionAreTooLong_ShouldReturnValidationErrorsForTitleAndDescription() throws Exception {
+        String name = TestUtil.createStringWithLength(201);
+        String email = TestUtil.createStringWithLength(51);
+
+        UserDTO dto = new UserDTOBuilder()
+                .name(name)
+                .email(email)
+                .build();
+
+        mockMvc.perform(post("/myApp/user/add")
+                        .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                        .content(TestUtil.convertObjectToJsonBytes(dto))
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.fieldErrors", hasSize(2)))
+                .andExpect(jsonPath("$.fieldErrors[*].path", containsInAnyOrder("name", "email")))
+                .andExpect(jsonPath("$.fieldErrors[*].message", containsInAnyOrder(
+                        "The maximum length of the name is 200 characters.",
+                        "The maximum length of the email is 50 characters."
+                )));
+
+        verifyZeroInteractions(userServiceMock);
     }
 }
