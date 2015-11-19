@@ -52,6 +52,7 @@
           <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
         </configuration>
         <executions>
+
           <execution>
             <id>mojo-descriptor</id>
             <goals>
